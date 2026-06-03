@@ -1,8 +1,46 @@
-/* modules/main.js - 인터랙션 및 애니메이션 제어 메인 스크립트 */
-import { showToast } from './toast.js';
+/* modules/main.js - 인터랙션 및 애니메이션 제어 통합 스크립트 */
 
+// 1. Alert 대체용 커스텀 토스트 알림 기능 (CORS 제한 방지를 위해 toast.js 코드를 통합)
+function getOrCreateToastContainer() {
+  let container = document.getElementById('toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    document.body.appendChild(container);
+  }
+  return container;
+}
+
+function showToast(message, type = 'success', duration = 3000) {
+  const container = getOrCreateToastContainer();
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  
+  let iconClass = 'fa-check-circle';
+  if (type === 'warning') iconClass = 'fa-exclamation-triangle';
+  if (type === 'error') iconClass = 'fa-times-circle';
+  
+  toast.innerHTML = `
+    <span class="toast-icon"><i class="fas ${iconClass}"></i></span>
+    <span class="toast-message">${message}</span>
+  `;
+  
+  container.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.classList.add('show');
+  }, 10);
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+    toast.addEventListener('transitionend', () => {
+      toast.remove();
+    });
+  }, duration);
+}
+
+// 2. DOM 로드 후 전체 인터랙션 동작 활성화
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. GSAP 라이브러리 및 플러그인 로드 확인
   if (typeof gsap !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
     initAnimations();
@@ -20,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
 ---------------------------------------------------- */
 function initAnimations() {
   // --- 패턴 1. Hero Entrance (GSAP Timeline) ---
-  // FOUC(Flash Of Unstyled Content) 방지용 gsap.set 선행 처리
   gsap.set([".hero-tag", ".hero-title span", ".hero-description", ".hero-buttons .btn", ".hero-profile-card"], {
     opacity: 0,
     y: 35
@@ -43,13 +80,11 @@ function initAnimations() {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;  // -1 to 1
       const y = (e.clientY / window.innerHeight - 0.5) * 2; // -1 to 1
       
-      // 카드와 배경 도형들을 각각 다른 값으로 parallax 적용해 깊이감 형성
       gsap.to(profileCard, { x: x * 18, y: y * 10, rotateY: x * 8, rotateX: -y * 8, duration: 0.8, ease: "power2.out" });
       gsap.to(".shape-1", { x: x * 40, y: y * 20, duration: 1.2, ease: "power1.out" });
       gsap.to(".shape-2", { x: -x * 30, y: -y * 15, duration: 1.5, ease: "power1.out" });
     });
 
-    // 마우스가 영역을 벗어나면 원래대로 스무스 복귀
     heroSection.addEventListener("mouseleave", () => {
       gsap.to(profileCard, { x: 0, y: 0, rotateY: 0, rotateX: 0, duration: 1.2, ease: "power3.out" });
       gsap.to(".shape-1", { x: 0, y: 0, duration: 1.5, ease: "power3.out" });
@@ -61,7 +96,7 @@ function initAnimations() {
   gsap.set(".strength-card", { opacity: 0, y: 60, rotateX: 18 });
   
   ScrollTrigger.batch(".strength-card", {
-    start: "top 85%", // 카드의 상단이 화면의 85% 지점을 넘어가면 실행
+    start: "top 85%",
     once: true,
     onEnter: batch => gsap.to(batch, {
       opacity: 1,
@@ -73,7 +108,7 @@ function initAnimations() {
     })
   });
 
-  // Biography 타임라인 연혁 요소도 부드러운 페이드인 적용
+  // Biography 타임라인 연혁 부드러운 페이드인
   gsap.set(".timeline-item", { opacity: 0, x: -30 });
   ScrollTrigger.batch(".timeline-item", {
     start: "top 85%",
@@ -89,7 +124,7 @@ function initAnimations() {
 }
 
 /* ----------------------------------------------------
-   네비게이션 헤더 스크롤 제어
+   네비게이션 헤더 및 모바일 토글 제어
 ---------------------------------------------------- */
 function initNavigation() {
   const header = document.getElementById('header');
@@ -98,7 +133,6 @@ function initNavigation() {
   const menuToggle = document.getElementById('menu-toggle');
   const navList = document.querySelector('.nav-links');
 
-  // 스크롤 시 헤더 축소 및 배경 제어
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       header.classList.add('scrolled');
@@ -106,10 +140,9 @@ function initNavigation() {
       header.classList.remove('scrolled');
     }
 
-    // 스크롤 위치에 따라 메뉴 엑티브 스타일 갱신
     let current = '';
     sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
+      const sectionTop = section.offsetTop - 120;
       const sectionHeight = section.clientHeight;
       if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
         current = section.getAttribute('id');
@@ -124,7 +157,7 @@ function initNavigation() {
     });
   });
 
-  // 모바일 햄버거 메뉴 토글
+  // 모바일 메뉴 토글
   if (menuToggle && navList) {
     menuToggle.addEventListener('click', () => {
       navList.classList.toggle('mobile-active');
@@ -137,7 +170,6 @@ function initNavigation() {
       }
     });
 
-    // 링크 클릭 시 모바일 메뉴 닫기
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         navList.classList.remove('mobile-active');
@@ -148,10 +180,10 @@ function initNavigation() {
 }
 
 /* ----------------------------------------------------
-   커리큘럼 탭 선택 제어
+   커리큘럼 탭 선택 제어 (로컬 작동 오류 디버깅 완료)
 ---------------------------------------------------- */
 function initCurriculumTabs() {
-  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabBtns = document.querySelectorAll('.curriculum-tabs .tab-btn');
   const tabContents = document.querySelectorAll('.tab-content');
 
   tabBtns.forEach(btn => {
@@ -174,11 +206,11 @@ function initCurriculumTabs() {
 }
 
 /* ----------------------------------------------------
-   레퍼런스 카테고리 필터링 제어
+   레퍼런스 카테고리 필터링 제어 (로컬 작동 오류 디버깅 완료)
 ---------------------------------------------------- */
 function initReferenceFilter() {
   const filterBtns = document.querySelectorAll('.ref-tab-btn');
-  const logoItems = document.querySelectorAll('.logo-item');
+  const logoItems = document.querySelectorAll('.logo-grid .logo-item');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -193,7 +225,7 @@ function initReferenceFilter() {
         const itemCat = item.getAttribute('data-cat');
         if (cat === 'all' || itemCat === cat) {
           item.style.display = 'flex';
-          gsap.fromTo(item, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" });
+          gsap.fromTo(item, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" });
         } else {
           item.style.display = 'none';
         }
@@ -203,41 +235,117 @@ function initReferenceFilter() {
 }
 
 /* ----------------------------------------------------
-   수강생 후기 슬라이더 (캐러셀)
+   ★ 수강생 후기 3차원 중앙 포커스형 슬라이더 (자동/터치 지원)
 ---------------------------------------------------- */
 function initTestimonialSlider() {
+  const container = document.querySelector('.testimonials-slider-container');
   const track = document.getElementById('testimonials-track');
   const cards = document.querySelectorAll('.testimonial-card');
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
   
-  if (!track || cards.length === 0) return;
+  if (!container || !track || cards.length === 0) return;
 
   let currentIndex = 0;
+  let autoplayTimer = null;
+  const AUTOPLAY_INTERVAL = 3500; // 3.5초 간격 롤링
 
+  // 1. 현재 인덱스 기준으로 슬라이더를 화면 정앙에 정렬
   function updateSlider() {
-    gsap.to(track, {
-      x: `-${currentIndex * 100}%`,
-      duration: 0.5,
-      ease: "power2.out"
+    const containerWidth = container.offsetWidth;
+    const cardWidth = cards[0].offsetWidth;
+    const cardMargin = 20; // CSS의 margin: 0 20px 기준
+    const stepWidth = cardWidth + cardMargin * 2;
+    
+    // 카드가 정확히 컨테이너 중앙에 오도록 오프셋값 계산
+    const centerOffset = (containerWidth - cardWidth) / 2 - cardMargin;
+    const translateX = -(currentIndex * stepWidth) + centerOffset;
+
+    // 트랙 위치 이동
+    track.style.transform = `translateX(${translateX}px)`;
+
+    // 활성화된 중앙 카드의 불투명도 및 크기 처리
+    cards.forEach((card, idx) => {
+      if (idx === currentIndex) {
+        card.classList.add('active');
+      } else {
+        card.classList.remove('active');
+      }
     });
   }
 
-  nextBtn.addEventListener('click', () => {
+  // 2. 슬라이드 이동 함수
+  function nextSlide() {
     currentIndex = (currentIndex + 1) % cards.length;
     updateSlider();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    updateSlider();
+  }
+
+  // 3. 자동 롤링(Autoplay) 시작 & 정지 제어
+  function startAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    autoplayTimer = setInterval(nextSlide, AUTOPLAY_INTERVAL);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+  }
+
+  // 4. 수동 제어 버튼 연동
+  nextBtn.addEventListener('click', () => {
+    nextSlide();
+    startAutoplay(); // 클릭 후 타이머 리셋
   });
 
   prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-    updateSlider();
+    prevSlide();
+    startAutoplay(); // 클릭 후 타이머 리셋
   });
 
-  // 스와이프나 자동 롤링 추가 시 확장 가능 구역
+  // 5. 호버 시 자동 롤링 멈춤 설정 (PC용)
+  container.addEventListener('mouseenter', stopAutoplay);
+  container.addEventListener('mouseleave', startAutoplay);
+
+  // 6. 모바일 터치 스와이프 기능 구현 (터치 슬라이드 대응)
+  let startX = 0;
+  let endX = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    stopAutoplay(); // 터치 시작 시 자동 롤링 정지
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    const diffX = startX - endX;
+
+    if (Math.abs(diffX) > 50) { // 50px 이상 쓸었을 때만 반응
+      if (diffX > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+    startAutoplay(); // 터치가 끝나면 자동 롤링 재시작
+  }, { passive: true });
+
+  // 7. 창 크기가 변해도 중앙 정렬이 풀리지 않도록 대응
+  window.addEventListener('resize', updateSlider);
+
+  // 초기 실행 및 첫 카드 활성화
+  updateSlider();
+  startAutoplay();
 }
 
 /* ----------------------------------------------------
-   이메일 주소 복사하기 및 토스트 알림 호출
+   이메일 주소 복사하기 및 토스트 호출
 ---------------------------------------------------- */
 function initEmailCopy() {
   const copyBtn = document.getElementById('copy-email-btn');
@@ -247,12 +355,9 @@ function initEmailCopy() {
     copyBtn.addEventListener('click', () => {
       const email = emailText.innerText;
       
-      // 클립보드에 이메일 주소 복사
       navigator.clipboard.writeText(email).then(() => {
-        // 성공 시 커스텀 토스트 알림 호출 (Green 성공 타입)
         showToast('이메일 주소가 클립보드에 복사되었습니다.', 'success');
       }).catch(err => {
-        // 실패 시 에러 토스트 호출 (Red 에러 타입)
         showToast('주소 복사에 실패했습니다. 직접 복사해주세요.', 'error');
         console.error('클립보드 복사 에러:', err);
       });

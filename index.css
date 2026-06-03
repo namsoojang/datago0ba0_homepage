@@ -52,6 +52,8 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 a {
@@ -279,11 +281,13 @@ header.scrolled {
 
 .hero-title {
   font-family: var(--font-title);
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-size: clamp(1.85rem, 4.5vw, 3.25rem);
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.35;
   margin-bottom: 28px;
   letter-spacing: -0.03em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .hero-title span {
@@ -917,27 +921,46 @@ header.scrolled {
 }
 
 /* 13. Testimonials Section */
+/* 13. Testimonials Section - 3-Card Center-focused Carousel */
 .testimonials-slider-container {
-  max-width: 800px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
+  padding: 40px 0;
 }
 
 .testimonials-track {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  align-items: center;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
 }
 
 .testimonial-card {
-  flex: 0 0 100%;
-  width: 100%;
+  flex: 0 0 620px;
+  width: 620px;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   backdrop-filter: var(--glass-blur);
   padding: 48px;
   border-radius: var(--border-radius-md);
   position: relative;
+  margin: 0 20px;
+  opacity: 0.25;
+  transform: scale(0.9);
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+              border-color 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.testimonial-card.active {
+  opacity: 1;
+  transform: scale(1.02);
+  border-color: var(--card-hover-border);
+  box-shadow: var(--shadow-lg);
 }
 
 .quote-icon {
@@ -957,6 +980,7 @@ header.scrolled {
   z-index: 2;
   font-weight: 400;
   color: var(--text-primary);
+  word-break: keep-all;
 }
 
 .testimonial-author {
