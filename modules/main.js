@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   safeInit(initNavigation, 'Navigation');
+  safeInit(initStrengthsAccordion, 'Strengths Accordion');
   safeInit(initCurriculumTabs, 'Curriculum Tabs');
   safeInit(initReferenceFilter, 'Reference Filter');
   safeInit(initTestimonialSlider, 'Testimonial Slider');
@@ -227,6 +228,30 @@ function initCurriculumTabs() {
 }
 
 /* ----------------------------------------------------
+   기존 강의와의 차별점 아코디언 UI 제어
+---------------------------------------------------- */
+function initStrengthsAccordion() {
+  const items = document.querySelectorAll('.strengths-accordion .accordion-item');
+
+  items.forEach(item => {
+    const header = item.querySelector('.accordion-header');
+    if (!header) return;
+
+    header.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // 모든 아코디언 active 끄기 (하나씩만 열리는 구조)
+      items.forEach(i => i.classList.remove('active'));
+
+      // 클릭한 아코디언 상태 반전
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+}
+
+/* ----------------------------------------------------
    레퍼런스 카테고리 필터링 제어 (로컬 작동 오류 디버깅 완료)
 ---------------------------------------------------- */
 function initReferenceFilter() {
@@ -267,14 +292,39 @@ function initTestimonialSlider() {
   
   if (!container || !track || cards.length === 0) return;
 
-  let currentIndex = 0;
+  // 0. 무한 루프를 위해 자바스크립트로 앞뒤 복제(Clone) 노드 자동 생성
+  const originalLength = cards.length;
+  const cloneCount = 2; // 양옆 힌트 카드들을 넉넉히 보여주기 위해 앞뒤로 2개씩 배치
+
+  // 뒤쪽 2개 복제하여 앞에 붙임
+  for (let i = 0; i < cloneCount; i++) {
+    const cardToClone = cards[originalLength - 1 - i];
+    const clone = cardToClone.cloneNode(true);
+    clone.classList.add('clone');
+    track.insertBefore(clone, track.firstChild);
+  }
+
+  // 앞쪽 2개 복제하여 뒤에 붙임
+  for (let i = 0; i < cloneCount; i++) {
+    const cardToClone = cards[i];
+    const clone = cardToClone.cloneNode(true);
+    clone.classList.add('clone');
+    track.appendChild(clone);
+  }
+
+  // 복제 카드 생성 후 전체 리스트 새로 조회
+  const allCards = track.querySelectorAll('.testimonial-card');
+
+  // 첫 번째 원본 카드의 실제 배열 인덱스는 복제 개수인 cloneCount(2)
+  let currentIndex = cloneCount;
   let autoplayTimer = null;
+  let isTransitioning = false;
   const AUTOPLAY_INTERVAL = 4000; // 4초 간격 자동 롤링
 
   // 1. 현재 인덱스 기준으로 슬라이더를 화면 중앙에 정렬
   function updateSlider(offsetMove = 0, isDragging = false) {
     const containerWidth = container.offsetWidth;
-    const card = cards[currentIndex];
+    const card = allCards[currentIndex];
     if (!card) return;
 
     const cardWidth = card.offsetWidth;
@@ -291,15 +341,20 @@ function initTestimonialSlider() {
     if (isDragging) {
       track.style.transition = 'none';
       translateX += offsetMove;
-    } else {
-      track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
     }
 
     track.style.transform = `translateX(${translateX}px)`;
 
-    // 활성화된 중앙 카드의 불투명도 및 크기 처리
+    // 활성화된 중앙 카드의 불투명도 및 크기 처리 (클론이 아닌 원본 기준으로 인덱스 판별)
     if (!isDragging) {
-      cards.forEach((c, idx) => {
+      let activeOrigIdx = (currentIndex - cloneCount) % originalLength;
+      if (activeOrigIdx < 0) activeOrigIdx += originalLength;
+
+      allCards.forEach((c, idx) => {
+        let cOrigIdx = (idx - cloneCount) % originalLength;
+        if (cOrigIdx < 0) cOrigIdx += originalLength;
+
+        // 중앙에 놓여진 활성화 카드에만 active 클래스 할당
         if (idx === currentIndex) {
           c.classList.add('active');
         } else {
@@ -309,16 +364,43 @@ function initTestimonialSlider() {
     }
   }
 
-  // 2. 슬라이드 이동 함수
+  // 2. 슬라이드 이동 함수 (순간 이동이 끝난 후 본래 인덱스로 자연스럽게 전환)
   function nextSlide() {
-    currentIndex = (currentIndex + 1) % cards.length;
+    if (isTransitioning) return;
+    isTransitioning = true;
+    currentIndex++;
+    
+    track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
     updateSlider();
+
+    // 트랜지션 완료 시간(600ms) 대기 후 인덱스 순간이동(Jump) 보정
+    setTimeout(() => {
+      if (currentIndex >= originalLength + cloneCount) {
+        track.style.transition = 'none';
+        currentIndex = cloneCount; // 복제된 영역에서 원래 첫 카드로 Snap
+        updateSlider();
+      }
+      isTransitioning = false;
+    }, 600);
   }
 
   // 3. 이전 슬라이드 이동 함수
   function prevSlide() {
-    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    if (isTransitioning) return;
+    isTransitioning = true;
+    currentIndex--;
+    
+    track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
     updateSlider();
+
+    setTimeout(() => {
+      if (currentIndex < cloneCount) {
+        track.style.transition = 'none';
+        currentIndex = originalLength + cloneCount - 1; // 복제된 영역에서 원래 마지막 카드로 Snap
+        updateSlider();
+      }
+      isTransitioning = false;
+    }, 600);
   }
 
   // 4. 자동 롤링(Autoplay) 시작 & 정지 제어
@@ -359,6 +441,7 @@ function initTestimonialSlider() {
   let isDragging = false;
 
   container.addEventListener('touchstart', (e) => {
+    if (isTransitioning) return;
     startX = e.touches[0].clientX;
     currentX = startX;
     isDragging = true;

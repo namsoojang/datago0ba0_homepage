@@ -421,6 +421,32 @@ header.scrolled {
   font-weight: 600;
 }
 
+.profile-bullets {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.profile-bullets li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.profile-bullets li i {
+  color: var(--accent-teal);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
 /* 스크롤 다운 가이드 */
 .scroll-down {
   position: absolute;
@@ -551,67 +577,102 @@ header.scrolled {
   font-size: 0.9rem;
 }
 
-/* 9. Core Strengths Section (Why Us?) */
-.strengths-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 48px;
+/* 9. Core Strengths Section (Why Us?) - Accordion UI */
+.strengths-accordion {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.strength-card {
+.accordion-item {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  backdrop-filter: var(--glass-blur);
-  padding: 40px 32px;
   border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-sm);
+  backdrop-filter: var(--glass-blur);
+  overflow: hidden;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  perspective: 1000px;
-  transform-style: preserve-3d;
-  will-change: transform;
 }
 
-.strength-card:hover {
+.accordion-item:hover {
+  border-color: var(--card-hover-border);
+}
+
+.accordion-item.active {
   border-color: var(--card-hover-border);
   box-shadow: var(--shadow-glow);
-  transform: translateY(-8px);
 }
 
-.strength-icon {
-  width: 56px;
-  height: 56px;
+.accordion-header {
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.accordion-title-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.accordion-icon {
+  width: 44px;
+  height: 44px;
   border-radius: var(--border-radius-sm);
   background: rgba(2, 195, 154, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent-teal);
-  font-size: 1.5rem;
-  margin-bottom: 24px;
+  font-size: 1.25rem;
   border: 1px solid rgba(2, 195, 154, 0.15);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
-.strength-card:hover .strength-icon {
+.accordion-item.active .accordion-icon {
   background: var(--primary-teal);
   color: var(--text-primary);
-  box-shadow: 0 0 15px rgba(2, 195, 154, 0.4);
+  box-shadow: 0 0 10px rgba(2, 195, 154, 0.3);
 }
 
-.strength-card h3 {
-  font-size: 1.25rem;
+.accordion-header h3 {
+  font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin: 0;
 }
 
-.strength-card p {
+.accordion-arrow {
+  color: var(--text-muted);
+  transition: transform 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.accordion-item.active .accordion-arrow {
+  transform: rotate(180deg);
+  color: var(--accent-teal);
+}
+
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.accordion-item.active .accordion-content {
+  grid-template-rows: 1fr;
+}
+
+.accordion-content p {
+  overflow: hidden;
+  padding: 0 32px 24px 96px; /* 아이콘 폭 + 좌우 패딩 감안한 마진 */
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
-}
-
-.strength-card-span-2 {
-  grid-column: span 2;
 }
 
 /* 10. Book Highlight Section */
@@ -662,7 +723,15 @@ header.scrolled {
 .book-title {
   font-size: 2rem;
   font-weight: 800;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+}
+
+.book-subtitle {
+  font-family: var(--font-title);
+  font-size: 1.125rem;
+  color: var(--accent-teal);
+  margin-bottom: 20px;
+  font-weight: 600;
 }
 
 .book-desc {
@@ -901,6 +970,7 @@ header.scrolled {
   align-items: center;
   justify-content: center;
   padding: 16px;
+  gap: 8px;
   transition: all 0.3s ease;
 }
 
@@ -908,6 +978,19 @@ header.scrolled {
   border-color: var(--card-hover-border);
   background: var(--card-bg);
   transform: translateY(-4px);
+}
+
+.logo-symbol {
+  font-size: 1.15rem;
+  color: var(--accent-teal);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.logo-item:hover .logo-symbol {
+  color: var(--text-primary);
+  transform: scale(1.1);
+  opacity: 1;
 }
 
 .logo-item span {
