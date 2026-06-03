@@ -41,22 +41,39 @@ function showToast(message, type = 'success', duration = 3000) {
 
 // 2. DOM 로드 후 전체 인터랙션 동작 활성화
 document.addEventListener('DOMContentLoaded', () => {
-  if (typeof gsap !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-    initAnimations();
+  // GSAP 및 ScrollTrigger 애니메이션 안전 초기화
+  try {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      initAnimations();
+    } else {
+      console.warn("GSAP or ScrollTrigger is not defined. Animations will be skipped.");
+    }
+  } catch (err) {
+    console.error("Failed to initialize GSAP animations:", err);
   }
 
-  initNavigation();
-  initCurriculumTabs();
-  initReferenceFilter();
-  initTestimonialSlider();
-  initEmailCopy();
+  // 각 UI 컴포넌트 안전 초기화 (에러 격리)
+  const safeInit = (initFunc, name) => {
+    try {
+      initFunc();
+    } catch (err) {
+      console.error(`Failed to initialize ${name}:`, err);
+    }
+  };
+
+  safeInit(initNavigation, 'Navigation');
+  safeInit(initCurriculumTabs, 'Curriculum Tabs');
+  safeInit(initReferenceFilter, 'Reference Filter');
+  safeInit(initTestimonialSlider, 'Testimonial Slider');
+  safeInit(initEmailCopy, 'Email Copy');
 });
 
 /* ----------------------------------------------------
    ★ 5대 애니메이션 패턴 구현 (GSAP & ScrollTrigger)
----------------------------------------------------- */
+ ---------------------------------------------------- */
 function initAnimations() {
+  if (typeof gsap === 'undefined') return;
   // --- 패턴 1. Hero Entrance (GSAP Timeline) ---
   gsap.set([".hero-tag", ".hero-title span", ".hero-description", ".hero-buttons .btn", ".hero-profile-card"], {
     opacity: 0,
@@ -93,34 +110,38 @@ function initAnimations() {
   }
 
   // --- 패턴 3. Scroll-triggered Reveals (강점 카드 3D 리빌) ---
-  gsap.set(".strength-card", { opacity: 0, y: 60, rotateX: 18 });
-  
-  ScrollTrigger.batch(".strength-card", {
-    start: "top 85%",
-    once: true,
-    onEnter: batch => gsap.to(batch, {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      duration: 0.8,
-      stagger: 0.12,
-      ease: "power2.out"
-    })
-  });
+  if (typeof ScrollTrigger !== 'undefined') {
+    gsap.set(".strength-card", { opacity: 0, y: 60, rotateX: 18 });
+    ScrollTrigger.batch(".strength-card", {
+      start: "top 85%",
+      once: true,
+      onEnter: batch => gsap.to(batch, {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power2.out"
+      })
+    });
 
-  // Biography 타임라인 연혁 부드러운 페이드인
-  gsap.set(".timeline-item", { opacity: 0, x: -30 });
-  ScrollTrigger.batch(".timeline-item", {
-    start: "top 85%",
-    once: true,
-    onEnter: batch => gsap.to(batch, {
-      opacity: 1,
-      x: 0,
-      duration: 0.6,
-      stagger: 0.15,
-      ease: "power2.out"
-    })
-  });
+    // Biography 타임라인 연혁 부드러운 페이드인
+    gsap.set(".timeline-item", { opacity: 0, x: -30 });
+    ScrollTrigger.batch(".timeline-item", {
+      start: "top 85%",
+      once: true,
+      onEnter: batch => gsap.to(batch, {
+        opacity: 1,
+        x: 0,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "power2.out"
+      })
+    });
+  } else {
+    // ScrollTrigger가 로드되지 않았을 경우, 카드가 보이지 않는 버그 방지를 위해 즉시 노출
+    gsap.set([".strength-card", ".timeline-item"], { opacity: 1, y: 0, rotateX: 0, x: 0 });
+  }
 }
 
 /* ----------------------------------------------------
@@ -248,30 +269,44 @@ function initTestimonialSlider() {
 
   let currentIndex = 0;
   let autoplayTimer = null;
-  const AUTOPLAY_INTERVAL = 3500; // 3.5초 간격 롤링
+  const AUTOPLAY_INTERVAL = 4000; // 4초 간격 자동 롤링
 
-  // 1. 현재 인덱스 기준으로 슬라이더를 화면 정앙에 정렬
-  function updateSlider() {
+  // 1. 현재 인덱스 기준으로 슬라이더를 화면 중앙에 정렬
+  function updateSlider(offsetMove = 0, isDragging = false) {
     const containerWidth = container.offsetWidth;
-    const cardWidth = cards[0].offsetWidth;
-    const cardMargin = 20; // CSS의 margin: 0 20px 기준
-    const stepWidth = cardWidth + cardMargin * 2;
+    const card = cards[currentIndex];
+    if (!card) return;
+
+    const cardWidth = card.offsetWidth;
+    const style = window.getComputedStyle(card);
+    const marginLeft = parseFloat(style.marginLeft) || 0;
+    const marginRight = parseFloat(style.marginRight) || 0;
+    const stepWidth = cardWidth + marginLeft + marginRight;
     
     // 카드가 정확히 컨테이너 중앙에 오도록 오프셋값 계산
-    const centerOffset = (containerWidth - cardWidth) / 2 - cardMargin;
-    const translateX = -(currentIndex * stepWidth) + centerOffset;
+    const centerOffset = (containerWidth - cardWidth) / 2 - marginLeft;
+    let translateX = -(currentIndex * stepWidth) + centerOffset;
 
-    // 트랙 위치 이동
+    // 드래그 중인 경우 실시간 위치 오프셋 가산
+    if (isDragging) {
+      track.style.transition = 'none';
+      translateX += offsetMove;
+    } else {
+      track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+    }
+
     track.style.transform = `translateX(${translateX}px)`;
 
     // 활성화된 중앙 카드의 불투명도 및 크기 처리
-    cards.forEach((card, idx) => {
-      if (idx === currentIndex) {
-        card.classList.add('active');
-      } else {
-        card.classList.remove('active');
-      }
-    });
+    if (!isDragging) {
+      cards.forEach((c, idx) => {
+        if (idx === currentIndex) {
+          c.classList.add('active');
+        } else {
+          c.classList.remove('active');
+        }
+      });
+    }
   }
 
   // 2. 슬라이드 이동 함수
@@ -280,14 +315,15 @@ function initTestimonialSlider() {
     updateSlider();
   }
 
+  // 3. 이전 슬라이드 이동 함수
   function prevSlide() {
     currentIndex = (currentIndex - 1 + cards.length) % cards.length;
     updateSlider();
   }
 
-  // 3. 자동 롤링(Autoplay) 시작 & 정지 제어
+  // 4. 자동 롤링(Autoplay) 시작 & 정지 제어
   function startAutoplay() {
-    if (autoplayTimer) clearInterval(autoplayTimer);
+    stopAutoplay();
     autoplayTimer = setInterval(nextSlide, AUTOPLAY_INTERVAL);
   }
 
@@ -298,46 +334,75 @@ function initTestimonialSlider() {
     }
   }
 
-  // 4. 수동 제어 버튼 연동
-  nextBtn.addEventListener('click', () => {
-    nextSlide();
-    startAutoplay(); // 클릭 후 타이머 리셋
-  });
+  // 5. 수동 제어 버튼 연동
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      startAutoplay(); // 클릭 후 타이머 리셋
+    });
+  }
 
-  prevBtn.addEventListener('click', () => {
-    prevSlide();
-    startAutoplay(); // 클릭 후 타이머 리셋
-  });
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      startAutoplay(); // 클릭 후 타이머 리셋
+    });
+  }
 
-  // 5. 호버 시 자동 롤링 멈춤 설정 (PC용)
+  // 6. 호버 시 자동 롤링 멈춤 설정 (PC용)
   container.addEventListener('mouseenter', stopAutoplay);
   container.addEventListener('mouseleave', startAutoplay);
 
-  // 6. 모바일 터치 스와이프 기능 구현 (터치 슬라이드 대응)
+  // 7. 모바일 터치 스와이프 기능 고도화 (실시간 피드백 + 드래그)
   let startX = 0;
-  let endX = 0;
+  let currentX = 0;
+  let isDragging = false;
 
   container.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
+    currentX = startX;
+    isDragging = true;
     stopAutoplay(); // 터치 시작 시 자동 롤링 정지
   }, { passive: true });
 
-  container.addEventListener('touchend', (e) => {
-    endX = e.changedTouches[0].clientX;
-    const diffX = startX - endX;
+  container.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+    const diffX = currentX - startX;
+    
+    // 실시간으로 손가락 따라 트랙 움직임 피드백 제공
+    updateSlider(diffX, true);
+  }, { passive: true });
 
-    if (Math.abs(diffX) > 50) { // 50px 이상 쓸었을 때만 반응
-      if (diffX > 0) {
+  container.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    const diffX = currentX - startX;
+
+    // 터치가 끝났으므로 transition 복구하고 정렬
+    track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+
+    if (Math.abs(diffX) > 60) { // 60px 이상 쓸었을 때 슬라이드 전환
+      if (diffX < 0) {
         nextSlide();
       } else {
         prevSlide();
       }
+    } else {
+      // 변위가 적으면 현재 슬라이드로 제자리 복구
+      updateSlider();
     }
+    
+    // 초기화
+    startX = 0;
+    currentX = 0;
     startAutoplay(); // 터치가 끝나면 자동 롤링 재시작
   }, { passive: true });
 
-  // 7. 창 크기가 변해도 중앙 정렬이 풀리지 않도록 대응
-  window.addEventListener('resize', updateSlider);
+  // 8. 창 크기가 변해도 중앙 정렬이 풀리지 않도록 대응
+  window.addEventListener('resize', () => {
+    updateSlider();
+  });
 
   // 초기 실행 및 첫 카드 활성화
   updateSlider();

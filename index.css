@@ -42,6 +42,8 @@
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 body {
@@ -948,7 +950,7 @@ header.scrolled {
   border-radius: var(--border-radius-md);
   position: relative;
   margin: 0 20px;
-  opacity: 0.25;
+  opacity: 0.45;
   transform: scale(0.9);
   transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
               transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
@@ -1211,7 +1213,10 @@ footer .footer-logo span {
   }
   
   .testimonial-card {
+    flex: 0 0 calc(100vw - 80px);
+    width: calc(100vw - 80px);
     padding: 32px 24px;
+    margin: 0 10px;
   }
 }
 
