@@ -1,0 +1,10 @@
+# 임시 및 테스트 폴더 제외
+temp/
+
+# 시스템 파일 및 기타 부산물
+.DS_Store
+Thumbs.db
+*.bak
+*.bak.*
+.idea/
+.vscode/

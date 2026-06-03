@@ -1,0 +1,72 @@
+/* modules/toast.css - 토스트 UI 전용 스타일 */
+
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.toast {
+  min-width: 280px;
+  max-width: 400px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #f8fafc;
+  font-size: 0.9rem;
+  font-weight: 500;
+  pointer-events: auto;
+  
+  /* 애니메이션 */
+  transform: translateX(120%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+
+.toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.toast-message {
+  flex-grow: 1;
+  line-height: 1.4;
+}
+
+/* 토스트 종류별 컬러 설정 (Green, Yellow, Red) */
+.toast-success {
+  border-left: 4px solid #00A896;
+}
+.toast-success .toast-icon {
+  color: #02C39A;
+}
+
+.toast-warning {
+  border-left: 4px solid #F59E0B;
+}
+.toast-warning .toast-icon {
+  color: #F59E0B;
+}
+
+.toast-error {
+  border-left: 4px solid #EF4444;
+}
+.toast-error .toast-icon {
+  color: #EF4444;
+}
