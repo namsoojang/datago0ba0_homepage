@@ -124,6 +124,13 @@
 - [x] logo_candidates.md 리포트에 18번째 시안(버전 7)으로 본 극도의 미니멀 모노그램 로고 추가 기술 완료
 - [x] index.html 및 modules/main.js의 기본 로고 소스와 스위처 맵핑을 이 신규 울트라 심플 로고 자산으로 전격 교체 완료
 
+### 22단계: 홈페이지 Hero 섹션 배경에 실시간 마우스 추종 p5.js 제너레이티브 브랜딩 배경 이식
+- [x] index.html 내 p5.js CDN 추가 및 hero-canvas-container 래퍼 컨테이너 배치 완료
+- [x] index.css 내 캔버스 절대 위치, pointer-events: none, Z-index 레이어링 스타일 정의 완료
+- [x] modules/main.js 내 p5.js 인스턴스 모드(New p5)로 네온 나이테/궤도 노드 파티클 시뮬레이션 탑재 완료
+- [x] 캔버스의 마우스 트래킹 유도력 구현 및 창 크기 조절(Resize) 연동 완료
+- [x] 테마 스위처 함수 내 p5 인스턴스 색상 업데이트 콜백 연결 완료 (골드 ➔ 틸 실시간 연계)
+
 
 
 

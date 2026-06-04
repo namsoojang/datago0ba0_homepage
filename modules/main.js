@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initTestimonialSlider, 'Testimonial Slider');
   safeInit(initEmailCopy, 'Email Copy');
   safeInit(initThemeToggle, 'Theme Toggle');
+  safeInit(initHeroCanvas, 'Hero Canvas Background');
 });
 
 /* ----------------------------------------------------
@@ -583,9 +584,15 @@ function initThemeToggle() {
     if (theme === 'teal') {
       headerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_teal.png';
       footerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_teal.png';
+      if (heroP5Instance && typeof heroP5Instance.updateColor === 'function') {
+        heroP5Instance.updateColor('#02C39A');
+      }
     } else {
       headerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_gold.png';
       footerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_gold.png';
+      if (heroP5Instance && typeof heroP5Instance.updateColor === 'function') {
+        heroP5Instance.updateColor('#E5C158');
+      }
     }
   };
 
@@ -612,4 +619,135 @@ function initThemeToggle() {
       showToast('세이지 틸 & 딥 네이비 테마로 변경되었습니다.', 'success');
     }
   });
+}
+
+/* ----------------------------------------------------
+   ★ Hero 영역 p5.js 실시간 마우스 추종 백그라운드 구현 (인스턴스 모드)
+---------------------------------------------------- */
+let heroP5Instance = null;
+
+function initHeroCanvas() {
+  const container = document.getElementById('hero-canvas-container');
+  if (!container || typeof p5 === 'undefined') return;
+
+  const savedTheme = localStorage.getItem('theme') || 'gold';
+  const initialColor = (savedTheme === 'teal') ? '#02C39A' : '#E5C158';
+
+  let heroSketch = (p) => {
+    let particles = [];
+    let width, height;
+    let colorAccent = initialColor;
+
+    p.setup = () => {
+      width = container.offsetWidth;
+      height = container.offsetHeight;
+      let canvas = p.createCanvas(width, height);
+      canvas.parent('hero-canvas-container');
+
+      // 리소스 점유 최소화를 위해 180개 노드로 제한 (성능 우선)
+      for (let i = 0; i < 180; i++) {
+        particles.push(new HeroParticle(p));
+      }
+    };
+
+    p.draw = () => {
+      p.clear();
+      
+      for (let particle of particles) {
+        particle.update(p);
+        particle.display(p, colorAccent);
+      }
+    };
+
+    p.windowResized = () => {
+      width = container.offsetWidth;
+      height = container.offsetHeight;
+      p.resizeCanvas(width, height);
+    };
+
+    p.updateColor = (newColor) => {
+      colorAccent = newColor;
+    };
+  };
+
+  class HeroParticle {
+    constructor(p) {
+      this.reset(p);
+    }
+
+    reset(p) {
+      this.angle = p.random(p.TWO_PI);
+      this.radius = p.random(50, p.min(p.width, p.height) * 0.65);
+      
+      this.x = p.width / 2 + p.cos(this.angle) * this.radius;
+      this.y = p.height / 2 + p.sin(this.angle) * this.radius;
+      
+      this.prevX = this.x;
+      this.prevY = this.y;
+      
+      this.speed = p.random(0.6, 2.2);
+      this.life = p.random(80, 180);
+      this.maxLife = this.life;
+    }
+
+    update(p) {
+      this.prevX = this.x;
+      this.prevY = this.y;
+
+      let centerX = p.width / 2;
+      let centerY = p.height / 2;
+      let dx = this.x - centerX;
+      let dy = this.y - centerY;
+      let r = p.sqrt(dx*dx + dy*dy);
+
+      // 나이테 동심원 곡률 + Perlin 노이즈 합성 기법
+      let orbitAngle = p.atan2(dy, dx) + p.HALF_PI * 0.45;
+      let noiseAngle = p.noise(this.x * 0.004, this.y * 0.004, p.frameCount * 0.008) * p.TWO_PI;
+      let finalAngle = p.lerp(orbitAngle, noiseAngle, 0.22);
+
+      // 마우스가 Hero 섹션 캔버스 바운드 내에 있을 시 유도력(Attraction) 작용
+      if (p.mouseX > 0 && p.mouseX < p.width && p.mouseY > 0 && p.mouseY < p.height) {
+        let dMouse = p.dist(p.mouseX, p.mouseY, this.x, this.y);
+        if (dMouse < 220) {
+          let pull = p.map(dMouse, 0, 220, 0.25, 0);
+          let angleMouse = p.atan2(p.mouseY - this.y, p.mouseX - this.x);
+          this.x += p.cos(angleMouse) * pull * 4.5;
+          this.y += p.sin(angleMouse) * pull * 4.5;
+        }
+      }
+
+      this.x += p.cos(finalAngle) * this.speed;
+      this.y += p.sin(finalAngle) * this.speed;
+
+      // 중심 방향 흐름 보정
+      if (r > 10) {
+        this.x -= (dx / r) * 0.22;
+        this.y -= (dy / r) * 0.22;
+      }
+
+      this.life--;
+
+      if (this.life <= 0 || this.x < 0 || this.x > p.width || this.y < 0 || this.y > p.height) {
+        this.reset(p);
+      }
+    }
+
+    display(p, colorAccent) {
+      let alpha = p.map(this.life, 0, this.maxLife, 0, 150);
+      let c = p.color(colorAccent);
+      
+      p.stroke(p.red(c), p.green(c), p.blue(c), alpha);
+      p.strokeWeight(p.random(0.6, 1.8));
+      p.line(this.prevX, this.prevY, this.x, this.y);
+
+      // 4% 확률로 헤드 노드 포인트 활성 글로우 효과 부여
+      if (p.random(1) < 0.04) {
+        p.fill(255, alpha + 60);
+        p.noStroke();
+        p.ellipse(this.x, this.y, p.random(1.5, 3.5));
+      }
+    }
+  }
+
+  heroP5Instance = new p5(heroSketch);
 }
