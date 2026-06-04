@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initReferenceFilter, 'Reference Filter');
   safeInit(initTestimonialSlider, 'Testimonial Slider');
   safeInit(initEmailCopy, 'Email Copy');
+  safeInit(initThemeToggle, 'Theme Toggle');
 });
 
 /* ----------------------------------------------------
@@ -436,12 +437,21 @@ function initTestimonialSlider() {
   container.addEventListener('mouseleave', startAutoplay);
 
   // 7. 모바일 터치 스와이프 기능 고도화 (실시간 피드백 + 드래그)
+  // 7. 모바일 터치 스와이프 및 데스크탑 마우스 드래그 기능 (실시간 피드백 + 드래그)
   let startX = 0;
   let currentX = 0;
   let isDragging = false;
+  let isTouching = false;
 
+  // 이미지 및 링크의 기본 드래그 방지
+  track.querySelectorAll('img, a').forEach(el => {
+    el.addEventListener('dragstart', (e) => e.preventDefault());
+  });
+
+  // 모바일 터치 이벤트
   container.addEventListener('touchstart', (e) => {
     if (isTransitioning) return;
+    isTouching = true;
     startX = e.touches[0].clientX;
     currentX = startX;
     isDragging = true;
@@ -452,9 +462,7 @@ function initTestimonialSlider() {
     if (!isDragging) return;
     currentX = e.touches[0].clientX;
     const diffX = currentX - startX;
-    
-    // 실시간으로 손가락 따라 트랙 움직임 피드백 제공
-    updateSlider(diffX, true);
+    updateSlider(diffX, true); // 실시간 피드백
   }, { passive: true });
 
   container.addEventListener('touchend', (e) => {
@@ -462,25 +470,72 @@ function initTestimonialSlider() {
     isDragging = false;
     const diffX = currentX - startX;
 
-    // 터치가 끝났으므로 transition 복구하고 정렬
     track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
 
-    if (Math.abs(diffX) > 60) { // 60px 이상 쓸었을 때 슬라이드 전환
+    if (Math.abs(diffX) > 60) {
       if (diffX < 0) {
         nextSlide();
       } else {
         prevSlide();
       }
     } else {
-      // 변위가 적으면 현재 슬라이드로 제자리 복구
       updateSlider();
     }
     
-    // 초기화
     startX = 0;
     currentX = 0;
-    startAutoplay(); // 터치가 끝나면 자동 롤링 재시작
+    startAutoplay();
+    
+    // 모바일 터치 완료 후 에뮬레이션 마우스 이벤트 방지용 플래그 리셋
+    setTimeout(() => {
+      isTouching = false;
+    }, 300);
   }, { passive: true });
+
+  // 데스크탑 마우스 드래그 이벤트
+  container.addEventListener('mousedown', (e) => {
+    if (isTransitioning || isTouching) return;
+    if (e.button !== 0) return; // 마우스 왼쪽 버튼만 허용
+    
+    startX = e.clientX;
+    currentX = startX;
+    isDragging = true;
+    container.classList.add('active-drag');
+    stopAutoplay();
+  });
+
+  container.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    currentX = e.clientX;
+    const diffX = currentX - startX;
+    updateSlider(diffX, true);
+  });
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    container.classList.remove('active-drag');
+    const diffX = currentX - startX;
+
+    track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+
+    if (Math.abs(diffX) > 60) {
+      if (diffX < 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    } else {
+      updateSlider();
+    }
+
+    startX = 0;
+    currentX = 0;
+    startAutoplay();
+  };
+
+  container.addEventListener('mouseup', handleMouseUp);
+  container.addEventListener('mouseleave', handleMouseUp);
 
   // 8. 창 크기가 변해도 중앙 정렬이 풀리지 않도록 대응
   window.addEventListener('resize', () => {
@@ -511,4 +566,31 @@ function initEmailCopy() {
       });
     });
   }
+}
+
+/* ----------------------------------------------------
+   테마 전환 토글 제어 및 설정 저장
+---------------------------------------------------- */
+function initThemeToggle() {
+  const toggleBtn = document.getElementById('theme-toggle-btn');
+  if (!toggleBtn) return;
+
+  // 페이지 로드 시 기존 테마 값 로드 및 강제 바인딩
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'teal') {
+    document.body.classList.add('theme-teal');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isTeal = document.body.classList.contains('theme-teal');
+    if (isTeal) {
+      document.body.classList.remove('theme-teal');
+      localStorage.setItem('theme', 'gold');
+      showToast('로얄 골드 & 딥 네이비 테마로 변경되었습니다.', 'success');
+    } else {
+      document.body.classList.add('theme-teal');
+      localStorage.setItem('theme', 'teal');
+      showToast('세이지 틸 & 딥 네이비 테마로 변경되었습니다.', 'success');
+    }
+  });
 }

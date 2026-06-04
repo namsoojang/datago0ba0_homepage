@@ -5,26 +5,34 @@
 
 /* 2. 디자인 토큰 (CSS variables) */
 :root {
-  /* 색상 테마: B안 - Smart Sage Teal & Deep Navy */
-  --bg-color: #080E1E;
-  --bg-gradient: radial-gradient(circle at 50% 30%, #0c1836 0%, #080e1e 70%);
+  /* 색상 테마: A안 - Royal Gold & Deep Navy (골드 테마 스위칭) */
+  --bg-color: #060B19;
+  --bg-gradient: radial-gradient(circle at 50% 30%, #0d162d 0%, #060b19 70%);
   --text-primary: #F8FAFC;
   --text-secondary: #94A3B8;
   --text-muted: #64748B;
   
-  --primary-teal: #00A896;
-  --primary-teal-rgb: 0, 168, 150;
-  --accent-teal: #02C39A;
-  --accent-teal-rgb: 2, 195, 154;
-  --dark-teal: #028090;
+  /* Gold 테마 색상 정의 */
+  --primary-gold: #C5A880;
+  --primary-gold-rgb: 197, 168, 128;
+  --accent-gold: #E5C158;
+  --accent-gold-rgb: 229, 193, 88;
+  --dark-gold: #9E7D55;
+  
+  /* 기존 틸 변수명에 골드 변수들을 매핑하여 CSS 전반의 대대적 수정 없이 테마 전환 */
+  --primary-teal: var(--primary-gold);
+  --primary-teal-rgb: var(--primary-gold-rgb);
+  --accent-teal: var(--accent-gold);
+  --accent-teal-rgb: var(--accent-gold-rgb);
+  --dark-teal: var(--dark-gold);
   
   --card-bg: rgba(15, 23, 42, 0.55);
-  --card-border: rgba(255, 255, 255, 0.06);
-  --card-hover-border: rgba(2, 195, 154, 0.4);
+  --card-border: rgba(255, 255, 255, 0.05);
+  --card-hover-border: rgba(var(--accent-teal-rgb), 0.4);
   --glass-blur: blur(16px);
   --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 25px rgba(2, 195, 154, 0.25);
+  --shadow-glow: 0 0 25px rgba(var(--accent-teal-rgb), 0.25);
   
   /* 폰트 및 레이아웃 */
   --font-title: 'Outfit', 'Noto Sans KR', sans-serif;
@@ -34,6 +42,18 @@
   --border-radius-sm: 8px;
   --border-radius-md: 16px;
   --border-radius-lg: 24px;
+}
+
+/* 세이지 틸 & 딥네이비 테마 (B안) 오버라이드 */
+body.theme-teal {
+  --bg-color: #080E1E;
+  --bg-gradient: radial-gradient(circle at 50% 30%, #0c1836 0%, #080e1e 70%);
+  --primary-teal: #00A896;
+  --primary-teal-rgb: 0, 168, 150;
+  --accent-teal: #02C39A;
+  --accent-teal-rgb: 2, 195, 154;
+  --dark-teal: #028090;
+  --card-border: rgba(255, 255, 255, 0.06);
 }
 
 /* 3. 기본 리셋 스타일 */
@@ -56,6 +76,7 @@ body {
   -webkit-font-smoothing: antialiased;
   word-break: keep-all;
   overflow-wrap: break-word;
+  transition: background-color 0.4s ease, color 0.3s ease;
 }
 
 a {
@@ -199,11 +220,28 @@ header.scrolled {
   letter-spacing: -0.03em;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+}
+
+.logo .logo-symbol {
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  filter: drop-shadow(0 0 8px rgba(var(--primary-teal-rgb), 0.3));
+}
+
+.logo:hover .logo-symbol {
+  transform: rotate(45deg) scale(1.1);
+  filter: drop-shadow(0 0 12px rgba(var(--accent-teal-rgb), 0.6));
 }
 
 .logo span {
-  color: var(--accent-teal);
+  color: var(--text-primary);
+}
+
+.logo span strong {
+  background: linear-gradient(135deg, var(--accent-teal), var(--primary-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
 }
 
 .nav-links {
@@ -1014,6 +1052,13 @@ header.scrolled {
   position: relative;
   overflow: hidden;
   padding: 40px 0;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.testimonials-slider-container.active-drag {
+  cursor: grabbing;
 }
 
 .testimonials-track {
@@ -1220,9 +1265,26 @@ footer .footer-logo {
   color: var(--text-primary);
   font-size: 1.25rem;
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+footer .footer-logo .logo-symbol {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+footer .footer-logo:hover .logo-symbol {
+  opacity: 1;
 }
 
 footer .footer-logo span {
+  color: var(--text-primary);
+}
+
+footer .footer-logo span strong {
   color: var(--accent-teal);
 }
 
@@ -1323,5 +1385,49 @@ footer .footer-logo span {
   
   .btn {
     width: 100%;
+  }
+}
+
+/* 17. 테마 전환 토글 버튼 */
+.theme-toggle-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(var(--accent-teal-rgb), 0.3);
+  color: var(--accent-teal);
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(var(--accent-teal-rgb), 0.15);
+  border-color: var(--accent-teal);
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 0 15px rgba(var(--accent-teal-rgb), 0.4);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+/* 모바일 반응형 여백 및 크기 보정 */
+@media (max-width: 768px) {
+  .theme-toggle-btn {
+    bottom: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
   }
 }
