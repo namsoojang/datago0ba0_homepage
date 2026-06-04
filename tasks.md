@@ -97,6 +97,10 @@
 - [x] `walkthrough.md` 이미지 절대 경로를 현재 작업 공간에 맞춘 상대 경로로 최적화
 - [x] `file_tree.md`에 새로운 파일 구조 시각화 업데이트
 
+### 15단계: 제너레이티브 브랜딩 비주얼 구현
+- [x] generative_branding_viewer.html 구현을 통한 p5.js 기반 인터랙티브 브랜딩 로직 구축 및 시각화
+
+
 
 
 

@@ -33,8 +33,10 @@ c:\Users\namso\문서\00_데이터공방\00_홈페이지\
 │       └── 장남수.png
 ├── design_system/               # 디자인 시스템 및 브랜드 로고 에셋 폴더
 │   ├── design_philosophy_manifesto.md # [NEW] "정밀 아틀리에" 비주얼 디자인 철학 마니페스토
+│   ├── generative_branding_viewer.html # [NEW] p5.js 제너레이티브 브랜딩 뷰어 웹페이지
 │   ├── design_system_guide.md   # 디자인 토큰 및 UI 컴포넌트 가이드
 │   ├── logo_guide.md             # 로고 가이드라인 및 콘셉트 설명 문서
+
 
 │   ├── logo_digital_atelier.svg # [시안1] 디지털 아틀리에 로고 벡터 파일
 │   ├── logo_minimal_monogram.svg # [시안2] 미니멀 모노그램 DG 로고 벡터 파일
