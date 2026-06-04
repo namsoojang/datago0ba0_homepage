@@ -55,6 +55,7 @@ c:\Users\namso\문서\00_데이터공방\00_홈페이지\
 ├── modules/                     # 기능별 스크립트 및 스타일 모듈
 │   ├── main.js                  # 인터랙션 및 애니메이션 제어 통합 스크립트
 │   └── toast.css                # 토스트 UI 스타일
+├── api.md                       # [NEW] 외부 API 연동 명세서 (GA4 등)
 ├── index.html                   # 메인 레이아웃 및 마크업 (SEO 설정 포함)
 ├── index.css                    # 글로벌 디자인 시스템 및 레이아웃 스타일
 ├── file_tree.md                 # 파일 구조 트리 (본 파일)
