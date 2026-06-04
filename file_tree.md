@@ -44,6 +44,8 @@ c:\Users\namso\문서\00_데이터공방\00_홈페이지\
 ├── index.css                    # 글로벌 디자인 시스템 및 레이아웃 스타일
 ├── file_tree.md                 # 파일 구조 트리 (본 파일)
 ├── logo_candidates.md           # [NEW] 브랜드 로고 시안 16종 상세 리포트
+├── marketing-context.md         # [NEW] 마케팅 콘텍스트 및 포지셔닝 문서
+
 ├── project.md                   # 프로젝트 개요 및 기획 의도
 ├── tasks.md                     # 진행 상황 관리 태스크 리스트
 └── walkthrough.md               # [NEW] 로고 작업 완료 보고서
