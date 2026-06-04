@@ -1,239 +1,235 @@
-﻿# ?곗씠?곌났諛?DATAGO0BA0) 釉뚮옖??濡쒓퀬 ?꾨낫援?諛??ㅼ?移?怨좊룄??由ы룷??
-?湲곗뾽 諛?湲곌???HRD ?대떦?먮뱾???寃잛쑝濡??섏뿬, ?좊ː媛????ㅼ씠鍮?怨?湲곗닠 ?곸떊(?몄씠吏 ?????꾨떖?섎ŉ ?곗씠?곗뿉 ????μ씤 ?뺤떊???쒗쁽?섍퀬???쒖옉???곗씠?곌났諛⑹쓽 釉뚮옖??濡쒓퀬 ?꾨낫援곗엯?덈떎.
+# 데이터공방(DATAGO0BA0) 브랜드 로고 후보군 및 스케치 고도화 리포트
 
-蹂?由ы룷?몃뒗 湲곕낯 ?쒖븞 11醫낃낵 ?ъ슜?먭? ?쒖븞?섏떊 ??媛吏 ?덉씠?꾩썐(?섑룊 ?곌껐, 以묒꺽 寃고빀) ?ㅼ?移섎? 湲곕컲?쇰줈 5媛吏 媛곷룄?먯꽌 ?붿옄?몄쓣 ?뺣? 怨좊룄?뷀븳 **?ㅼ?移?怨좊룄???쒖븞 5醫?*???④퍡 ?쒓났?⑸땲??
+대기업 및 기관의 HRD 담당자들을 타겟으로 하여, 신뢰감 있고 데이터 기술 혁신(인공지능 등)을 전달하며 데이터에 대한 장인 정신을 표현하고자 제작한 데이터공방의 브랜드 로고 후보군입니다.
 
----
-
-## ?렓 釉뚮옖???꾩씠?댄떚??& ?붿옄??泥좏븰
-
-1. **怨듬갑(Workshop/Atelier)??媛移?*: ?곗씠?곕씪??李④????붿????먯썝??留덉튂 ?섎Т???먰넗瑜??ㅻ（???뺤꽦?ㅻ읇怨??몃젴?섍쾶 ?먯닔 媛怨듯븯怨?踰쇰젮?대뒗 ?μ씤 ?뺤떊???닿퀬 ?덉뒿?덈떎.
-2. **?ㅻТ 諛??쇱씠釉?肄붾뵫**: 100% ?쇱씠釉??붾쾭源낃낵 鍮꾩쫰?덉뒪 ?꾨찓?몄뿉 ?꾨꼍??諛李⑸맂 遺꾩꽍 援먯쑁???곸쭠?⑸땲??
-3. **?듭떖 而щ윭 ?쒖뒪??*:
-   - **Main Navy**: `#0B132B` - 臾듭쭅?섍퀬 源딆? ?좊ː媛먯쓣 二쇰뒗 ?뷀꽣?꾨씪?댁쫰 ?ㅼ씠鍮?   - **Sage Teal**: `#00A896` / `#02C39A` - 吏?곸씠硫?泥⑤떒 AI/?멸났吏???몃젋?쒕? 蹂댁뿬二쇰뒗 ?뺢킅 ??洹몃┛
-4. **?붿옄???ㅽ???*: 誘몃땲硫由ъ쬁, ?뚮옯 踰≫꽣(Flat Vector), 湲고븯?숈쟻 ?뺣???Geometric Precision).
+본 리포트는 기본 시안 11종과 사용자가 제안하신 두 가지 레이아웃(수평 연결, 중첩 결합) 스케치를 기반으로 5가지 각도에서 디자인을 정밀 고도화한 **스케치 고도화 제안 5종**을 함께 제공합니다.
 
 ---
 
-## ?뭿 ?뚰듃 1. ?곗씠?곌났諛?湲곕낯 濡쒓퀬 11??
-````carousel
-### 1. ?곗씠???먮툕 ?꾪?由ъ뿉 (Data Cube Atelier)
+## 🎨 브랜드 아이덴티티 & 디자인 철학
 
-![?곗씠???먮툕 ?꾪?由ъ뿉 濡쒓퀬](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/data_cube_logo_1780551599274.png)
+1. **공방(Workshop/Atelier)의 가치**: 데이터라는 차갑고 가치 없는 리소스를 마치 나무나 점토를 다듬듯 정성스럽고 전문적으로 직접 가공하고 다듬어내는 장인 정신을 담고 있습니다.
+2. **실무 및 라이브 코딩**: 100% 라이브 디버깅과 비즈니스 도메인에 완전히 밀착된 분석 교육을 상징합니다.
+3. **핵심 컬러 시스템**:
+   - **Main Navy**: `#0B132B` - 묵직하고 깊은 신뢰감을 주는 엔터프라이즈 네이비
+   - **Sage Teal**: `#00A896` / `#02C39A` - 지적이며 첨단 AI/인공지능 트렌드를 보여주는 정교한 테크 그린
+4. **디자인 스타일**: 미니멀리즘, 플랫 벡터(Flat Vector), 기하학적 정밀함(Geometric Precision).
 
-- **?붿옄???섎?**: ?곗씠?곗쓽 ?⑦렪??釉붾줉?ㅼ씠 留욌Ъ???섎굹???꾩꽦???먮툕瑜??대（硫? ?μ씤???먭만濡??쒖そ 硫댁씠 ?뺢탳?섍쾶 ?ㅻ벉?댁?怨?愿묒씠 ?섎뒗 ?뺥깭?낅땲?? "?곗씠?곕? ?좎슜???꾧뎄濡?媛怨듯븳????怨듬갑??洹쇰낯 泥좏븰??吏곴??곸쑝濡??쒗쁽?⑸땲??
-- **?곸슜 異붿쿇**: ?덊럹?댁? 硫붿씤 ?ㅻ뜑, ?꾨줈??移대뱶??????좊툝??
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+---
+
+## 📂 파트 1. 데이터공방 기본 로고 11종
+```carousel
+### 1. 데이터 큐브 아틀리에 (Data Cube Atelier)
+
+![데이터 큐브 아틀리에 로고](./assets/images/logos/data_cube_logo_1780551599274.png)
+
+- **디자인 의미**: 데이터의 파편과 블록들이 맞물려 하나의 완성된 큐브를 이루며, 장인의 손길로 한쪽 면이 정교하게 다듬어지고 광이 나는 형태입니다. "데이터를 유용한 도구로 가공한다"는 공방의 근본 철학을 직관적으로 표현합니다.
+- **적용 추천**: 홈페이지 메인 헤더, 프로필 카드의 대표 심볼.
+- **AI 생성 프롬프트**:
   ```text
   A high-end modern minimalist vector logo of a data cube. The cube is made of neatly fitting digital blocks, with one corner cleanly carved or polished by an artisan. Elegant flat design, clean geometric lines. Colors: deep navy blue (#0B132B) and sage teal (#00A896). Isolated on a solid dark background for corporate premium tech branding. No text, pure icon.
   ```
 
 <!-- slide -->
-### 2. ?붿????깅땲諛뷀?(The Digital Cogwheel)
+### 2. 디지털 톱니바퀴 (The Digital Cogwheel)
 
-![?붿????깅땲諛뷀?濡쒓퀬](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/digital_cogwheel_logo_1780551615051.png)
+![디지털 톱니바퀴 로고](./assets/images/logos/digital_cogwheel_logo_1780551615051.png)
 
-- **?붿옄???섎?**: ?깅땲諛뷀댁쓽 ???섎굹?섎굹媛 ?곌껐???곗씠???몃뱶(Node)? ?ㅽ듃?뚰겕 留곹겕(Link)濡??뺤긽?붾릺???덉뒿?덈떎. ?ㅻТ 遺꾩꽍 湲고쉷怨??먮룞??理쒖쟻???댁쓣 源롮븘?대뒗 '?곗씠??怨듭옣'?댁옄 '怨듬갑'????룞?곸씤 湲곌퀎???꾩꽦?꾨? 蹂댁뿬以띾땲??
-- **?곸슜 異붿쿇**: 而ㅻ━?섎읆(AI/AX, Python, Excel) ?꾩씠肄?諛?援먯옱 ?쒖?.
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 톱니바퀴의 날 하나하나가 연결된 데이터 노드(Node)와 네트워크 링크(Link)로 형상화되어 있습니다. 실무 분석 기획과 자동화 최적화의 솔루션을 깎아내는 '데이터 공장'이자 '공방'의 역동적인 기계적 완성도를 보여줍니다.
+- **적용 추천**: 커리큘럼(AI/AX, Python, Excel) 아이콘 및 교재 표지.
+- **AI 생성 프롬프트**:
   ```text
   A premium minimalist vector logo of a modern cogwheel. The teeth of the cogwheel are made of digital data nodes (circles) and connections (lines). Clean flat design, elegant geometry. Colors: deep navy (#0B132B) and vibrant sage teal (#00A896). Isolated on a solid dark background for professional educational tech brand. No text, pure icon.
   ```
 
 <!-- slide -->
-### 3. '?룰났' ?쒓? 紐⑤끂洹몃옩 (Hangul Monogram 'DG')
+### 3. 한글 모노그램 'ㄷ공' (Hangul Monogram 'DG')
 
-![?쒓? 紐⑤끂洹몃옩 濡쒓퀬](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/hangul_monogram_logo_1780551627868.png)
+![한글 모노그램 로고](./assets/images/logos/hangul_monogram_logo_1780551627868.png)
 
-- **?붿옄???섎?**: ?쒓? 釉뚮옖?쒕챸 '?곗씠?곌났諛???珥덉꽦??'??怨?'?????섎굹???곗뇙?곸씠怨?誘몃옒吏?μ쟻???쇱씤 ?꾪듃濡?寃고빀?덉뒿?덈떎. 濡쒖뺄 釉뚮옖?쒕줈?쒖쓽 紐낇솗???뺤껜?깃낵 ?④퍡, 留덉튂 ?섏씠?뚰겕 ?뚮줈????遺遺꾩쓣 ?곗긽?쒖폒 吏???멸린?ъ쓣 ?좊컻?⑸땲??
-- **?곸슜 異붿쿇**: 紐⑤컮?????꾩씠肄? ?뚮퉬肄?Favicon), 怨듭떇 ?꾩옣 諛??뚰꽣留덊겕.
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 한글 브랜드명 '데이터공방'의 초성인 'ㄷ'과 'ㄱ'을 하나의 연속적이고 미래지향적인 라인 아트로 결합했습니다. 로컬 브랜드로서의 명확한 정체성과 함께, 마치 하이테크 회로의 일부분을 연상시켜 지적 호기심을 유발합니다.
+- **적용 추천**: 모바일 앱 아이콘, 파비콘(Favicon), 공식 인장 및 워터마크.
+- **AI 생성 프롬프트**:
   ```text
-  A high-end modern minimalist vector logo of a Hangul monogram representing Korean letters '?? and '??. The letters are integrated into a sleek, clean geometric line art icon, resembling a modern block or circuit pattern. Colors: deep navy blue (#0B132B) and sage teal (#00A896). Flat vector design, dark solid background. No text, pure logo icon.
+  A high-end modern minimalist vector logo of a Hangul monogram representing Korean letters 'ㄷ' and 'ㄱ'. The letters are integrated into a sleek, clean geometric line art icon, resembling a modern block or circuit pattern. Colors: deep navy blue (#0B132B) and sage teal (#00A896). Flat vector design, dark solid background. No text, pure logo icon.
   ```
 
 <!-- slide -->
-### 4. ?멸났吏????κ컙 (AI Forge)
+### 4. 인공지능 대장간 (AI Forge)
 
-![?멸났吏????κ컙 濡쒓퀬](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/ai_forge_logo_1780551668214.png)
+![인공지능 대장간 로고](./assets/images/logos/ai_forge_logo_1780551668214.png)
 
-- **?붿옄???섎?**: ??κ컙?먯꽌 ?⑤떒???좊? 踰쇰┫ ???곕뒗 紐⑤（(Anvil)瑜??좎뭅濡?퀬 ?⑥닚??3D ?쇱씤?쇰줈 ?ы빐?앺븯怨? 洹??쒕㈃?먯꽌 ?멸났吏?μ쓽 ?ㅽ뙆?ъ? ?곗씠???좉꼍留??몃뱶媛 ?섑븯寃??잛븘?ㅻⅤ??鍮꾩＜?쇱엯?덈떎. 援먯쑁???듯빐 ?섍컯?앸뱾??鍮꾩쫰?덉뒪 寃??媛뺣젰?섍쾶 ?⑤젴?쒗궓?ㅻ뒗 ?섎??낅땲??
-- **?곸슜 異붿쿇**: ?ㅽ봽?쇱씤 ?몃????ъ뒪?? ???諛깅뱶濡??붿옄??
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 대장간에서 단단한 쇠를 벼릴 때 사용하는 모루(Anvil)를 날카롭고 단순한 3D 라인으로 재해석하고, 그 서면에서 인공지능의 스파크와 데이터 신경망 노드가 환하게 피어오르는 비주얼입니다. 교육을 통해 수강생들의 비즈니스 체력을 강력하게 단련시킨다는 의미입니다.
+- **적용 추천**: 오프라인 굿즈, 포스터, 발표 배경 장식.
+- **AI 생성 프롬프트**:
   ```text
   A minimalist vector logo of a modern anvil. The anvil is drawn with clean abstract lines, and above it, a burst of bright glowing data sparks and network nodes is rising up. Colors: deep navy blue (#0B132B) and glowing sage teal (#00A896). Flat vector design, dark solid background. Professional corporate tech logo, no text, pure icon.
   ```
 
 <!-- slide -->
-### 5. ?곗씠??鍮꾪듃? ?μ씤????(Handcrafting Data)
+### 5. 데이터 비트와 장인의 손 (Handcrafting Data)
 
-![?곗씠??鍮꾪듃? ?μ씤????濡쒓퀬](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/handcraft_data_logo_1780551682975.png)
+![데이터 비트와 장인의 손 로고](./assets/images/logos/handcraft_data_logo_1780551682975.png)
 
-- **?붿옄???섎?**: ?멸컙 ?μ씤??誘몃땲硫?????ㅻ（?ｌ씠 ?곗씠?곗쓽 理쒖냼 ?⑥쐞??鍮꾪듃 ?먮툕瑜?怨듬뱾??議곗젙?섍퀬 ?↔퀬 ?덈뒗 紐⑥뒿?낅땲?? ?⑥닚 吏??二쇱엯???꾨땶, 媛뺤궗? ?섍컯?앹씠 癒몃━瑜?留욌?怨?'吏곸젒 留뚮뱾?대낫?? ?ㅼ뒿 以묒떖???곗튂瑜?洹밸??뷀빀?덈떎.
-- **?곸슜 異붿쿇**: 釉붾줈洹?諛곕꼫 諛??꾨줈???섏씠吏, 媛뺤궗 ?뚭컻???쒖?.
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 인간 장인의 미니멀한 손이 데이터의 최소 단위인 비트 큐브를 공들여 조정하고 빚고 있는 모습입니다. 단순 지식 주입이 아닌, 강사와 수강생이 머리를 맞대고 '직접 만들어보는' 실습 중심의 가치를 극대화합니다.
+- **적용 추천**: 블로그 배너 및 프로필 페이지, 강사 소개글 헤더.
+- **AI 생성 프롬프트**:
   ```text
   A high-end minimalist vector logo showing a stylized outline of human hands carefully adjusting or holding a bright glowing pixel or data bit cube. Elegant geometric line art, flat design. Colors: deep navy blue (#0B132B) and soft sage teal (#00A896). Isolated on a solid dark background. Professional branding icon, no text.
   ```
 
 <!-- slide -->
-### 6. 湲고븯?숈쟻 異붿긽 紐⑤끂洹몃옩 'DGB' (Continuous DGB)
+### 6. 기하학적 DGB 모노그램 (Continuous DGB)
 
-![湲고븯?숈쟻 DGB 濡쒓퀬](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/dgb_monogram_logo_1780551700379.png)
+![기하학적 DGB 로고](./assets/images/logos/dgb_monogram_logo_1780551700379.png)
 
-- **?붿옄???섎?**: ?곷Ц ?뚯궗紐??대땲?쒖씤 D, G, B媛 ?섎굹???딆뼱吏吏 ?딅뒗 臾댄븳 沅ㅻ룄 猷⑦봽濡??곌껐?섏뼱 ?덉뒿?덈떎. ?곗씠???뚯씠?꾨씪?몄쓽 臾??먮Ⅴ???좊젮???대룞怨? ?곗씠??遺꾩꽍???듯빐 鍮꾩쫰?덉뒪 媛移섍? 瑗щ━瑜?臾쇨퀬 ?곗냽?곸쑝濡??깆옣?섎뒗 ?좎닚?섏쓣 ??좏빀?덈떎.
-- **?곸슜 異붿쿇**: 怨듭떇 紐낇븿, IR ?먮즺 ?ㅻ뜑, ?뚯궗 ?뚭컻 PDF ?뗮꽣.
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 영문 회사명 이니셜인 D, G, B가 하나의 끊어지지 않는 무한 궤도 루프로 연결되어 있습니다. 데이터 파이프라인의 물 흐르듯 유려한 이동과 데이터 분석을 통해 비즈니스 가치가 꼬리를 물고 연속적으로 성장하는 선순환을 은유합니다.
+- **적용 추천**: 공식 명함, IR 자료 헤더, 회사 소개 PDF 레터헤드.
+- **AI 생성 프롬프트**:
   ```text
   A high-end minimalist vector monogram logo of letters 'D', 'G', 'B' connected in a single continuous flowing line. Elegant geometric curves representing data flows and networks. Colors: deep navy blue (#0B132B) and vibrant sage teal (#00A896) gradient. Flat design, solid dark background. Corporate tech style, no text, pure icon.
   ```
 
 <!-- slide -->
-### 7. ?몄궗?댄듃 ?쇱씠?명븯?곗뒪 (Insight Lighthouse)
+### 7. 인사이트 라이트하우스 (Insight Lighthouse)
 
-![?몄궗?댄듃 ?쇱씠?명븯?곗뒪 濡쒓퀬](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/lighthouse_logo_1780551714468.png)
+![인사이트 라이트하우스 로고](./assets/images/logos/lighthouse_logo_1780551714468.png)
 
-- **?붿옄???섎?**: ?곗씠??釉붾줉?쇰줈 李④끝李④끝 ?볦븘 ?щ┛ 寃ш퀬???깅?媛 ?대몺 ?띿뿉???몄궗?댄듃??鍮쏆쨪湲곕? 六쀬뼱?낅땲?? ??鍮쏆? ?뺣젹???곗씠??洹몃━?쒕줈 臾섏궗?섏뼱, 蹂듭옟?섍퀬 ?대몢??鍮꾩쫰?덉뒪 ?섏궗寃곗젙??諛붾떎?먯꽌 ?щ컮瑜?諛⑺뼢?瑜??쒖떆?섎뒗 ?섏묠諛섍낵 ?깅? ??븷???섎??⑸땲??
-- **?곸슜 異붿쿇**: 而⑥꽕???쒖븞??由ы룷???쒖?, ?덊럹?댁? CTA(臾몄쓽?섍린) 諛곌꼍 ?ㅻ툕?앺듃.
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 데이터 블록으로 차곡차곡 쌓아 올린 견고한 등대가 어둠 속에서 인사이트의 빛줄기를 뻗어냅니다. 이 빛은 정렬된 데이터 그리드로 묘사되어, 복잡하고 어두운 비즈니스 의사결정의 바다에서 올바른 방향타를 제시하는 나침반과 등대 역할을 의미합니다.
+- **적용 추천**: 컨설팅 제안서 리포트 표지, 홈페이지 CTA(문의하기) 배경 오브젝트.
+- **AI 생성 프롬프트**:
   ```text
   A modern minimalist vector logo of a lighthouse. The lighthouse is constructed from clean geometric data blocks, and its light beam is depicted as a structured, expanding grid of data lines illuminating the darkness. Colors: deep navy blue (#0B132B) and glowing sage teal (#00A896). Flat vector design, solid dark background, no text, pure branding icon.
   ```
 
 <!-- slide -->
-### 8. ?붿????섏씠??(Digital Tree Rings)
+### 8. 디지털 나이테 (Digital Tree Rings)
 
-![?붿????섏씠??濡쒓퀬](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/tree_rings_logo_1780551730934.png)
+![디지털 나이테 로고](./assets/images/logos/tree_rings_logo_1780551730934.png)
 
-- **?붿옄???섎?**: ?섎Т???곕쪣怨??깆옣??利앸챸?섎뒗 ?섏씠?뚮? 誘몄꽭???꾩옄湲??뚮줈 ?쇱씤怨??몃뱶濡??쒗쁽?섏뿬 ?꾨궇濡쒓렇?곸씤 ?곕쑜?④낵 理쒖꺼???멸났吏??遺꾩꽍 湲곕쾿???듯빀?덉뒿?덈떎. ?ㅻ옖 ?ㅻТ 寃쏀뿕(16??李?怨?援먯쑁?앸뱾???④퀎瑜?諛잛븘媛硫??깆옣?섎뒗 ?덉씠?대? ?쒓컖?뷀빀?덈떎.
-- **?곸슜 異붿쿇**: ?ы솕 ?곌뎄 ?먮즺, 由ы룷吏?좊━ ???而ㅻ쾭 ?대?吏.
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 나무의 연륜과 성장을 증명하는 나이테를 미세한 전자회로 라인과 노드로 표현하여 아날로그적인 따뜻함과 최첨단 인공지능 분석 기법을 통합했습니다. 오랜 실무 경험(16년 차)과 교육생들이 단계를 밟아가며 성장하는 레이어를 시각화합니다.
+- **적용 추천**: 기획 연구 자료, 리포지토리 대표 커버 이미지.
+- **AI 생성 프롬프트**:
   ```text
   A high-end modern minimalist vector logo inspired by wood tree rings. The tree rings are re-imagined as concentric, circular electronic circuit board patterns with small glowing nodes. Colors: dark charcoal gray (#121212) background, with deep navy blue (#0B132B) and sage teal (#00A896) lines. Flat design, clean geometry. Corporate tech logo, no text, pure icon.
   ```
 
 <!-- slide -->
-### 9. ?뺣? ?곗씠??議곌컖 (Precision Data Sculpture)
+### 9. 정밀 데이터 조각 (Precision Data Sculpture)
 
-![?뺣? ?곗씠??議곌컖 濡쒓퀬](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/data_sculpture_logo_1780551745062.png)
+![정밀 데이터 조각 로고](./assets/images/logos/data_sculpture_logo_1780551745062.png)
 
-- **?붿옄???섎?**: 嫄곗튌怨??몃え?놁뼱 蹂댁씠???먯꽍(Raw Data)??怨듬갑 ?μ씤??湲고븯?숈쟻 遺꾩꽍/?뺤젣 湲곗닠??嫄곗퀜 鍮쏅굹???ㅼ씠?꾨が??寃곗젙(Insight)?쇰줈 議곌컖?섎뒗 ?쒓컙???댁? ?뚮옯 ?좊툝?쇱엯?덈떎. 怨좊?媛媛移섎? 吏???곗씠?곕? 媛怨듯븯??吏?곸씤 湲곗닠??媛뺤“?⑸땲??
-- **?곸슜 異붿쿇**: ?꾨━誘몄뾼 CEO 怨쇱젙 釉뚮줈?덉뼱, VIP 援먯쑁???ㅽ듃.
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 거칠고 다듬어지지 않은 원석(Raw Data)이 공방 장인의 기하학적 분석/정제 기술을 거쳐 빛나는 다이아몬드 결정(Insight)으로 조각되는 시간을 담은 플랫 엠블럼입니다. 고부가가치를 지닌 데이터를 가공하는 지적인 기술을 강조합니다.
+- **적용 추천**: 프리미엄 CEO 과정 브로슈어, VIP 교육용 템플릿.
+- **AI 생성 프롬프트**:
   ```text
   A premium minimalist vector logo of a geometric diamond or gemstone. The facets of the diamond are shaped like interconnected data polygons and grid planes, showing raw data carved into a polished jewel. Colors: deep navy blue (#0B132B) and vibrant sage teal (#00A896). Flat design, clean lines, solid dark background. Corporate tech educational icon, no text, pure emblem.
   ```
 
 <!-- slide -->
-### 10. ?명꽣?숉떚釉??몃뱶 ?⑥씠釉?(Interactive Node Wave)
+### 10. 인터랙티브 노드 웨이브 (Interactive Node Wave)
 
-![?명꽣?숉떚釉??몃뱶 ?⑥씠釉?濡쒓퀬](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/node_wave_logo_1780551759152.png)
+![인터랙티브 노드 웨이브 로고](./assets/images/logos/node_wave_logo_1780551759152.png)
 
-- **?붿옄???섎?**: 臾쇨껐移섎ŉ 六쀬뼱 ?섍????뚮룄???뺥깭媛 ???곗씠???몃뱶)怨??좎쓽 ?좎뿰???뚰삎?쇰줈 ?쒗쁽?⑸땲?? 蹂?뷀븯??IT 援먯쑁 ?쒖옣??????좎뿰???泥? ?섍컯???섏???留욎떠 ?쒖씠?꾩? ?λ?瑜??꾧툒 議곗젅?섎뒗 '?뚰넻???⑥씠釉?瑜??삵빀?덈떎.
-- **?곸슜 異붿쿇**: ?덊럹?댁? Hero ?몄뀡 諛곌꼍 洹몃옒?? 而ㅻ??덉??댁뀡???묒떇.
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 물결치며 뻗어 나가는 파동의 형태가 개별 데이터 노드(Point)와 선의 유연한 파형으로 표현됩니다. 변화하는 IT 교육 시장에 대한 유연한 대처, 수강생의 수준에 맞춰 페이스와 장르를 완급 조절하는 '소통의 웨이브'를 뜻합니다.
+- **적용 추천**: 홈페이지 Hero 섹션 배경 그래픽, 커뮤니케이션 양식.
+- **AI 생성 프롬프트**:
   ```text
   A high-end minimalist vector logo of a wave pattern. The wave is formed by a series of glowing data nodes (points) and thin flowing connection lines, waving gracefully. Colors: deep navy blue (#0B132B) and glowing sage teal (#00A896). Flat design, clean lines, solid dark background. Professional educational brand icon, no text.
   ```
 
 <!-- slide -->
-### 11. ?섑룊 ?곌껐 紐⑤끂洹몃옩 '?룔꽦' (Horizontal Continuous '????)
+### 11. 수평 연결 모노그램 'ㄷㄱ' (Horizontal Continuous 'DG')
 
-![?섑룊 ?곌껐 紐⑤끂洹몃옩 '?룔꽦'](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/linked_dg_monogram_1780553405513.png)
+![수평 연결 모노그램 'ㄷㄱ'](./assets/images/logos/linked_dg_monogram_1780553405513.png)
 
-- **?붿옄???섎?**: ?쒓? 珥덉꽦 '??怨?'???????섎굹???좉린?곸씤 ?섑룊?좎쑝濡??곌껐??誘몃땲硫 ?붿옄?몄엯?덈떎. '?????ㅻⅨ履?鍮?怨듦컙怨?'?????쇱そ ?쒖옉?먯씠 ?먯뿰?ㅻ윭??援닿끝??洹몃━硫??먮Ⅴ???곌껐?섏뼱 ?곗씠?곗쓽 ?섏쭛遺???뺤젣, ?몄궗?댄듃 ?꾩텧源뚯???留ㅻ걚?ъ슫 ?먮쫫???쒓컖?뷀빀?덈떎. 媛??怨좊룄濡??⑥닚?붾맂 ?붿옄?몄쑝濡??꾨??곸씤 ?뚰겕 釉뚮옖???대?吏瑜?媛뺥솕?⑸땲??
-- **?곸슜 異붿쿇**: ?덊럹?댁? ?뚮퉬肄?Favicon), 紐⑤컮??理쒖쟻???ㅻ뜑, 誘몃땲硫 ?щ궡 臾몄꽌 ?щ㎎.
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 한글 초성 'ㄷ'과 'ㄱ'을 하나의 유기적인 수평선으로 연결한 미니멀 디자인입니다. 'ㄷ'의 오른쪽 빈 공간과 'ㄱ'의 왼쪽 시작점이 자연스러운 굴곡을 그리며 흐르듯 연결되어 데이터의 수집부터 정제, 인사이트 도출까지의 매끄러운 흐름을 시각화합니다. 가장 고도로 단순화된 디자인으로 전문적인 테크 브랜드 이미지를 강화합니다.
+- **적용 추천**: 홈페이지 파비콘(Favicon), 모바일 최적화 헤더, 미니멀 사내 문서 포맷.
+- **AI 생성 프롬프트**:
   ```text
-  A high-end modern minimalist vector logo showing the Korean letters '?? and '?? connected side by side by a single continuous line. The letter '?? smoothly flows into '?? horizontally, creating a sleek geometric pipeline or infinity-like waveform. Minimalist flat design, sharp clean lines. Colors: deep navy blue (#0B132B) and vibrant sage teal (#00A896) gradient. Isolated on a solid dark navy background. Professional corporate tech branding, no text, pure icon.
+  A high-end modern minimalist vector logo showing the Korean letters 'ㄷ' and 'ㄱ' connected side by side by a single continuous line. The letter 'ㄷ' smoothly flows into 'ㄱ' horizontally, creating a sleek geometric pipeline or infinity-like waveform. Minimalist flat design, sharp clean lines. Colors: deep navy blue (#0B132B) and vibrant sage teal (#00A896) gradient. Isolated on a solid dark navy background. Professional corporate tech branding, no text, pure icon.
   ```
-````
+```
 
 ---
 
-## ?뮕 ?뚰듃 2. ?ъ슜???덊띁?곗뒪 ?ㅼ?移?怨좊룄???쒖븞 5??
-?ъ슜?먭퍡??吏곸젒 ?묒꽦??二쇱떊 **1) '??怨?'?????섑룊 寃고빀 ?덉씠?꾩썐**怨?**2) '?? ?대???'?????쎌엯?섎뒗 以묒꺽 ?덉씠?꾩썐**??諛뷀깢?쇰줈, ?뚰겕?덉뺄 ?붿옄??愿?먯뿉???щ??깃낵 ?낆껜媛먯쓣 洹밸??뷀븯??5媛吏???쒕줈 ?ㅻⅨ ?ㅽ??쇰줈 蹂??諛?怨좊룄?뷀븳 踰꾩쟾?낅땲??
+## 📂 파트 2. 사용자 피드백 스케치 고도화 제안 5종
+사용자께서 직접 제안해 주신 **1) 'ㄷ'과 'ㄱ'의 수평 결합 레이아웃**과 **2) 'ㄷ' 내부에 'ㄱ'이 삽입되는 중첩 결합 레이아웃**을 바탕으로, 테크니컬 디자인 관점에서 심미성과 입체감을 극대화하여 5가지 서로 다른 스타일로 변환 및 고도화한 버전입니다.
 
-````carousel
-### 踰꾩쟾 1. ?섑룊 寃고빀 ?낆껜 ?곗씠???뚯씠?꾨씪??(Flat 3D Pipeline '?룔꽦')
+```carousel
+### 버전 1. 수평 결합 입체 데이터 파이프라인 (Flat 3D Pipeline 'ㄷㄱ')
 
-![踰꾩쟾 1 ?섑룊 寃고빀 ?낆껜 ?뚯씠?꾨씪??(/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/sketch_var1_pipeline_1780553689989.png)
+![버전 1 수평 결합 입체 파이프라인](./assets/images/logos/sketch_var1_pipeline_1780553689989.png)
 
-- **?붿옄???섎?**: ?ъ슜???쒖븞 1???섑룊 ?곌껐)??湲곕컲?쇰줈, ?됰㈃?곸씤 2D ?뺥깭瑜??꾨??곸씤 3D ?꾩씠?뚮찓?몃┃(Isometric) 釉붾줉 ?뚯씠?꾨씪???뺥깭濡?怨좊룄?뷀뻽?듬땲?? ?쇱そ '???먯꽌 ?쒖옉??援듭? 釉붾（ ?쇱씤???낆껜?곸씤 源딆씠媛먯쓣 洹몃━硫?爰얠씠怨? ?ㅻⅨ履?'?????몄씠吏 ???먮툕 ?쇱씤?쇰줈 ?뺢탳?섍쾶 ?뺤옣?섏뼱 六쀬뼱 ?섍컩?덈떎.
-- **?곸쭠 ?섎?**: ?곗씠?곌? ?섏쭛 諛?媛怨????섎뒗 ?먮쫫??以묎컙 ?μ븷臾??놁씠 留ㅻ걚?ъ슫 ?⑥씪 ?뚯씠?꾨씪?몄쓣 ?怨?理쒖쥌 鍮꾩쫰?덉뒪 寃곌낵臾???濡?異쒕젰?섎뒗 理쒖쟻??怨쇱젙????좏빀?덈떎.
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 사용자가 제안한 1안(수평 연결)을 기반으로, 평면적인 2D 형태를 전문적인 3D 아이소메트릭(Isometric) 블록 파이프라인 형태로 고도화했습니다. 왼쪽 'ㄷ'에서 시작한 굵은 블루 라인이 입체적인 깊이감을 그리며 꺾이고, 오른쪽 'ㄱ'의 네온 틸 큐브 라인으로 정교하게 확장되어 뻗어 나갑니다. 데이터가 수집 및 가공되는 흐름이 매끄러운 단일 파이프라인을 타고 최종 비즈니스 결과물로 출력되는 최적화 과정을 대변합니다.
+- **AI 생성 프롬프트**:
   ```text
-  A high-end modern minimalist vector logo. It represents Korean letters '?? and '?? connected side-by-side horizontally. The letters are styled as a clean 3D isometric block or pipeline with elegant depth. The left '?? is solid deep navy blue (#0B132B) and the right '?? is vibrant sage teal (#00A896). Flat 3D design, clean geometric edges, isolated on a solid dark navy background. Professional tech branding, no text.
+  A high-end modern minimalist vector logo. It represents Korean letters 'ㄷ' and 'ㄱ' connected side-by-side horizontally. The letters are styled as a clean 3D isometric block or pipeline with elegant depth. The left 'ㄷ' is solid deep navy blue (#0B132B) and the right 'ㄱ' is vibrant sage teal (#00A896). Flat 3D design, clean geometric edges, isolated on a solid dark navy background. Professional tech branding, no text.
   ```
 
 <!-- slide -->
-### 踰꾩쟾 2. 媛먯떥?덉? ?곗씠???꾩뭅?대툕 (Nested Archive '?룔꽦')
+### 버전 2. 감싸 안은 데이터 아카이브 (Nested Archive 'ㄷㄱ')
 
-![踰꾩쟾 2 媛먯떥?덉? ?곗씠???꾩뭅?대툕](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/sketch_var2_archive_1780553706667.png)
+![버전 2 감싸 안은 데이터 아카이브](./assets/images/logos/sketch_var2_archive_1780553706667.png)
 
-- **?붿옄???섎?**: ?ъ슜???쒖븞 2?????덉뿉 ????湲고븯?숈쟻?닿퀬 ?移?씠 ?곗뼱??紐⑤뜕 ?좊툝?쇱쑝濡?怨좊룄?뷀뻽?듬땲?? ?멸낸??媛먯떥??而ㅻ떎? '??? ?꾪깂?섍퀬 ?좊ː媛??덈뒗 ??釉붾（ ?꾨젅?꾩씠硫? 洹??대? 怨듦컙??肄붿뼱??'?? ?뺥깭???몄씠吏 ??釉붾줉???먯꽍泥섎읆 ?⑤떒?섍쾶 寃고빀?섏뼱 ?ㅼ뼱?됱븘 ?덉뒿?덈떎.
-- **?곸쭠 ?섎?**: ?곗씠?곗쓽 ?덉쟾???섏슜怨?遺꾩꽍 ?꾨젅???? ?덉뿉, ?뺣??섍쾶 ?⑤젴??鍮꾩쫰?덉뒪 ?듭같?댁옄 ?듭떖 湲곗닠(????寃ш퀬?섍쾶 蹂닿??섍퀬 ?꾩뭅?대튃?쒕떎???μ씤??湲곗닠?μ쓣 ?곸쭠?⑸땲??
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 사용자가 제안한 2안(ㄷ 안에 ㄱ이 삽입되는 중첩 결합)을 기하학적이고 대칭성이 뛰어난 모던 엠블럼으로 고도화했습니다. 외곽을 감싸는 커다란 'ㄷ'은 단단하고 신뢰감 있는 딥 블루 프레임이며, 그 내부 공간의 코어에 'ㄱ' 형태의 네온 틸 블록이 원석처럼 견고하게 결합되어 들어앉아 있습니다. 데이터의 안전한 수용과 분석 프레임워크 안에, 정교하게 단련된 비즈니스 통찰이자 핵심 기술(ㄱ)을 견고하게 보관하고 아카이빙한다는 장인의 기술력을 상징합니다.
+- **AI 생성 프롬프트**:
   ```text
-  A premium minimalist vector logo based on Korean letters '?? and '??. The larger outer frame is shape '?? in deep navy blue (#0B132B), and inside it, a smaller shape '?? in vibrant sage teal (#00A896) is nested and locked in. Clean geometric lines, flat design, modern tech aesthetic. Isolated on a solid dark navy background. Professional branding icon, no text.
+  A premium minimalist vector logo based on Korean letters 'ㄷ' and 'ㄱ'. The larger outer frame is shape 'ㄷ' in deep navy blue (#0B132B), and inside it, a smaller shape 'ㄱ' in vibrant sage teal (#00A896) is nested and locked in. Clean geometric lines, flat design, modern tech aesthetic. Isolated on a solid dark navy background. Professional branding icon, no text.
   ```
 
 <!-- slide -->
-### 踰꾩쟾 3. ?ㅼ삩 ??댁뼱?꾨젅???뚮줈 (Neon Circuit '?룔꽦')
+### 버전 3. 네온 회로보드 플로우 (Neon Circuit 'ㄷㄱ')
 
-![踰꾩쟾 3 ?ㅼ삩 ??댁뼱?꾨젅???뚮줈](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/sketch_var3_circuit_1780553728067.png)
+![버전 3 네온 와이어 회로](./assets/images/logos/sketch_var3_circuit_1780553728067.png)
 
-- **?붿옄???섎?**: ?ъ슜???쒖븞 2?덉쓽 湲고븯?숈쟻 ?뺥깭瑜??멸났吏??AI) ?좉꼍留?諛??꾩옄湲??뚮줈 湲고뙋??留덉씠?щ줈 ?몃옓(Micro Track) ?뺥깭濡?蹂?뺥뻽?듬땲?? ?뉕퀬 洹밸룄濡??뺢탳???뺢킅 ?몄씠吏 洹몃┛ ?ㅼ삩 ?쇱씤?ㅼ씠 ?룰낵 ?깆쓽 ?대? ?덉깉瑜??좉린?곸쑝濡??섎윭媛硫? 誘몄꽭???먰삎???몃뱶 ?ъ씤?몃뱾??媛??묒젏?먯꽌 ???섍쾶 鍮쏅궔?덈떎.
-- **?곸쭠 ?섎?**: ?곗씠?곌났諛⑹쓽 AX(?멸났吏???꾪솚) 諛?AI Survival ?몃옓???곸쭠?섎ŉ, ?뺣??섍퀬 鍮덊땲?녿뒗 ?쇰━(?뚮줈)瑜?湲곕컲?쇰줈 ?묐룞?섎뒗 IT ?ㅻТ 援먯쑁???듭떖???쒓컖?뷀빀?덈떎.
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 사용자가 제안한 2안의 기하학적 형태를 인공지능(AI) 신경망 및 전자회로 기판의 마이크로 트랙(Micro Track) 형태로 변형했습니다. 얇고 극도로 정교한 세이지 틸 그린 네온 라인들이 ㄷ과 ㄱ의 형태를 유기적으로 흘러가며, 미세한 원형의 노드 포인트들이 각 접점에서 영롱하게 빛납니다. 데이터공방의 AX(인공지능 전환) 및 AI Survival 트랙을 상징하며, 정밀하고 빈틈없는 논리를 기반으로 작동하는 IT 실무 교육의 핵심을 시각화합니다.
+- **AI 생성 프롬프트**:
   ```text
-  A modern minimalist vector logo showing the nested Korean letters '?? and '?? as a glowing electronic circuit board design. The outer '?? and inner '?? are drawn with thin glowing neon lines and small connection nodes. Colors: deep navy background, bright electric sage teal (#02C39A) neon glow lines. Clean wireframe flat tech design. No text, pure corporate icon.
+  A modern minimalist vector logo showing the nested Korean letters 'ㄷ' and 'ㄱ' as a glowing electronic circuit board design. The outer 'ㄷ' and inner 'ㄱ' are drawn with thin glowing neon lines and small connection nodes. Colors: deep navy background, bright electric sage teal (#02C39A) neon glow lines. Clean wireframe flat tech design. No text, pure corporate icon.
   ```
 
 <!-- slide -->
-### 踰꾩쟾 4. 湲?섏뒪紐⑦뵾利???濡쒓퀬 (Glassmorphism Key '?룔꽦')
+### 버전 4. 글래스모피즘 키 로고 (Glassmorphism Key 'ㄷㄱ')
 
-![踰꾩쟾 4 湲?섏뒪紐⑦뵾利???濡쒓퀬](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/sketch_var4_glasskey_1780553745369.png)
+![버전 4 글래스모피즘 키](./assets/images/logos/sketch_var4_glasskey_1780553745369.png)
 
-- **?붿옄???섎?**: ?룰낵 ?깆쓽 寃고빀 援ъ“媛 ?뚰뙆踰?'G'(Gongbang) ?먮뒗 臾몄젣瑜???대궡??'?댁뇿(Key)'? ?좎궗?섎떎???먯뿉??李⑹븞?덉뒿?덈떎. ?덊럹?댁? 硫붿씤 ?붿옄??而⑥뀎??湲?섏뒪紐⑦뵾利?Glassmorphism)??吏곸젒 李⑥슜?섏뿬, ?멸낸??'??? 諛섑닾紐낇븯怨?戮? 紐⑥꽌由??쇱슫???좊━??吏덇컧??吏?덈ŉ 洹??ㅼ뿉 ?낆껜?곸쑝濡?鍮쏅굹???붾━????釉붾（??'?? 議곌컖???댁뇿???泥섎읆 留욌Ъ???덉뒿?덈떎.
-- **?곸쭠 ?섎?**: ?곗씠?곌났諛⑹씠 ?섍컯?앷낵 鍮꾩쫰?덉뒪 怨좉컼?먭쾶 ?쒓났?섎뒗 "?곗씠??臾몄젣 ?닿껐???꾪븳 留덉뒪????Master Key)"? ?몃젴???꾨줎?몄뿏???뚰겕 媛먭컖???섎??⑸땲??
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: ㄷ과 ㄱ의 결합 구조가 알파벳 'G'(Gongbang) 또는 문제를 해결하는 '열쇠(Key)'와 유사하다는 점에서 착안했습니다. 홈페이지 메인 디자인 콘셉트인 글래스모피즘(Glassmorphism)을 직접 차용하여, 외곽의 'ㄷ'은 반투명하고 뽀얀 모서리 라운드 유리의 질감을 지녔으며, 그 뒤에 입체적으로 빛나는 솔리드한 틸 블루의 'ㄱ' 조각이 열쇠의 톱니처럼 맞물려 있습니다. 데이터공방이 수강생과 비즈니스 고객에게 제공하는 "데이터 문제 해결을 위한 마스터 키(Master Key)"와 트렌디한 프론트엔드 테크 감각을 의미합니다.
+- **AI 생성 프롬프트**:
   ```text
-  A premium 3D graphic logo in glassmorphism style. The outer frame is a semi-transparent glass '?? shape with frosted texture and soft blur, and inside it, a solid glowing 3D '?? block in vibrant sage teal (#00A896) fits perfectly like a key. Colors: deep navy blue background (#0B132B), light refractions, sleek and high-end. Professional corporate branding icon, no text.
+  A premium 3D graphic logo in glassmorphism style. The outer frame is a semi-transparent glass 'ㄷ' shape with frosted texture and soft blur, and inside it, a solid glowing 3D 'ㄱ' block in vibrant sage teal (#00A896) fits perfectly like a key. Colors: deep navy blue background (#0B132B), light refractions, sleek and high-end. Professional corporate branding icon, no text.
   ```
 
 <!-- slide -->
-### 踰꾩쟾 5. 臾댄븳? 怨≪꽑 ?곌껐 (Infinite Continuous Line '?룔꽦')
+### 버전 5. 무한대 곡선 연결 (Infinite Continuous Line 'ㄷㄱ')
 
-![踰꾩쟾 5 臾댄븳? 怨≪꽑 ?곌껐](/C:/Users/?λ궓??.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/sketch_var5_infiniteloop_1780553761830.png)
+![버전 5 무한대 곡선 연결](./assets/images/logos/sketch_var5_infiniteloop_1780553761830.png)
 
-- **?붿옄???섎?**: ?ъ슜???쒖븞 1???섑룊 ?곌껐)??吏곸꽑?곸씠怨??ㅼ냼 ?깅뵳?????덈뒗 爰얠엫?좊뱾???좎뿰?섍퀬 ?좉린?곸씤 怨≪꽑(Organic Curvature)?쇰줈 ?뱁솕?쒖섟?듬땲?? '????怨≪꽑 瑗щ━媛 維쇰퉬?곗뒪???좎쿂??臾쇨껐移섎ŉ 六쀬뼱?섍? '?????곷떒?쇰줈 留ㅻ걚?쎄쾶 ?≪닔?섏뼱, ?꾩껜?곸쑝濡??섎굹???몃젴??臾댄븳? 湲고샇(?? ?먮뒗 遺?쒕윭???뚰삎???대９?덈떎.
-- **?곸쭠 ?섎?**: 硫덉텛吏 ?딅뒗 吏??媛?ν븳 ?곗씠???쇱씠?꾩궗?댄겢(?섏쭛-媛怨?遺꾩꽍-?쇰뱶諛?怨?援먯쑁?먯? ?섍컯??媛꾩쓽 遺?쒕읇怨??좎뿰???뚰넻, 洹몃━怨??곸냽?곸씤 鍮꾩쫰?덉뒪 ?깆옣???곸쭠?⑸땲??
-- **AI ?앹꽦 ?꾨＼?꾪듃**:
+- **디자인 의미**: 사용자가 제안한 1안(수평 연결)의 직선적이고 다소 딱딱할 수 있는 꺾임 선들을 유연하고 유기적인 곡선(Organic Curvature)으로 특화했습니다. 'ㄷ'의 곡선 꼬리가 뫼비우스의 띠처럼 물결치며 뻗어 나가 'ㄱ'의 상단으로 매끄럽게 흡수되어, 전체적으로 하나의 세련된 무한대 기호(∞) 또는 부드러운 파형을 이룹니다. 멈추지 않고 지속 가능한 데이터 라이프사이클(수집-가공-분석-피드백)과 교육자와 수강생 간의 부드럽고 유연한 소통, 그리고 영속적인 비즈니스 성장을 상징합니다.
+- **AI 생성 프롬프트**:
   ```text
-  A high-end modern minimalist vector logo showing Korean letters '?? and '?? connected horizontally. The straight lines are re-imagined as sleek, organic continuous curves forming a single flowing wave or infinity loop. Colors: deep navy blue (#0B132B) and glowing sage teal (#00A896) gradient. Flat design, clean lines, isolated on a solid dark background. No text, pure branding icon.
+  A high-end modern minimalist vector logo showing Korean letters 'ㄷ' and 'ㄱ' connected horizontally. The straight lines are re-imagined as sleek, organic continuous curves forming a single flowing wave or infinity loop. Colors: deep navy blue (#0B132B) and glowing sage teal (#00A896) gradient. Flat design, clean lines, isolated on a solid dark background. No text, pure branding icon.
   ```
-````
+```
 
 ---
 
-## ?? 濡쒓퀬 ?덊럹?댁? ?곕룞 諛??쒖슜 媛?대뱶?쇱씤
+## 🛠️ 로고 홈페이지 연동 및 사용 가이드라인
 
-1. **而щ윭 留ㅼ묶 媛?대뱶**:
-   - 濡쒓퀬?ㅼ? 湲곕낯?곸쑝濡?怨듭떇 ?덊럹?댁???硫붿씤 諛곌꼍?????ㅼ씠鍮?`#0B132B`) 諛??몄씠吏 ??`#00A896` 洹몃씪?곗씠?섍낵 ?먯뿰?ㅻ읇寃??뱀븘?ㅻ룄濡??ㅺ퀎?섏뼱 ?덉뒿?덈떎.
-   - ?щ챸 諛곌꼍?쇰줈 蹂?섑븯???ъ슜?섍굅?? `mix-blend-mode: screen` ?먮뒗 `opacity` ?쒖뼱瑜??듯빐 ?덊럹?댁???湲?섏뒪紐⑦뵾利?移대뱶 ?대???諛곗튂?덉쓣 ???щ??깆씠 ?곗뼱?⑸땲??
+1. **컬러 매칭 가이드**:
+   - 로고들은 기본적으로 공식 홈페이지의 메인 배경색인 딥 네이비(`#0B132B`) 및 페이지 테마인 `#00A896` 그라데이션과 자연스럽게 녹아들도록 설계되어 있습니다.
+   - 투명 배경으로 변환하여 사용하거나, `mix-blend-mode: screen` 또는 `opacity` 제어를 통해 홈페이지의 글래스모피즘 카드 내부에 배치했을 때 시인성이 뛰어납니다.
 
-2. **?덊럹?댁? ?ㅻ뜑 ?곸슜 諛⑸쾿**:
-   - `index.html` ??濡쒓퀬 ?띿뒪???곸뿭(`<span class="logo-text">?곗씠?곌났諛?/span>`) ?놁뿉 ?좏깮??濡쒓퀬 ?꾩씠肄섏쓣 寃고빀?섏뿬 釉뚮옖?⑹쓽 諛?꾨? ?믪씪 ???덉뒿?덈떎.
-   - ?덉떆:
+2. **홈페이지 헤더 적용 방법**:
+   - `index.html` 의 로고 텍스트 영역(`<span class="logo-text">데이터공방</span>`) 옆에 선택한 로고 아이콘을 결합하여 브랜딩의 밀도를 높일 수 있습니다.
+   - 예시:
      ```html
      <div class="logo-container">
-       <img src="./assets/images/data_cube_logo.png" class="brand-logo" alt="?곗씠?곌났諛?濡쒓퀬">
-       <span class="logo-text">?곗씠?곌났諛?/span>
+       <img src="./assets/images/logos/data_cube_logo_1780551599274.png" class="brand-logo" alt="데이터공방 로고">
+       <span class="logo-text">데이터공방</span>
      </div>
      ```
 
-3. **?ν썑 釉뚮옖???뺤옣 (?ㅽ궗???곌퀎)**:
-   - **`canvas-design`**: ??濡쒓퀬?ㅼ쓣 湲곕컲?쇰줈 釉뚮줈???쒖?, 紐낇븿, 媛뺤쓽怨꾪쉷??PDF???붿옄???쒗뵆由??덉씠?꾩썐???앹꽦?????덉뒿?덈떎.
-   - **`screenshots`**: 理쒖쥌 濡쒓퀬瑜??뱀궗?댄듃???곕룞???? Playwright ?ㅽ궗???댁슜?섏뿬 源껎뿀釉뚮굹 SNS ?띾낫??留덉????ㅽ겕由곗꺑???먮룞 ?앹꽦?????덉뒿?덈떎.
-
+3. **향후 브랜딩 확장 (스킬셋 연계)**:
+   - **`canvas-design`**: 본 로고들을 기반으로 브로슈어, 명함, 강의계획서 PDF의 디자인 템플릿 레이아웃을 생성할 수 있습니다.
+   - **`screenshots`**: 최종 로고를 웹사이트에 연동한 뒤, Playwright 스킬을 이용하여 깃허브나 SNS 홍보용 마케팅 스크린샷을 자동 생성할 수 있습니다.

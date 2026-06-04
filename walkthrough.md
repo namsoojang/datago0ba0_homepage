@@ -9,41 +9,41 @@
    - 딥 네이비(신뢰)와 세이지 틸(AI/혁신), '공방(장인정신/실무밀착)'이라는 상징적 의미의 조합을 확인하고 로고의 메인 기조로 설정했습니다.
 2. **로고 11종 이미지 생성 완료**: 
    - `generate_image` 스킬 셋을 사용하여 고해상도 플랫 벡터 스타일의 디자인 시안 11개를 물리적으로 생성하였습니다.
-   - 각 파일들은 아티팩트 저장소에 고유 파일명으로 저장되었습니다.
+   - 각 파일들은 에셋 폴더(`assets/images/logos/`)에 저장되었습니다.
 3. **사용자 스케치 기반 5대 고도화 버전 생성 완료**:
    - 사용자가 제시한 '수평 연결' 및 '중첩 결합' 레이아웃을 바탕으로, 5가지 다른 디자인 관점(파이프라인 입체, 아카이브, 회로, 글래스모피즘 열쇠, 무한 궤도 곡선)에서 이미지를 생성하였습니다.
 4. **상세 리포트 작성 및 이미지 경로 최적화 완료**:
    - `logo_candidates.md` 아티팩트를 작성하여 총 16종(기본 11종 + 고도화 5종) 로고의 비주얼 이미지, 브랜딩 관점의 의미, 사용된 AI 프롬프트를 명시했습니다.
-   - 마크다운 아티팩트 규격에 맞춰 이미지 임베딩 주소를 절대 경로로 최적화하여 렌더링 무결성을 검증했습니다.
+   - 마크다운 아티팩트 규격에 맞춰 이미지 임베딩 주소를 로컬 경로(`./assets/images/logos/`)로 최적화하여 렌더링 무결성을 검증했습니다.
 
 ---
 
 ## 📂 생성된 리소스 목록
 
-- **[상세 리포트 (logo_candidates.md)](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/logo_candidates.md)**
+- **[상세 리포트 (logo_candidates.md)](./logo_candidates.md)**
 - **로고 기본 시안 11종 이미지**:
-  1. **데이터 큐브 아틀리에**: [data_cube_logo_1780551599274.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/data_cube_logo_1780551599274.png)
-  2. **디지털 톱니바퀴**: [digital_cogwheel_logo_1780551615051.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/digital_cogwheel_logo_1780551615051.png)
-  3. **한글 모노그램 'ㄷ공'**: [hangul_monogram_logo_1780551627868.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/hangul_monogram_logo_1780551627868.png)
-  4. **인공지능 대장간**: [ai_forge_logo_1780551668214.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/ai_forge_logo_1780551668214.png)
-  5. **데이터 비트와 장인의 손**: [handcraft_data_logo_1780551682975.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/handcraft_data_logo_1780551682975.png)
-  6. **기하학적 DGB**: [dgb_monogram_logo_1780551700379.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/dgb_monogram_logo_1780551700379.png)
-  7. **인사이트 라이트하우스**: [lighthouse_logo_1780551714468.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/lighthouse_logo_1780551714468.png)
-  8. **디지털 나이테**: [tree_rings_logo_1780551730934.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/tree_rings_logo_1780551730934.png)
-  9. **정밀 데이터 조각**: [data_sculpture_logo_1780551745062.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/data_sculpture_logo_1780551745062.png)
-  10. **인터랙티브 노드 웨이브**: [node_wave_logo_1780551759152.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/node_wave_logo_1780551759152.png)
-  11. **수평 연결 모노그램 'ㄷㄱ'**: [linked_dg_monogram_1780553405513.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/linked_dg_monogram_1780553405513.png)
+  1. **데이터 큐브 아틀리에**: [data_cube_logo_1780551599274.png](./assets/images/logos/data_cube_logo_1780551599274.png)
+  2. **디지털 톱니바퀴**: [digital_cogwheel_logo_1780551615051.png](./assets/images/logos/digital_cogwheel_logo_1780551615051.png)
+  3. **한글 모노그램 'ㄷ공'**: [hangul_monogram_logo_1780551627868.png](./assets/images/logos/hangul_monogram_logo_1780551627868.png)
+  4. **인공지능 대장간**: [ai_forge_logo_1780551668214.png](./assets/images/logos/ai_forge_logo_1780551668214.png)
+  5. **데이터 비트와 장인의 손**: [handcraft_data_logo_1780551682975.png](./assets/images/logos/handcraft_data_logo_1780551682975.png)
+  6. **기하학적 DGB**: [dgb_monogram_logo_1780551700379.png](./assets/images/logos/dgb_monogram_logo_1780551700379.png)
+  7. **인사이트 라이트하우스**: [lighthouse_logo_1780551714468.png](./assets/images/logos/lighthouse_logo_1780551714468.png)
+  8. **디지털 나이테**: [tree_rings_logo_1780551730934.png](./assets/images/logos/tree_rings_logo_1780551730934.png)
+  9. **정밀 데이터 조각**: [data_sculpture_logo_1780551745062.png](./assets/images/logos/data_sculpture_logo_1780551745062.png)
+  10. **인터랙티브 노드 웨이브**: [node_wave_logo_1780551759152.png](./assets/images/logos/node_wave_logo_1780551759152.png)
+  11. **수평 연결 모노그램 'ㄷㄱ'**: [linked_dg_monogram_1780553405513.png](./assets/images/logos/linked_dg_monogram_1780553405513.png)
 - **사용자 스케치 고도화 5종 이미지**:
-  - **버전 1 (입체 파이프라인)**: [sketch_var1_pipeline_1780553689989.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/sketch_var1_pipeline_1780553689989.png)
-  - **버전 2 (데이터 아카이브)**: [sketch_var2_archive_1780553706667.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/sketch_var2_archive_1780553706667.png)
-  - **버전 3 (네온 와이어 회로)**: [sketch_var3_circuit_1780553728067.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/sketch_var3_circuit_1780553728067.png)
-  - **버전 4 (글래스모피즘 키)**: [sketch_var4_glasskey_1780553745369.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/sketch_var4_glasskey_1780553745369.png)
-  - **버전 5 (무한대 곡선 연결)**: [sketch_var5_infiniteloop_1780553761830.png](file:///C:/Users/장남수/.gemini/antigravity-ide/brain/76f9776d-2f6d-4296-92e1-1018d2fa8d00/sketch_var5_infiniteloop_1780553761830.png)
+  - **버전 1 (입체 파이프라인)**: [sketch_var1_pipeline_1780553689989.png](./assets/images/logos/sketch_var1_pipeline_1780553689989.png)
+  - **버전 2 (데이터 아카이브)**: [sketch_var2_archive_1780553706667.png](./assets/images/logos/sketch_var2_archive_1780553706667.png)
+  - **버전 3 (네온 와이어 회로)**: [sketch_var3_circuit_1780553728067.png](./assets/images/logos/sketch_var3_circuit_1780553728067.png)
+  - **버전 4 (글래스모피즘 키)**: [sketch_var4_glasskey_1780553745369.png](./assets/images/logos/sketch_var4_glasskey_1780553745369.png)
+  - **버전 5 (무한대 곡선 연결)**: [sketch_var5_infiniteloop_1780553761830.png](./assets/images/logos/sketch_var5_infiniteloop_1780553761830.png)
 
 ---
 
 ## 🔎 검증 결과
 
-1. **이미지 파일 무결성**: 총 16개 시안의 PNG 파일들이 지정된 디렉토리에 손상 없이 저장되었으며 정상적인 해상도와 포맷을 지니고 있음을 확인했습니다.
-2. **마크다운 이미지 경로 무결성**: 아티팩트 규격에 맞춰 상세 리포트 내 이미지 경로를 absolute path (e.g. `/C:/Users/...`)로 정확히 기입하여 에러 없이 이미지 렌더링이 보장됩니다.
+1. **이미지 파일 무결성**: 총 16개 시안의 PNG 파일들이 지정된 디렉토리(`assets/images/logos/`)에 손상 없이 병합 완료되어 저장되었으며 정상적인 해상도와 포맷을 지니고 있음을 확인했습니다.
+2. **마크다운 이미지 경로 무결성**: 아티팩트 규격에 맞춰 상세 리포트 내 이미지 경로를 상대 경로(e.g. `./assets/images/logos/...`)로 정확히 기입하여 에러 없이 이미지 렌더링이 보장됩니다.
 3. **톤앤매너 검증**: 메인 네이비 배경 위에 발광하는 틸 컬러의 포인트가 들어간 플랫 벡터 타입으로 통일하여, 홈페이지 메인에 바로 적용해도 이질감이 없도록 디자인 정합성을 높였습니다.
