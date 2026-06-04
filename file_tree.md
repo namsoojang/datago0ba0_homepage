@@ -4,14 +4,16 @@
 c:\Users\namso\문서\00_데이터공방\00_홈페이지\
 ├── assets/                      # 이미지, 로고, 정적 리소스 디렉토리
 │   └── images/                  # 프로필 이미지, 강의 현장 및 도서 이미지
-│       ├── logos/               # 브랜드 로고 및 스케치 고도화 PNG 에셋 (16종 + 미디어 2종)
+│       ├── logos/               # 브랜드 로고 및 스케치 고도화 PNG 에셋 (16종 + 골드 6종 + 미디어 2종)
 │       │   ├── ai_forge_logo_1780551668214.png
 │       │   ├── data_cube_logo_1780551599274.png
+│       │   ├── data_cube_logo_gold.png
 │       │   ├── data_sculpture_logo_1780551745062.png
 │       │   ├── dgb_monogram_logo_1780551700379.png
 │       │   ├── digital_cogwheel_logo_1780551615051.png
 │       │   ├── handcraft_data_logo_1780551682975.png
 │       │   ├── hangul_monogram_logo_1780551627868.png
+│       │   ├── hangul_monogram_logo_gold.png
 │       │   ├── lighthouse_logo_1780551714468.png
 │       │   ├── linked_dg_monogram_1780553405513.png
 │       │   ├── media__1780553602291.png
@@ -19,9 +21,13 @@ c:\Users\namso\문서\00_데이터공방\00_홈페이지\
 │       │   ├── node_wave_logo_1780551759152.png
 │       │   ├── sketch_var1_pipeline_1780553689989.png
 │       │   ├── sketch_var2_archive_1780553706667.png
+│       │   ├── sketch_var2_archive_gold.png
 │       │   ├── sketch_var3_circuit_1780553728067.png
+│       │   ├── sketch_var3_circuit_gold.png
 │       │   ├── sketch_var4_glasskey_1780553745369.png
+│       │   ├── sketch_var4_glasskey_gold.png
 │       │   ├── sketch_var5_infiniteloop_1780553761830.png
+│       │   ├── sketch_var5_infiniteloop_gold.png
 │       │   └── tree_rings_logo_1780551730934.png
 │       ├── 202403_커리어업8기_OJT.jpg
 │       ├── 202511_새싹1.jpg

@@ -106,6 +106,12 @@
 ### 17단계: index.html 상하단 로고 인라인 SVG 연동 및 Playwright 검증
 - [x] Playwright 자동 테스트 및 스크린샷 캡처(데스크탑 골드, 데스크탑 틸, 모바일 골드)를 통한 렌더링 무결성 검증 완료
 
+### 18단계: 골드 로고 추가 생성 및 제너레이티브 브랜딩 뷰어 골드 마이그레이션
+- [x] 핵심 브랜드 로고 4종(큐브 아틀리에, 한글 모노그램, 스케치 v2 아카이브, 스케치 v4 글래스모피즘 키)에 대한 신규 Royal Gold 테마 고해상도 PNG 파일 생성 및 배치 완료
+- [x] logo_candidates.md 리포트 문서에 생성된 골드 이미지 적용 및 설명/프롬프트 내 색상 스펙을 틸에서 골드로 변경
+- [x] generative_branding_viewer.html의 p5.js 컬러 변수 및 CSS 색상 지정을 틸에서 Royal Gold 테마로 전면 이관(colorTeal -> colorGold, Sage Teal -> Accent Gold 등)
+- [x] index.html의 인라인 SVG 로고 테마 동적 바인딩 시스템 정상 동작 재확인
+
 
 
 

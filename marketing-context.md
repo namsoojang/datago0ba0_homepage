@@ -26,6 +26,7 @@
 
 ---
 
+
 ## Personas
 
 | Persona | Role | Cares about | Challenge | Value we promise |
@@ -117,6 +118,10 @@
 **Grammar:** 한글 줄바꿈(어절 단위 `keep-all`)과 가독성을 극대화한 간결한 단문 중심 구성.
 **Capitalization:** AI, AX, EDA, RPA, DT, CTO 등 비즈니스 테크 용어는 항상 대문자로 일관되게 표기.
 **Formatting:** 통계적 지표(수강생 수, 만족도 등)는 강조 컬러와 콤마(,) 처리를 적용하고, 주요 기업 레퍼런스에는 카테고리 심볼 아이콘 매핑.
+**Color Theme (Royal Gold & Deep Navy):**
+- **Main Navy**: `#060B19` / `#0B132B` - 신뢰도 높은 엔터프라이즈 딥 네이비 배경
+- **Royal Gold**: `#C5A880` / `#E5C158` - 기하학적 로고 및 포인트 텍스트에 적용되는 장인 정신의 골드 컬러
+
 
 ---
 

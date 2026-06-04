@@ -19,7 +19,7 @@
             --anthropic-blue: #6a9bcc;
             --anthropic-green: #788c5d;
             --brand-navy: #0b132b;
-            --brand-teal: #02c39a;
+            --brand-gold: #E5C158;
         }
 
         * {
@@ -90,7 +90,7 @@
 
         .control-section h3::before {
             content: '•';
-            color: var(--brand-teal);
+            color: var(--brand-gold);
             font-weight: bold;
             font-size: 18px;
         }
@@ -110,8 +110,8 @@
 
         .seed-input:focus {
             outline: none;
-            border-color: var(--brand-teal);
-            box-shadow: 0 0 0 2px rgba(2, 195, 154, 0.1);
+            border-color: var(--brand-gold);
+            box-shadow: 0 0 0 2px rgba(229, 193, 88, 0.1);
             background: white;
         }
 
@@ -154,7 +154,7 @@
             -webkit-appearance: none;
             width: 14px;
             height: 14px;
-            background: var(--brand-teal);
+            background: var(--brand-gold);
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -162,7 +162,7 @@
 
         .slider-container input[type="range"]::-webkit-slider-thumb:hover {
             transform: scale(1.2);
-            background: #00a896;
+            background: #d6b24a;
         }
 
         .value-display {
@@ -209,7 +209,7 @@
 
         /* Buttons */
         .button {
-            background: var(--brand-teal);
+            background: var(--brand-gold);
             color: var(--brand-navy);
             border: none;
             padding: 8px 12px;
@@ -222,8 +222,8 @@
         }
 
         .button:hover {
-            background: #00a896;
-            color: white;
+            background: #d6b24a;
+            color: var(--brand-navy);
             transform: translateY(-1px);
         }
 
@@ -292,7 +292,7 @@
             top: 50%;
             transform: translate(-50%, -50%);
             font-size: 16px;
-            color: var(--brand-teal);
+            color: var(--brand-gold);
             font-family: 'Poppins', sans-serif;
             letter-spacing: 1px;
         }
@@ -382,12 +382,12 @@
                     </div>
                 </div>
 
-                <!-- Teal Color -->
+                <!-- Gold Color -->
                 <div class="color-group">
-                    <label>Sage Teal (활성 노드)</label>
+                    <label>Accent Gold (활성 노드)</label>
                     <div class="color-picker-container">
-                        <input type="color" id="colorTeal" value="#02c39a" onchange="updateColor('colorTeal', this.value)">
-                        <span class="color-value" id="colorTeal-value">#02c39a</span>
+                        <input type="color" id="colorGold" value="#E5C158" onchange="updateColor('colorGold', this.value)">
+                        <span class="color-value" id="colorGold-value">#E5C158</span>
                     </div>
                 </div>
             </div>
@@ -421,7 +421,7 @@
             speed: 1.0,
             glow: 1.5,
             colorNavy: '#0b132b',
-            colorTeal: '#02c39a'
+            colorGold: '#E5C158'
         };
 
         let defaultParams = {...params};
@@ -502,7 +502,7 @@
 
         // Draw systematic background matrix dots (Precision Atelier concept)
         function drawStructureMatrix() {
-            stroke(red(color(params.colorTeal)), green(color(params.colorTeal)), blue(color(params.colorTeal)), 25);
+            stroke(red(color(params.colorGold)), green(color(params.colorGold)), blue(color(params.colorGold)), 25);
             strokeWeight(1);
             
             for (let node of gridNodes) {
@@ -528,10 +528,10 @@
             noFill();
             
             let pulse = sin(frameCount * 0.03) * 5;
-            let tealCol = color(params.colorTeal);
+            let goldCol = color(params.colorGold);
 
             // Outer "ㄷ" shape frame representing structured archive
-            stroke(red(tealCol), green(tealCol), blue(tealCol), 150);
+            stroke(red(goldCol), green(goldCol), blue(goldCol), 150);
             strokeWeight(3 * params.glow);
             beginShape();
             vertex(70 + pulse, -80);
@@ -541,7 +541,7 @@
             endShape();
 
             // Inner "ㄱ" shape frame representing technological core
-            stroke(red(tealCol), green(tealCol), blue(tealCol), 200 + pulse * 5);
+            stroke(red(goldCol), green(goldCol), blue(goldCol), 200 + pulse * 5);
             strokeWeight(5 * params.glow);
             beginShape();
             vertex(-20, -20);
@@ -571,7 +571,7 @@
                 ellipse(mouseX, mouseY, rippleSize * 0.5);
 
                 // Sparkling node core
-                fill(red(color(params.colorTeal)), green(color(params.colorTeal)), blue(color(params.colorTeal)));
+                fill(red(color(params.colorGold)), green(color(params.colorGold)), blue(color(params.colorGold)));
                 noStroke();
                 ellipse(mouseX, mouseY, 8);
             }
@@ -648,9 +648,9 @@
             display() {
                 // Glow alpha depends on current life ratio
                 let alpha = map(this.life, 0, this.maxLife, 0, 180);
-                let tealCol = color(params.colorTeal);
+                let goldCol = color(params.colorGold);
 
-                stroke(red(tealCol), green(tealCol), blue(tealCol), alpha);
+                stroke(red(goldCol), green(goldCol), blue(goldCol), alpha);
                 
                 // Speed-based line thickness
                 strokeWeight(random(1, 2.5) * params.glow);
@@ -737,8 +737,8 @@
             // Reset colors
             document.getElementById('colorNavy').value = params.colorNavy;
             document.getElementById('colorNavy-value').textContent = params.colorNavy;
-            document.getElementById('colorTeal').value = params.colorTeal;
-            document.getElementById('colorTeal-value').textContent = params.colorTeal;
+            document.getElementById('colorGold').value = params.colorGold;
+            document.getElementById('colorGold-value').textContent = params.colorGold;
             
             updateSeedDisplay();
             initializeSystem();

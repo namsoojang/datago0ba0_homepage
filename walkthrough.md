@@ -14,7 +14,10 @@
    - 사용자가 제시한 '수평 연결' 및 '중첩 결합' 레이아웃을 바탕으로, 5가지 다른 디자인 관점(파이프라인 입체, 아카이브, 회로, 글래스모피즘 열쇠, 무한 궤도 곡선)에서 이미지를 생성하였습니다.
 4. **상세 리포트 작성 및 이미지 경로 최적화 완료**:
    - `logo_candidates.md` 아티팩트를 작성하여 총 16종(기본 11종 + 고도화 5종) 로고의 비주얼 이미지, 브랜딩 관점의 의미, 사용된 AI 프롬프트를 명시했습니다.
-   - 마크다운 아티팩트 규격에 맞춰 이미지 임베딩 주소를 로컬 경로(`./assets/images/logos/`)로 최적화하여 렌더링 무결성을 검증했습니다.
+   - 마크다운 아티팩트 규격에 맞춰 상세 리포트 내 이미지 경로를 상대 경로(e.g. `./assets/images/logos/`)로 최적화하여 렌더링 무결성을 검증했습니다.
+5. **Royal Gold 테마 정비 및 골드 이미지 4종 추가 생성 (v1.8.0)**:
+   - 데이터공방의 대표 컬러 테마인 Royal Gold & Deep Navy 사양에 완벽하게 일치하는 4종의 고해상도 골드 로고(큐브 아틀리에, 한글 모노그램, 버전 2 아카이브, 버전 4 글래스모피즘 키)를 추가 생성하여 `assets/images/logos/` 폴더에 배치하고 `logo_candidates.md`에 링크를 갱신하였습니다.
+   - `generative_branding_viewer.html`의 p5.js 제너레이티브 브랜딩 내부 색상 변수 및 컨트롤 라벨 사양을 틸에서 Royal Gold로 마이그레이션(colorTeal -> colorGold) 완료했습니다.
 
 ---
 
@@ -22,9 +25,11 @@
 
 - **[상세 리포트 (logo_candidates.md)](./logo_candidates.md)**
 - **로고 기본 시안 11종 이미지**:
-  1. **데이터 큐브 아틀리에**: [data_cube_logo_1780551599274.png](./assets/images/logos/data_cube_logo_1780551599274.png)
+  1. **데이터 큐브 아틀리에 (Teal)**: [data_cube_logo_1780551599274.png](./assets/images/logos/data_cube_logo_1780551599274.png)
+  - **데이터 큐브 아틀리에 (Gold)**: [data_cube_logo_gold.png](./assets/images/logos/data_cube_logo_gold.png)
   2. **디지털 톱니바퀴**: [digital_cogwheel_logo_1780551615051.png](./assets/images/logos/digital_cogwheel_logo_1780551615051.png)
-  3. **한글 모노그램 'ㄷ공'**: [hangul_monogram_logo_1780551627868.png](./assets/images/logos/hangul_monogram_logo_1780551627868.png)
+  3. **한글 모노그램 'ㄷ공' (Teal)**: [hangul_monogram_logo_1780551627868.png](./assets/images/logos/hangul_monogram_logo_1780551627868.png)
+  - **한글 모노그램 'ㄷ공' (Gold)**: [hangul_monogram_logo_gold.png](./assets/images/logos/hangul_monogram_logo_gold.png)
   4. **인공지능 대장간**: [ai_forge_logo_1780551668214.png](./assets/images/logos/ai_forge_logo_1780551668214.png)
   5. **데이터 비트와 장인의 손**: [handcraft_data_logo_1780551682975.png](./assets/images/logos/handcraft_data_logo_1780551682975.png)
   6. **기하학적 DGB**: [dgb_monogram_logo_1780551700379.png](./assets/images/logos/dgb_monogram_logo_1780551700379.png)
@@ -35,15 +40,18 @@
   11. **수평 연결 모노그램 'ㄷㄱ'**: [linked_dg_monogram_1780553405513.png](./assets/images/logos/linked_dg_monogram_1780553405513.png)
 - **사용자 스케치 고도화 5종 이미지**:
   - **버전 1 (입체 파이프라인)**: [sketch_var1_pipeline_1780553689989.png](./assets/images/logos/sketch_var1_pipeline_1780553689989.png)
-  - **버전 2 (데이터 아카이브)**: [sketch_var2_archive_1780553706667.png](./assets/images/logos/sketch_var2_archive_1780553706667.png)
-  - **버전 3 (네온 와이어 회로)**: [sketch_var3_circuit_1780553728067.png](./assets/images/logos/sketch_var3_circuit_1780553728067.png)
-  - **버전 4 (글래스모피즘 키)**: [sketch_var4_glasskey_1780553745369.png](./assets/images/logos/sketch_var4_glasskey_1780553745369.png)
-  - **버전 5 (무한대 곡선 연결)**: [sketch_var5_infiniteloop_1780553761830.png](./assets/images/logos/sketch_var5_infiniteloop_1780553761830.png)
+  - **버전 2 (데이터 아카이브 - Teal)**: [sketch_var2_archive_1780553706667.png](./assets/images/logos/sketch_var2_archive_1780553706667.png)
+  - **버전 2 (데이터 아카이브 - Gold)**: [sketch_var2_archive_gold.png](./assets/images/logos/sketch_var2_archive_gold.png)
+  - **버전 3 (네온 와이어 회로 - Gold)**: [sketch_var3_circuit_gold.png](./assets/images/logos/sketch_var3_circuit_gold.png)
+  - **버전 4 (글래스모피즘 키 - Teal)**: [sketch_var4_glasskey_1780553745369.png](./assets/images/logos/sketch_var4_glasskey_1780553745369.png)
+  - **버전 4 (글래스모피즘 키 - Gold)**: [sketch_var4_glasskey_gold.png](./assets/images/logos/sketch_var4_glasskey_gold.png)
+  - **버전 5 (무한대 곡선 연결 - Gold)**: [sketch_var5_infiniteloop_gold.png](./assets/images/logos/sketch_var5_infiniteloop_gold.png)
 
 ---
 
 ## 🔎 검증 결과
 
-1. **이미지 파일 무결성**: 총 16개 시안의 PNG 파일들이 지정된 디렉토리(`assets/images/logos/`)에 손상 없이 병합 완료되어 저장되었으며 정상적인 해상도와 포맷을 지니고 있음을 확인했습니다.
-2. **마크다운 이미지 경로 무결성**: 아티팩트 규격에 맞춰 상세 리포트 내 이미지 경로를 상대 경로(e.g. `./assets/images/logos/...`)로 정확히 기입하여 에러 없이 이미지 렌더링이 보장됩니다.
-3. **톤앤매너 검증**: 메인 네이비 배경 위에 발광하는 틸 컬러의 포인트가 들어간 플랫 벡터 타입으로 통일하여, 홈페이지 메인에 바로 적용해도 이질감이 없도록 디자인 정합성을 높였습니다.
+1. **이미지 파일 무결성**: 총 20개 시안의 PNG 파일들이 지정된 디렉토리(`assets/images/logos/`)에 누락 없이 저장 및 병합 완료되었습니다.
+2. **마크다운 이미지 경로 무결성**: 상세 리포트 내 경로가 상대 경로로 정확히 갱신되어, 에러 없는 렌더링이 보장됩니다.
+3. **톤앤매너 검증**: 기본 홈페이지 테마에 맞추어 골드 색상이 메인 네이비 배경에 우아하게 부합하며, 테마 스위처 동작 시 틸 그린으로의 다이내믹 그라데이션 동기화도 완벽히 호환됩니다.
+4. **제너레이티브 뷰어 검증**: p5.js 제너레이티브 브랜딩 웹페이지 내 색상과 UI 변수가 Accent Gold 및 Royal Gold 테마 사양으로 통일되어 기본 구동 시 골드 네온 입자가 렌더링됩니다.
