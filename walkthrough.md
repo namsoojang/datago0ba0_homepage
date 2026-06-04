@@ -18,6 +18,10 @@
 5. **Royal Gold 테마 정비 및 골드 이미지 4종 추가 생성 (v1.8.0)**:
    - 데이터공방의 대표 컬러 테마인 Royal Gold & Deep Navy 사양에 완벽하게 일치하는 4종의 고해상도 골드 로고(큐브 아틀리에, 한글 모노그램, 버전 2 아카이브, 버전 4 글래스모피즘 키)를 추가 생성하여 `assets/images/logos/` 폴더에 배치하고 `logo_candidates.md`에 링크를 갱신하였습니다.
    - `generative_branding_viewer.html`의 p5.js 제너레이티브 브랜딩 내부 색상 변수 및 컨트롤 라벨 사양을 틸에서 Royal Gold로 마이그레이션(colorTeal -> colorGold) 완료했습니다.
+6. **로고 투명화 및 브랜드 타이포그래피 폴리싱 (v1.11.2)**:
+   - 모바일 및 소형 해상도의 극적인 시인성 확보를 위해 최종 채택된 '극도의 미니멀 모노그램' 로고 이미지의 딥 네이비 배경(#0B132B)을 투명하게 제거(Transparency) 처리하여 경량화했습니다.
+   - 로고 브랜드 서체를 'Pretendard Bold'로 교체하고, 자간(-0.04em)과 굵기(font-weight: 700)를 미세하게 조율하여 단단하고 신뢰감 있는 프로페셔널 룩을 구현했습니다.
+   - 텍스트 높이와 이미지 밸런스를 재보정하고, 한글 폰트 특유의 중심 아래 쏠림을 보정하는 수직 오프셋(translateY)을 가미하여 기하학 심볼과 텍스트의 크기/간격을 맞추는 수직 밸런스 폴리싱을 완료했습니다.
 
 ---
 
@@ -49,6 +53,14 @@
   - **버전 6 (모노그램 디지털 나이테 - Gold)**: [sketch_var6_treering_gold.png](./assets/images/logos/sketch_var6_treering_gold.png)
   - **버전 7 (극도의 미니멀 모노그램 - Gold)**: [sketch_var7_ultrasimple_gold.png](./assets/images/logos/sketch_var7_ultrasimple_gold.png)
   - **버전 7 (극도의 미니멀 모노그램 - Teal)**: [sketch_var7_ultrasimple_teal.png](./assets/images/logos/sketch_var7_ultrasimple_teal.png)
+- **렌더링 검증 도구 및 산출물**:
+  - **렌더링 검증 테스트 스크립트**: [temp/test_rendering.py](./temp/test_rendering.py)
+  - **검증용 테마별 스크린샷 결과물**:
+    - 골드 테마 헤더 로고: [output/header_logo_gold.png](./output/header_logo_gold.png)
+    - 틸 테마 헤더 로고: [output/header_logo_teal.png](./output/header_logo_teal.png)
+    - 골드 테마 푸터 로고: [output/footer_logo_gold.png](./output/footer_logo_gold.png)
+    - 틸 테마 푸터 로고: [output/footer_logo_teal.png](./output/footer_logo_teal.png)
+    - 골드 테마 전체 화면 캡처: [output/full_page_gold.png](./output/full_page_gold.png)
 
 ---
 
@@ -61,3 +73,4 @@
 5. **최종 홈페이지 반영 검증**: 사용자가 최종 확정한 '극도의 미니멀 모노그램(sketch_var7_ultrasimple_gold.png)' 로고를 index.html 헤더와 푸터에 완벽히 연동시켰으며, 테마 토글 시 틸 모드에서는 이에 일치하는 '극도의 미니멀 모노그램 틸(sketch_var7_ultrasimple_teal.png)' 로고로 실시간 자동 스위칭(modules/main.js 연동)됨을 크로스 브라우저 테스트 및 해상도 레질리언스 검사를 통해 검증 완료했습니다.
 6. **Hero 백그라운드 인터랙션 검증**: index.html의 Hero 영역 배경에 p5.js 인스턴스 스케치를 주입하고, 마우스 포인터의 움직임에 따라 골드 데이터 파티클들이 실시간으로 유도되어 움직이는 인터랙션 효과를 검증했습니다. 테마 토글 시 입자 색상 또한 렉 현상 없이 로얄 골드(#E5C158)와 세이지 틸(#02C39A) 사이에서 즉시 변환됨을 확인했습니다.
 7. **Hero 슬로건 카피 보정**: Hero 영역 대타이틀 첫 줄 슬로건의 불필요한 부사('그저')를 배제하고 '고개만 끄덕이다 끝나는'으로 간소화하여 시각적 호흡을 부드럽게 보정 완료했습니다.
+8. **투명 로고 및 Pretendard Bold 정렬 검증**: Playwright 기반 자동 렌더링 스크립트([temp/test_rendering.py](./temp/test_rendering.py))를 실행하여 골드와 틸 테마가 변경될 때마다 로고 심볼과 브랜드명이 흐트러짐 없이 칼같이 정렬(inline-flex & center)되고 투명 배경으로 주변 글래스모피즘 영역과 부드럽게 어우러지는 상태를 자동 캡처(output 폴더 내 스크린샷 5종)하고 시각적으로 완벽하게 동작함을 검증 완료했습니다.

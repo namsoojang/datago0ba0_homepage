@@ -214,34 +214,42 @@ header.scrolled {
 }
 
 .logo {
-  font-family: var(--font-title);
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  display: flex;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700; /* Pretendard Bold */
+  letter-spacing: -0.04em;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px; /* 정렬 및 크기 밸런스 최적화 */
 }
 
 .logo .logo-symbol {
+  height: 28px;
+  width: 28px;
+  object-fit: contain;
   transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  filter: drop-shadow(0 0 8px rgba(var(--primary-teal-rgb), 0.3));
+  filter: drop-shadow(0 2px 6px rgba(var(--primary-teal-rgb), 0.25));
+  /* 미세 수직 정렬 보정: 폰트의 한글 베이스라인 특성 보정 */
+  transform: translateY(0.5px);
 }
 
 .logo:hover .logo-symbol {
-  transform: rotate(45deg) scale(1.1);
-  filter: drop-shadow(0 0 12px rgba(var(--accent-teal-rgb), 0.6));
+  transform: rotate(45deg) scale(1.08) translateY(0.5px);
+  filter: drop-shadow(0 4px 10px rgba(var(--accent-teal-rgb), 0.5));
 }
 
 .logo span {
   color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 
 .logo span strong {
   background: linear-gradient(135deg, var(--accent-teal), var(--primary-teal));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: 900;
+  font-weight: 800; /* Pretendard ExtraBold */
 }
 
 .nav-links {
@@ -1278,32 +1286,42 @@ footer {
 }
 
 footer .footer-logo {
-  font-family: var(--font-title);
-  font-weight: 700;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700; /* Pretendard Bold */
+  letter-spacing: -0.04em;
   color: var(--text-primary);
   font-size: 1.25rem;
   margin-bottom: 12px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 footer .footer-logo .logo-symbol {
+  height: 22px;
+  width: 22px;
+  object-fit: contain;
   opacity: 0.8;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(0.5px);
 }
 
 footer .footer-logo:hover .logo-symbol {
   opacity: 1;
+  transform: scale(1.05) translateY(0.5px);
 }
 
 footer .footer-logo span {
   color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 
 footer .footer-logo span strong {
   color: var(--accent-teal);
+  font-weight: 800;
 }
 
 /* 16. 반응형 대응 (Media Queries) */

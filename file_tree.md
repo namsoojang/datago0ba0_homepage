@@ -60,7 +60,15 @@ c:\Users\namso\문서\00_데이터공방\00_홈페이지\
 ├── file_tree.md                 # 파일 구조 트리 (본 파일)
 ├── logo_candidates.md           # [NEW] 브랜드 로고 시안 16종 상세 리포트
 ├── marketing-context.md         # [NEW] 마케팅 콘텍스트 및 포지셔닝 문서
-
+├── temp/                        # 일회성 스크립트 및 테스트 디렉토리
+│   ├── remove_bg.py             # 로고 배경 제거 파이썬 스크립트
+│   └── test_rendering.py        # Playwright 기반 렌더링 검증 테스트 스크립트
+├── output/                      # 테스트 출력 및 스크린샷 저장 폴더
+│   ├── header_logo_gold.png     # 골드 테마 헤더 로고 캡처
+│   ├── header_logo_teal.png     # 틸 테마 헤더 로고 캡처
+│   ├── footer_logo_gold.png     # 골드 테마 푸터 로고 캡처
+│   ├── footer_logo_teal.png     # 틸 테마 푸터 로고 캡처
+│   └── full_page_gold.png       # 골드 테마 전체 화면 캡처
 ├── project.md                   # 프로젝트 개요 및 기획 의도
 ├── tasks.md                     # 진행 상황 관리 태스크 리스트
 └── walkthrough.md               # [NEW] 로고 작업 완료 보고서
