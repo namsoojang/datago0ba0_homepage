@@ -224,8 +224,9 @@ header.scrolled {
 }
 
 .logo .logo-symbol {
-  height: 28px;
-  width: 28px;
+  height: 26px;
+  width: 26px;
+  flex-shrink: 0; /* 찌그러짐 방지 */
   object-fit: contain;
   transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   filter: drop-shadow(0 2px 6px rgba(var(--primary-teal-rgb), 0.25));
@@ -240,9 +241,6 @@ header.scrolled {
 
 .logo span {
   color: var(--text-primary);
-  display: inline-flex;
-  align-items: center;
-  line-height: 1;
 }
 
 .logo span strong {
@@ -1290,17 +1288,18 @@ footer .footer-logo {
   font-weight: 700; /* Pretendard Bold */
   letter-spacing: -0.04em;
   color: var(--text-primary);
-  font-size: 1.25rem;
-  margin-bottom: 12px;
-  display: inline-flex;
+  font-size: 1.45rem; /* 헤더와 동일하게 통일 */
+  margin-bottom: 16px;
+  display: flex; /* flex 정렬 적용 */
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px; /* 헤더와 동일하게 통일 */
 }
 
 footer .footer-logo .logo-symbol {
-  height: 22px;
-  width: 22px;
+  height: 26px; /* 헤더와 동일하게 통일 (글자 크기의 약 90% 시각 밸런스) */
+  width: 26px; /* 헤더와 동일하게 통일 */
+  flex-shrink: 0; /* 찌그러짐 방지 */
   object-fit: contain;
   opacity: 0.8;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -1314,9 +1313,6 @@ footer .footer-logo:hover .logo-symbol {
 
 footer .footer-logo span {
   color: var(--text-primary);
-  display: inline-flex;
-  align-items: center;
-  line-height: 1;
 }
 
 footer .footer-logo span strong {
