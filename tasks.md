@@ -151,3 +151,9 @@
 - [x] index.html 내 푸터 저작권 표기를 DATAGOONGBANG으로 업데이트
 - [x] 외부 API 연동 명세서 api.md 파일 신규 생성 및 문서화
 - [x] file_tree.md 파일 구조 갱신 및 project.md / tasks.md 작업 이력 최신화
+
+### 26단계: 깃허브 배포 및 도메인 연결 설정
+- [x] .gitignore 파일에 테스트 캡처본(output/) 폴더 제외 규칙 추가
+- [/] 깃허브 저장소에 변경사항 푸시 및 깃허브 페이지 배포 설정 안내
+- [/] Cafe24 도메인(datagongbang.kr) DNS 레코드 연동 및 HTTPS 적용 안내
+
