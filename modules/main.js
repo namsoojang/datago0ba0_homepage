@@ -637,7 +637,7 @@ function initThemeToggle() {
 let heroP5Instance = null;
 
 function initHeroCanvas() {
-  const container = document.getElementById('hero-canvas-container');
+  const container = document.getElementById('bg-canvas-container');
   if (!container || typeof p5 === 'undefined') return;
 
   const savedTheme = localStorage.getItem('theme') || 'gold';
@@ -652,10 +652,11 @@ function initHeroCanvas() {
       width = container.offsetWidth;
       height = container.offsetHeight;
       let canvas = p.createCanvas(width, height);
-      canvas.parent('hero-canvas-container');
+      canvas.parent('bg-canvas-container');
 
-      // 리소스 점유 최소화를 위해 180개 노드로 제한 (성능 우선)
-      for (let i = 0; i < 180; i++) {
+      // 기기 및 해상도 사양에 따른 렌더링 부하 최적화 (모바일 60개, 데스크탑 130개)
+      const targetCount = (window.innerWidth < 1024) ? 60 : 130;
+      for (let i = 0; i < targetCount; i++) {
         particles.push(new HeroParticle(p));
       }
     };
@@ -673,6 +674,15 @@ function initHeroCanvas() {
       width = container.offsetWidth;
       height = container.offsetHeight;
       p.resizeCanvas(width, height);
+
+      // 화면 리사이즈 대응 및 반응형 파티클 수 재설정
+      const targetCount = (window.innerWidth < 1024) ? 60 : 130;
+      if (particles.length !== targetCount) {
+        particles = [];
+        for (let i = 0; i < targetCount; i++) {
+          particles.push(new HeroParticle(p));
+        }
+      }
     };
 
     p.updateColor = (newColor) => {

@@ -298,22 +298,22 @@ header.scrolled {
   overflow: hidden;
 }
 
-#hero-canvas-container {
-  position: absolute;
+#bg-canvas-container {
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2; /* 배경 데코 도형(1) 위, 텍스트 콘텐츠(10) 아래에 배치 */
   pointer-events: none;
-  opacity: 0.45;
+  opacity: 0.32; /* 전체 페이지 배경이므로 눈의 피로를 최소화하기 위해 살짝 투명화 */
   mix-blend-mode: screen;
 }
 
-#hero-canvas-container canvas {
+#bg-canvas-container canvas {
   display: block;
-  width: 100% !important;
-  height: 100% !important;
+  width: 100vw !important;
+  height: 100vh !important;
 }
 
 .hero-grid {
