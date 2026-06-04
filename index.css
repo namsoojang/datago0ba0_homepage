@@ -723,6 +723,7 @@ header.scrolled {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden; /* 접혀있을 때 내용 삐져나옴 방지 */
 }
 
 .accordion-item.active .accordion-content {
@@ -1461,5 +1462,29 @@ footer .footer-logo span strong {
     width: 44px;
     height: 44px;
     font-size: 1.1rem;
+  }
+}
+
+/* 데스크탑 뷰포트에서 5대 강점 아코디언 상시 전개 및 정렬 보정 */
+@media (min-width: 1024px) {
+  .strengths-accordion .accordion-item {
+    cursor: default;
+  }
+  .strengths-accordion .accordion-item .accordion-arrow {
+    display: none; /* 토글 화살표 숨김 */
+  }
+  .strengths-accordion .accordion-item .accordion-content {
+    grid-template-rows: 1fr !important; /* 상시 펼침 */
+    opacity: 1 !important;
+    overflow: visible !important;
+  }
+  .strengths-accordion .accordion-item:hover {
+    border-color: var(--card-hover-border);
+    box-shadow: var(--shadow-glow);
+  }
+  .strengths-accordion .accordion-item .accordion-icon {
+    background: var(--primary-teal);
+    color: var(--text-primary);
+    box-shadow: 0 0 10px rgba(var(--primary-teal-rgb), 0.3);
   }
 }

@@ -240,6 +240,9 @@ function initStrengthsAccordion() {
     if (!header) return;
 
     header.addEventListener('click', () => {
+      // 데스크탑 해상도(>=1024px)에서는 아코디언 토글 동작을 무시함
+      if (window.innerWidth >= 1024) return;
+
       const isActive = item.classList.contains('active');
 
       // 모든 아코디언 active 끄기 (하나씩만 열리는 구조)
@@ -250,6 +253,13 @@ function initStrengthsAccordion() {
         item.classList.add('active');
       }
     });
+  });
+
+  // 데스크탑 화면으로 복귀 시 잔여 active 클래스를 정리하여 레이아웃 무결성 보호
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) {
+      items.forEach(i => i.classList.remove('active'));
+    }
   });
 }
 
