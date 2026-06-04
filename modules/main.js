@@ -581,11 +581,11 @@ function initThemeToggle() {
   const updateLogoSource = (theme) => {
     if (!headerLogo || !footerLogo) return;
     if (theme === 'teal') {
-      headerLogo.src = './assets/images/logos/sketch_var3_circuit_1780553728067.png';
-      footerLogo.src = './assets/images/logos/sketch_var3_circuit_1780553728067.png';
+      headerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_teal.png';
+      footerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_teal.png';
     } else {
-      headerLogo.src = './assets/images/logos/sketch_var3_circuit_gold.png';
-      footerLogo.src = './assets/images/logos/sketch_var3_circuit_gold.png';
+      headerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_gold.png';
+      footerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_gold.png';
     }
   };
 

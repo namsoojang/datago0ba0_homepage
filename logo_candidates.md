@@ -222,6 +222,18 @@
   ```text
   A premium minimalist vector logo of a simplified tree ring (wood ring) symbol. The concentric circular paths of the tree ring are artfully broken and bent to form the stylized letters 'D' and 'G' (which also resemble the Korean Hangul letters 'ㄷ' and 'ㄱ') integrated seamlessly within the rings. Clean, modern geometric line art with a few subtle nodes. Colors: deep navy blue (#0B132B) background, with sleek glowing royal gold (#E5C158) lines. High-end technology and craftsman artisan aesthetic, flat vector design, isolated on dark background. No text, pure corporate icon.
   ```
+
+<!-- slide -->
+### 버전 7. 극도의 미니멀 모노그램 (Ultra-Minimalist Monogram 'ㄷㄱ' / 'DG')
+
+![버전 7 극도의 미니멀 모노그램 - Gold](./assets/images/logos/sketch_var7_ultrasimple_gold.png)
+![버전 7 극도의 미니멀 모노그램 - Teal](./assets/images/logos/sketch_var7_ultrasimple_teal.png)
+
+- **디자인 의미**: 모바일이나 헤더 등 극소 해상도(30px 이하)에서의 높은 시인성과 판독성(Legibility)을 보장하기 위해, 미세한 전기회로선과 복잡한 나이테 결을 생략하고 극도의 선명한 볼드(Bold) 라인 아트로 재창조한 모노그램입니다. 한글 초성 'ㄷ'과 'ㄱ' 및 영문 이니셜 'D'와 'G'를 굵고 단순한 기하학적 도형으로 통합하였습니다. 어두운 네이비 배경에 고대비 배색(골드/틸)을 가하여, 홈페이지 전체 비주얼과 직관적으로 조화되며 시선을 사로잡습니다.
+- **AI 생성 프롬프트**:
+  ```text
+  An ultra-minimalist geometric vector logo of the letters 'D' and 'G' (which also form the Korean Hangul letters 'ㄷ' and 'ㄱ'). The design features bold, clean, solid lines with maximum simplicity and high visibility at small sizes. No thin lines, no complex circuit patterns, and no tiny nodes. Colors: a solid deep navy blue (#0B132B) background, with a vibrant, clean royal gold (#E5C158) emblem. Sleek modern corporate tech branding, isolated flat vector icon. High contrast, ultra-simple.
+  ```
 ````
 
 ---
