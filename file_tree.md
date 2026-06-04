@@ -28,6 +28,7 @@ c:\Users\namso\문서\00_데이터공방\00_홈페이지\
 │       │   ├── sketch_var4_glasskey_gold.png
 │       │   ├── sketch_var5_infiniteloop_1780553761830.png
 │       │   ├── sketch_var5_infiniteloop_gold.png
+│       │   ├── sketch_var6_treering_gold.png
 │       │   └── tree_rings_logo_1780551730934.png
 │       ├── 202403_커리어업8기_OJT.jpg
 │       ├── 202511_새싹1.jpg

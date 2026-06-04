@@ -212,7 +212,17 @@
   A high-end modern minimalist vector logo showing Korean letters 'ㄷ' and 'ㄱ' connected horizontally. The straight lines are re-imagined as sleek, organic continuous curves forming a single flowing wave or infinity loop. Colors: deep navy blue (#0B132B) and glowing royal gold (#E5C158) gradient. Flat design, clean lines, isolated on a solid dark background. No text, pure branding icon.
   ```
 
-```
+<!-- slide -->
+### 버전 6. 모노그램 디지털 나이테 (Monogram Digital Tree Rings 'ㄷㄱ' / 'DG')
+
+![버전 6 모노그램 디지털 나이테](./assets/images/logos/sketch_var6_treering_gold.png)
+
+- **디자인 의미**: 기본 시안 8번인 '디지털 나이테'의 장인정신과 연륜의 미학을 극도로 단순화하여 기하학적 심볼로 승화시켰습니다. 동심원 형태의 나이테 라인들이 정밀하게 배치되어 흐르다가, 특정 호(Arc) 영역에서 감각적으로 끊어지고 안쪽으로 꺾여 들어가 영어 이니셜 'D'와 'G' 및 한글 초성 'ㄷ'과 'ㄱ'을 동시에 연상시킵니다. 인공지능 분석과 실무 맞춤 교육의 정밀성(Precision)을 현대적인 골드 와이어 프레임과 마이크로 단말 노드로 장식하여 극도의 완성도를 표방합니다.
+- **AI 생성 프롬프트**:
+  ```text
+  A premium minimalist vector logo of a simplified tree ring (wood ring) symbol. The concentric circular paths of the tree ring are artfully broken and bent to form the stylized letters 'D' and 'G' (which also resemble the Korean Hangul letters 'ㄷ' and 'ㄱ') integrated seamlessly within the rings. Clean, modern geometric line art with a few subtle nodes. Colors: deep navy blue (#0B132B) background, with sleek glowing royal gold (#E5C158) lines. High-end technology and craftsman artisan aesthetic, flat vector design, isolated on dark background. No text, pure corporate icon.
+  ```
+````
 
 ---
 

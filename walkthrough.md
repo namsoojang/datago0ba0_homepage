@@ -46,12 +46,13 @@
   - **버전 4 (글래스모피즘 키 - Teal)**: [sketch_var4_glasskey_1780553745369.png](./assets/images/logos/sketch_var4_glasskey_1780553745369.png)
   - **버전 4 (글래스모피즘 키 - Gold)**: [sketch_var4_glasskey_gold.png](./assets/images/logos/sketch_var4_glasskey_gold.png)
   - **버전 5 (무한대 곡선 연결 - Gold)**: [sketch_var5_infiniteloop_gold.png](./assets/images/logos/sketch_var5_infiniteloop_gold.png)
+  - **버전 6 (모노그램 디지털 나이테 - Gold)**: [sketch_var6_treering_gold.png](./assets/images/logos/sketch_var6_treering_gold.png)
 
 ---
 
 ## 🔎 검증 결과
 
-1. **이미지 파일 무결성**: 총 20개 시안의 PNG 파일들이 지정된 디렉토리(`assets/images/logos/`)에 누락 없이 저장 및 병합 완료되었습니다.
+1. **이미지 파일 무결성**: 총 21개 시안의 PNG 파일들이 지정된 디렉토리(`assets/images/logos/`)에 누락 없이 저장 및 병합 완료되었습니다.
 2. **마크다운 이미지 경로 무결성**: 상세 리포트 내 경로가 상대 경로로 정확히 갱신되어, 에러 없는 렌더링이 보장됩니다.
 3. **톤앤매너 검증**: 기본 홈페이지 테마에 맞추어 골드 색상이 메인 네이비 배경에 우아하게 부합하며, 테마 스위처 동작 시 틸 그린으로의 다이내믹 그라데이션 동기화도 완벽히 호환됩니다.
 4. **제너레이티브 뷰어 검증**: p5.js 제너레이티브 브랜딩 웹페이지 내 색상과 UI 변수가 Accent Gold 및 Royal Gold 테마 사양으로 통일되어 기본 구동 시 골드 네온 입자가 렌더링됩니다.
