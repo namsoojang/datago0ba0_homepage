@@ -575,10 +575,27 @@ function initThemeToggle() {
   const toggleBtn = document.getElementById('theme-toggle-btn');
   if (!toggleBtn) return;
 
+  const headerLogo = document.getElementById('header-logo-img');
+  const footerLogo = document.getElementById('footer-logo-img');
+
+  const updateLogoSource = (theme) => {
+    if (!headerLogo || !footerLogo) return;
+    if (theme === 'teal') {
+      headerLogo.src = './assets/images/logos/sketch_var3_circuit_1780553728067.png';
+      footerLogo.src = './assets/images/logos/sketch_var3_circuit_1780553728067.png';
+    } else {
+      headerLogo.src = './assets/images/logos/sketch_var3_circuit_gold.png';
+      footerLogo.src = './assets/images/logos/sketch_var3_circuit_gold.png';
+    }
+  };
+
   // 페이지 로드 시 기존 테마 값 로드 및 강제 바인딩
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'teal') {
     document.body.classList.add('theme-teal');
+    updateLogoSource('teal');
+  } else {
+    updateLogoSource('gold');
   }
 
   toggleBtn.addEventListener('click', () => {
@@ -586,10 +603,12 @@ function initThemeToggle() {
     if (isTeal) {
       document.body.classList.remove('theme-teal');
       localStorage.setItem('theme', 'gold');
+      updateLogoSource('gold');
       showToast('로얄 골드 & 딥 네이비 테마로 변경되었습니다.', 'success');
     } else {
       document.body.classList.add('theme-teal');
       localStorage.setItem('theme', 'teal');
+      updateLogoSource('teal');
       showToast('세이지 틸 & 딥 네이비 테마로 변경되었습니다.', 'success');
     }
   });
