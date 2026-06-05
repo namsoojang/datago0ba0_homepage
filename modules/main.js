@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initThemeToggle, 'Theme Toggle');
   safeInit(initHeroCanvas, 'Hero Canvas Background');
   safeInit(initLogoFallback, 'Logo Fallback');
+  safeInit(initLogoSliders, 'Logo Sliders Drag & Scroll');
 });
 
 /* ----------------------------------------------------
@@ -836,4 +837,136 @@ function initLogoFallback() {
     // img 요소를 logo-emoji 스팬 요소로 대체
     parent.replaceChild(emojiEl, imgElement);
   }
+}
+
+/* ----------------------------------------------------
+   드래그 및 터치 스크롤 조절형 무한 루프 로고 슬라이더 (JS기반, 관성 피드백 내장)
+---------------------------------------------------- */
+function initLogoSliders() {
+  const tracks = document.querySelectorAll('.logo-slider-track');
+  
+  tracks.forEach(track => {
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+    let lastX = 0;
+    let dragVelocity = 0;
+    let currentVelocity = 0;
+    
+    // 트랙별 슬라이더 이동 방향 설정
+    const isLeft = track.classList.contains('track-left') || !track.classList.contains('track-right');
+    const targetSpeed = isLeft ? -0.8 : 0.8;
+    currentVelocity = targetSpeed;
+    
+    let trackWidth = track.scrollWidth;
+    let halfWidth = trackWidth / 2;
+
+    const updateDimensions = () => {
+      trackWidth = track.scrollWidth;
+      halfWidth = trackWidth / 2;
+    };
+    
+    window.addEventListener('resize', updateDimensions);
+    // 이미지 렌더링 지연을 극복하기 위한 타임아웃 보정 갱신
+    setTimeout(updateDimensions, 500);
+    setTimeout(updateDimensions, 1500);
+
+    // 초기 오프셋 셋업 (우측 흐름 트랙은 미리 한 사이클 밀어둠)
+    if (!isLeft) {
+      currentX = -halfWidth;
+    }
+    track.style.transform = `translateX(${currentX}px)`;
+
+    let animationFrameId;
+
+    function renderLoop() {
+      if (isDragging) {
+        // 드래그 중인 경우 프레임간 이동 거리로 실시간 관성 속도(V) 계산
+        dragVelocity = currentX - lastX;
+        lastX = currentX;
+      } else {
+        // 드래그를 놓은 후 현재 속도를 기본 스피드로 부드럽게 감속/수렴시킴 (Inertia decay)
+        currentVelocity = currentVelocity * 0.95 + targetSpeed * 0.05;
+        currentX += currentVelocity;
+
+        // 왼쪽 흐름 무한 리셋
+        if (currentX < -halfWidth) {
+          currentX += halfWidth;
+        }
+        // 오른쪽 흐름 무한 리셋
+        if (currentX > 0) {
+          currentX -= halfWidth;
+        }
+
+        track.style.transform = `translateX(${currentX}px)`;
+      }
+      animationFrameId = requestAnimationFrame(renderLoop);
+    }
+
+    // 루프 애니메이션 최초 구동
+    animationFrameId = requestAnimationFrame(renderLoop);
+
+    // 이미지 및 텍스트의 기본 브라우저 드래그 동작 차단 (드래그 먹통 방지)
+    track.querySelectorAll('img, span, div').forEach(el => {
+      el.addEventListener('dragstart', (e) => e.preventDefault());
+    });
+
+    const startDrag = (clientX) => {
+      isDragging = true;
+      startX = clientX;
+      lastX = currentX;
+      dragVelocity = 0;
+    };
+
+    const moveDrag = (clientX) => {
+      if (!isDragging) return;
+      const dx = clientX - startX;
+      startX = clientX;
+      currentX += dx;
+
+      // 드래그 중에도 무한 반복 루프 경계 처리
+      if (currentX < -halfWidth) {
+        currentX += halfWidth;
+      } else if (currentX > 0) {
+        currentX -= halfWidth;
+      }
+
+      track.style.transform = `translateX(${currentX}px)`;
+    };
+
+    const endDrag = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      // 드래그를 놓는 순간의 속도를 기준으로 관성 운동 시작 (최대 속도 30으로 제한)
+      const maxVel = 30;
+      currentVelocity = Math.max(-maxVel, Math.min(maxVel, dragVelocity));
+    };
+
+    // 마우스 드래그 이벤트 리스너
+    track.addEventListener('mousedown', (e) => {
+      e.preventDefault(); // 텍스트 선택 등 방지
+      startDrag(e.clientX);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      moveDrag(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      endDrag();
+    });
+
+    // 모바일 터치 스와이프 이벤트 리스너
+    track.addEventListener('touchstart', (e) => {
+      startDrag(e.touches[0].clientX);
+    }, { passive: true });
+
+    track.addEventListener('touchmove', (e) => {
+      moveDrag(e.touches[0].clientX);
+    }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+      endDrag();
+    });
+  });
 }

@@ -1057,18 +1057,14 @@ header.scrolled {
   display: flex;
   width: max-content;
   gap: 20px;
+  will-change: transform;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.logo-slider-track:hover {
-  animation-play-state: paused;
-}
-
-.track-left {
-  animation: scrollLeft 45s linear infinite;
-}
-
-.track-right {
-  animation: scrollRight 45s linear infinite;
+.logo-slider-track:active {
+  cursor: grabbing;
 }
 
 .logo-item {
@@ -1137,23 +1133,7 @@ header.scrolled {
   color: #0f172a;
 }
 
-@keyframes scrollLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
 
-@keyframes scrollRight {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
 
 /* 13. Testimonials Section */
 /* 13. Testimonials Section - 3-Card Center-focused Carousel */
