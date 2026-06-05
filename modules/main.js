@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initNavigation, 'Navigation');
   safeInit(initStrengthsAccordion, 'Strengths Accordion');
   safeInit(initCurriculumTabs, 'Curriculum Tabs');
-  safeInit(initReferenceFilter, 'Reference Filter');
   safeInit(initTestimonialSlider, 'Testimonial Slider');
   safeInit(initEmailCopy, 'Email Copy');
   safeInit(initThemeToggle, 'Theme Toggle');
@@ -269,42 +268,6 @@ function initStrengthsAccordion() {
     if (window.innerWidth >= 1024) {
       items.forEach(i => i.classList.remove('active'));
     }
-  });
-}
-
-/* ----------------------------------------------------
-   레퍼런스 카테고리 필터링 제어 (로컬 작동 오류 디버깅 완료)
----------------------------------------------------- */
-function initReferenceFilter() {
-  const filterBtns = document.querySelectorAll('.ref-tab-btn');
-  const sliderContainers = document.querySelectorAll('.logo-sliders .logo-slider-container');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const cat = btn.getAttribute('data-ref-cat');
-
-      // GA4 & GTM 데이터 레이어 송신
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        'event': 'filter_reference',
-        'category': cat
-      });
-
-      // 활성화 버튼 교체
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      // 로고 슬라이더 필터링 페이드 애니메이션 적용
-      sliderContainers.forEach(container => {
-        const containerCat = container.getAttribute('data-cat');
-        if (cat === 'all' || containerCat === cat) {
-          container.style.display = 'block';
-          gsap.fromTo(container, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
-        } else {
-          container.style.display = 'none';
-        }
-      });
-    });
   });
 }
 
