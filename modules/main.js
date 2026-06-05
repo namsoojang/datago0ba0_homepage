@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initStrengthsAccordion, 'Strengths Accordion');
   safeInit(initCurriculumTabs, 'Curriculum Tabs');
   safeInit(initTestimonialSlider, 'Testimonial Slider');
-  safeInit(initEmailCopy, 'Email Copy');
+  safeInit(initContactTracking, 'Contact Tracking');
   safeInit(initThemeToggle, 'Theme Toggle');
   safeInit(initHeroCanvas, 'Hero Canvas Background');
   safeInit(initLogoFallback, 'Logo Fallback');
@@ -215,12 +215,19 @@ function initCurriculumTabs() {
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab');
 
-      // GA4 & GTM 데이터 레이어 송신
+      // GTM 데이터 레이어 송신
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         'event': 'select_curriculum_tab',
         'tab_name': targetTab
       });
+
+      // GA4 직접 이벤트 송신
+      if (typeof gtag === 'function') {
+        gtag('event', 'select_curriculum_tab', {
+          'tab_name': targetTab
+        });
+      }
 
       // 탭 버튼 활성화 상태 전환
       tabBtns.forEach(b => b.classList.remove('active'));
@@ -538,24 +545,36 @@ function initTestimonialSlider() {
 }
 
 /* ----------------------------------------------------
-   이메일 주소 복사하기 및 토스트 호출
+   연락처 채널 클릭 추적 및 이메일 복사 기능 (GA4 직접 연동)
 ---------------------------------------------------- */
-function initEmailCopy() {
+function initContactTracking() {
   const copyBtn = document.getElementById('copy-email-btn');
   const emailText = document.getElementById('email-text');
+  const kakaotalkCard = document.getElementById('kakaotalk-card');
+  const naverBlogCard = document.getElementById('naver-blog-card');
+  const linkedinCard = document.getElementById('linkedin-card');
 
+  // 1. 이메일 복사 클릭 추적
   if (copyBtn && emailText) {
     copyBtn.addEventListener('click', () => {
       const email = emailText.innerText;
       
       navigator.clipboard.writeText(email).then(() => {
-        // GA4 & GTM 데이터 레이어 송신
+        // GTM 데이터 레이어 송신
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           'event': 'click_contact_channel',
           'channel_type': 'email',
           'action_type': 'copy'
         });
+
+        // GA4 직접 이벤트 송신
+        if (typeof gtag === 'function') {
+          gtag('event', 'click_contact_channel', {
+            'channel_type': 'email',
+            'action_type': 'copy'
+          });
+        }
         showToast('이메일 주소가 클립보드에 복사되었습니다.', 'success');
       }).catch(err => {
         showToast('주소 복사에 실패했습니다. 직접 복사해주세요.', 'error');
@@ -563,7 +582,65 @@ function initEmailCopy() {
       });
     });
   }
+
+  // 2. 카카오톡 오픈채팅 클릭 추적
+  if (kakaotalkCard) {
+    kakaotalkCard.addEventListener('click', () => {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'click_contact_channel',
+        'channel_type': 'kakaotalk',
+        'action_type': 'click'
+      });
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'click_contact_channel', {
+          'channel_type': 'kakaotalk',
+          'action_type': 'click'
+        });
+      }
+    });
+  }
+
+  // 3. 네이버 블로그 클릭 추적
+  if (naverBlogCard) {
+    naverBlogCard.addEventListener('click', () => {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'click_contact_channel',
+        'channel_type': 'naver_blog',
+        'action_type': 'click'
+      });
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'click_contact_channel', {
+          'channel_type': 'naver_blog',
+          'action_type': 'click'
+        });
+      }
+    });
+  }
+
+  // 4. 링크드인 클릭 추적
+  if (linkedinCard) {
+    linkedinCard.addEventListener('click', () => {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'click_contact_channel',
+        'channel_type': 'linkedin',
+        'action_type': 'click'
+      });
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'click_contact_channel', {
+          'channel_type': 'linkedin',
+          'action_type': 'click'
+        });
+      }
+    });
+  }
 }
+
 
 /* ----------------------------------------------------
    테마 전환 토글 제어 및 설정 저장
