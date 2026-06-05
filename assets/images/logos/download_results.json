@@ -13,13 +13,15 @@
   },
   {
     "name": "현대홈쇼핑",
-    "file_name": "hyundai_homeshopping.png",
+    "file_name": "hyundai_homeshopping.ico",
     "status": "success",
-    "ext": "png"
+    "ext": "ico"
   },
   {
     "name": "현대글로비스",
-    "status": "failed"
+    "file_name": "hyundai_glovis.png",
+    "status": "success",
+    "ext": "png"
   },
   {
     "name": "LG U+",
@@ -71,9 +73,9 @@
   },
   {
     "name": "한국투자공사 (KIC)",
-    "file_name": "kic.png",
+    "file_name": "kic.ico",
     "status": "success",
-    "ext": "png"
+    "ext": "ico"
   },
   {
     "name": "한국인터넷진흥원 (KISA)",
@@ -93,7 +95,9 @@
   },
   {
     "name": "한국전자정보통신산업진흥회 (KEA)",
-    "status": "failed"
+    "file_name": "kea.png",
+    "status": "success",
+    "ext": "png"
   },
   {
     "name": "한국지능정보사회진흥원 (NIA)",
@@ -103,7 +107,9 @@
   },
   {
     "name": "서울디지털재단 (SDF)",
-    "status": "failed"
+    "file_name": "sdf.ico",
+    "status": "success",
+    "ext": "ico"
   },
   {
     "name": "한국환경공단 (K-eco)",
@@ -143,15 +149,13 @@
   },
   {
     "name": "광운대학교",
-    "file_name": "kwangwoon.png",
+    "file_name": "kwangwoon.ico",
     "status": "success",
-    "ext": "png"
+    "ext": "ico"
   },
   {
     "name": "경기대학교",
-    "file_name": "kyonggi.png",
-    "status": "success",
-    "ext": "png"
+    "status": "failed"
   },
   {
     "name": "서울과학기술대학교",
@@ -161,9 +165,9 @@
   },
   {
     "name": "홍익대학교",
-    "file_name": "hongik.png",
+    "file_name": "hongik.ico",
     "status": "success",
-    "ext": "png"
+    "ext": "ico"
   },
   {
     "name": "세종대학교",
@@ -191,6 +195,8 @@
   },
   {
     "name": "한국기술교육대학교",
-    "status": "failed"
+    "file_name": "koreatech.ico",
+    "status": "success",
+    "ext": "ico"
   }
 ]

@@ -1018,29 +1018,78 @@ header.scrolled {
   width: 60%;
 }
 
-.logo-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 16px;
+.logo-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.logo-slider-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
+}
+
+/* 좌우 페이드아웃 효과 그라데이션 마스크 */
+.logo-slider-container::before,
+.logo-slider-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+.logo-slider-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-color) 0%, transparent 100%);
+}
+.logo-slider-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-color) 0%, transparent 100%);
+}
+
+.logo-slider-track {
+  display: flex;
+  width: max-content;
+  gap: 20px;
+}
+
+.logo-slider-track:hover {
+  animation-play-state: paused;
+}
+
+.track-left {
+  animation: scrollLeft 45s linear infinite;
+}
+
+.track-right {
+  animation: scrollRight 45s linear infinite;
 }
 
 .logo-item {
   background: rgba(15, 23, 42, 0.4);
   border: 1px solid var(--card-border);
-  height: 100px;
+  height: 80px;
+  padding: 0 32px;
   border-radius: var(--border-radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-  gap: 8px;
+  gap: 12px;
   transition: all 0.3s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .logo-item:hover {
   border-color: var(--card-hover-border);
   background: var(--card-bg);
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
 .logo-symbol {
@@ -1066,6 +1115,24 @@ header.scrolled {
 
 .logo-item:hover span {
   color: var(--text-primary);
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 /* 13. Testimonials Section */
@@ -1386,10 +1453,6 @@ footer .footer-logo span strong {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .logo-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
   .testimonial-card {
     flex: 0 0 calc(100vw - 80px);
     width: calc(100vw - 80px);
@@ -1401,10 +1464,6 @@ footer .footer-logo span strong {
 @media (max-width: 500px) {
   .metrics-row {
     grid-template-columns: 1fr;
-  }
-  
-  .logo-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
   
   .contact-options {

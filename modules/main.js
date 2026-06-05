@@ -268,7 +268,7 @@ function initStrengthsAccordion() {
 ---------------------------------------------------- */
 function initReferenceFilter() {
   const filterBtns = document.querySelectorAll('.ref-tab-btn');
-  const logoItems = document.querySelectorAll('.logo-grid .logo-item');
+  const sliderContainers = document.querySelectorAll('.logo-sliders .logo-slider-container');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -278,14 +278,14 @@ function initReferenceFilter() {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      // 로고 그리드 필터링 페이드 애니메이션 적용
-      logoItems.forEach(item => {
-        const itemCat = item.getAttribute('data-cat');
-        if (cat === 'all' || itemCat === cat) {
-          item.style.display = 'flex';
-          gsap.fromTo(item, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" });
+      // 로고 슬라이더 필터링 페이드 애니메이션 적용
+      sliderContainers.forEach(container => {
+        const containerCat = container.getAttribute('data-cat');
+        if (cat === 'all' || containerCat === cat) {
+          container.style.display = 'block';
+          gsap.fromTo(container, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
         } else {
-          item.style.display = 'none';
+          container.style.display = 'none';
         }
       });
     });
