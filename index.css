@@ -1074,9 +1074,9 @@ header.scrolled {
 .logo-item {
   background: rgba(15, 23, 42, 0.4);
   border: 1px solid var(--card-border);
-  height: 120px;
-  width: 160px;
-  padding: 16px 12px;
+  height: 140px;
+  width: 180px;
+  padding: 20px 16px;
   border-radius: var(--border-radius-sm);
   display: flex;
   flex-direction: column;
@@ -1094,7 +1094,7 @@ header.scrolled {
 }
 
 .logo-symbol {
-  height: 48px;
+  height: 60px;
   max-width: 90%;
   object-fit: contain;
   opacity: 0.85;
@@ -1107,8 +1107,8 @@ header.scrolled {
 }
 
 .logo-emoji {
-  font-size: 2.2rem;
-  height: 48px;
+  font-size: 2.8rem;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1122,7 +1122,7 @@ header.scrolled {
 
 .logo-item span {
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
   text-align: center;
   transition: color 0.3s ease;
