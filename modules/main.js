@@ -1080,59 +1080,73 @@ function initContactForm() {
     submitText.innerText = '전송 중...';
     submitIcon.className = 'fas fa-spinner fa-spin';
 
+    // FormData를 일반 Object로 매핑
     const formData = new FormData(form);
-    const formUrl = form.getAttribute('action') || 'https://api.web3forms.com/submit';
+    const payload = {};
+    formData.forEach((value, key) => {
+      payload[key] = value;
+    });
+
+    // 문의 타입 속성 강제 지정
+    payload['type'] = type === 'general' ? '간편 문의' : '교육 견적 요청';
+
+    const formUrl = form.getAttribute('action') || 'https://script.google.com/macros/s/AKfycbzAszHTXbVl4eInbK0OnIm0iLUAfEwo9_I7kQn_mKTd4DGeT2nMhqq8B4IawmvQyfQSHw/exec';
 
     fetch(formUrl, {
       method: 'POST',
-      body: formData,
+      mode: 'cors',
       headers: {
-        'Accept': 'application/json'
-      }
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(payload)
     })
     .then(response => {
-      return response.json().then(data => {
-        if (response.ok && data.success) {
-          // 성공 처리
-          form.reset();
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        // 성공 처리
+        form.reset();
 
-          // GA4 / GTM 이벤트 송신
-          window.dataLayer = window.dataLayer || [];
-          const eventName = type === 'general' ? 'submit_general_contact' : 'submit_estimate_request';
-          
-          const eventParams = {
-            'event_category': 'Contact',
-            'event_label': type === 'general' ? 'General Inquiry' : 'Estimate Request'
-          };
+        // GA4 / GTM 이벤트 송신
+        window.dataLayer = window.dataLayer || [];
+        const eventName = type === 'general' ? 'submit_general_contact' : 'submit_estimate_request';
+        
+        const eventParams = {
+          'event_category': 'Contact',
+          'event_label': type === 'general' ? 'General Inquiry' : 'Estimate Request'
+        };
 
-          if (type === 'estimate') {
-            eventParams['company'] = formData.get('company') || '';
-            eventParams['headcount'] = formData.get('headcount') || '';
-            eventParams['topic'] = formData.get('topic') || '';
-            eventParams['timing'] = formData.get('timing') || '';
-          }
-
-          window.dataLayer.push({
-            'event': eventName,
-            ...eventParams
-          });
-
-          if (typeof gtag === 'function') {
-            gtag('event', eventName, eventParams);
-          }
-
-          // 알림 메시지 정의
-          const successMsg = type === 'general'
-            ? '문의가 정상적으로 전송되었습니다. 확인 후 신속하게 연락 드리겠습니다.'
-            : '교육 견적 요청이 정상적으로 접수되었습니다. 1~2일 내에 맞춤형 제안서와 함께 메일로 회신해 드리겠습니다.';
-
-          showToast(successMsg, 'success');
-        } else {
-          // 실패 처리
-          const errMsg = data.message || '전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
-          showToast(errMsg, 'error');
+        if (type === 'estimate') {
+          eventParams['company'] = payload['company'] || '';
+          eventParams['headcount'] = payload['headcount'] || '';
+          eventParams['topic'] = payload['topic'] || '';
+          eventParams['timing'] = payload['timing'] || '';
         }
-      });
+
+        window.dataLayer.push({
+          'event': eventName,
+          ...eventParams
+        });
+
+        if (typeof gtag === 'function') {
+          gtag('event', eventName, eventParams);
+        }
+
+        // 알림 메시지 정의
+        const successMsg = type === 'general'
+          ? '문의가 정상적으로 전송되었습니다. 확인 후 신속하게 연락 드리겠습니다.'
+          : '교육 견적 요청이 정상적으로 접수되었습니다. 1~2일 내에 맞춤형 제안서와 함께 메일로 회신해 드리겠습니다.';
+
+        showToast(successMsg, 'success');
+      } else {
+        // 실패 처리
+        const errMsg = data.message || '전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+        showToast(errMsg, 'error');
+      }
     })
     .catch(error => {
       console.error('Form submission error:', error);
