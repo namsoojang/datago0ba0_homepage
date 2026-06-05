@@ -215,6 +215,13 @@ function initCurriculumTabs() {
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab');
 
+      // GA4 & GTM 데이터 레이어 송신
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'select_curriculum_tab',
+        'tab_name': targetTab
+      });
+
       // 탭 버튼 활성화 상태 전환
       tabBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
@@ -274,6 +281,13 @@ function initReferenceFilter() {
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const cat = btn.getAttribute('data-ref-cat');
+
+      // GA4 & GTM 데이터 레이어 송신
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'filter_reference',
+        'category': cat
+      });
 
       // 활성화 버튼 교체
       filterBtns.forEach(b => b.classList.remove('active'));
@@ -571,6 +585,13 @@ function initEmailCopy() {
       const email = emailText.innerText;
       
       navigator.clipboard.writeText(email).then(() => {
+        // GA4 & GTM 데이터 레이어 송신
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'click_contact_channel',
+          'channel_type': 'email',
+          'action_type': 'copy'
+        });
         showToast('이메일 주소가 클립보드에 복사되었습니다.', 'success');
       }).catch(err => {
         showToast('주소 복사에 실패했습니다. 직접 복사해주세요.', 'error');
@@ -618,6 +639,14 @@ function initThemeToggle() {
 
   toggleBtn.addEventListener('click', () => {
     const isTeal = document.body.classList.contains('theme-teal');
+
+    // GA4 & GTM 데이터 레이어 송신
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'toggle_theme',
+      'selected_theme': isTeal ? 'gold' : 'teal'
+    });
+
     if (isTeal) {
       document.body.classList.remove('theme-teal');
       localStorage.setItem('theme', 'gold');
