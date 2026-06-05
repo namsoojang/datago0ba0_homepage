@@ -1,0 +1,196 @@
+[
+  {
+    "name": "LG생활건강",
+    "file_name": "lg_household.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "현대백화점그룹",
+    "file_name": "hyundai_dept.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "현대홈쇼핑",
+    "file_name": "hyundai_homeshopping.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "현대글로비스",
+    "status": "failed"
+  },
+  {
+    "name": "LG U+",
+    "file_name": "lg_uplus.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "아모레퍼시픽",
+    "file_name": "amorepacific.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "삼성화재",
+    "file_name": "samsung_fire.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "삼성전자로지텍",
+    "file_name": "samsung_logitech.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "이수페타시스",
+    "file_name": "isu_petasys.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "한국P&G",
+    "file_name": "pg.svg",
+    "status": "success",
+    "ext": "svg"
+  },
+  {
+    "name": "JTI 코리아",
+    "file_name": "jti.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "BCG (보스턴컨설팅그룹)",
+    "file_name": "bcg.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "한국투자공사 (KIC)",
+    "file_name": "kic.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "한국인터넷진흥원 (KISA)",
+    "file_name": "kisa.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "방송통신위원회 (KCC)",
+    "status": "failed"
+  },
+  {
+    "name": "한국건설기술연구원 (KICT)",
+    "file_name": "kict.ico",
+    "status": "success",
+    "ext": "ico"
+  },
+  {
+    "name": "한국전자정보통신산업진흥회 (KEA)",
+    "status": "failed"
+  },
+  {
+    "name": "한국지능정보사회진흥원 (NIA)",
+    "file_name": "nia.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "서울디지털재단 (SDF)",
+    "status": "failed"
+  },
+  {
+    "name": "한국환경공단 (K-eco)",
+    "file_name": "keco.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "제주테크노파크 (JTP)",
+    "file_name": "jtp.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "청년취업사관학교 (SeSAC)",
+    "file_name": "sesac.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "서울대학교",
+    "file_name": "snu.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "KAIST (한국과학기술원)",
+    "file_name": "kaist.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "UNIST (울산과학기술원)",
+    "file_name": "unist.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "광운대학교",
+    "file_name": "kwangwoon.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "경기대학교",
+    "file_name": "kyonggi.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "서울과학기술대학교",
+    "file_name": "seoultech.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "홍익대학교",
+    "file_name": "hongik.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "세종대학교",
+    "file_name": "sejong.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "한국외국어대학교",
+    "file_name": "hufs.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "가천대학교",
+    "file_name": "gachon.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "명지대학교",
+    "file_name": "myongji.png",
+    "status": "success",
+    "ext": "png"
+  },
+  {
+    "name": "한국기술교육대학교",
+    "status": "failed"
+  }
+]
