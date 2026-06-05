@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initEmailCopy, 'Email Copy');
   safeInit(initThemeToggle, 'Theme Toggle');
   safeInit(initHeroCanvas, 'Hero Canvas Background');
+  safeInit(initLogoFallback, 'Logo Fallback');
 });
 
 /* ----------------------------------------------------
@@ -770,4 +771,40 @@ function initHeroCanvas() {
   }
 
   heroP5Instance = new p5(heroSketch);
+}
+
+/* ----------------------------------------------------
+   로고 이미지 부재 시 카테고리별 이모지 폴백 기능
+---------------------------------------------------- */
+function initLogoFallback() {
+  const logoImgs = document.querySelectorAll('.logo-item img.logo-symbol');
+  logoImgs.forEach(img => {
+    // 이미 에러가 나 완료된 경우 즉시 폴백 적용
+    if (img.complete && img.naturalWidth === 0) {
+      triggerFallback(img);
+    } else {
+      img.addEventListener('error', function() {
+        triggerFallback(this);
+      });
+    }
+  });
+
+  function triggerFallback(imgElement) {
+    const parent = imgElement.closest('.logo-item');
+    if (!parent) return;
+
+    const container = imgElement.closest('.logo-slider-container');
+    const cat = container ? container.getAttribute('data-cat') : 'building';
+
+    let emoji = '🏢'; // 기본 대기업 (building)
+    if (cat === 'government') emoji = '🏛️';
+    if (cat === 'university') emoji = '🎓';
+
+    const emojiEl = document.createElement('span');
+    emojiEl.className = 'logo-emoji';
+    emojiEl.textContent = emoji;
+
+    // img 요소를 logo-emoji 스팬 요소로 대체
+    parent.replaceChild(emojiEl, imgElement);
+  }
 }

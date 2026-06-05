@@ -1106,6 +1106,20 @@ header.scrolled {
   opacity: 1;
 }
 
+.logo-emoji {
+  font-size: 2.2rem;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.logo-item:hover .logo-emoji {
+  transform: scale(1.1);
+}
+
 .logo-item span {
   font-weight: 600;
   font-size: 0.85rem;
