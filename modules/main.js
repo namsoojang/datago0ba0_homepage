@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initHeroCanvas, 'Hero Canvas Background');
   safeInit(initLogoFallback, 'Logo Fallback');
   safeInit(initLogoSliders, 'Logo Sliders Drag & Scroll');
+  safeInit(initContactForm, 'Contact Form Widgets');
 });
 
 /* ----------------------------------------------------
@@ -1009,4 +1010,142 @@ function initLogoSliders() {
       endDrag();
     });
   });
+}
+
+/* ----------------------------------------------------
+   간편 문의 및 교육 견적 요청 폼 위젯 핸들러
+---------------------------------------------------- */
+function initContactForm() {
+  const tabBtns = document.querySelectorAll('.contact-form-widget .form-tab-btn');
+  const forms = document.querySelectorAll('.contact-form-widget .contact-form');
+
+  // 1. 탭 전환 기능
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetForm = btn.getAttribute('data-form-tab');
+
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      forms.forEach(form => {
+        form.classList.remove('active');
+        if (form.getAttribute('id') === `${targetForm}-contact-form`) {
+          form.classList.add('active');
+        }
+      });
+
+      // GA4 & GTM 이벤트 전송
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'toggle_contact_form_tab',
+        'tab_name': targetForm
+      });
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'toggle_contact_form_tab', {
+          'tab_name': targetForm
+        });
+      }
+    });
+  });
+
+  // 2. 비동기 Form 전송 처리
+  const generalForm = document.getElementById('general-contact-form');
+  const estimateForm = document.getElementById('estimate-contact-form');
+
+  if (generalForm) {
+    generalForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleFormSubmit(generalForm, 'general');
+    });
+  }
+
+  if (estimateForm) {
+    estimateForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleFormSubmit(estimateForm, 'estimate');
+    });
+  }
+
+  function handleFormSubmit(form, type) {
+    const submitBtn = form.querySelector('.submit-btn');
+    const submitText = submitBtn.querySelector('span');
+    const submitIcon = submitBtn.querySelector('i');
+
+    const originalText = submitText.innerText;
+    const originalIconClass = submitIcon.className;
+
+    // UI 상태 로딩으로 변경
+    submitBtn.disabled = true;
+    submitText.innerText = '전송 중...';
+    submitIcon.className = 'fas fa-spinner fa-spin';
+
+    const formData = new FormData(form);
+    const formUrl = form.getAttribute('action') || 'https://formspree.io/f/xyzoqegz';
+
+    fetch(formUrl, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        // 성공 처리
+        form.reset();
+
+        // GA4 / GTM 이벤트 송신
+        window.dataLayer = window.dataLayer || [];
+        const eventName = type === 'general' ? 'submit_general_contact' : 'submit_estimate_request';
+        
+        const eventParams = {
+          'event_category': 'Contact',
+          'event_label': type === 'general' ? 'General Inquiry' : 'Estimate Request'
+        };
+
+        if (type === 'estimate') {
+          eventParams['company'] = formData.get('company') || '';
+          eventParams['headcount'] = formData.get('headcount') || '';
+          eventParams['topic'] = formData.get('topic') || '';
+          eventParams['timing'] = formData.get('timing') || '';
+        }
+
+        window.dataLayer.push({
+          'event': eventName,
+          ...eventParams
+        });
+
+        if (typeof gtag === 'function') {
+          gtag('event', eventName, eventParams);
+        }
+
+        // 알림 메시지 정의
+        const successMsg = type === 'general'
+          ? '문의가 정상적으로 전송되었습니다. 확인 후 신속하게 연락 드리겠습니다.'
+          : '교육 견적 요청이 정상적으로 접수되었습니다. 1~2일 내에 맞춤형 제안서와 함께 메일로 회신해 드리겠습니다.';
+
+        showToast(successMsg, 'success');
+      } else {
+        // 응답 코드가 성공이 아닐 때
+        return response.json().then(data => {
+          if (Object.prototype.hasOwnProperty.call(data, 'errors')) {
+            showToast(data.errors.map(error => error.message).join(", "), 'error');
+          } else {
+            showToast('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+          }
+        });
+      }
+    })
+    .catch(error => {
+      console.error('Form submission error:', error);
+      showToast('네트워크 오류가 발생했습니다. 연결 상태를 확인하고 다시 시도해 주세요.', 'error');
+    })
+    .finally(() => {
+      // UI 상태 복구
+      submitBtn.disabled = false;
+      submitText.innerText = originalText;
+      submitIcon.className = originalIconClass;
+    });
+  }
 }
