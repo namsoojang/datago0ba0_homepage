@@ -1072,8 +1072,8 @@ header.scrolled {
 }
 
 .logo-item {
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid var(--card-border);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   height: 140px;
   width: 180px;
   padding: 20px 16px;
@@ -1085,25 +1085,26 @@ header.scrolled {
   gap: 12px;
   transition: all 0.3s ease;
   flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
 }
 
 .logo-item:hover {
-  border-color: var(--card-hover-border);
-  background: var(--card-bg);
+  border-color: rgba(var(--accent-teal-rgb), 0.6);
+  background: #ffffff;
   transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15), 0 0 15px rgba(var(--accent-teal-rgb), 0.25);
 }
 
 .logo-symbol {
   height: 60px;
   max-width: 90%;
   object-fit: contain;
-  opacity: 0.85;
+  opacity: 1;
   transition: all 0.3s ease;
 }
 
 .logo-item:hover .logo-symbol {
   transform: scale(1.08);
-  opacity: 1;
 }
 
 .logo-emoji {
@@ -1123,7 +1124,7 @@ header.scrolled {
 .logo-item span {
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: #1e293b;
   text-align: center;
   transition: color 0.3s ease;
   white-space: normal;
@@ -1133,7 +1134,7 @@ header.scrolled {
 }
 
 .logo-item:hover span {
-  color: var(--text-primary);
+  color: #0f172a;
 }
 
 @keyframes scrollLeft {
