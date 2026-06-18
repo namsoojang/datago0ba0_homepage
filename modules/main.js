@@ -59,6 +59,9 @@ window.showSuccessModal = function(title, message, buttonText = "확인") {
         </div>
         <h3 class="center-modal-title">${title}</h3>
         <p class="center-modal-message">${message}</p>
+        <p class="modal-support-text" style="font-size: 0.75rem; color: #64748b; line-height: 1.4; margin: 12px 0 16px; text-align: center; opacity: 0.8;">
+          ☕ 데이터공방의 무료 도구가 도움이 되셨다면,<br>하단의 <strong>쿠팡 배너 클릭</strong>이나 <strong>사내 교육 문의</strong>로 운영을 응원해 주세요!
+        </p>
         <div class="modal-btn-group">
           <button class="center-modal-btn btn-close-modal">${buttonText}</button>
           <button class="center-modal-btn btn-edu-modal">사내 교육 문의</button>

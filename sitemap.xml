@@ -21,4 +21,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- 개인정보처리방침 페이지 -->
+  <url>
+    <loc>https://datagongbang.kr/privacy.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
