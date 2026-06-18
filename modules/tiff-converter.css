@@ -1245,5 +1245,140 @@ input[type="color"].input-control {
   color: #00a896 !important;
 }
 
+/* ==========================================
+   💡 원하는 자동화 기능 제안 카드 & 모달 추가 스타일
+   ========================================== */
 
+/* 1. 골드/다크 테마 (기본) */
+.rpa-card.suggest-card {
+  border: 1px dashed rgba(212, 175, 55, 0.4) !important;
+  background: rgba(30, 41, 59, 0.3) !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
+.rpa-card.suggest-card:hover {
+  border-color: var(--color-gold) !important;
+  transform: translateY(-6px) !important;
+  box-shadow: 0 20px 35px -5px rgba(212, 175, 55, 0.15) !important;
+}
+
+.rpa-card.suggest-card .rpa-icon {
+  background: rgba(212, 175, 55, 0.08) !important;
+  border: 1px solid rgba(212, 175, 55, 0.2) !important;
+  color: var(--color-gold) !important;
+}
+
+.rpa-card.suggest-card:hover .rpa-icon {
+  background: var(--color-gold) !important;
+  color: #1e293b !important;
+}
+
+.rpa-card.suggest-card .suggest-badge {
+  background: rgba(212, 175, 55, 0.1) !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  color: var(--color-gold) !important;
+}
+
+/* 2. 틸 테마 (.theme-teal) */
+.theme-teal .rpa-card.suggest-card {
+  border: 1px dashed rgba(2, 195, 154, 0.4) !important;
+}
+
+.theme-teal .rpa-card.suggest-card:hover {
+  border-color: #02c39a !important;
+  box-shadow: 0 20px 35px -5px rgba(2, 195, 154, 0.15) !important;
+}
+
+.theme-teal .rpa-card.suggest-card .rpa-icon {
+  background: rgba(2, 195, 154, 0.08) !important;
+  border: 1px solid rgba(2, 195, 154, 0.2) !important;
+  color: #02c39a !important;
+}
+
+.theme-teal .rpa-card.suggest-card:hover .rpa-icon {
+  background: #02c39a !important;
+  color: #ffffff !important;
+}
+
+.theme-teal .rpa-card.suggest-card .suggest-badge {
+  background: rgba(2, 195, 154, 0.1) !important;
+  border: 1px solid rgba(2, 195, 154, 0.3) !important;
+  color: #02c39a !important;
+}
+
+.theme-teal .suggest-trigger-btn {
+  background-color: #02c39a !important;
+  border-color: #02c39a !important;
+  color: #ffffff !important;
+}
+
+/* 3. 라이트 테마 (.rpa-light-theme) */
+.rpa-light-theme .rpa-card.suggest-card {
+  background: #ffffff !important;
+  border: 1px dashed rgba(0, 168, 150, 0.4) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06) !important;
+}
+
+.rpa-light-theme .rpa-card.suggest-card:hover {
+  border-color: #00a896 !important;
+  transform: translateY(-6px) !important;
+  box-shadow: 0 20px 35px -5px rgba(2, 195, 154, 0.12) !important;
+}
+
+.rpa-light-theme .rpa-card.suggest-card .rpa-icon {
+  background: rgba(2, 195, 154, 0.05) !important;
+  border: 1px solid rgba(2, 195, 154, 0.12) !important;
+  color: #00a896 !important;
+}
+
+.rpa-light-theme .rpa-card.suggest-card:hover .rpa-icon {
+  background: #02c39a !important;
+  color: #ffffff !important;
+}
+
+.rpa-light-theme .rpa-card.suggest-card .suggest-badge {
+  background: rgba(2, 195, 154, 0.08) !important;
+  border: 1px solid rgba(2, 195, 154, 0.2) !important;
+  color: #00a896 !important;
+}
+
+.rpa-light-theme .suggest-trigger-btn {
+  background-color: #00a896 !important;
+  border-color: #00a896 !important;
+  color: #ffffff !important;
+}
+
+.rpa-light-theme .suggest-trigger-btn:hover {
+  background-color: #02c39a !important;
+  border-color: #02c39a !important;
+}
+
+/* 4. 공통 모달 텍스트 에어리어 오버라이드 */
+.rpa-modal-card textarea.input-control {
+  background: rgba(30, 41, 59, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f8fafc !important;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rpa-modal-card textarea.input-control:focus {
+  border-color: var(--color-gold) !important;
+  outline: none;
+}
+
+.theme-teal .rpa-modal-card textarea.input-control:focus {
+  border-color: #02c39a !important;
+}
+
+.rpa-light-theme .rpa-modal-card textarea.input-control {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+.rpa-light-theme .rpa-modal-card textarea.input-control:focus {
+  border-color: #00a896 !important;
+}

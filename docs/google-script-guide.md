@@ -59,9 +59,46 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON)
         .setHeader("Access-Control-Allow-Origin", "*"); // CORS 제약 해결 헤더 추가
     } 
-    
     // ----------------------------------------------------
-    // [분기 2] 기존 홈페이지 문의 수집 (기존 로직 보존)
+    // [분기 2] 자동화 아이디어 제안 수집 (data.type === "자동화 아이디어 제안"인 경우)
+    // ----------------------------------------------------
+    else if (data.type === "자동화 아이디어 제안") {
+      var suggestSheet = doc.getSheetByName("아이디어 제안");
+      // 탭이 없으면 자동으로 생성
+      if (!suggestSheet) {
+        suggestSheet = doc.insertSheet("아이디어 제안");
+        suggestSheet.appendRow(["제출 일시", "이메일 주소", "연락처", "제안 내용"]);
+      }
+
+      // 제안 데이터 누적 (A: 제출일시, B: 이메일, C: 연락처, D: 제안내용)
+      suggestSheet.appendRow([
+        formattedDate,
+        data.email || "",
+        data.phone || "",
+        data.message || ""
+      ]);
+
+      // 운영자 메일로 실시간 알림 발송
+      var adminEmail = "contact@datagongbang.kr";
+      var subject = "[데이터공방] 새로운 자동화 아이디어 제안 접수";
+      
+      var emailBody = "홈페이지를 통해 새로운 자동화 아이디어 제안이 등록되었습니다.\n\n" +
+                      "------------------------------------\n" +
+                      "■ 제안 일시: " + formattedDate + "\n" +
+                      "■ 이메일: " + (data.email || "") + "\n" +
+                      "■ 연락처: " + (data.phone || "") + "\n\n" +
+                      "■ 제안 내용:\n" + (data.message || "") + "\n" +
+                      "------------------------------------\n\n" +
+                      "▶ 등록된 내용은 구글 스프레드시트 관리 대장의 '아이디어 제안' 탭에서 확인하실 수 있습니다.";
+
+      GmailApp.sendEmail(adminEmail, subject, emailBody);
+
+      return ContentService.createTextOutput(JSON.stringify({ "success": true, "message": "아이디어 제안 접수 완료" }))
+        .setMimeType(ContentService.MimeType.JSON)
+        .setHeader("Access-Control-Allow-Origin", "*");
+    }
+    // ----------------------------------------------------
+    // [분기 3] 기존 홈페이지 문의 수집 (기존 로직 보존)
     // ----------------------------------------------------
     else {
       // 첫 번째 시트를 문의 내역 탭으로 지정
