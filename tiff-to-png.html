@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8H79VM0RM8');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KVV9V7QN');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>무료 TIFF PNG 변환기 | 프로그램 설치 없는 일괄 이미지 변환 - 데이터공방</title>
+  
+  <!-- SEO 최적화 메타 태그 -->
+  <meta name="naver-site-verification" content="6b1811d6074cc78b96b89f616ba7cc1278f1666f" />
+  <meta name="google-site-verification" content="Oc6kBZ-qy21JGaAiEqgg8tZzyi-uIToJVG_DXRJmL0k" />
+  <meta name="description" content="웹 브라우저에서 바로 실행되는 무료 TIFF to PNG 변환기입니다. 프로그램 설치 없이 고용량 TIFF 이미지를 PNG로 빠르게 일괄 변환하세요. 배경 투명화 및 크기 조절 옵션을 지원합니다.">
+  <meta name="keywords" content="TIFF 변환, TIFF PNG 변환, TIFF to PNG, 무료 TIFF 변환기, TIF 변환, 이미지 일괄 변환, 데이터공방">
+  
+  <meta property="og:title" content="무료 TIFF PNG 변환기 | 프로그램 설치 없는 일괄 변환 - 데이터공방">
+  <meta property="og:description" content="웹 브라우저에서 바로 변환되는 무료 TIFF to PNG 도구. 프로그램 설치나 서버 전송 없이 안전하고 빠르게 이미지를 일괄 변환하세요.">
+  <meta property="og:image" content="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://datagongbang.kr/tiff-to-png.html">
+  
+  <!-- Canonical URL 설정 -->
+  <link rel="canonical" href="https://datagongbang.kr/tiff-to-png.html">
+
+  <!-- 파비콘 및 앱 아이콘 설정 -->
+  <link rel="icon" type="image/png" href="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  
+  <!-- 스타일시트 연동 -->
+  <link rel="stylesheet" href="./index.css?v=1.2">
+  <link rel="stylesheet" href="./modules/toast.css?v=1.2">
+  <link rel="stylesheet" href="./modules/tiff-converter.css?v=1.2">
+  
+  <!-- 외부 폰트/아이콘 라이브러리 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  
+  <!-- 구조화 데이터 (JSON-LD) 검색 최적화 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "무료 TIFF to PNG 이미지 일괄 변환기",
+    "operatingSystem": "All",
+    "applicationCategory": "MultimediaApplication",
+    "browserRequirements": "Requires JavaScript and HTML5 Canvas",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "KRW"
+    },
+    "description": "설치나 서버 업로드 필요 없이, 웹 브라우저 내에서 100% 안전하게 고용량 TIFF 파일을 고품질 PNG 이미지로 일괄 변환하고 ZIP으로 압축 다운로드하는 무료 도구입니다."
+  }
+  </script>
+</head>
+<body class="rpa-light-theme">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVV9V7QN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- 전체 백그라운드 -->
+  <div id="bg-canvas-container"></div>
+
+  <!-- 1. 헤더 및 네비게이션 -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#hero" class="nav-link">Home</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="index.html#strengths" class="nav-link">Why Us</a></li>
+          <li><a href="index.html#curriculum" class="nav-link">Curriculum</a></li>
+          <li><a href="index.html#references" class="nav-link">References</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+          <li><a href="rpa.html" class="nav-link active">RPA</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. 변환기 메인 콘텐츠 -->
+  <main class="converter-section">
+    <div class="converter-container">
+      
+      <!-- 타이틀 영역 -->
+      <div class="converter-title-area">
+        <h1 class="section-title">무료 <span>TIFF to PNG 변환기</span></h1>
+        <p>프로그램 설치나 서버 파일 전송 없이, 고용량 TIFF 그래픽 파일을 브라우저 내부에서 즉시 안전하게 일괄 변환하세요.</p>
+        <a href="rpa.html" class="back-to-hub-link"><i class="fas fa-arrow-left"></i> RPA 자동화 도구 목록으로 돌아가기</a>
+      </div>
+
+      <!-- 레이아웃 그리드 -->
+      <div class="converter-grid">
+        
+        <!-- 좌측: 설정 및 파일 업로드 패널 -->
+        <section class="glass-panel">
+          <h2 class="panel-title"><i class="fas fa-sliders-h"></i> 변환 설정</h2>
+          
+          <form id="tiff-form">
+            <!-- 드롭존 영역 -->
+            <div class="form-group">
+              <div id="tiff-dropzone" class="dropzone-area" role="button" tabindex="0">
+                <i class="far fa-folder-open"></i>
+                <strong>TIFF 파일을 여기에 놓거나 클릭하세요</strong>
+                <span>다중 선택을 지원하며, 아래 대기열에 표시됩니다.</span>
+                <input id="tiff-files" class="file-input" type="file" accept=".tif,.tiff,image/tiff" multiple>
+              </div>
+            </div>
+
+            <!-- 변환 가이드 아코디언 -->
+            <details class="guide-details">
+              <summary>💡 TIFF to PNG 이용 가이드 (클릭)</summary>
+              <div class="guide-details-content">
+                <p><strong>[1단계]</strong> 변환할 TIFF(.tif/.tiff) 파일을 드롭존에 드래그하거나 클릭하여 다중 선택합니다.</p>
+                <p><strong>[2단계]</strong> 우측/하단 설정에서 배경 투명화 처리, 해상도 변환, 파일 접미사, 흰색 제거 등의 설정을 조절합니다.</p>
+                <p><strong>[3단계]</strong> <strong>[변환 시작]</strong> 버튼을 누르면 100% 로컬 환경에서 일괄 처리가 실행됩니다.</p>
+                <p><strong>[4단계]</strong> 변환된 PNG 이미지를 개별 다운로드하거나, 여러 장의 결과물은 ZIP 파일로 일괄 다운로드합니다.</p>
+              </div>
+            </details>
+
+            <!-- 배경 처리 옵션 -->
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="tiff-background">배경 처리</label>
+                <select id="tiff-background" class="input-control">
+                  <option value="transparent">투명 유지</option>
+                  <option value="white">흰색 배경</option>
+                  <option value="black">검은색 배경</option>
+                  <option value="custom">사용자 지정</option>
+                </select>
+              </div>
+              
+              <div class="form-group" id="tiff-custom-color-wrapper" style="display: none;">
+                <label for="tiff-custom-color">배경 색상</label>
+                <input id="tiff-custom-color" class="input-control" type="color" value="#ffffff">
+              </div>
+            </div>
+
+            <!-- 해상도 조절 및 접미사 -->
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="tiff-resize-mode">해상도 조절</label>
+                <select id="tiff-resize-mode" class="input-control">
+                  <option value="keep">원본 유지</option>
+                  <option value="upscale">작은 이미지 확대</option>
+                  <option value="downscale">큰 이미지 축소</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="tiff-suffix">파일명 접미사</label>
+                <input id="tiff-suffix" class="input-control" type="text" placeholder="_converted">
+              </div>
+            </div>
+
+            <!-- 리사이징 크기 설정 세부 정보 -->
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="tiff-min-edge">최소 긴 변 (확대 시)</label>
+                <input id="tiff-min-edge" class="input-control" type="number" value="1600" min="100" max="8000">
+              </div>
+              <div class="form-group">
+                <label for="tiff-max-width">최대 가로 (축소 시)</label>
+                <input id="tiff-max-width" class="input-control" type="number" value="2000" min="100" max="8000">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="tiff-max-height">최대 세로 (축소 시)</label>
+              <input id="tiff-max-height" class="input-control" type="number" value="2000" min="100" max="8000">
+            </div>
+
+            <!-- 흰색 배경 제거 옵션 -->
+            <div class="form-group">
+              <label class="checkbox-row">
+                <input id="tiff-remove-white" type="checkbox">
+                <span>흰색 배경 자동 제거</span>
+              </label>
+            </div>
+
+            <div class="form-group" id="tiff-tolerance-wrapper" style="display: none;">
+              <label for="tiff-white-tolerance">흰색 제거 허용 오차 (0 ~ 100)</label>
+              <input id="tiff-white-tolerance" class="input-control" type="range" value="15" min="0" max="100" style="padding:0; height:auto;">
+            </div>
+
+            <!-- 하단 변환 액션 버튼 -->
+            <div class="action-buttons">
+              <button id="tiff-start" class="btn btn-primary" type="submit" disabled style="width:100%; border-radius:8px;"><i class="fas fa-play"></i> 변환 시작</button>
+              <button id="tiff-clear-all" class="btn btn-secondary" type="button" disabled style="width:100%; border-radius:8px;"><i class="far fa-trash-alt"></i> 전체 삭제</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- 우측: 대기열 및 변환 결과 패널 -->
+        <section class="glass-panel">
+          <h2 class="panel-title"><i class="far fa-list-alt"></i> 변환 대기열 / 결과</h2>
+          
+          <div class="queue-header">
+            <span>완료된 변환</span>
+            <strong><span id="tiff-count">0</span> 건</strong>
+          </div>
+
+          <div class="queue-actions">
+            <button id="tiff-download-all" class="btn btn-primary" type="button" disabled style="padding: 10px 20px; font-size: 0.9rem; border-radius:8px;"><i class="fas fa-download"></i> 완료 모두 다운로드</button>
+            <button id="tiff-clear-completed" class="btn btn-secondary" type="button" disabled style="padding: 10px 20px; font-size: 0.9rem; border-radius:8px;"><i class="fas fa-check-double"></i> 완료 정리</button>
+          </div>
+
+          <div id="tiff-results-list" class="tiff-queue-list">
+            <!-- 자바스크립트로 동적 렌더링 -->
+            <div class="empty-state">
+              <i class="far fa-image"></i>
+              대기열이 비어 있습니다.<br>변환할 TIFF 파일을 추가해 주세요.
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- 쿠팡 파트너스 배너 광고 연동 영역 -->
+      <div class="ad-wrapper">
+        <div class="ad-label">ADVERTISEMENT</div>
+        <div class="ad-iframe-container">
+          <iframe src="https://ads-partners.coupang.com/widgets.html?id=997992&template=carousel&trackingCode=AF2960333&subId=kiddwannabe&width=680&height=140&tsource=" width="680" height="140" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+        </div>
+        <p class="ad-disclosure">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 3. Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img class="logo-symbol brand-logo-img" id="footer-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </div>
+      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561</p>
+    </div>
+  </footer>
+
+  <!-- 테마 전환 플로팅 버튼 -->
+  <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="테마 스타일 변경">
+    <i class="fas fa-palette"></i>
+  </button>
+
+  <!-- 외부 캔버스 데코 효과 구현용 라이브러리 및 메인 스크립트 -->
+  <!-- p5.js CDN (배경 인터랙션용) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  
+  <!-- TIFF 디코더 및 ZIP 인코더 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <!-- 홈페이지 기본 main.js (모바일 토글러 & p5.js 배경 실행용) -->
+  <script src="./modules/main.js?v=1.2"></script>
+  <!-- TIFF 변환 전용 로직 스크립트 -->
+  <script src="./modules/tiff-converter.js?v=1.2"></script>
+</body>
+</html>

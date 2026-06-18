@@ -39,6 +39,56 @@ function showToast(message, type = 'success', duration = 3000) {
   }, duration);
 }
 
+// 1-2. 화면 중앙 대형 완료 안내 모달 팝업 기능 (GTM/GA4 완료 이벤트 보완)
+window.showSuccessModal = function(title, message, buttonText = "확인") {
+  // 기존 모달이 있다면 중복 방지를 위해 제거
+  const existingModal = document.getElementById('center-success-modal');
+  if (existingModal) {
+    existingModal.remove();
+  }
+
+  // 모달 마크업 동적 생성 (Modern Glassmorphic + SVG 애니메이션 효과)
+  const modalHtml = `
+    <div id="center-success-modal" class="center-modal-overlay">
+      <div class="center-modal-content">
+        <div class="center-modal-icon">
+          <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+        </div>
+        <h3 class="center-modal-title">${title}</h3>
+        <p class="center-modal-message">${message}</p>
+        <button class="center-modal-btn">${buttonText}</button>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+  
+  const modal = document.getElementById('center-success-modal');
+  const closeBtn = modal.querySelector('.center-modal-btn');
+  
+  // 강제 Reflow 유도 후 active 클래스 부여하여 CSS 트랜지션 트리깅
+  requestAnimationFrame(() => {
+    modal.classList.add('active');
+  });
+
+  const closeModal = () => {
+    modal.classList.remove('active');
+    setTimeout(() => {
+      modal.remove();
+    }, 300); // CSS transition 시간 0.3s에 맞춰 언마운트
+  };
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+};
+
 // 2. DOM 로드 후 전체 인터랙션 동작 활성화
 document.addEventListener('DOMContentLoaded', () => {
   // GSAP 및 ScrollTrigger 애니메이션 안전 초기화
@@ -1137,11 +1187,12 @@ function initContactForm() {
         }
 
         // 알림 메시지 정의
+        const successTitle = type === 'general' ? '문의 접수 완료' : '견적 요청 접수 완료';
         const successMsg = type === 'general'
-          ? '문의가 정상적으로 전송되었습니다. 확인 후 신속하게 연락 드리겠습니다.'
-          : '교육 견적 요청이 정상적으로 접수되었습니다. 1~2일 내에 맞춤형 제안서와 함께 메일로 회신해 드리겠습니다.';
+          ? '문의가 정상적으로 전송되었습니다.<br>확인 후 입력해주신 연락처로 신속하게 연락드리겠습니다.'
+          : '교육 견적 요청이 정상적으로 접수되었습니다.<br>1~2일 내에 맞춤형 제안서와 함께 메일로 회신해 드리겠습니다.';
 
-        showToast(successMsg, 'success');
+        window.showSuccessModal(successTitle, successMsg, '확인');
       } else {
         // 실패 처리
         const errMsg = data.message || '전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';

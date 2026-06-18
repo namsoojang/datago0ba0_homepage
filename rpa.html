@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8H79VM0RM8');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KVV9V7QN');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>무료 업무 자동화 RPA 도구 모음 | 데이터공방</title>
+  
+  <!-- SEO 최적화 메타 태그 -->
+  <meta name="naver-site-verification" content="6b1811d6074cc78b96b89f616ba7cc1278f1666f" />
+  <meta name="google-site-verification" content="Oc6kBZ-qy21JGaAiEqgg8tZzyi-uIToJVG_DXRJmL0k" />
+  <meta name="description" content="데이터공방 무료 RPA 자동화 도구 모음. 프로그램 설치 없이 브라우저에서 바로 실행되는 TIFF 변환기, PDF 텍스트 추출기 등 업무 생산성을 극대화해 주는 툴을 무료로 제공합니다.">
+  <meta name="keywords" content="RPA, 업무 자동화, 무료 RPA, TIFF 변환기, PDF 추출, 데이터공방, 생산성 도구, 마이온컴퍼니, 장남수">
+  
+  <meta property="og:title" content="무료 업무 자동화 RPA 도구 모음 | 데이터공방">
+  <meta property="og:description" content="프로그램 다운로드 없이 웹 브라우저 내에서 즉시 안전하게 실행할 수 있는 업무 자동화 무료 도구 모음입니다.">
+  <meta property="og:image" content="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://datagongbang.kr/rpa.html">
+  
+  <!-- Canonical URL 설정 -->
+  <link rel="canonical" href="https://datagongbang.kr/rpa.html">
+
+  <!-- 파비콘 및 앱 아이콘 설정 -->
+  <link rel="icon" type="image/png" href="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  
+  <!-- 스타일시트 연동 -->
+  <link rel="stylesheet" href="./index.css?v=1.2">
+  <link rel="stylesheet" href="./modules/toast.css?v=1.2">
+  <link rel="stylesheet" href="./modules/tiff-converter.css?v=1.2">
+  
+  <!-- 외부 폰트/아이콘 라이브러리 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+</head>
+<body class="rpa-light-theme">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVV9V7QN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- 전체 백그라운드 데코용 캔버스 컨테이너 -->
+  <div id="bg-canvas-container"></div>
+
+  <!-- 1. 헤더 및 네비게이션 -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#hero" class="nav-link">Home</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="index.html#strengths" class="nav-link">Why Us</a></li>
+          <li><a href="index.html#curriculum" class="nav-link">Curriculum</a></li>
+          <li><a href="index.html#references" class="nav-link">References</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+          <li><a href="rpa.html" class="nav-link active">RPA</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. RPA 자동화 도구 목록 섹션 -->
+  <main class="converter-section">
+    <div class="converter-container">
+      
+      <!-- 타이틀 영역 -->
+      <div class="converter-title-area">
+        <h1 class="section-title">무료 <span>RPA 자동화 도구 모음</span></h1>
+        <p>프로그램 다운로드나 회원가입 없이 브라우저 상에서 즉시 안전하게 실행할 수 있는 실무 업무 자동화 도구입니다.</p>
+      </div>
+
+      <!-- 도구 그리드 카드 영역 -->
+      <div class="rpa-grid">
+        
+        <!-- 카드 1: TIFF to PNG 변환기 -->
+        <a href="tiff-to-png.html" class="rpa-card">
+          <div class="rpa-card-header">
+            <div class="rpa-icon">
+              <i class="far fa-file-image"></i>
+            </div>
+            <span class="badge-rpa active-badge">실행 가능</span>
+          </div>
+          <h3 class="rpa-card-title">TIFF to PNG 변환기</h3>
+          <p class="rpa-card-desc">고용량 TIFF(.tif/.tiff) 그래픽 파일을 100% 브라우저단에서 안전하고 고화질로 일괄 변환합니다. 배경 처리, 해상도 크기 조정, 흰색 배경 제거 옵션을 제공하며 다중 파일을 ZIP으로 묶어 내려받습니다.</p>
+          <div class="rpa-card-footer">
+            <span>도구 바로가기</span>
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </a>
+
+        <!-- 카드 2: 만족도 분석 & 보고서 생성기 (Coming Soon) -->
+        <article class="rpa-card ready" data-tool-name="만족도 분석 & 보고서 생성기">
+          <div class="rpa-card-header">
+            <div class="rpa-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <span class="badge-rpa ready-badge">준비 중</span>
+          </div>
+          <h3 class="rpa-card-title">만족도 분석 & 보고서 생성기</h3>
+          <p class="rpa-card-desc">Tally 또는 Google Forms 설문 조사 엑셀 로데이터를 업로드하면, 자동으로 문항을 분석해 평균 점수와 NPS(순추천지수) 계산, 주관식 답변 분류를 1초 만에 깔끔한 보고서용 엑셀로 정제해 줍니다.</p>
+          <button type="button" class="btn btn-secondary reserve-trigger-btn" style="margin-top:12px; width:100%; font-size:0.85rem; padding:10px 14px; border-radius:6px;">
+            <i class="far fa-bell"></i> 사전 알림 신청
+          </button>
+        </article>
+
+        <!-- 카드 3: 개인정보 안심 수신거부 필터 (Coming Soon) -->
+        <article class="rpa-card ready" data-tool-name="개인정보 안심 수신거부 필터">
+          <div class="rpa-card-header">
+            <div class="rpa-icon">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <span class="badge-rpa ready-badge">준비 중</span>
+          </div>
+          <h3 class="rpa-card-title">개인정보 안심 수신거부 필터</h3>
+          <p class="rpa-card-desc">단체 마케팅 발송 전, 번호/이메일 리스트를 업로드하여 기존의 수신 거부자 리스트와 교차 대조합니다. 고객 정보 유출 없이 브라우저 로컬에서 안전하고 확실하게 중복 대상자를 필터링합니다.</p>
+          <button type="button" class="btn btn-secondary reserve-trigger-btn" style="margin-top:12px; width:100%; font-size:0.85rem; padding:10px 14px; border-radius:6px;">
+            <i class="far fa-bell"></i> 사전 알림 신청
+          </button>
+        </article>
+
+        <!-- 카드 4: 네이버 카페 자동 홍보 등록기 (Coming Soon) -->
+        <article class="rpa-card ready" data-tool-name="네이버 카페 자동 홍보 등록기">
+          <div class="rpa-card-header">
+            <div class="rpa-icon">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+            <span class="badge-rpa ready-badge">준비 중</span>
+          </div>
+          <h3 class="rpa-card-title">네이버 카페 자동 홍보 등록기</h3>
+          <p class="rpa-card-desc">지정한 온라인 마케팅용 카페의 특정 게시판들에 원고와 이미지를 일괄적으로 자동 예약 등록하여, 매일 수동으로 복사/붙여넣기 하던 단순 업무 리소스를 대폭 아끼는 바이럴 마케팅용 툴입니다.</p>
+          <button type="button" class="btn btn-secondary reserve-trigger-btn" style="margin-top:12px; width:100%; font-size:0.85rem; padding:10px 14px; border-radius:6px;">
+            <i class="far fa-bell"></i> 사전 알림 신청
+          </button>
+        </article>
+
+      </div>
+
+      <!-- 쿠팡 파트너스 배너 광고 연동 영역 -->
+      <div class="ad-wrapper" style="margin-top: 64px;">
+        <div class="ad-label">ADVERTISEMENT</div>
+        <div class="ad-iframe-container">
+          <iframe src="https://ads-partners.coupang.com/widgets.html?id=997992&template=carousel&trackingCode=AF2960333&subId=kiddwannabe&width=680&height=140&tsource=" width="680" height="140" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+        </div>
+        <p class="ad-disclosure">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 3. Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img class="logo-symbol brand-logo-img" id="footer-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </div>
+      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="rpa.html" style="text-decoration:underline; opacity:0.8; transition:opacity 0.2s; margin-left:5px;">무료 RPA 도구</a></p>
+    </div>
+  </footer>
+
+  <!-- 사전 예약 모달 팝업 -->
+  <div id="rpa-modal" class="rpa-modal-backdrop">
+    <div class="rpa-modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title-text">사전 알림 신청</h3>
+        <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="닫기">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>선택하신 도구의 개발이 완료되는 즉시, 입력하신 연락처로 무료 이용 오픈 소식을 전해드리겠습니다.</p>
+        
+        <form id="rpa-reserve-form">
+          <input type="hidden" id="modal-tool-name" value="">
+          
+          <div class="form-group">
+            <label for="reserve-email">이메일 주소 <span style="color:#f87171;">*</span></label>
+            <input type="email" id="reserve-email" class="input-control" placeholder="name@example.com" required>
+            <div id="email-error" class="form-error-msg">올바른 이메일 주소를 입력해주세요.</div>
+          </div>
+          
+          <div class="form-group" style="margin-top:16px;">
+            <label for="reserve-phone">연락처 (휴대폰) <span style="color:#f87171;">*</span></label>
+            <input type="tel" id="reserve-phone" class="input-control" placeholder="010-0000-0000" required>
+            <div id="phone-error" class="form-error-msg">올바른 휴대폰 번호를 입력해주세요. (예: 010-1234-5678)</div>
+          </div>
+          
+          <button type="submit" id="reserve-submit-btn" class="modal-submit-btn">
+            <i class="far fa-bell"></i> 사전 알림 신청하기
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 테마 전환 플로팅 버튼 -->
+  <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="테마 스타일 변경">
+    <i class="fas fa-palette"></i>
+  </button>
+
+  <!-- 외부 캔버스 데코 효과 구현용 라이브러리 및 메인 스크립트 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  <script src="./modules/main.js?v=1.2"></script>
+  <!-- RPA 사전예약 JS 핸들러 연동 -->
+  <script src="./modules/rpa-handler.js?v=1.2"></script>
+  <script>
+    // 테마 동기화 스크립트 연동
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("portfolio-theme") || "gold";
+      if (savedTheme === "teal") {
+        document.body.classList.add("theme-teal");
+      } else {
+        document.body.classList.remove("theme-teal");
+      }
+    });
+  </script>
+</body>
+</html>
