@@ -12,7 +12,9 @@
 
 스티브 잡스의 전설적인 아이폰 발표 프레젠테이션을 오마주한 강렬한 오프닝으로 문을 연 이번 강의는 임직원들의 즉각적인 몰입을 이끌어냈습니다.
 
-![영업 직무 AI 특강 현장](./assets/images/logos/sketch_var7_ultrasimple_gold.png)
+![SCK 교육 현장](./assets/images/blog/isu1.png)
+![SCK 교육 현장](./assets/images/blog/isu2.png)
+![SCK 교육 현장](./assets/images/blog/isu3.png)
 *(사진설명: 영업 실무자들이 AI 엔진을 활용해 대시보드 기획안을 라이브로 구현하고 테스트하는 모습)*
 
 > **"최신 생성형 AI 트렌드를 단숨에 알 수 있어서 흥미진진했습니다. 기회가 된다면 나중에 더 긴 기간의 심화 과정도 이어서 수강하고 싶습니다."**  
