@@ -49,4 +49,32 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- 블로그 상세글 3 (현대백화점그룹 DA 출강 후기) -->
+  <url>
+    <loc>https://datagongbang.kr/blog-detail.html?id=ref-03</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- 블로그 상세글 4 (이수페타시스 AX Survival) -->
+  <url>
+    <loc>https://datagongbang.kr/blog-detail.html?id=ref-04</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- 블로그 상세글 5 (영업 직무 AX 특강) -->
+  <url>
+    <loc>https://datagongbang.kr/blog-detail.html?id=ref-05</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- 블로그 상세글 6 (신한 커리어업 11기 OJT) -->
+  <url>
+    <loc>https://datagongbang.kr/blog-detail.html?id=ref-06</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

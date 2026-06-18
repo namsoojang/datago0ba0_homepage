@@ -18,5 +18,45 @@
     "summary": "실제 강의에서 제공하는 파이썬 판다스(Pandas) 활용 엑셀 병합 실습 가이드라인입니다. 마우스를 수천 번 클릭해야 하던 엑셀 취합 작업을 3줄짜리 파이썬 라이브 코드로 자동화하는 법을 안내합니다.",
     "thumbnail": "./assets/images/logos/sketch_var7_ultrasimple_gold.png",
     "contentPath": "data/posts/ref-02.md"
+  },
+  {
+    "id": "ref-03",
+    "title": "현대백화점그룹 임직원 대상 10주간의 파이썬 & 머신러닝(DA) 출강 후기",
+    "date": "2026-05-30",
+    "category": "출강후기",
+    "tags": ["현대백화점그룹", "데이터분석", "파이썬교육", "머신러닝", "사내교육"],
+    "summary": "현대백화점그룹 임직원들과 함께한 10주간의 파이썬 기초 및 머신러닝 데이터분석 교육 과정을 공유합니다. 실무 중심 맞춤형 실습 개편 사례와 강사 만족도 피드백을 수록했습니다.",
+    "thumbnail": "./assets/images/logos/sketch_var7_ultrasimple_gold.png",
+    "contentPath": "data/posts/ref-03.md"
+  },
+  {
+    "id": "ref-04",
+    "title": "이수페타시스 핵심인재 대상 Insight UP - AX Survival 교육 후기 (7시간 집중 워크숍)",
+    "date": "2026-03-20",
+    "category": "출강후기",
+    "tags": ["이수페타시스", "AX Survival", "업무자동화", "엑셀데이터", "디지털전환"],
+    "summary": "기술, 영업, 품질 등 다양한 부서의 이수페타시스 임직원들과 함께한 7시간 AX Survival 워크숍 현장을 소개합니다. 사내 보안을 우회하는 실무형 엑셀 자동화 관점 전환 교육입니다.",
+    "thumbnail": "./assets/images/logos/sketch_var7_ultrasimple_gold.png",
+    "contentPath": "data/posts/ref-04.md"
+  },
+  {
+    "id": "ref-05",
+    "title": "제미나이(Gemini)와 에이전틱(Agentic) AI를 활용한 영업 직무 업무 효율화 및 대시보드 구축 특강",
+    "date": "2026-04-01",
+    "category": "출강후기",
+    "tags": ["생성형AI", "제미나이", "안티그래비티", "업무효율화", "대시보드"],
+    "summary": "제미나이(Gemini) 및 안티그래비티(Antigravity)를 업무에 활용하는 방안부터, AI를 이용한 대시보드 PRD 작성 및 라이브 대시보드 설계 구현까지 진행한 영업직 특강 진행기입니다.",
+    "thumbnail": "./assets/images/logos/sketch_var7_ultrasimple_gold.png",
+    "contentPath": "data/posts/ref-05.md"
+  },
+  {
+    "id": "ref-06",
+    "title": "신한 커리어업 11기 신입 OJT 특강 - AI Survival & 취준생을 위한 격려와 비즈니스 마인드",
+    "date": "2026-03-25",
+    "category": "출강후기",
+    "tags": ["커리어업", "AI Survival", "신입사원교육", "근로계약서", "동기부여"],
+    "summary": "신한 커리어업 11기 신입 임직원들을 대상으로 AI 시대에 대체되지 않는 인재로 살아남는 'AI Survival' 특강 후기와 열광적인 만족도 수강평들을 정리해 전해드립니다.",
+    "thumbnail": "./assets/images/logos/sketch_var7_ultrasimple_gold.png",
+    "contentPath": "data/posts/ref-06.md"
   }
 ]
