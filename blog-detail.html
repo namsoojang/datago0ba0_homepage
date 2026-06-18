@@ -78,9 +78,9 @@
   <main class="converter-section">
     <div class="blog-detail-container">
       
-      <!-- 뒤로 가기 링크 -->
-      <a href="blog.html" class="blog-back-link">
-        <i class="fas fa-arrow-left"></i> 목록으로 돌아가기
+      <!-- 뒤로 가기 링크 (직전 히스토리 이동 분기 탑재) -->
+      <a href="blog.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)) { event.preventDefault(); history.back(); }" class="blog-back-link">
+        <i class="fas fa-arrow-left"></i> 이전 페이지로 돌아가기
       </a>
 
       <!-- 상세 본문 카드 패널 -->
@@ -102,6 +102,13 @@
           </a>
         </div>
       </section>
+
+      <!-- 하단 전체 칼럼 목록 복귀용 보조 네비게이션 버튼 -->
+      <div style="text-align: center; margin-top: 32px;">
+        <a href="blog.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)) { event.preventDefault(); history.back(); }" class="blog-back-link" style="margin-bottom: 0;">
+          <i class="fas fa-list"></i> 이전 페이지/목록 보기
+        </a>
+      </div>
 
     </div>
   </main>
