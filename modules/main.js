@@ -47,7 +47,7 @@ window.showSuccessModal = function(title, message, buttonText = "확인") {
     existingModal.remove();
   }
 
-  // 모달 마크업 동적 생성 (Modern Glassmorphic + SVG 애니메이션 효과)
+  // 모달 마크업 동적 생성 (Modern Glassmorphic + SVG 애니메이션 효과 + CTA 버튼 추가)
   const modalHtml = `
     <div id="center-success-modal" class="center-modal-overlay">
       <div class="center-modal-content">
@@ -59,7 +59,10 @@ window.showSuccessModal = function(title, message, buttonText = "확인") {
         </div>
         <h3 class="center-modal-title">${title}</h3>
         <p class="center-modal-message">${message}</p>
-        <button class="center-modal-btn">${buttonText}</button>
+        <div class="modal-btn-group">
+          <button class="center-modal-btn btn-close-modal">${buttonText}</button>
+          <button class="center-modal-btn btn-edu-modal">사내 교육 문의</button>
+        </div>
       </div>
     </div>
   `;
@@ -67,7 +70,8 @@ window.showSuccessModal = function(title, message, buttonText = "확인") {
   document.body.insertAdjacentHTML('beforeend', modalHtml);
   
   const modal = document.getElementById('center-success-modal');
-  const closeBtn = modal.querySelector('.center-modal-btn');
+  const closeBtn = modal.querySelector('.btn-close-modal');
+  const eduBtn = modal.querySelector('.btn-edu-modal');
   
   // 강제 Reflow 유도 후 active 클래스 부여하여 CSS 트랜지션 트리깅
   requestAnimationFrame(() => {
@@ -82,6 +86,28 @@ window.showSuccessModal = function(title, message, buttonText = "확인") {
   };
 
   closeBtn.addEventListener('click', closeModal);
+  
+  if (eduBtn) {
+    eduBtn.addEventListener('click', () => {
+      closeModal();
+      // 메인 홈 페이지 판단 로직 (경로명 검사)
+      const isHomePage = window.location.pathname.includes('index.html') || 
+                         window.location.pathname === '/' || 
+                         window.location.pathname.endsWith('/') || 
+                         !window.location.pathname.includes('.html');
+      
+      if (isHomePage) {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // 서브 페이지인 경우 메인 홈의 문의 영역으로 이동
+        window.location.href = 'index.html#contact';
+      }
+    });
+  }
+
   modal.addEventListener('click', (e) => {
     if (e.target === modal) {
       closeModal();

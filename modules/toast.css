@@ -233,10 +233,69 @@
 
 .center-modal-btn:hover {
   transform: translateY(-2px);
-  filter: brightness(1.1);
 }
 
 .center-modal-btn:active {
   transform: translateY(0);
 }
+
+/* ====================================================
+   ★ 대형 완료 모달 내 버튼 그룹 (CTA 최적화)
+   ==================================================== */
+.modal-btn-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.modal-btn-group .center-modal-btn {
+  margin-bottom: 0 !important;
+}
+
+.center-modal-btn.btn-edu-modal {
+  background: linear-gradient(135deg, #02C39A, #00A896) !important;
+  color: #0b0f19 !important;
+  box-shadow: 0 4px 15px rgba(2, 195, 154, 0.25) !important;
+  flex: 1.5;
+}
+
+.center-modal-btn.btn-edu-modal:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.1) !important;
+}
+
+.center-modal-btn.btn-edu-modal:active {
+  transform: translateY(0) !important;
+}
+
+.center-modal-btn.btn-close-modal {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f8fafc !important;
+  box-shadow: none !important;
+  flex: 1;
+}
+
+.center-modal-btn.btn-close-modal:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 라이트 테마 하에서의 완료 모달 버튼 그룹 스타일링 */
+.rpa-light-theme .center-modal-btn.btn-close-modal {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+  box-shadow: none !important;
+}
+
+.rpa-light-theme .center-modal-btn.btn-close-modal:hover {
+  background: #e2e8f0 !important;
+}
+
+.rpa-light-theme .center-modal-btn.btn-edu-modal {
+  background: linear-gradient(135deg, #02c39a, #00a896) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(2, 195, 154, 0.2) !important;
+}
+
 
