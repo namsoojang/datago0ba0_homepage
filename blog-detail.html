@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8H79VM0RM8');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KVV9V7QN');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>칼럼 읽기 | 데이터공방</title>
+  
+  <meta name="description" content="데이터공방 공식 블로그 상세 보기 페이지입니다.">
+  <meta name="robots" content="index, follow">
+  
+  <!-- 파비콘 및 앱 아이콘 설정 -->
+  <link rel="icon" type="image/png" href="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  
+  <!-- 스타일시트 연동 -->
+  <link rel="stylesheet" href="./index.css?v=1.2">
+  <link rel="stylesheet" href="./modules/toast.css?v=1.2">
+  <link rel="stylesheet" href="./modules/blog.css?v=1.2">
+  
+  <!-- Prism.js 코드 블록 구문 강조 CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  
+  <!-- 외부 폰트/아이콘 라이브러리 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+</head>
+<body class="rpa-light-theme">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVV9V7QN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- 전체 백그라운드 데코용 캔버스 컨테이너 -->
+  <div id="bg-canvas-container"></div>
+
+  <!-- 1. 헤더 및 네비게이션 -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#hero" class="nav-link">Home</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="index.html#strengths" class="nav-link">Why Us</a></li>
+          <li><a href="index.html#curriculum" class="nav-link">Curriculum</a></li>
+          <li><a href="index.html#references" class="nav-link">References</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+          <li><a href="rpa.html" class="nav-link">RPA</a></li>
+          <li><a href="blog.html" class="nav-link active">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. 블로그 상세 본문 뷰어 영역 -->
+  <main class="converter-section">
+    <div class="blog-detail-container">
+      
+      <!-- 뒤로 가기 링크 -->
+      <a href="blog.html" class="blog-back-link">
+        <i class="fas fa-arrow-left"></i> 목록으로 돌아가기
+      </a>
+
+      <!-- 상세 본문 카드 패널 -->
+      <article class="blog-detail-card" id="blog-detail-content-area">
+        <!-- 자바스크립트로 posts.json과 마크다운 렌더링 -->
+        <div class="blog-loading">
+          <i class="fas fa-spinner fa-spin"></i> 칼럼 본문을 불러오는 중입니다...
+        </div>
+      </article>
+
+      <!-- B2B 리드 전환을 위한 강력한 하단 고정 CTA 섹션 -->
+      <section class="blog-cta-panel">
+        <div class="cta-glow-effect"></div>
+        <div class="blog-cta-content">
+          <h3>🏢 우리 부서 맞춤형 자동화 워크숍이 필요하신가요?</h3>
+          <p>임직원들의 단순 수작업 엑셀 취합 업무, 파이썬 분석, RPA 구축을 직무 로데이터 맞춤 교육과 현장 디버깅 실습으로 해결해 드립니다. 지금 커리큘럼 설계 및 무료 견적 상담을 받아보세요.</p>
+          <a href="index.html#contact" class="btn btn-primary blog-cta-btn">
+            <i class="far fa-envelope"></i> 사내 교육 및 출강 상담 신청하기
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 3. Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img class="logo-symbol brand-logo-img" id="footer-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </div>
+      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="rpa.html" style="text-decoration:underline; opacity:0.8; transition:opacity 0.2s; margin-left:5px;">무료 RPA 도구</a> | <a href="privacy.html" style="text-decoration:underline; opacity:0.8; transition:opacity 0.2s; margin-left:5px;">개인정보처리방침</a></p>
+    </div>
+  </footer>
+
+  <!-- 테마 전환 플로팅 버튼 -->
+  <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="테마 스타일 변경">
+    <i class="fas fa-palette"></i>
+  </button>
+
+  <!-- 외부 캔버스 데코 효과 구현용 라이브러리 및 메인 스크립트 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  <!-- 홈페이지 기본 main.js -->
+  <script src="./modules/main.js?v=1.2"></script>
+  
+  <!-- marked.js 마크다운 파서 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
+  <!-- Prism.js 코드 블록 하이라이터 CDN 및 파이썬 컴포넌트 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+  <!-- 블로그 처리 전용 자바스크립트 핸들러 -->
+  <script src="./modules/blog-handler.js?v=1.2"></script>
+</body>
+</html>

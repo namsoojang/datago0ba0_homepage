@@ -28,4 +28,25 @@
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
+  <!-- 블로그 목록 페이지 -->
+  <url>
+    <loc>https://datagongbang.kr/blog.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- 블로그 상세글 1 (출강 후기) -->
+  <url>
+    <loc>https://datagongbang.kr/blog-detail.html?id=ref-01</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- 블로그 상세글 2 (파이썬 실습 가이드) -->
+  <url>
+    <loc>https://datagongbang.kr/blog-detail.html?id=ref-02</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
