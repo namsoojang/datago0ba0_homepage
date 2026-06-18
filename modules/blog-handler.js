@@ -32,7 +32,7 @@ async function initBlogList(gridEl) {
 
   // A. posts.json 비동기 fetch
   try {
-    const response = await fetch("data/posts.json?v=" + new Date().getTime());
+    const response = await fetch("data/posts.json");
     if (!response.ok) throw new Error("블로그 데이터를 불러오는 데 실패했습니다.");
     allPosts = await response.json();
     
@@ -163,7 +163,7 @@ async function initBlogDetail(detailEl) {
     }
 
     // C. 마크다운 본문 파일 fetch
-    const mdResponse = await fetch(`${postMeta.contentPath}?v=${new Date().getTime()}`);
+    const mdResponse = await fetch(postMeta.contentPath);
     if (!mdResponse.ok) throw new Error("마크다운 본문 파일을 로드하는 데 실패했습니다.");
     const markdownText = await mdResponse.text();
 

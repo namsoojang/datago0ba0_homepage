@@ -1,25 +1,5 @@
 [
   {
-    "id": "ref-01",
-    "title": "비개발자도 하루 만에 완성하는 실무 RPA 자동화: OO기업 AX 워크숍 출강 현장",
-    "date": "2026-06-18",
-    "category": "출강후기",
-    "tags": ["AX 워크숍", "RPA 교육", "비개발자", "업무자동화"],
-    "summary": "실제 기업 워크숍 출강을 통해 비개발자 임직원들이 엑셀 합치기, 이메일 일괄 발송 등 반복적이고 소모적인 수작업을 스스로 자동화한 현장 실사와 성과를 공유합니다.",
-    "thumbnail": "./assets/images/logos/sketch_var7_ultrasimple_gold.png",
-    "contentPath": "data/posts/ref-01.md"
-  },
-  {
-    "id": "ref-02",
-    "title": "파이썬(Python)으로 수백 개 엑셀 파일 3초 만에 병합하기 (실무용 실습 코드 공개)",
-    "date": "2026-06-15",
-    "category": "실습자료",
-    "tags": ["파이썬", "엑셀 자동화", "실무 코드", "비전공자"],
-    "summary": "실제 강의에서 제공하는 파이썬 판다스(Pandas) 활용 엑셀 병합 실습 가이드라인입니다. 마우스를 수천 번 클릭해야 하던 엑셀 취합 작업을 3줄짜리 파이썬 라이브 코드로 자동화하는 법을 안내합니다.",
-    "thumbnail": "./assets/images/logos/sketch_var7_ultrasimple_gold.png",
-    "contentPath": "data/posts/ref-02.md"
-  },
-  {
     "id": "ref-03",
     "title": "현대백화점그룹 임직원 대상 10주간의 파이썬 & 머신러닝(DA) 출강 후기",
     "date": "2026-05-30",
