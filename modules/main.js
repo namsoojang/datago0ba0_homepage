@@ -1156,6 +1156,7 @@ function initContactForm() {
   // 2. 비동기 Form 전송 처리
   const generalForm = document.getElementById('general-contact-form');
   const estimateForm = document.getElementById('estimate-contact-form');
+  const msgDeliveryForm = document.getElementById('message-delivery-contact-form');
 
   if (generalForm) {
     generalForm.addEventListener('submit', (e) => {
@@ -1168,6 +1169,13 @@ function initContactForm() {
     estimateForm.addEventListener('submit', (e) => {
       e.preventDefault();
       handleFormSubmit(estimateForm, 'estimate');
+    });
+  }
+
+  if (msgDeliveryForm) {
+    msgDeliveryForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleFormSubmit(msgDeliveryForm, 'message-delivery');
     });
   }
 
@@ -1192,7 +1200,13 @@ function initContactForm() {
     });
 
     // 문의 타입 속성 강제 지정
-    payload['type'] = type === 'general' ? '간편 문의' : '교육 견적 요청';
+    if (type === 'general') {
+      payload['type'] = '간편 문의';
+    } else if (type === 'estimate') {
+      payload['type'] = '교육 견적 요청';
+    } else if (type === 'message-delivery') {
+      payload['type'] = '메세지배달부';
+    }
 
     const formUrl = form.getAttribute('action') || 'https://script.google.com/macros/s/AKfycbzAszHTXbVl4eInbK0OnIm0iLUAfEwo9_I7kQn_mKTd4DGeT2nMhqq8B4IawmvQyfQSHw/exec';
 
@@ -1217,18 +1231,25 @@ function initContactForm() {
 
         // GA4 / GTM 이벤트 송신
         window.dataLayer = window.dataLayer || [];
-        const eventName = type === 'general' ? 'submit_general_contact' : 'submit_estimate_request';
         
-        const eventParams = {
-          'event_category': 'Contact',
-          'event_label': type === 'general' ? 'General Inquiry' : 'Estimate Request'
+        let eventName;
+        let eventParams = {
+          'event_category': 'Contact'
         };
 
-        if (type === 'estimate') {
+        if (type === 'general') {
+          eventName = 'submit_general_contact';
+          eventParams['event_label'] = 'General Inquiry';
+        } else if (type === 'estimate') {
+          eventName = 'submit_estimate_request';
+          eventParams['event_label'] = 'Estimate Request';
           eventParams['company'] = payload['company'] || '';
           eventParams['headcount'] = payload['headcount'] || '';
           eventParams['topic'] = payload['topic'] || '';
           eventParams['timing'] = payload['timing'] || '';
+        } else if (type === 'message-delivery') {
+          eventName = 'submit_message_delivery_contact';
+          eventParams['event_label'] = 'Message Delivery Inquiry';
         }
 
         window.dataLayer.push({
@@ -1241,10 +1262,19 @@ function initContactForm() {
         }
 
         // 알림 메시지 정의
-        const successTitle = type === 'general' ? '문의 접수 완료' : '견적 요청 접수 완료';
-        const successMsg = type === 'general'
-          ? '문의가 정상적으로 전송되었습니다.<br>확인 후 입력해주신 연락처로 신속하게 연락드리겠습니다.'
-          : '교육 견적 요청이 정상적으로 접수되었습니다.<br>1~2일 내에 맞춤형 제안서와 함께 메일로 회신해 드리겠습니다.';
+        let successTitle = '';
+        let successMsg = '';
+
+        if (type === 'general') {
+          successTitle = '문의 접수 완료';
+          successMsg = '문의가 정상적으로 전송되었습니다.<br>확인 후 입력해주신 연락처로 신속하게 연락드리겠습니다.';
+        } else if (type === 'estimate') {
+          successTitle = '견적 요청 접수 완료';
+          successMsg = '교육 견적 요청이 정상적으로 접수되었습니다.<br>1~2일 내에 맞춤형 제안서와 함께 메일로 회신해 드리겠습니다.';
+        } else if (type === 'message-delivery') {
+          successTitle = '문의 및 개선요청 접수 완료';
+          successMsg = '보내주신 문의/개선요청사항이 정상적으로 접수되었습니다.<br>데이터공방에서 확인 후 신속하게 회신해 드리겠습니다.';
+        }
 
         window.showSuccessModal(successTitle, successMsg, '확인');
       } else {
