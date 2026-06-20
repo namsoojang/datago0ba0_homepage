@@ -730,7 +730,8 @@ function isWhiteThemePage() {
   return href.includes('satisfaction-analyzer') || 
          href.includes('tiff-to-png') || 
          href.includes('rpa') || 
-         href.includes('blog');
+         href.includes('blog') ||
+         href.includes('message-delivery');
 }
 
 function initThemeToggle() {
