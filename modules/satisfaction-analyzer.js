@@ -1011,7 +1011,7 @@ function downloadResultCSV() {
       // 각 응답별 내부 줄바꿈은 공백으로 치환해 셀 내의 줄바꿈과 혼동되지 않도록 처리합니다.
       const processedResponses = item.responses.map(r => ` - ${r.replace(/\r?\n/g, ' ')}`).join('\n');
       const escapedText = processedResponses.replace(/"/g, '""');
-      csvContent += `"주관식","${cleanedName}","-",${item.responses.length},"","","","","${escapText}"\n`;
+      csvContent += `"주관식","${cleanedName}","-",${item.responses.length},"","","","","${escapedText}"\n`;
     }
   });
 
