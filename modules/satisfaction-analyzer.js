@@ -835,7 +835,7 @@ function renderDashboard() {
                       <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px; font-size: 0.78rem;">
                         <span style="width: 40px; color: #64748b; font-weight: 600; text-align: right;">${score}점</span>
                         <div class="bar-track" style="flex: 1; height: 6px; background: #f1f5f9; border-radius: 3px; overflow: hidden;">
-                          <div class="bar-fill score-color-${scale === 5 ? score : (score >= 8 ? 5 : (score === 7 ? 3 : 1))}" style="width: ${pct}%; height: 100%;"></div>
+                          <div class="bar-fill score-color-${q.scale === 5 ? score : (score >= 8 ? 5 : (score === 7 ? 3 : 1))}" style="width: ${pct}%; height: 100%;"></div>
                         </div>
                         <span style="width: 100px; text-align: right; color: #475569; font-weight: 600;">${pct}% (${count}명)</span>
                       </div>
