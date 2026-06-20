@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8H79VM0RM8');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KVV9V7QN');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>무료 만족도 설문 분석기 | 프로그램 설치 없는 설문 통계 - 데이터공방</title>
+  
+  <!-- SEO 최적화 메타 태그 -->
+  <meta name="naver-site-verification" content="6b1811d6074cc78b96b89f616ba7cc1278f1666f" />
+  <meta name="google-site-verification" content="Oc6kBZ-qy21JGaAiEqgg8tZzyi-uIToJVG_DXRJmL0k" />
+  <meta name="description" content="CSV 파일 업로드 또는 표 복사 붙여넣기만으로 만족도 설문 조사 로데이터를 브라우저에서 안전하고 신속하게 자동 분석합니다. 평균 점수, NPS(순추천지수), 주관식 피드백 분류와 보고서 요약본을 제공합니다.">
+  <meta name="keywords" content="만족도 분석, 설문 분석, 무료 만족도 분석기, NPS 계산, 순추천지수, 설문 엑셀 분석, RPA 자동화, 데이터공방, 마이온컴퍼니, 장남수">
+  
+  <meta property="og:title" content="무료 만족도 설문 분석기 | 프로그램 설치 없는 설문 통계 - 데이터공방">
+  <meta property="og:description" content="Tally, Google Forms 설문 데이터를 엑셀 복사/붙여넣기나 CSV 업로드로 즉시 분석합니다. 로컬 브라우저 보안 실행으로 개인정보 노출 걱정 없는 스마트 RPA 도구입니다.">
+  <meta property="og:image" content="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://datagongbang.kr/satisfaction-analyzer.html">
+  
+  <!-- Canonical URL 설정 -->
+  <link rel="canonical" href="https://datagongbang.kr/satisfaction-analyzer.html">
+
+  <!-- 파비콘 및 앱 아이콘 설정 -->
+  <link rel="icon" type="image/png" href="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  
+  <!-- 스타일시트 연동 -->
+  <link rel="stylesheet" href="./index.css?v=1.2">
+  <link rel="stylesheet" href="./modules/toast.css?v=1.2">
+  <link rel="stylesheet" href="./modules/satisfaction-analyzer.css?v=1.2">
+  
+  <!-- 외부 폰트/아이콘 라이브러리 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  
+  <!-- 구조화 데이터 (JSON-LD) 검색 최적화 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "무료 만족도 설문 분석기 & 보고서 생성기",
+    "operatingSystem": "All",
+    "applicationCategory": "BusinessApplication",
+    "browserRequirements": "Requires JavaScript and HTML5 Canvas",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "KRW"
+    },
+    "description": "구글 폼, Tally, 엑셀 등으로 수집된 만족도 조사 결과를 파일 설치 없이 100% 웹 브라우저 내에서 안전하게 분석하여 평균, 순추천지수(NPS), 응답 분포 및 주관식 피드백 요약을 제공하는 무료 RPA 도구입니다."
+  }
+  </script>
+</head>
+<body class="rpa-light-theme">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVV9V7QN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- 전체 백그라운드 데코용 캔버스 컨테이너 -->
+  <div id="bg-canvas-container"></div>
+
+  <!-- 1. 헤더 및 네비게이션 -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#hero" class="nav-link">Home</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="index.html#strengths" class="nav-link">Why Us</a></li>
+          <li><a href="index.html#curriculum" class="nav-link">Curriculum</a></li>
+          <li><a href="index.html#references" class="nav-link">References</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+          <li><a href="rpa.html" class="nav-link active">RPA</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. 분석기 메인 콘텐츠 -->
+  <main class="converter-section">
+    <div class="converter-container">
+      
+      <!-- 타이틀 영역 -->
+      <div class="converter-title-area">
+        <h1 class="section-title">만족도 분석 & <span>보고서 생성기</span></h1>
+        <p>프로그램 다운로드 및 서버 업로드 없이 브라우저 내에서 100% 안전하게 구동되는 데이터공방 무료 RPA 툴입니다.</p>
+        <a href="rpa.html" class="back-to-hub-link"><i class="fas fa-arrow-left"></i> RPA 자동화 도구 목록으로 돌아가기</a>
+      </div>
+
+      <!-- 메인 인터페이스 카드 -->
+      <div class="analyzer-card-wrapper">
+        
+        <!-- ================= [STATE 1] READY: 데이터 입력 영역 ================= -->
+        <div id="section-ready" class="analyzer-section show">
+          <div class="analyzer-tabs">
+            <button type="button" class="tab-btn active" data-tab="csv">📂 CSV 파일 업로드</button>
+            <button type="button" class="tab-btn" data-tab="paste">📋 표 데이터 붙여넣기</button>
+          </div>
+
+          <!-- CSV 파일 업로드 탭 -->
+          <div id="csv-content" class="tab-content active">
+            <div class="form-group">
+              <label class="file-upload-label" id="csv-dropzone">
+                <i class="far fa-file-excel"></i>
+                <strong>여기에 CSV 파일을 드롭하거나 클릭하여 선택하세요</strong>
+                <span>Excel/Tally/구글 설문에서 다운로드한 CSV 포맷을 지원합니다.</span>
+                <span class="file-hint">(한글 깨짐을 자동으로 방지하기 위해 UTF-8 및 CP949 인코딩을 모두 검토합니다)</span>
+                <input type="file" id="csv-file" accept=".csv" class="file-input" style="display:none;">
+              </label>
+            </div>
+          </div>
+
+          <!-- 표 붙여넣기 탭 -->
+          <div id="paste-content" class="tab-content">
+            <div class="form-group">
+              <textarea id="paste-area" class="textarea-control" placeholder="엑셀, 구글 스프레드시트 등의 셀 범위나 설문 결과 데이터 표 전체를 복사(Ctrl+C)하여 여기에 그대로 붙여넣기(Ctrl+V) 하세요.&#10;구분자는 탭(TSV) 및 쉼표(CSV)를 자동으로 파싱합니다."></textarea>
+            </div>
+            <div class="action-bar" style="justify-content: flex-end;">
+              <button type="button" id="btn-analyze" class="btn btn-primary" style="padding: 12px 28px; border-radius: 8px;"><i class="fas fa-magic"></i> 데이터 인식하기</button>
+            </div>
+          </div>
+
+          <!-- 공통 하단 헬퍼 및 데모 보기 -->
+          <div class="rpa-support-banner" style="margin-top: 24px; padding: 16px; border-radius: 10px; border: 1px dashed rgba(217, 119, 6, 0.3); background: rgba(217, 119, 6, 0.02); display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+            <p style="margin: 0; color: #64748b; font-size: 0.85rem; line-height: 1.5; text-align: left;">
+              🛡️ <strong>개인정보 보안 보장</strong>: 업로드된 파일이나 텍스트 정보는 수집 및 외부 서버 전송 없이 사용자의 브라우저 내 메모리에서 로컬 처리됩니다. 분석이 끝나면 안전하게 소멸합니다.
+            </p>
+            <button type="button" id="btn-sample" class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.8rem; border-radius: 6px; white-space: nowrap;"><i class="far fa-play-circle"></i> 샘플 데이터로 테스트</button>
+          </div>
+        </div>
+
+        <!-- ================= [STATE 2] REVIEW: 컬럼 수동 분류 조정 영역 ================= -->
+        <div id="section-review" class="analyzer-section">
+          <div style="margin-bottom: 20px;">
+            <h3 style="font-size: 1.15rem; font-weight: 700; color: #1e293b; margin: 0 0 6px 0;"><i class="fas fa-list-check"></i> 문항 자동 인식 결과 검토</h3>
+            <p style="font-size: 0.88rem; color: #64748b; margin: 0;">시스템이 컬럼명과 데이터 타입을 기반으로 문항을 자동 분류했습니다. <strong>잘못 분류된 항목은 드롭다운을 통해 올바른 유형으로 조정</strong>하십시오.</p>
+          </div>
+
+          <!-- 테이블 영역 -->
+          <div class="review-table-wrapper" id="review-table-container">
+            <!-- JS 동적 주입 -->
+          </div>
+
+          <!-- 액션 단추 -->
+          <div class="action-bar" style="margin-top: 24px; justify-content: space-between;">
+            <button type="button" class="btn btn-secondary" onclick="resetAnalyzer()" style="padding: 12px 24px; border-radius: 8px;"><i class="fas fa-undo"></i> 처음으로</button>
+            <button type="button" id="btn-run-analysis" class="btn btn-primary" style="padding: 12px 32px; border-radius: 8px;"><i class="fas fa-chart-pie"></i> 만족도 분석 시작하기</button>
+          </div>
+        </div>
+
+        <!-- ================= [STATE 3] RESULT: 분석 대시보드 출력 영역 ================= -->
+        <div id="section-result" class="analyzer-section">
+          
+          <!-- 요약 대시보드 타이틀 -->
+          <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0;"><i class="fas fa-square-poll-vertical"></i> 만족도 설문 분석 대시보드</h3>
+            <span style="font-size: 0.8rem; color: #94a3b8;"><i class="far fa-clock"></i> 방금 전 로컬 분석 완료됨</span>
+          </div>
+
+          <!-- 1. 핵심 요약 카드 그리드 -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-title">총 응답 수</span>
+              <span class="stat-value" id="stat-responses">-</span>
+              <span class="stat-desc">유효 응답 완료 인원</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-title">만족도 문항</span>
+              <span class="stat-value" id="stat-score-cnt">-</span>
+              <span class="stat-desc">수치화된 점수 척도 문항 수</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-title">전체 평균 만족도</span>
+              <span class="stat-value text-gold" id="stat-average">-</span>
+              <span class="stat-desc">전체 점수 문항의 종합 평균</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-title">전체 긍정 응답률</span>
+              <span class="stat-value" id="stat-positive-rate">-</span>
+              <span class="stat-desc">4점 이상(5점 척도 기준) 긍정 비율</span>
+            </div>
+            <!-- NPS 순추천지수 카드 -->
+            <div class="stat-card" id="nps-card-container" style="border: 1px solid rgba(217, 119, 6, 0.2); background: rgba(217, 119, 6, 0.01);">
+              <span class="stat-title" id="stat-nps-label">NPS (순추천지수)</span>
+              <span class="stat-value" id="stat-nps-val">-</span>
+              <span class="stat-desc" id="stat-nps-col">NPS 분석 적용 문항</span>
+            </div>
+          </div>
+
+          <!-- 2. 레이아웃 그리드 (만족도 분석 리포트 / 주관식 피드백) -->
+          <div style="display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 32px;">
+            
+            <!-- 좌측/상단: 점수 척도 분석 카드 목록 -->
+            <div>
+              <h4 style="font-size: 1.05rem; font-weight: 700; color: #334155; margin: 0 0 16px 0; display: flex; align-items: center; gap: 8px;">
+                <span style="display: inline-block; width: 4px; height: 16px; background-color: var(--color-gold); border-radius: 2px;"></span>
+                객관식 문항별 세부 분석
+              </h4>
+              <div class="questions-list" id="score-questions-list">
+                <!-- JS 동적 주입 -->
+              </div>
+            </div>
+
+            <!-- 우측/하단: 주관식 의견 아코디언 목록 -->
+            <div style="margin-top: 16px;">
+              <h4 style="font-size: 1.05rem; font-weight: 700; color: #334155; margin: 0 0 16px 0; display: flex; align-items: center; gap: 8px;">
+                <span style="display: inline-block; width: 4px; height: 16px; background-color: var(--color-gold); border-radius: 2px;"></span>
+                주관식 의견 피드백 수집함
+              </h4>
+              <div id="text-questions-list">
+                <!-- JS 동적 주입 -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 대시보드 공통 액션 바 -->
+          <div class="action-bar" style="margin-top: 40px; border-top: 1px solid #e2e8f0; padding-top: 24px; gap: 16px;">
+            <button type="button" id="btn-reset" class="btn btn-secondary" style="padding: 12px 24px; border-radius: 8px;"><i class="fas fa-redo"></i> 새 데이터 분석하기</button>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;" class="action-group-right">
+              <button type="button" id="btn-copy-report" class="btn btn-primary" style="padding: 12px 24px; border-radius: 8px; background: #475569; border-color: #475569;"><i class="far fa-copy"></i> 보고서 요약 텍스트 복사</button>
+              <button type="button" id="btn-download-csv" class="btn btn-primary" style="padding: 12px 24px; border-radius: 8px;"><i class="fas fa-file-csv"></i> 분석 결과 CSV 다운로드</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- 쿠팡 파트너스 배너 광고 연동 영역 -->
+      <div class="ad-wrapper">
+        <div class="ad-label">ADVERTISEMENT</div>
+        <div class="ad-iframe-container">
+          <iframe src="https://ads-partners.coupang.com/widgets.html?id=997992&template=carousel&trackingCode=AF2960333&subId=kiddwannabe&width=680&height=140&tsource=" width="680" height="140" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+        </div>
+        <p class="ad-disclosure">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 3. Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img class="logo-symbol brand-logo-img" id="footer-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </div>
+      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="rpa.html" style="text-decoration:underline; opacity:0.8; transition:opacity 0.2s; margin-left:5px;">무료 RPA 도구</a> | <a href="privacy.html" style="text-decoration:underline; opacity:0.8; transition:opacity 0.2s; margin-left:5px;">개인정보처리방침</a></p>
+    </div>
+  </footer>
+
+  <!-- 테마 전환 플로팅 버튼 -->
+  <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="테마 스타일 변경">
+    <i class="fas fa-palette"></i>
+  </button>
+
+  <!-- 로딩 오버레이 레이아웃 -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <div class="loading-text">설문 데이터 파싱 및 요약 분석 중...</div>
+  </div>
+
+  <!-- 외부 캔버스 데코 효과 구현용 라이브러리 및 메인 스크립트 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  <script src="./modules/main.js?v=1.2"></script>
+  <script src="./modules/satisfaction-analyzer.js?v=1.2"></script>
+  <script>
+    // 테마 동기화 스크립트 연동
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("portfolio-theme") || "gold";
+      if (savedTheme === "teal") {
+        document.body.classList.add("theme-teal");
+      } else {
+        document.body.classList.remove("theme-teal");
+      }
+    });
+  </script>
+</body>
+</html>

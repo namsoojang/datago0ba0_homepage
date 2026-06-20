@@ -21,6 +21,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- 만족도 설문 분석기 페이지 -->
+  <url>
+    <loc>https://datagongbang.kr/satisfaction-analyzer.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- 개인정보처리방침 페이지 -->
   <url>
     <loc>https://datagongbang.kr/privacy.html</loc>
