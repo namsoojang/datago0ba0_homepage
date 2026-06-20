@@ -502,18 +502,19 @@
             .then(response => response.json())
             .then(data => {
               const ip = data.ip;
-              const payload = new URLSearchParams();
-              payload.append('type', '다운로드로그');
-              payload.append('filename', filename);
-              payload.append('ip', ip);
+              const payload = {
+                type: '다운로드로그',
+                filename: filename,
+                ip: ip
+              };
 
               return fetch(gasUrl, {
                 method: 'POST',
                 mode: 'no-cors', // 브라우저 CORS 제약 우회
                 headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded'
+                  'Content-Type': 'application/json'
                 },
-                body: payload
+                body: JSON.stringify(payload)
               });
             })
             .catch(err => {
