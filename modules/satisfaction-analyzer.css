@@ -23,17 +23,15 @@ body.rpa-light-theme .analyzer-card-wrapper {
 
 /* 테마 분기 컬러 대응 */
 :root {
-  --color-score-5: #d97706; /* Gold 테마용 기본 5점색 */
-  --color-score-4: #f59e0b;
-  --color-score-3: #94a3b8;
-  --color-score-2: #f87171;
-  --color-score-1: #ef4444;
+  --color-score-5: #3b82f6; /* 5점: 파란색 (긍정 우수) */
+  --color-score-4: #60a5fa; /* 4점: 연한 파란색 (긍정) */
+  --color-score-3: #f59e0b; /* 3점: 노란색 (보통/중립) */
+  --color-score-2: #fca5a5; /* 2점: 연한 빨간색 (부정) */
+  --color-score-1: #ef4444; /* 1점: 빨간색 (부정 심각) */
   --color-accent-bar: var(--primary-gold, #d97706);
 }
 
 body.theme-teal {
-  --color-score-5: #0d9488; /* Teal 테마용 5점색 */
-  --color-score-4: #2dd4bf;
   --color-accent-bar: var(--primary-teal, #00a896);
 }
 
