@@ -38,5 +38,15 @@
     "summary": "신한 커리어업 11기 신입 임직원들을 대상으로 AI 시대에 대체되지 않는 인재로 살아남는 'AI Survival' 특강 후기와 열광적인 만족도 수강평들을 정리해 전해드립니다.",
     "thumbnail": "./assets/images/blog/careerup11.png",
     "contentPath": "data/posts/ref-06.md"
+  },
+  {
+    "id": "ref-07",
+    "title": "만족도 분석의 목적은 평균 계산이 아니다",
+    "date": "2026-06-20",
+    "category": "교육칼럼",
+    "tags": ["교육 만족도", "RPA", "업무 자동화", "교육 데이터 분석", "사내교육"],
+    "summary": "교육 만족도 조사는 평균 점수를 계산하는 절차가 아니라, 다음 교육을 더 좋게 만들기 위한 회고와 의사결정의 출발점입니다. 엑셀 집계의 관성에서 벗어나 주관식 답변에 숨겨진 맥락을 읽어내는 분석 가치를 나눕니다.",
+    "thumbnail": "./assets/images/blog/satisfaction_cover.png",
+    "contentPath": "data/posts/ref-07.md"
   }
 ]
