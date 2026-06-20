@@ -653,9 +653,11 @@ function runFinalAnalysis() {
       renderDashboard();
       switchState("result");
       showToast("분석 보고서 생성이 완료되었습니다!");
+      logRpaUsage("만족도분석기", "성공");
     } catch (err) {
       console.error(err);
       showToast("분석 처리 도중 에러가 발생했습니다.", "error");
+      logRpaUsage("만족도분석기", "실패");
     } finally {
       showLoading(false);
     }
@@ -1152,4 +1154,32 @@ function createToastContainer() {
   container.id = "toast-container";
   document.body.appendChild(container);
   return container;
+}
+
+// RPA 작동 이력 수집 헬퍼 함수
+function logRpaUsage(programName, status) {
+  const gasUrl = 'https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec';
+  
+  fetch('https://api.ipify.org?format=json')
+    .then(res => res.json())
+    .then(ipData => {
+      const payload = {
+        type: 'RPA작동로그',
+        programName: programName,
+        status: status,
+        ip: ipData.ip
+      };
+      
+      return fetch(gasUrl, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(payload)
+      });
+    })
+    .catch(err => {
+      console.error('RPA 사용 로그 전송 실패:', err);
+    });
 }

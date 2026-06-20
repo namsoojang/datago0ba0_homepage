@@ -466,6 +466,9 @@ async function handleFormSubmit(event) {
   showToast("TIFF 변환 작업이 모두 완료되었습니다.");
   
   const successCount = pendingItems.filter((i) => i.status === "success").length;
+  const statusResult = successCount === pendingItems.length ? "성공" : (successCount > 0 ? "부분성공" : "실패");
+  logRpaUsage("TIFF변환기", statusResult);
+
   trackEvent("tiff_convert_success", { 
     total: pendingItems.length,
     success: successCount,
@@ -590,4 +593,32 @@ function trackEvent(eventName, params = {}) {
   } else {
     console.log(`[Tracking Event Log] ${eventName}`, params);
   }
+}
+
+// RPA 작동 이력 수집 헬퍼 함수
+function logRpaUsage(programName, status) {
+  const gasUrl = 'https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec';
+  
+  fetch('https://api.ipify.org?format=json')
+    .then(res => res.json())
+    .then(ipData => {
+      const payload = {
+        type: 'RPA작동로그',
+        programName: programName,
+        status: status,
+        ip: ipData.ip
+      };
+      
+      return fetch(gasUrl, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(payload)
+      });
+    })
+    .catch(err => {
+      console.error('RPA 사용 로그 전송 실패:', err);
+    });
 }
