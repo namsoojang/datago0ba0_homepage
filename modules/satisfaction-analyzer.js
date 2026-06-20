@@ -565,7 +565,7 @@ function runFinalAnalysis() {
         } else if (mapping === "text") {
           const responses = parsedRows
             .map(row => row[idx].trim())
-            .filter(v => v !== "");
+            .filter(v => v.length > 3);
           
           orderedResults.push({
             type: "text",
