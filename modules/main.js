@@ -725,10 +725,17 @@ function initContactTracking() {
 /* ----------------------------------------------------
    테마 전환 토글 제어 및 설정 저장
 ---------------------------------------------------- */
+function isWhiteThemePage() {
+  const path = window.location.pathname;
+  return path.includes('satisfaction-analyzer.html') || 
+         path.includes('tiff-to-png.html') || 
+         path.includes('rpa.html') || 
+         path.includes('blog.html') || 
+         path.includes('blog-detail.html');
+}
+
 function initThemeToggle() {
   const toggleBtn = document.getElementById('theme-toggle-btn');
-  if (!toggleBtn) return;
-
   const headerLogo = document.getElementById('header-logo-img');
   const footerLogo = document.getElementById('footer-logo-img');
 
@@ -751,6 +758,20 @@ function initThemeToggle() {
 
   // 페이지 로드 시 기존 테마 값 로드 및 강제 바인딩
   const savedTheme = localStorage.getItem('theme');
+
+  if (isWhiteThemePage()) {
+    // 화이트 테마 고정 페이지의 경우, 틸 테마 클래스를 강제로 제거하여 라이트 모드로 고정
+    document.body.classList.remove('theme-teal');
+    updateLogoSource('gold');
+    // 플로팅 단추가 남아있다면 감춤 처리
+    if (toggleBtn) {
+      toggleBtn.style.display = 'none';
+    }
+    return;
+  }
+
+  if (!toggleBtn) return; // 아래 토글 버튼 리스너는 토글 버튼이 있는 페이지(홈페이지)에서만 작동
+
   if (savedTheme === 'teal') {
     document.body.classList.add('theme-teal');
     updateLogoSource('teal');
@@ -784,7 +805,7 @@ function initThemeToggle() {
 
 /* ----------------------------------------------------
    ★ Hero 영역 p5.js 실시간 마우스 추종 백그라운드 구현 (인스턴스 모드)
----------------------------------------------------- */
+ ---------------------------------------------------- */
 let heroP5Instance = null;
 
 function initHeroCanvas() {
@@ -792,7 +813,10 @@ function initHeroCanvas() {
   if (!container || typeof p5 === 'undefined') return;
 
   const savedTheme = localStorage.getItem('theme') || 'gold';
-  const initialColor = (savedTheme === 'teal') ? '#02C39A' : '#E5C158';
+  let initialColor = (savedTheme === 'teal') ? '#02C39A' : '#E5C158';
+  if (isWhiteThemePage()) {
+    initialColor = '#E5C158';
+  }
 
   let heroSketch = (p) => {
     let particles = [];
