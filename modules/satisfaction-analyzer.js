@@ -536,8 +536,8 @@ function runFinalAnalysis() {
             
             rawScores.forEach(val => {
               if (scale === 5) {
-                if (val === 5) npsPromoters++;
-                if (val <= 3) npsDetractors++;
+                if (val >= 4) npsPromoters++;
+                if (val <= 2) npsDetractors++;
               } else {
                 if (val >= 9) npsPromoters++;
                 if (val <= 6) npsDetractors++;
@@ -617,8 +617,8 @@ function runFinalAnalysis() {
             let npsDetractors = 0;
             rawScores.forEach(val => {
               if (npsMatch.scale === 5) {
-                if (val === 5) npsPromoters++;
-                if (val <= 3) npsDetractors++;
+                if (val >= 4) npsPromoters++;
+                if (val <= 2) npsDetractors++;
               } else {
                 if (val >= 9) npsPromoters++;
                 if (val <= 6) npsDetractors++;
