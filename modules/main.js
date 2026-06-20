@@ -1210,88 +1210,100 @@ function initContactForm() {
 
     const formUrl = form.getAttribute('action') || 'https://script.google.com/macros/s/AKfycbzAszHTXbVl4eInbK0OnIm0iLUAfEwo9_I7kQn_mKTd4DGeT2nMhqq8B4IawmvQyfQSHw/exec';
 
-    fetch(formUrl, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      },
-      body: JSON.stringify(payload)
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data.success) {
-        // 성공 처리
-        form.reset();
+    // 사용자 공용 IP 조회 후 함께 전송
+    fetch('https://api.ipify.org?format=json')
+      .then(res => res.json())
+      .then(ipData => {
+        payload['ip'] = ipData.ip;
+      })
+      .catch(err => {
+        console.error('IP 획득 실패:', err);
+        payload['ip'] = '알 수 없음';
+      })
+      .finally(() => {
+        fetch(formUrl, {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            // 성공 처리
+            form.reset();
 
-        // GA4 / GTM 이벤트 송신
-        window.dataLayer = window.dataLayer || [];
-        
-        let eventName;
-        let eventParams = {
-          'event_category': 'Contact'
-        };
+            // GA4 / GTM 이벤트 송신
+            window.dataLayer = window.dataLayer || [];
+            
+            let eventName;
+            let eventParams = {
+              'event_category': 'Contact'
+            };
 
-        if (type === 'general') {
-          eventName = 'submit_general_contact';
-          eventParams['event_label'] = 'General Inquiry';
-        } else if (type === 'estimate') {
-          eventName = 'submit_estimate_request';
-          eventParams['event_label'] = 'Estimate Request';
-          eventParams['company'] = payload['company'] || '';
-          eventParams['headcount'] = payload['headcount'] || '';
-          eventParams['topic'] = payload['topic'] || '';
-          eventParams['timing'] = payload['timing'] || '';
-        } else if (type === 'message-delivery') {
-          eventName = 'submit_message_delivery_contact';
-          eventParams['event_label'] = 'Message Delivery Inquiry';
-        }
+            if (type === 'general') {
+              eventName = 'submit_general_contact';
+              eventParams['event_label'] = 'General Inquiry';
+            } else if (type === 'estimate') {
+              eventName = 'submit_estimate_request';
+              eventParams['event_label'] = 'Estimate Request';
+              eventParams['company'] = payload['company'] || '';
+              eventParams['headcount'] = payload['headcount'] || '';
+              eventParams['topic'] = payload['topic'] || '';
+              eventParams['timing'] = payload['timing'] || '';
+            } else if (type === 'message-delivery') {
+              eventName = 'submit_message_delivery_contact';
+              eventParams['event_label'] = 'Message Delivery Inquiry';
+            }
 
-        window.dataLayer.push({
-          'event': eventName,
-          ...eventParams
+            window.dataLayer.push({
+              'event': eventName,
+              ...eventParams
+            });
+
+            if (typeof gtag === 'function') {
+              gtag('event', eventName, eventParams);
+            }
+
+            // 알림 메시지 정의
+            let successTitle = '';
+            let successMsg = '';
+
+            if (type === 'general') {
+              successTitle = '문의 접수 완료';
+              successMsg = '문의가 정상적으로 전송되었습니다.<br>확인 후 입력해주신 연락처로 신속하게 연락드리겠습니다.';
+            } else if (type === 'estimate') {
+              successTitle = '견적 요청 접수 완료';
+              successMsg = '교육 견적 요청이 정상적으로 접수되었습니다.<br>1~2일 내에 맞춤형 제안서와 함께 메일로 회신해 드리겠습니다.';
+            } else if (type === 'message-delivery') {
+              successTitle = '문의 및 개선요청 접수 완료';
+              successMsg = '보내주신 문의/개선요청사항이 정상적으로 접수되었습니다.<br>데이터공방에서 확인 후 신속하게 회신해 드리겠습니다.';
+            }
+
+            window.showSuccessModal(successTitle, successMsg, '확인');
+          } else {
+            // 실패 처리
+            const errMsg = data.message || '전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+            showToast(errMsg, 'error');
+          }
+        })
+        .catch(error => {
+          console.error('Form submission error:', error);
+          showToast('네트워크 오류가 발생했습니다. 연결 상태를 확인하고 다시 시도해 주세요.', 'error');
+        })
+        .finally(() => {
+          // UI 상태 복구
+          submitBtn.disabled = false;
+          submitText.innerText = originalText;
+          submitIcon.className = originalIconClass;
         });
-
-        if (typeof gtag === 'function') {
-          gtag('event', eventName, eventParams);
-        }
-
-        // 알림 메시지 정의
-        let successTitle = '';
-        let successMsg = '';
-
-        if (type === 'general') {
-          successTitle = '문의 접수 완료';
-          successMsg = '문의가 정상적으로 전송되었습니다.<br>확인 후 입력해주신 연락처로 신속하게 연락드리겠습니다.';
-        } else if (type === 'estimate') {
-          successTitle = '견적 요청 접수 완료';
-          successMsg = '교육 견적 요청이 정상적으로 접수되었습니다.<br>1~2일 내에 맞춤형 제안서와 함께 메일로 회신해 드리겠습니다.';
-        } else if (type === 'message-delivery') {
-          successTitle = '문의 및 개선요청 접수 완료';
-          successMsg = '보내주신 문의/개선요청사항이 정상적으로 접수되었습니다.<br>데이터공방에서 확인 후 신속하게 회신해 드리겠습니다.';
-        }
-
-        window.showSuccessModal(successTitle, successMsg, '확인');
-      } else {
-        // 실패 처리
-        const errMsg = data.message || '전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
-        showToast(errMsg, 'error');
-      }
-    })
-    .catch(error => {
-      console.error('Form submission error:', error);
-      showToast('네트워크 오류가 발생했습니다. 연결 상태를 확인하고 다시 시도해 주세요.', 'error');
-    })
-    .finally(() => {
-      // UI 상태 복구
-      submitBtn.disabled = false;
-      submitText.innerText = originalText;
-      submitIcon.className = originalIconClass;
-    });
+      });
   }
 }
