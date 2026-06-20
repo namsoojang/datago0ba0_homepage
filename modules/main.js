@@ -1208,7 +1208,7 @@ function initContactForm() {
       payload['type'] = '메세지배달부';
     }
 
-    const formUrl = form.getAttribute('action') || 'https://script.google.com/macros/s/AKfycbzUE1tzXIy0oQzupcf5eg-PB8VytHBJmEUBCJKfVxx2lXgq5Ddm8VpLUD3cKlH9cqCPiA/exec';
+    const formUrl = form.getAttribute('action') || 'https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec';
 
     // 사용자 공용 IP 조회 후 함께 전송
     fetch('https://api.ipify.org?format=json')
