@@ -1546,6 +1546,32 @@ header.scrolled {
   box-shadow: 0 0 10px rgba(2, 195, 154, 0.15);
 }
 
+/* RPA Light Theme Form Control Overrides */
+body.rpa-light-theme .form-group input,
+body.rpa-light-theme .form-group textarea,
+body.rpa-light-theme .form-group select {
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  color: #0F172A;
+}
+
+body.rpa-light-theme .form-group input::placeholder,
+body.rpa-light-theme .form-group textarea::placeholder {
+  color: #94A3B8;
+}
+
+body.rpa-light-theme .form-group input:focus,
+body.rpa-light-theme .form-group textarea:focus,
+body.rpa-light-theme .form-group select:focus {
+  background: #FFFFFF;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+body.rpa-light-theme .submit-btn {
+  color: #FFFFFF;
+}
+
 .form-group select {
   cursor: pointer;
   appearance: none;
