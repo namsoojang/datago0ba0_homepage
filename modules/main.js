@@ -1184,31 +1184,55 @@ function initContactForm() {
 
     const formUrl = form.getAttribute('action') || 'https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec';
 
-    // 사용자 공용 IP 조회 후 함께 전송
-    fetch('https://api.ipify.org?format=json')
-      .then(res => res.json())
-      .then(ipData => {
-        payload['ip'] = ipData.ip;
-      })
-      .catch(err => {
-        console.error('IP 획득 실패:', err);
-        payload['ip'] = '알 수 없음';
-      })
-      .finally(() => {
-        fetch(formUrl, {
-          method: 'POST',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8'
-          },
-          body: JSON.stringify(payload)
+    // 타임아웃(1.5초) 및 폴백이 적용된 견고한 IP 수집기 정의
+    const getIPAddress = () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 1500);
+
+      return fetch('https://api.ipify.org?format=json', { signal: controller.signal })
+        .then(res => res.json())
+        .then(ipData => {
+          clearTimeout(timeoutId);
+          return ipData.ip;
         })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
+        .catch(err => {
+          clearTimeout(timeoutId);
+          console.warn('Primary IP fetch (ipify) failed, trying fallback (ipinfo)...', err);
+          
+          const backupController = new AbortController();
+          const backupTimeoutId = setTimeout(() => backupController.abort(), 1500);
+          
+          return fetch('https://ipinfo.io/json', { signal: backupController.signal })
+            .then(res => res.json())
+            .then(backupData => {
+              clearTimeout(backupTimeoutId);
+              return backupData.ip || '알 수 없음';
+            })
+            .catch(backupErr => {
+              clearTimeout(backupTimeoutId);
+              console.error('All IP fetches failed:', backupErr);
+              return '알 수 없음';
+            });
+        });
+    };
+
+    getIPAddress().then(ip => {
+      payload['ip'] = ip;
+
+      fetch(formUrl, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
         .then(data => {
           if (data.success) {
             // 성공 처리

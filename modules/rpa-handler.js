@@ -5,7 +5,39 @@
 
 // ⚠️ 배포 시 생성하신 Google Apps Script Web App URL로 교체해주셔야 작동합니다.
 // 교체 방법은 docs/google-script-guide.md 문서를 참조하세요.
-const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbybq4BX-vf75-UhqtGZxJelIEEbO7Ga-r-u2ynAdGyKqQ32vl5yPjkV9Mrv-FKArs6HDw/exec";
+const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec";
+
+// 타임아웃(1.5초) 및 폴백이 적용된 견고한 IP 수집기 정의
+const getIPAddress = () => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 1500);
+
+  return fetch('https://api.ipify.org?format=json', { signal: controller.signal })
+    .then(res => res.json())
+    .then(ipData => {
+      clearTimeout(timeoutId);
+      return ipData.ip;
+    })
+    .catch(err => {
+      clearTimeout(timeoutId);
+      console.warn('Primary IP fetch (ipify) failed, trying fallback (ipinfo)...', err);
+      
+      const backupController = new AbortController();
+      const backupTimeoutId = setTimeout(() => backupController.abort(), 1500);
+      
+      return fetch('https://ipinfo.io/json', { signal: backupController.signal })
+        .then(res => res.json())
+        .then(backupData => {
+          clearTimeout(backupTimeoutId);
+          return backupData.ip || '알 수 없음';
+        })
+        .catch(backupErr => {
+          clearTimeout(backupTimeoutId);
+          console.error('All IP fetches failed:', backupErr);
+          return '알 수 없음';
+        });
+    });
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   initModalEvents();
@@ -121,10 +153,12 @@ function initModalEvents() {
     submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> 신청 데이터 전송 중...`;
 
     // C. 구글 앱스 스크립트 비동기 POST 송신
+    const ip = await getIPAddress();
     const payload = {
       toolName: toolName,
       email: email,
-      phone: phone
+      phone: phone,
+      ip: ip
     };
 
     // GA4 분석 이벤트 트리깅
@@ -335,13 +369,15 @@ function initSuggestModalEvents() {
     submitBtn.disabled = true;
     submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> 제안 전송 중...`;
 
+    const ip = await getIPAddress();
     // 폼 데이터 페이로드 구성 (기존 구글 Apps Script의 '홈페이지 문의 분기'와 완벽 호환되도록 구성)
     const payload = {
       type: "자동화 아이디어 제안",
       name: "아이디어 제안자",
       email: email,
       phone: phone || "미입력",
-      message: message
+      message: message,
+      ip: ip
     };
 
     // GA4 분석 이벤트 트리깅
