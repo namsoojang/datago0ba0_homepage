@@ -48,5 +48,15 @@
     "summary": "교육 만족도 조사는 평균 점수를 계산하는 절차가 아니라, 다음 교육을 더 좋게 만들기 위한 회고와 의사결정의 출발점입니다. 엑셀 집계의 관성에서 벗어나 주관식 답변에 숨겨진 맥락을 읽어내는 분석 가치를 나눕니다.",
     "thumbnail": "./assets/images/blog/satisfaction_cover.png",
     "contentPath": "data/posts/ref-07.md"
+  },
+  {
+    "id": "ref-08",
+    "title": "메세지배달부 앱 안내: 공용폰 문자와 부재중 전화를 Slack으로 자동 전달하는 방법",
+    "date": "2026-06-20",
+    "category": "RPA 도구",
+    "tags": ["메세지배달부", "RPA", "업무자동화", "Slack", "공용폰"],
+    "summary": "메세지배달부 앱이 무엇인지, 어떤 상황에서 필요한지, 문자와 부재중 전화 및 카카오톡 알림을 Slack으로 전달하는 사용 흐름과 권한, 보안 주의사항을 차근차근 안내합니다.",
+    "thumbnail": "./assets/images/blog/message-delivery-icon.png",
+    "contentPath": "data/posts/ref-08.md"
   }
 ]
