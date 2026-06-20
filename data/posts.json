@@ -51,11 +51,11 @@
   },
   {
     "id": "ref-08",
-    "title": "메세지배달부 앱 안내: 공용폰 문자와 부재중 전화를 Slack으로 자동 전달하는 방법",
+    "title": "메세지배달부 개발기: 안드로이드 백그라운드 절전 극복과 CI/CD 배포 자동화",
     "date": "2026-06-20",
-    "category": "RPA 도구",
-    "tags": ["메세지배달부", "RPA", "업무자동화", "Slack", "공용폰"],
-    "summary": "메세지배달부 앱이 무엇인지, 어떤 상황에서 필요한지, 문자와 부재중 전화 및 카카오톡 알림을 Slack으로 전달하는 사용 흐름과 권한, 보안 주의사항을 차근차근 안내합니다.",
+    "category": "개발일지",
+    "tags": ["메세지배달부", "Android", "백그라운드디버깅", "GitHub Actions", "CI/CD"],
+    "summary": "공용폰 알림 전달 앱 '메세지배달부'의 개발 비하인드. 삼성 갤럭시 등 안드로이드의 백그라운드 절전 제어 한계를 극복하기 위한 트러블슈팅과 GitHub Actions 기반 빌드 자동화 시스템 구축 과정을 상세히 나눕니다.",
     "thumbnail": "./assets/images/blog/message-delivery-icon.png",
     "contentPath": "data/posts/ref-08.md"
   }

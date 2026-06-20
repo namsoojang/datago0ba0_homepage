@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8H79VM0RM8');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KVV9V7QN');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공용폰 메세지배달부 | 문자와 부재중 전화를 슬랙으로 자동 전송 - 데이터공방</title>
+  
+  <!-- SEO 최적화 메타 태그 -->
+  <meta name="naver-site-verification" content="6b1811d6074cc78b96b89f616ba7cc1278f1666f" />
+  <meta name="google-site-verification" content="Oc6kBZ-qy21JGaAiEqgg8tZzyi-uIToJVG_DXRJmL0k" />
+  <meta name="description" content="공용 안드로이드폰에 수신되는 문자메시지, 부재중 전화, 카카오톡 알림을 지정한 슬랙(Slack) 채널로 자동 배달해주는 메세지배달부 앱 상세 매뉴얼 및 최신 APK 다운로드 페이지입니다.">
+  <meta name="keywords" content="메세지배달부, 공용폰 문자 슬랙, 문자 자동 전달, 부재중 전화 슬랙 알림, 카카오톡 알림 슬랙, RPA 업무 자동화, 데이터공방, 업무 자동화 사내 교육, 기업 AX 워크숍, 임직원 파이썬 실무 출강">
+  
+  <meta property="og:title" content="공용폰 메세지배달부 | 문자와 부재중 전화를 슬랙으로 자동 전송 - 데이터공방">
+  <meta property="og:description" content="업무용 공용폰에 오는 연락을 슬랙 채널에 실시간으로 자동 공유해주는 안드로이드 앱. 최신 설치 파일 및 상세 사용 가이드를 제공합니다.">
+  <meta property="og:image" content="./assets/images/blog/message-delivery-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://datagongbang.kr/message-delivery.html">
+  
+  <!-- Canonical URL 설정 -->
+  <link rel="canonical" href="https://datagongbang.kr/message-delivery.html">
+
+  <!-- 파비콘 및 앱 아이콘 설정 -->
+  <link rel="icon" type="image/png" href="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  
+  <!-- 스타일시트 연동 -->
+  <link rel="stylesheet" href="./index.css?v=1.2">
+  <link rel="stylesheet" href="./modules/toast.css?v=1.2">
+  
+  <!-- 외부 폰트/아이콘 라이브러리 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+
+  <style>
+    /* 메세지배달부 전용 추가 스타일링 */
+    .download-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .download-card .file-info {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .guide-step-list {
+      list-style: none;
+      padding: 0;
+    }
+    .guide-step-item {
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 24px;
+    }
+    .guide-step-number {
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 24px;
+      height: 24px;
+      background-color: var(--color-gold);
+      color: #1e293b;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .guide-step-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 6px;
+    }
+    .guide-step-desc {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .callout-box {
+      background: rgba(2, 195, 154, 0.05);
+      border-left: 4px solid var(--color-green);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .callout-box.warning {
+      background: rgba(239, 68, 68, 0.05);
+      border-left: 4px solid #ef4444;
+    }
+    .callout-box-title {
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge-icon {
+      font-size: 1.2rem;
+    }
+    .rpa-card-desc-list {
+      padding-left: 20px;
+      margin: 10px 0;
+      font-size: 0.88rem;
+      color: #94a3b8;
+    }
+    .rpa-card-desc-list li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body class="rpa-light-theme">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVV9V7QN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- 전체 백그라운드 -->
+  <div id="bg-canvas-container"></div>
+
+  <!-- 1. 헤더 및 네비게이션 -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#hero" class="nav-link">Home</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="index.html#strengths" class="nav-link">Why Us</a></li>
+          <li><a href="index.html#curriculum" class="nav-link">Curriculum</a></li>
+          <li><a href="index.html#references" class="nav-link">References</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+          <li><a href="rpa.html" class="nav-link active">RPA</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. 변환기 메인 콘텐츠 -->
+  <main class="converter-section">
+    <div class="converter-container">
+      
+      <!-- 타이틀 영역 -->
+      <div class="converter-title-area">
+        <h1 class="section-title">공용폰 <span>메세지배달부 앱</span></h1>
+        <p>공용 안드로이드폰의 중요 문자 및 부재중 전화, 카카오톡 알림을 실시간으로 팀의 슬랙 채널에 자동 배달하는 업무 자동화 솔루션입니다.</p>
+        <a href="rpa.html" class="back-to-hub-link"><i class="fas fa-arrow-left"></i> RPA 자동화 도구 목록으로 돌아가기</a>
+      </div>
+
+      <!-- 레이아웃 그리드 -->
+      <div class="converter-grid">
+        
+        <!-- 좌측: 다운로드 및 정보 패널 -->
+        <section class="glass-panel">
+          <h2 class="panel-title"><i class="fas fa-download"></i> 앱 다운로드 & 정보</h2>
+          
+          <div class="download-card">
+            <div class="badge-icon" style="font-size: 3rem; color: var(--color-gold); margin-bottom: 12px;">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3 style="color:#f1f5f9; margin-bottom: 4px;">메세지배달부 APK</h3>
+            <span class="file-info">버전: v1.0.1 | 빌드일시: 2026.06.20<br>파일명: 메세지배달부-v1.0.1-20260620_1643.apk</span>
+            
+            <a href="./assets/downloads/메세지배달부-v1.0.1-20260620_1643.apk" class="btn btn-primary" download style="width:100%; border-radius:8px; display:inline-block; text-align:center; padding: 12px 0;">
+              <i class="fas fa-download"></i> 최신버전 APK 다운로드
+            </a>
+          </div>
+
+          <div class="callout-box">
+            <div class="callout-box-title">
+              <i class="fas fa-info-circle"></i>
+              <span>권장 설치 대상</span>
+            </div>
+            개인용 스마트폰에 설치할 경우 사적인 연락이 슬랙으로 노출될 우려가 있습니다. 반드시 단체 및 회사에서 공동 관리하는 **'업무용 공용폰'**에만 설치하여 운영하시는 것을 강력하게 권장합니다.
+          </div>
+
+          <h3 style="font-size: 1.1rem; color:#f1f5f9; margin: 24px 0 12px;"><i class="fas fa-list-check"></i> 앱 요구 권한 안내</h3>
+          <ul class="rpa-card-desc-list">
+            <li><strong>SMS 수신 및 읽기:</strong> 도착하는 문자를 읽어 슬랙으로 공유합니다.</li>
+            <li><strong>전화 상태 & 통화 기록:</strong> 부재중 전화를 판별하고 발신 번호를 전달합니다.</li>
+            <li><strong>연락처 접근:</strong> 수신 시 전화번호 대신 주소록에 저장된 이름을 함께 표시하여 가독성을 높입니다.</li>
+            <li><strong>알림 접근 허용:</strong> 카카오톡 등 외부 메신저 알림의 텍스트 내용을 캡처합니다.</li>
+            <li><strong>배터리 최적화 해제:</strong> OS 절전 상태에서도 백그라운드 수신 상태를 24시간 안정적으로 지켜줍니다.</li>
+          </ul>
+        </section>
+
+        <!-- 우측: 설치 및 웹후크 연동 상세 가이드 패널 -->
+        <section class="glass-panel">
+          <h2 class="panel-title"><i class="fas fa-book-open"></i> 설치 및 연동 상세 가이드</h2>
+          
+          <div class="callout-box warning">
+            <div class="callout-box-title">
+              <i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i>
+              <span>보안 상주의사항</span>
+            </div>
+            발급된 Slack Webhook URL은 채널의 발송 비밀번호와 같습니다. 노출될 경우 스팸 메시지 등이 인입될 수 있으니 외부 유출에 각별히 유의해 주세요.
+          </div>
+
+          <h3 style="font-size: 1.1rem; color:#f1f5f9; margin-bottom: 16px;"><i class="fab fa-slack"></i> 슬랙 웹후크(Incoming Webhook) 등록 방법</h3>
+          
+          <ul class="guide-step-list">
+            <li class="guide-step-item">
+              <div class="guide-step-number">1</div>
+              <div class="guide-step-title">슬랙 앱 디렉토리 접속 및 추가</div>
+              <div class="guide-step-desc">
+                데스크톱 웹 브라우저 또는 PC용 슬랙 프로그램에서 <strong><a href="https://slack.com/apps/A0F7XDUAZ-incoming-webhooks" target="_blank" style="color:var(--color-gold); text-decoration:underline;">[슬랙 수신 웹후크 설정 페이지]</a></strong>에 접속한 뒤, 로그인 상태를 확인하고 <strong>[Slack에 추가 (Add to Slack)]</strong> 버튼을 클릭합니다.<br>
+                <small style="color: #64748b;">(※ 모바일 슬랙 앱에서는 설정이 불가능합니다.)</small>
+              </div>
+            </li>
+            <li class="guide-step-item">
+              <div class="guide-step-number">2</div>
+              <div class="guide-step-title">알림을 수신할 슬랙 채널 지정</div>
+              <div class="guide-step-desc">화면에 나타나는 <strong>'채널 선택...'</strong> 셀렉트 박스에서 공용폰 문자를 공유받아 볼 전용 슬랙 채널(예: <code>#공용폰-알림</code>)을 골라 지정한 후, 하단의 <strong>[수신 웹후크 통합 앱 추가]</strong> 버튼을 누릅니다.</div>
+            </li>
+            <li class="guide-step-item">
+              <div class="guide-step-number">3</div>
+              <div class="guide-step-title">웹후크 URL 복사</div>
+              <div class="guide-step-desc">연동이 완료되어 나온 페이지 상세 항목에서 <code>https://hooks.slack.com/services/...</code>로 시작되는 아주 긴 <strong>'웹후크 URL (Webhook URL)'</strong> 주소를 찾아 바로 옆의 <strong>[URL 복사]</strong> 버튼을 클릭하여 복사해 둡니다.</div>
+            </li>
+            <li class="guide-step-item">
+              <div class="guide-step-number">4</div>
+              <div class="guide-step-title">공용폰 앱에 주소 등록 및 가동</div>
+              <div class="guide-step-desc">복사한 웹후크 주소를 공용폰의 메세지배달부 앱 내 <strong>'Slack Webhook URL'</strong> 칸에 붙여넣습니다. 이후 <strong>[테스트 메시지 발송]</strong>을 눌러 슬랙 수신을 확인한 뒤 <strong>[자동 배달 시작]</strong>을 누르면 실시간 작동을 시작합니다.</div>
+            </li>
+          </ul>
+
+          <h3 style="font-size: 1.1rem; color:#f1f5f9; margin: 32px 0 16px;"><i class="fas fa-question-circle"></i> 설치 중 차단되거나 알림이 안 와요</h3>
+          <ul class="rpa-card-desc-list">
+            <li><strong>삼성 갤럭시 '보안 위험 차단기':</strong> 스토어를 거치지 않고 설치하므로 경고 팝업이 뜰 수 있습니다. <code>설정 > 보안 및 개인정보 보호 > 보안 위험 차단기</code>를 일시 해제하시고 설치한 뒤, 완료 후 다시 보안 위험 차단기를 켜는 것을 권장합니다.</li>
+            <li><strong>알림이 오다 멈추는 경우:</strong> 안드로이드 스마트폰의 백그라운드 절전 제어 기능 때문입니다. <code>설정 > 애플리케이션 > 메세지배달부 > 배터리</code> 설정에서 반드시 <strong>[제한 없음]</strong>이 적용되어 있는지 수시로 확인해 주세요.</li>
+          </ul>
+        </section>
+
+      </div>
+
+      <!-- 쿠팡 파트너스 배너 광고 연동 영역 -->
+      <div class="ad-wrapper">
+        <div class="ad-label">ADVERTISEMENT</div>
+        <div class="ad-iframe-container">
+          <iframe src="https://ads-partners.coupang.com/widgets.html?id=997992&template=carousel&trackingCode=AF2960333&subId=kiddwannabe&width=680&height=140&tsource=" width="680" height="140" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+        </div>
+        <p class="ad-disclosure">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 3. Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img class="logo-symbol brand-logo-img" id="footer-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </div>
+      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="rpa.html" style="text-decoration:underline; opacity:0.8; transition:opacity 0.2s; margin-left:5px;">무료 RPA 도구</a> | <a href="privacy.html" style="text-decoration:underline; opacity:0.8; transition:opacity 0.2s; margin-left:5px;">개인정보처리방침</a></p>
+    </div>
+  </footer>
+
+  <!-- 외부 캔버스 데코 효과 구현용 라이브러리 및 메인 스크립트 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  <script src="./modules/main.js?v=1.2"></script>
+</body>
+</html>
