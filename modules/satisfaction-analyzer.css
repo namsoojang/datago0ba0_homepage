@@ -596,3 +596,18 @@ body.theme-teal .tab-btn.active {
   width: 0%;
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* 12. 라이트 테마(rpa-light-theme) 전용 폼 및 텍스트 영역 가독성 보완 */
+body.rpa-light-theme .textarea-control {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: var(--color-ink-800, #1e293b) !important;
+}
+
+body.rpa-light-theme .textarea-control:focus {
+  background: #ffffff !important;
+  border-color: var(--color-teal, #00a896) !important;
+  box-shadow: var(--focus-ring, 0 0 0 3px rgba(0, 168, 150, 0.18)) !important;
+  color: var(--color-ink-900, #0f172a) !important;
+}
+
