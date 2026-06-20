@@ -319,6 +319,15 @@
   line-height: 1.75;
 }
 
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 28px auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
 .markdown-body h2 {
   font-size: 1.35rem;
   color: #0f172a;
