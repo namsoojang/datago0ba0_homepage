@@ -42,6 +42,62 @@
   --border-radius-sm: 8px;
   --border-radius-md: 16px;
   --border-radius-lg: 24px;
+
+  /* 디자인 시스템 별칭 토큰: 신규 UI는 아래 의미 기반 토큰을 우선 사용 */
+  --color-brand-navy-950: #060B19;
+  --color-brand-navy-900: #080E1E;
+  --color-brand-navy-800: #0D162D;
+  --color-gold: var(--accent-gold);
+  --color-gold-muted: var(--primary-gold);
+  --color-gold-deep: var(--dark-gold);
+  --color-teal: #00A896;
+  --color-teal-bright: #02C39A;
+  --color-ink-900: #0F172A;
+  --color-ink-800: #1E293B;
+  --color-ink-700: #334155;
+  --color-ink-600: #475569;
+  --color-ink-500: #64748B;
+  --color-ink-400: #94A3B8;
+  --color-line: #E2E8F0;
+  --color-line-soft: #F1F5F9;
+  --color-surface: #FFFFFF;
+  --color-surface-soft: #F8FAFC;
+  --color-success: #00A896;
+  --color-info: #3B82F6;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+  --surface-page: var(--bg-color);
+  --surface-page-gradient: var(--bg-gradient);
+  --surface-panel: var(--card-bg);
+  --surface-panel-border: var(--card-border);
+  --surface-panel-hover-border: var(--card-hover-border);
+  --text-strong: var(--text-primary);
+  --text-body: var(--text-secondary);
+  --text-subtle: var(--text-muted);
+  --accent-primary: var(--primary-teal);
+  --accent-primary-rgb: var(--primary-teal-rgb);
+  --accent-emphasis: var(--accent-teal);
+  --accent-emphasis-rgb: var(--accent-teal-rgb);
+  --focus-ring: 0 0 0 3px rgba(var(--accent-emphasis-rgb), 0.18);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-section: 120px;
+
+  --radius-xs: 4px;
+  --radius-sm: var(--border-radius-sm);
+  --radius-md: var(--border-radius-md);
+  --radius-lg: var(--border-radius-lg);
+  --radius-pill: 999px;
 }
 
 /* 세이지 틸 & 딥네이비 테마 (B안) 오버라이드 */
@@ -54,6 +110,30 @@ body.theme-teal {
   --accent-teal-rgb: 2, 195, 154;
   --dark-teal: #028090;
   --card-border: rgba(255, 255, 255, 0.06);
+}
+
+/* 라이트 도구/콘텐츠 화면 토큰 */
+body.rpa-light-theme {
+  --bg-color: #FFFFFF;
+  --bg-gradient: none;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --primary-teal: #00A896;
+  --primary-teal-rgb: 0, 168, 150;
+  --accent-teal: #02C39A;
+  --accent-teal-rgb: 2, 195, 154;
+  --dark-teal: #028090;
+  --card-bg: #FFFFFF;
+  --card-border: #E2E8F0;
+  --card-hover-border: rgba(2, 195, 154, 0.45);
+  --surface-page: #FFFFFF;
+  --surface-page-gradient: none;
+  --surface-panel: #FFFFFF;
+  --surface-panel-border: #E2E8F0;
+  --text-strong: #0F172A;
+  --text-body: #475569;
+  --text-subtle: #64748B;
 }
 
 /* 3. 기본 리셋 스타일 */
