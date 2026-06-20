@@ -726,12 +726,11 @@ function initContactTracking() {
    테마 전환 토글 제어 및 설정 저장
 ---------------------------------------------------- */
 function isWhiteThemePage() {
-  const path = window.location.pathname;
-  return path.includes('satisfaction-analyzer.html') || 
-         path.includes('tiff-to-png.html') || 
-         path.includes('rpa.html') || 
-         path.includes('blog.html') || 
-         path.includes('blog-detail.html');
+  const href = window.location.href.toLowerCase();
+  return href.includes('satisfaction-analyzer') || 
+         href.includes('tiff-to-png') || 
+         href.includes('rpa') || 
+         href.includes('blog');
 }
 
 function initThemeToggle() {
@@ -760,8 +759,9 @@ function initThemeToggle() {
   const savedTheme = localStorage.getItem('theme');
 
   if (isWhiteThemePage()) {
-    // 화이트 테마 고정 페이지의 경우, 틸 테마 클래스를 강제로 제거하여 라이트 모드로 고정
+    // 화이트 테마 고정 페이지의 경우, 틸 테마 클래스를 강제로 제거하고 라이트 테마 클래스 강제 적용
     document.body.classList.remove('theme-teal');
+    document.body.classList.add('rpa-light-theme');
     updateLogoSource('gold');
     // 플로팅 단추가 남아있다면 감춤 처리
     if (toggleBtn) {

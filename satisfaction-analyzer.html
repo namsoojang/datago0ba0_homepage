@@ -213,31 +213,15 @@
             </div>
           </div>
 
-          <!-- 2. 레이아웃 그리드 (만족도 분석 리포트 / 주관식 피드백) -->
-          <div style="display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 32px;">
-            
-            <!-- 좌측/상단: 점수 척도 분석 카드 목록 -->
-            <div>
-              <h4 style="font-size: 1.05rem; font-weight: 700; color: #334155; margin: 0 0 16px 0; display: flex; align-items: center; gap: 8px;">
-                <span style="display: inline-block; width: 4px; height: 16px; background-color: var(--color-gold); border-radius: 2px;"></span>
-                객관식 문항별 세부 분석
-              </h4>
-              <div class="questions-list" id="score-questions-list">
-                <!-- JS 동적 주입 -->
-              </div>
+          <!-- 2. 단일 결과 리스트 (원본 문항 순서대로 이어서 출력) -->
+          <div style="margin-top: 32px;">
+            <h4 style="font-size: 1.05rem; font-weight: 700; color: #334155; margin: 0 0 16px 0; display: flex; align-items: center; gap: 8px;">
+              <span style="display: inline-block; width: 4px; height: 16px; background-color: var(--color-gold); border-radius: 2px;"></span>
+              문항별 세부 분석 및 주관식 피드백
+            </h4>
+            <div class="questions-list" id="analysis-results-list">
+              <!-- JS 동적 주입 (객관식과 주관식이 엑셀 원본 순서대로 렌더링됩니다) -->
             </div>
-
-            <!-- 우측/하단: 주관식 의견 아코디언 목록 -->
-            <div style="margin-top: 16px;">
-              <h4 style="font-size: 1.05rem; font-weight: 700; color: #334155; margin: 0 0 16px 0; display: flex; align-items: center; gap: 8px;">
-                <span style="display: inline-block; width: 4px; height: 16px; background-color: var(--color-gold); border-radius: 2px;"></span>
-                주관식 의견 피드백 수집함
-              </h4>
-              <div id="text-questions-list">
-                <!-- JS 동적 주입 -->
-              </div>
-            </div>
-
           </div>
 
           <!-- 대시보드 공통 액션 바 -->

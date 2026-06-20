@@ -449,6 +449,7 @@ function runFinalAnalysis() {
   setTimeout(() => {
     try {
       // 1. 결과 데이터 초기화
+      const orderedResults = [];
       const scoreCols = [];
       const textCols = [];
       const metaCols = [];
@@ -466,17 +467,9 @@ function runFinalAnalysis() {
         return;
       }
 
-      // 2. 전체 요약 지표 산출
       const responseCount = parsedRows.length;
-      let totalScoreSum = 0;
-      let totalScoreCount = 0;
-      let positiveCount = 0; // 긍정 응답 개수
-      let totalValidScores = 0; // 전체 응답 수 * 점수 컬럼 수
-      
-      // 문항별 디테일 지표 수집용
-      const questionReports = [];
 
-      // NPS 산정용 문항 선정 (컬럼명에 '추천', 'nps' 등이 들어간 첫 문항 또는 첫 번째 점수 문항)
+      // NPS 전체 대표 산정용 문항 선정 (컬럼명에 '추천', 'nps' 등이 들어간 첫 문항 또는 첫 번째 점수 문항)
       let npsCol = scoreCols.find(c => {
         const name = c.name.toLowerCase();
         return name.includes("추천") || name.includes("nps") || name.includes("순추천");
@@ -487,131 +480,173 @@ function runFinalAnalysis() {
         npsCol = scoreCols[0];
       }
 
-      let npsValue = null;
-      let npsPromoterRatio = 0;
-      let npsDetractorRatio = 0;
-      let npsScaleInfo = "미지정";
-
-      scoreCols.forEach((col) => {
-        const rawScores = parsedRows
-          .map(row => Number(row[col.index]))
-          .filter(v => !isNaN(v) && v !== null && v !== undefined && v !== 0); // 0점 제외 처리(일반적으로 미응답/결측치 처리)
-
-        if (rawScores.length === 0) return;
-
-        // 해당 문항의 스케일 자동 인지 (최댓값 판단)
-        const localMax = Math.max(...rawScores);
-        const scale = localMax <= 5 ? 5 : 10;
+      // 전체 헤더 순서대로 돌면서 순서가 보존된 orderedResults 생성
+      parsedHeaders.forEach((h, idx) => {
+        const mapping = columnMappings[idx];
         
-        let sum = 0;
-        let pCount = 0; // 긍정 수 (5점 스케일: 4,5점 / 10점 스케일: 8,9,10점)
-        let dCount = 0; // 부정 수 (5점 스케일: 1,2점 / 10점 스케일: 0-6점)
-        const frequencies = {};
+        if (mapping === "score") {
+          const rawScores = parsedRows
+            .map(row => Number(row[idx]))
+            .filter(v => !isNaN(v) && v !== null && v !== undefined && v !== 0); // 0점 제외 처리(일반적으로 미응답/결측치 처리)
 
-        // 주파수 맵 초기화
-        const maxLimit = scale === 5 ? 5 : 10;
-        for (let i = 1; i <= maxLimit; i++) frequencies[i] = 0;
-        if (scale === 10) frequencies[0] = 0; // 10점 만점 시 0점도 포함 가능
+          if (rawScores.length > 0) {
+            // 해당 문항의 스케일 자동 인지 (최댓값 판단)
+            const localMax = Math.max(...rawScores);
+            const scale = localMax <= 5 ? 5 : 10;
+            
+            let sum = 0;
+            let pCount = 0; // 긍정 수
+            let dCount = 0; // 부정 수
+            const frequencies = {};
 
-        rawScores.forEach(val => {
-          sum += val;
-          const rounded = Math.round(val);
-          if (frequencies[rounded] !== undefined) {
-            frequencies[rounded]++;
+            // 주파수 맵 초기화
+            const maxLimit = scale === 5 ? 5 : 10;
+            for (let i = 1; i <= maxLimit; i++) frequencies[i] = 0;
+            if (scale === 10) frequencies[0] = 0;
+
+            rawScores.forEach(val => {
+              sum += val;
+              const rounded = Math.round(val);
+              if (frequencies[rounded] !== undefined) {
+                frequencies[rounded]++;
+              }
+              
+              if (scale === 5) {
+                if (val >= 4) pCount++;
+                if (val <= 2) dCount++;
+              } else {
+                if (val >= 8) pCount++;
+                if (val <= 6) dCount++;
+              }
+            });
+
+            const avg = sum / rawScores.length;
+            const pRate = (pCount / rawScores.length) * 100;
+            const dRate = (dCount / rawScores.length) * 100;
+
+            // 중앙값(Median) 계산
+            const sorted = [...rawScores].sort((a, b) => a - b);
+            const mid = Math.floor(sorted.length / 2);
+            const median = sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+
+            // 문항 개별 NPS 계산
+            let localNps = null;
+            let npsPromoters = 0;
+            let npsDetractors = 0;
+            
+            rawScores.forEach(val => {
+              if (scale === 5) {
+                if (val === 5) npsPromoters++;
+                if (val <= 3) npsDetractors++;
+              } else {
+                if (val >= 9) npsPromoters++;
+                if (val <= 6) npsDetractors++;
+              }
+            });
+
+            const npsPromoterRatio = (npsPromoters / rawScores.length) * 100;
+            const npsDetractorRatio = (npsDetractors / rawScores.length) * 100;
+            localNps = parseFloat((npsPromoterRatio - npsDetractorRatio).toFixed(1));
+
+            orderedResults.push({
+              type: "score",
+              index: idx,
+              name: h,
+              scale: scale,
+              responseCount: rawScores.length,
+              average: parseFloat(avg.toFixed(2)),
+              median: parseFloat(median.toFixed(2)),
+              positiveRate: parseFloat(pRate.toFixed(1)),
+              detractorRate: parseFloat(dRate.toFixed(1)),
+              frequencies: frequencies,
+              nps: localNps
+            });
           }
+        } else if (mapping === "text") {
+          const responses = parsedRows
+            .map(row => row[idx].trim())
+            .filter(v => v !== "");
           
-          if (scale === 5) {
-            if (val >= 4) pCount++;
-            if (val <= 2) dCount++;
-          } else {
-            if (val >= 8) pCount++;
-            if (val <= 6) dCount++;
-          }
-        });
-
-        const avg = sum / rawScores.length;
-        const pRate = (pCount / rawScores.length) * 100;
-        const dRate = (dCount / rawScores.length) * 100;
-
-        totalScoreSum += sum;
-        totalScoreCount += rawScores.length;
-        positiveCount += pCount;
-        totalValidScores += rawScores.length;
-
-        // 중앙값(Median) 계산
-        const sorted = [...rawScores].sort((a, b) => a - b);
-        const mid = Math.floor(sorted.length / 2);
-        const median = sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
-
-        const qReport = {
-          index: col.index,
-          name: col.name,
-          scale: scale,
-          responseCount: rawScores.length,
-          average: parseFloat(avg.toFixed(2)),
-          median: parseFloat(median.toFixed(2)),
-          positiveRate: parseFloat(pRate.toFixed(1)),
-          detractorRate: parseFloat(dRate.toFixed(1)),
-          frequencies: frequencies
-        };
-
-        questionReports.push(qReport);
-
-        // NPS 연동 계산
-        if (npsCol && col.index === npsCol.index) {
-          npsScaleInfo = `${scale}점 척도`;
-          let npsPromoters = 0;
-          let npsDetractors = 0;
-          
-          rawScores.forEach(val => {
-            if (scale === 5) {
-              if (val === 5) npsPromoters++;
-              if (val <= 3) npsDetractors++;
-            } else {
-              if (val >= 9) npsPromoters++;
-              if (val <= 6) npsDetractors++;
-            }
+          orderedResults.push({
+            type: "text",
+            index: idx,
+            name: h,
+            responses: responses
           });
-
-          npsPromoterRatio = (npsPromoters / rawScores.length) * 100;
-          npsDetractorRatio = (npsDetractors / rawScores.length) * 100;
-          npsValue = parseFloat((npsPromoterRatio - npsDetractorRatio).toFixed(1));
         }
       });
 
-      // 주관식 의견 목록 정리
-      const textReports = textCols.map((col) => {
-        const responses = parsedRows
-          .map(row => row[col.index].trim())
-          .filter(v => v !== "");
-        
-        return {
-          index: col.index,
-          name: col.name,
-          responses: responses
-        };
+      // 2. 전체 요약 지표 산출
+      let totalScoreSum = 0;
+      let totalScoreCount = 0;
+      let positiveCount = 0; // 긍정 응답 개수
+      let totalValidScores = 0; // 전체 응답 수 * 점수 컬럼 수
+      
+      const scoreResults = orderedResults.filter(r => r.type === "score");
+      
+      scoreResults.forEach((q) => {
+        const qSum = q.average * q.responseCount;
+        totalScoreSum += qSum;
+        totalScoreCount += q.responseCount;
+        const pCount = Math.round((q.positiveRate / 100) * q.responseCount);
+        positiveCount += pCount;
+        totalValidScores += q.responseCount;
       });
 
-      // 최종 전체 평균 만족도 (5점 스케일 통일 변환 등 없이 단순 평균)
       const overallAverage = totalScoreCount > 0 ? (totalScoreSum / totalScoreCount) : 0;
       const overallPositiveRate = totalValidScores > 0 ? (positiveCount / totalValidScores) * 100 : 0;
+
+      // 전체 대표 NPS 연동 계산
+      let globalNps = {
+        value: null,
+        colName: null,
+        scale: "미지정",
+        promoters: 0,
+        detractors: 0
+      };
+
+      if (npsCol) {
+        const npsMatch = scoreResults.find(r => r.index === npsCol.index);
+        if (npsMatch) {
+          const rawScores = parsedRows
+            .map(row => Number(row[npsCol.index]))
+            .filter(v => !isNaN(v) && v !== null && v !== undefined && v !== 0);
+
+          if (rawScores.length > 0) {
+            let npsPromoters = 0;
+            let npsDetractors = 0;
+            rawScores.forEach(val => {
+              if (npsMatch.scale === 5) {
+                if (val === 5) npsPromoters++;
+                if (val <= 3) npsDetractors++;
+              } else {
+                if (val >= 9) npsPromoters++;
+                if (val <= 6) npsDetractors++;
+              }
+            });
+
+            const npsPromoterRatio = (npsPromoters / rawScores.length) * 100;
+            const npsDetractorRatio = (npsDetractors / rawScores.length) * 100;
+            globalNps = {
+              value: npsMatch.nps,
+              colName: npsCol.name,
+              scale: `${npsMatch.scale}점 척도`,
+              promoters: parseFloat(npsPromoterRatio.toFixed(1)),
+              detractors: parseFloat(npsDetractorRatio.toFixed(1))
+  };
+          }
+        }
+      }
 
       // 전역 결과 캐싱
       analysisResults = {
         responseCount: responseCount,
-        scoreQuestionCount: scoreCols.length,
-        textQuestionCount: textCols.length,
+        scoreQuestionCount: scoreResults.length,
+        textQuestionCount: orderedResults.filter(r => r.type === "text").length,
         overallAverage: parseFloat(overallAverage.toFixed(2)),
         overallPositiveRate: parseFloat(overallPositiveRate.toFixed(1)),
-        nps: {
-          value: npsValue,
-          colName: npsCol ? npsCol.name : null,
-          scale: npsScaleInfo,
-          promoters: parseFloat(npsPromoterRatio.toFixed(1)),
-          detractors: parseFloat(npsDetractorRatio.toFixed(1))
-        },
-        questions: questionReports,
-        texts: textReports
+        nps: globalNps,
+        orderedResults: orderedResults
       };
 
       // 3. 결과 대시보드 그리기
@@ -625,6 +660,27 @@ function runFinalAnalysis() {
       showLoading(false);
     }
   }, 200);
+}
+
+/**
+ * NPS 점수 스타일링 헬퍼 (라이트 모드 고정형)
+ */
+function getNpsStyle(nps) {
+  if (nps === null || nps === undefined) {
+    return "background: rgba(71, 85, 105, 0.08); color: #64748b; border: 1px solid rgba(71, 85, 105, 0.25);";
+  }
+  const val = Number(nps);
+  
+  if (val >= 70) {
+    return "background: rgba(16, 185, 129, 0.1); color: #047857; border: 1px solid rgba(16, 185, 129, 0.25);";
+  }
+  if (val >= 30) {
+    return "background: rgba(59, 130, 246, 0.1); color: #1d4ed8; border: 1px solid rgba(59, 130, 246, 0.25);";
+  }
+  if (val < 0) {
+    return "background: rgba(239, 68, 68, 0.1); color: #b91c1c; border: 1px solid rgba(239, 68, 68, 0.25);";
+  }
+  return "background: rgba(245, 158, 11, 0.1); color: #b45309; border: 1px solid rgba(245, 158, 11, 0.25);";
 }
 
 /**
@@ -655,153 +711,184 @@ function renderDashboard() {
     }
   }
 
-  // 2. 만족도 문항 리스트 렌더링 (CSS 분포 막대 포함)
-  const scoreContainer = document.getElementById("score-questions-list");
-  if (scoreContainer) {
-    if (res.questions.length === 0) {
-      scoreContainer.innerHTML = `<p class="empty-list-msg">분석된 만족도 점수 문항이 없습니다.</p>`;
+  // 2. 단일 컨테이너 결과 순서대로 렌더링
+  const resultsContainer = document.getElementById("analysis-results-list");
+  if (resultsContainer) {
+    if (res.orderedResults.length === 0) {
+      resultsContainer.innerHTML = `<p class="empty-list-msg">분석된 설문 문항이 없습니다.</p>`;
     } else {
       let html = "";
-      res.questions.forEach((q) => {
-        // 백분율 막대 너비 계산
-        let barHtml = "";
-        
-        if (q.scale === 5) {
-          // 5점 척도 분포 그리기 (1~5점)
-          for (let val = 1; val <= 5; val++) {
-            const count = q.frequencies[val] || 0;
-            const pct = q.responseCount > 0 ? ((count / q.responseCount) * 100).toFixed(1) : 0;
-            barHtml += `
-              <div class="distribution-bar-item">
-                <span class="bar-label">${val}점</span>
-                <div class="bar-track">
-                  <div class="bar-fill score-color-${val}" style="width: 0%;" data-pct="${pct}"></div>
-                </div>
-                <span class="bar-percent">${pct}% (${count}명)</span>
-              </div>
-            `;
+      res.orderedResults.forEach((item) => {
+        if (item.type === "score") {
+          // 객관식 (점수형) 카드 빌드
+          const q = item;
+          
+          let barSegmentsHtml = "";
+          let labelItems = [];
+          
+          if (q.scale === 5) {
+            // 5점 척도 가로 누적 바 세그먼트 생성 (1~5점 순으로 배치)
+            const colors = {
+              1: "score-color-1",
+              2: "score-color-2",
+              3: "score-color-3",
+              4: "score-color-4",
+              5: "score-color-5"
+            };
+            
+            for (let val = 1; val <= 5; val++) {
+              const count = q.frequencies[val] || 0;
+              const pct = q.responseCount > 0 ? ((count / q.responseCount) * 100).toFixed(1) : 0;
+              
+              if (count > 0) {
+                labelItems.push(`<span class="rating-legend-item rating-color-${val}">${val}점: ${count}명(${pct}%)</span>`);
+                barSegmentsHtml += `
+                  <div class="bar-segment ${colors[val]}" style="width: 0%;" data-pct="${pct}" title="${val}점: ${count}명 (${pct}%)"></div>
+                `;
+              }
+            }
+          } else {
+            // 10점 척도 가로 누적 바 세그먼트 생성 (부정, 중립, 긍정 그룹화)
+            const pCount = (q.frequencies[8] || 0) + (q.frequencies[9] || 0) + (q.frequencies[10] || 0);
+            const mCount = q.frequencies[7] || 0;
+            const dCount = q.responseCount - pCount - mCount;
+
+            const pPct = q.responseCount > 0 ? ((pCount / q.responseCount) * 100).toFixed(1) : 0;
+            const mPct = q.responseCount > 0 ? ((mCount / q.responseCount) * 100).toFixed(1) : 0;
+            const dPct = q.responseCount > 0 ? ((dCount / q.responseCount) * 100).toFixed(1) : 0;
+            
+            if (dCount > 0) {
+              labelItems.push(`<span class="rating-legend-item rating-bad">부정(0-6점): ${dCount}명(${dPct}%)</span>`);
+              barSegmentsHtml += `
+                <div class="bar-segment score-color-1" style="width: 0%;" data-pct="${dPct}" title="부정(0-6점): ${dCount}명 (${dPct}%)"></div>
+              `;
+            }
+            if (mCount > 0) {
+              labelItems.push(`<span class="rating-legend-item rating-mid">중립(7점): ${mCount}명(${mPct}%)</span>`);
+              barSegmentsHtml += `
+                <div class="bar-segment score-color-3" style="width: 0%;" data-pct="${mPct}" title="중립(7점): ${mCount}명 (${mPct}%)"></div>
+              `;
+            }
+            if (pCount > 0) {
+              labelItems.push(`<span class="rating-legend-item rating-good">긍정(8-10점): ${pCount}명(${pPct}%)</span>`);
+              barSegmentsHtml += `
+                <div class="bar-segment score-color-5" style="width: 0%;" data-pct="${pPct}" title="긍정(8-10점): ${pCount}명 (${pPct}%)"></div>
+              `;
+            }
           }
-        } else {
-          // 10점 척도 분포 그리기 (긍정 8-10, 중립 7, 부정 0-6 묶어서 요약 또는 전체 리스트)
-          const pCount = (q.frequencies[8] || 0) + (q.frequencies[9] || 0) + (q.frequencies[10] || 0);
-          const mCount = q.frequencies[7] || 0;
-          const dCount = q.responseCount - pCount - mCount;
+          
+          const labelsHtml = labelItems.length > 0
+            ? `<div class="cumulative-legend">${labelItems.join('<span class="legend-separator">|</span>')}</div>`
+            : "";
 
-          const pPct = q.responseCount > 0 ? ((pCount / q.responseCount) * 100).toFixed(1) : 0;
-          const mPct = q.responseCount > 0 ? ((mCount / q.responseCount) * 100).toFixed(1) : 0;
-          const dPct = q.responseCount > 0 ? ((dCount / q.responseCount) * 100).toFixed(1) : 0;
+          const npsStyle = getNpsStyle(q.nps);
+          const warningBadge = q.detractorRate >= 20 
+            ? `<span class="badge-warning">⚠️ 개선 필요 (부정률 ${q.detractorRate}%)</span>` 
+            : "";
 
-          barHtml += `
-            <div class="distribution-bar-item">
-              <span class="bar-label rating-good">긍정 (8-10점)</span>
-              <div class="bar-track">
-                <div class="bar-fill score-color-5" style="width: 0%;" data-pct="${pPct}"></div>
+          html += `
+            <div class="question-card">
+              <div class="q-card-header">
+                <h4 class="q-title">${escapeHtml(q.name)}</h4>
+                ${warningBadge}
               </div>
-              <span class="bar-percent">${pPct}% (${pCount}명)</span>
+              <div class="q-stats-grid">
+                <div class="q-stat-item">
+                  <span class="q-stat-label">평균 점수</span>
+                  <span class="q-stat-value">${q.average} / ${q.scale}.00</span>
+                </div>
+                <div class="q-stat-item">
+                  <span class="q-stat-label">중앙값</span>
+                  <span class="q-stat-value">${q.median}</span>
+                </div>
+                <div class="q-stat-item">
+                  <span class="q-stat-label">긍정 비율</span>
+                  <span class="q-stat-value text-gold">${q.positiveRate}%</span>
+                </div>
+                <div class="q-stat-item">
+                  <span class="q-stat-label">응답 인원</span>
+                  <span class="q-stat-value">${q.responseCount}명</span>
+                </div>
+              </div>
+              
+              <!-- 누적 막대그래프 영역 -->
+              <div class="cumulative-visual-box" style="margin-bottom: 16px;">
+                ${labelsHtml}
+                <div style="display: flex; align-items: center; gap: 12px; margin-top: 8px;">
+                  <div class="bar-track cumulative-track" style="flex: 1; display: flex; height: 12px; border-radius: 6px; overflow: hidden; background: #f1f5f9;">
+                    ${barSegmentsHtml}
+                  </div>
+                  <span class="nps-badge" style="${npsStyle} font-size: 0.78rem; padding: 2px 8px; border-radius: 6px; font-weight: 700; white-space: nowrap;">NPS ${q.nps !== null ? q.nps : "-"}</span>
+                </div>
+              </div>
+
+              <!-- 객관식 점수별 상세 분포 (details 아코디언 형태로 숨김 보존) -->
+              <details class="pt-1" style="border-top: 1px dashed #f1f5f9; padding-top: 12px;">
+                <summary style="font-size: 0.8rem; color: #64748b; cursor: pointer; user-select: none; font-weight: 600; outline: none; display: flex; align-items: center; gap: 4px;">
+                  상세 점수 분포 보기 <i class="fas fa-chevron-down" style="font-size: 0.7rem; transition: transform 0.2s;"></i>
+                </summary>
+                <div class="space-y-1" style="margin-top: 12px;">
+                  ${Object.keys(q.frequencies).sort((a,b) => b-a).map(score => {
+                    const count = q.frequencies[score] || 0;
+                    const pct = q.responseCount > 0 ? ((count / q.responseCount) * 100).toFixed(1) : 0;
+                    return `
+                      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px; font-size: 0.78rem;">
+                        <span style="width: 40px; color: #64748b; font-weight: 600; text-align: right;">${score}점</span>
+                        <div class="bar-track" style="flex: 1; height: 6px; background: #f1f5f9; border-radius: 3px; overflow: hidden;">
+                          <div class="bar-fill score-color-${scale === 5 ? score : (score >= 8 ? 5 : (score === 7 ? 3 : 1))}" style="width: ${pct}%; height: 100%;"></div>
+                        </div>
+                        <span style="width: 100px; text-align: right; color: #475569; font-weight: 600;">${pct}% (${count}명)</span>
+                      </div>
+                    `;
+                  }).join("")}
+                </div>
+              </details>
             </div>
-            <div class="distribution-bar-item">
-              <span class="bar-label rating-mid">중립 (7점)</span>
-              <div class="bar-track">
-                <div class="bar-fill score-color-3" style="width: 0%;" data-pct="${mPct}"></div>
+          `;
+        } else if (item.type === "text") {
+          // 주관식 카드 빌드 (아코디언 구조 유지)
+          const t = item;
+          let responsesHtml = "";
+          
+          if (t.responses.length === 0) {
+            responsesHtml = `<li class="no-comment-msg">제출된 주관식 의견이 없습니다.</li>`;
+          } else {
+            t.responses.forEach((resp) => {
+              responsesHtml += `
+                <li class="comment-item">
+                  <span class="comment-bullet"><i class="fas fa-quote-left"></i></span>
+                  <span class="comment-text">${escapeHtml(resp)}</span>
+                </li>
+              `;
+            });
+          }
+
+          html += `
+            <div class="accordion-item" style="border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+              <button class="accordion-header" onclick="toggleAccordion(this)" style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; background: #f8fafc; border: none; font-family: inherit; font-size: 1rem; font-weight: 700; color: #334155; cursor: pointer; transition: background 0.2s ease;">
+                <span>✍️ ${escapeHtml(t.name)} (${t.responses.length}건)</span>
+                <i class="fas fa-chevron-down" style="transition: transform 0.2s ease;"></i>
+              </button>
+              <div class="accordion-body" style="max-height: 0; overflow-y: auto; padding: 0 24px; transition: all 0.3s ease;">
+                <ul class="comment-list-ul" style="list-style: none; padding: 0; margin: 0;">
+                  ${responsesHtml}
+                </ul>
               </div>
-              <span class="bar-percent">${mPct}% (${mCount}명)</span>
-            </div>
-            <div class="distribution-bar-item">
-              <span class="bar-label rating-bad">부정 (0-6점)</span>
-              <div class="bar-track">
-                <div class="bar-fill score-color-1" style="width: 0%;" data-pct="${dPct}"></div>
-              </div>
-              <span class="bar-percent">${dPct}% (${dCount}명)</span>
             </div>
           `;
         }
-
-        // 낮은 만족도 경고 마커
-        const warningBadge = q.detractorRate >= 20 
-          ? `<span class="badge-warning">⚠️ 개선 필요 (낮은 점수 비율 ${q.detractorRate}%)</span>` 
-          : "";
-
-        html += `
-          <div class="question-card">
-            <div class="q-card-header">
-              <h4 class="q-title">${escapeHtml(q.name)}</h4>
-              ${warningBadge}
-            </div>
-            <div class="q-stats-grid">
-              <div class="q-stat-item">
-                <span class="q-stat-label">평균 점수</span>
-                <span class="q-stat-value">${q.average} / ${q.scale}.00</span>
-              </div>
-              <div class="q-stat-item">
-                <span class="q-stat-label">중앙값</span>
-                <span class="q-stat-value">${q.median}</span>
-              </div>
-              <div class="q-stat-item">
-                <span class="q-stat-label">긍정 비율</span>
-                <span class="q-stat-value text-gold">${q.positiveRate}%</span>
-              </div>
-              <div class="q-stat-item">
-                <span class="q-stat-label">응답 인원</span>
-                <span class="q-stat-value">${q.responseCount}명</span>
-              </div>
-            </div>
-            <div class="distribution-area">
-              <h5>응답 점수 분포</h5>
-              ${barHtml}
-            </div>
-          </div>
-        `;
       });
-      scoreContainer.innerHTML = html;
+      
+      resultsContainer.innerHTML = html;
 
       // 시각화 애니메이션 효과: 약간의 딜레이 후 %만큼 차오르도록 설정
       setTimeout(() => {
-        const fills = scoreContainer.querySelectorAll(".bar-fill");
-        fills.forEach((fill) => {
-          const targetPct = fill.dataset.pct;
-          fill.style.width = `${targetPct}%`;
+        const segments = resultsContainer.querySelectorAll(".bar-segment");
+        segments.forEach((seg) => {
+          const targetPct = seg.dataset.pct;
+          seg.style.width = `${targetPct}%`;
         });
       }, 100);
-    }
-  }
-
-  // 3. 주관식 의견 리스트 렌더링
-  const textContainer = document.getElementById("text-questions-list");
-  if (textContainer) {
-    if (res.texts.length === 0) {
-      textContainer.innerHTML = `<p class="empty-list-msg">분석된 주관식 의견 문항이 없습니다.</p>`;
-    } else {
-      let html = "";
-      res.texts.forEach((t, i) => {
-        let responsesHtml = "";
-        if (t.responses.length === 0) {
-          responsesHtml = `<li class="no-comment-msg">제출된 주관식 의견이 없습니다.</li>`;
-        } else {
-          t.responses.forEach((resp) => {
-            responsesHtml += `
-              <li class="comment-item">
-                <span class="comment-bullet"><i class="fas fa-quote-left"></i></span>
-                <span class="comment-text">${escapeHtml(resp)}</span>
-              </li>
-            `;
-          });
-        }
-
-        html += `
-          <div class="accordion-item">
-            <button class="accordion-header" onclick="toggleAccordion(this)">
-              <span>${escapeHtml(t.name)} (${t.responses.length}건)</span>
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="accordion-body">
-              <ul class="comment-list-ul">
-                ${responsesHtml}
-              </ul>
-            </div>
-          </div>
-        `;
-      });
-      textContainer.innerHTML = html;
     }
   }
 
@@ -837,13 +924,19 @@ window.toggleAccordion = function(element) {
 /**
  * 4. 보고서용 요약 텍스트 클립보드 복사
  */
+/**
+ * 4. 보고서용 요약 텍스트 클립보드 복사
+ */
 function copyReportSummary() {
   if (!analysisResults) return;
 
   const res = analysisResults;
   
+  const scoreQuestions = res.orderedResults.filter(r => r.type === "score");
+  const textQuestions = res.orderedResults.filter(r => r.type === "text");
+
   // 성적 정렬
-  const sortedQ = [...res.questions].sort((a, b) => b.average - a.average);
+  const sortedQ = [...scoreQuestions].sort((a, b) => b.average - a.average);
   const topQuestions = sortedQ.slice(0, 2);
   const bottomQuestions = sortedQ.slice(-2).reverse();
 
@@ -877,9 +970,9 @@ function copyReportSummary() {
     text += `\n`;
   }
 
-  if (res.texts.length > 0) {
+  if (textQuestions.length > 0) {
     text += `■ 주요 주관식 피드백 샘플\n`;
-    res.texts.forEach((t) => {
+    textQuestions.forEach((t) => {
       text += `  * ${t.name}:\n`;
       const samples = t.responses.slice(0, 3);
       if (samples.length === 0) {
@@ -900,7 +993,7 @@ function copyReportSummary() {
 }
 
 /**
- * 5. 분석 결과 CSV 다운로드 (UTF-8 BOM 지원)
+ * 5. 분석 결과 CSV 다운로드 (주관식 포함 및 UTF-8 BOM 지원)
  */
 function downloadResultCSV() {
   if (!analysisResults) return;
@@ -908,11 +1001,18 @@ function downloadResultCSV() {
   const res = analysisResults;
 
   // 헤더 로우 정의
-  let csvContent = "문항명,척도,응답 수,평균 점수,중앙값,긍정 응답률(%),부정 응답률(%)\n";
+  let csvContent = "구분,문항명,척도,응답 수,평균 점수,중앙값,긍정 응답률(%),부정 응답률(%),주관식 응답 내용\n";
 
-  res.questions.forEach((q) => {
-    const cleanedName = q.name.replace(/"/g, '""'); // CSV 이스케이프
-    csvContent += `"${cleanedName}",${q.scale}점 척도,${q.responseCount},${q.average},${q.median},${q.positiveRate},${q.detractorRate}\n`;
+  res.orderedResults.forEach((item) => {
+    const cleanedName = item.name.replace(/"/g, '""');
+    if (item.type === "score") {
+      csvContent += `"점수형","${cleanedName}","${item.scale}점 척도",${item.responseCount},${item.average},${item.median},${item.positiveRate},${item.detractorRate},""\n`;
+    } else if (item.type === "text") {
+      // 각 응답별 내부 줄바꿈은 공백으로 치환해 셀 내의 줄바꿈과 혼동되지 않도록 처리합니다.
+      const processedResponses = item.responses.map(r => ` - ${r.replace(/\r?\n/g, ' ')}`).join('\n');
+      const escapedText = processedResponses.replace(/"/g, '""');
+      csvContent += `"주관식","${cleanedName}","-",${item.responses.length},"","","","","${escapText}"\n`;
+    }
   });
 
   // UTF-8 BOM(Excel 한글 깨짐 방지용) 데이터 조합

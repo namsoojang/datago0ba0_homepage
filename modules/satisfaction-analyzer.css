@@ -549,3 +549,50 @@ body.theme-teal .tab-btn.active {
     display: none; /* 모바일에서는 가로폭 확보를 위해 데이터 샘플 생략 */
   }
 }
+
+/* 11. 누적 막대그래프(Stacked Bar Chart) 및 범례 스타일 */
+.cumulative-visual-box {
+  margin-top: 12px;
+}
+
+.cumulative-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.rating-legend-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.legend-separator {
+  color: #cbd5e1;
+  font-size: 0.7rem;
+  user-select: none;
+}
+
+.rating-color-5 { color: var(--color-score-5); }
+.rating-color-4 { color: var(--color-score-4); }
+.rating-color-3 { color: var(--color-score-3); }
+.rating-color-2 { color: var(--color-score-2); }
+.rating-color-1 { color: var(--color-score-1); }
+
+.cumulative-track {
+  display: flex;
+  height: 12px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+
+.bar-segment {
+  height: 100%;
+  width: 0%;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
