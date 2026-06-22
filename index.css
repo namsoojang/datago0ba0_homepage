@@ -1736,7 +1736,38 @@ footer .footer-logo span strong {
 
 @media (max-width: 768px) {
   .nav-links {
-    display: none; /* 모바일 메뉴 토글 필요 시 JS 대응 */
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--card-border);
+    padding: 16px 24px;
+    gap: 0;
+    box-shadow: var(--shadow-lg);
+    z-index: 99;
+  }
+  
+  .nav-links.mobile-active {
+    display: flex;
+  }
+  
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav-link {
+    display: block;
+    padding: 12px 0;
+    font-size: 1.05rem;
+    width: 100%;
+  }
+  
+  .nav-link::after {
+    display: none;
   }
   
   .menu-toggle {
