@@ -1,5 +1,15 @@
 [
   {
+    "id": "ref-10",
+    "title": "비개발자를 위한 Google Play 출시 준비: D-U-N-S와 조직 계정까지",
+    "date": "2026-06-24",
+    "category": "개발일지",
+    "tags": ["Google Play", "D-U-N-S", "조직계정", "비공개테스트", "앱출시"],
+    "summary": "2023년 11월 이후 신규 개인 개발자 계정에 적용된 12명/14일 비공개 테스트의 장벽을 피하기 위해 개인사업자로 조직 계정을 생성하고, D-U-N-S 번호를 무료로 발급받아 구글 플레이스토어에 앱을 무사히 등록하기 위한 실전 행정 및 배포 전략을 상세히 정리합니다.",
+    "thumbnail": "./assets/images/blog/google_play_cover.png",
+    "contentPath": "data/posts/ref-10.md"
+  },
+  {
     "id": "ref-09",
     "title": "좋은 AI 실습 강의는 많이 알려주는 강의가 아니라, 해보게 만드는 강의다",
     "date": "2026-06-21",
