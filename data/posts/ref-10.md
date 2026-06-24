@@ -32,27 +32,15 @@
 
 ## 2. 개인사업자가 있다면? '조직 계정'이라는 대안
 
-만약 이미 개인사업자등록증을 갖고 계시다면, 굳이 지인들을 동원할 필요 없이 **조직(기업) 계정**으로 진행하는 것을 강력히 추천합니다.
+만약 이미 개인사업자등록증을 갖고 계시다면, 굳이 지인들을 동원할 필요 없이 **조직(기업) 계정으로 진행하는 방법**을 추천해 드립니다.
 
 조직 계정은 큰 법인만 가입할 수 있는 게 아닙니다. 1인 사업자도 사업자등록증과 영문 정보, D-U-N-S 번호만 준비되면 조직 계정 가입이 가능합니다.
 
-조직 계정으로 가입하면 개인 계정에 적용되는 **'12명 / 14일 비공개 테스트 의무'를 피할 수 있습니다.**
+조직 계정으로 가입하면 개인 계정에 의무 적용되는 '12명/14일 비공개 테스트'를 거치지 않고 바로 프로덕션 심사를 신청할 수 있습니다. 출시까지 들어가는 시간과 노력을 크게 아낄 수 있는 실속 있는 방법입니다.
 
-물론 조직 계정이라 해서 구글의 기본 앱 보안/정책 심사가 면제되는 것은 아닙니다. 다만, 지인 12명을 동원해 2주 동안 테스트를 유지해야 하는 번거로운 허들을 겪지 않고 바로 프로덕션 심사를 신청할 수 있다는 점에서 시간과 노력을 크게 절약할 수 있습니다. 따라서 이미 사업자등록증을 보유하고 계신다면 조직 계정 진행을 우선으로 검토하시기 바랍니다.
+![Google Play Console 계정 유형 선택 화면](./assets/blog/google-play-guide/play_console_type.png)
 
-![Google Play Console 계정 유형 선택 화면](./assets/images/blog/google-play-guide/play_console_type.png)
-
-> 📌 **구글 공식 가이드 문서 확인하기**
-> [Google Play 개발자 계정 생성에 필요한 정보](https://support.google.com/googleplay/android-developer/answer/13628312)
-
-### 개인 계정 vs 조직 계정 한눈에 비교하기
-
-| 구분 | 개인 계정 | 조직 계정 |
-| :--- | :--- | :--- |
-| **개발자 등록비** | 25달러 (최초 1회 결제) | 25달러 (최초 1회 결제) |
-| **비공개 테스트 의무** | **12명 테스터 모집 & 14일 연속 테스트 필수** | 의무 테스트 없음 (바로 프로덕션 심사 신청 가능) |
-| **주요 준비물** | 개인 신원 확인 서류 | D-U-N-S 번호, 영문 사업자등록증, 사업장 주소 및 연락처, 웹사이트 등 |
-| **추천 대상** | 사업자가 없는 완전한 개인 개발자 | 개인사업자 또는 법인사업자 소지자 |
+*(※ 단, 기본적인 앱 정책 및 보안 심사는 동일하게 진행됩니다.)*
 
 #### 💡 만약 아직 개인사업자가 없다면?
 아직 사업자등록을 하지 않은 상태라면, 온라인을 통해 개인사업자를 무료로 빠르게 신청하여 준비하시는 것을 권장합니다. 홈택스를 이용하면 비용이 들지 않고 대개 하루 이내에 신속히 발급됩니다. 
@@ -90,13 +78,15 @@ D-U-N-S 번호를 발급받으려면 우선 우리가 대한민국의 적법한 
 -> 영문 상호명, 영문 대표자명, 영문 주소명 입력 후 발급 신청
 ```
 
-![홈택스 사업자등록증명 메뉴](./assets/images/blog/google-play-guide/hometax_menu.png)
+![홈택스 사업자등록증명 민원 서류 검색](./assets/blog/google-play-guide/hometax_search.png)
 
-![영문 사업자등록증명 신청 화면](./assets/images/blog/google-play-guide/hometax_apply.png)
+![사업자등록증명 신청하기 버튼](./assets/blog/google-play-guide/hometax_apply_button.png)
 
 *(※ 영문 정보 입력 단계가 가장 중요합니다. 이후 구글 가입 과정에서 진행하는 모든 인증서류 상의 이름이 이 영문 정보와 완전히 일치해야 합니다.)*
 
-![영문 사업자등록증명 정보 입력 단계](./assets/images/blog/google-play-guide/hometax_info.png)
+![사업자등록증명 영문증명 유형 선택](./assets/blog/google-play-guide/hometax_english_selection.png)
+
+![영문 상호명 및 주소 입력 단계](./assets/blog/google-play-guide/hometax_english_info.png)
 
 ---
 
@@ -111,7 +101,7 @@ D-U-N-S 번호를 발급받으려면 우선 우리가 대한민국의 적법한 
 > 🔍 **D-U-N-S 공식 무료 조회 및 신청 페이지**
 > [Dun & Bradstreet D-U-N-S Number Lookup (https://www.dnb.com/duns-number)](https://www.dnb.com/duns-number)
 
-![D&B D-U-N-S Lookup 페이지](./assets/images/blog/google-play-guide/duns_lookup.png)
+![D&B D-U-N-S Lookup 페이지](./assets/blog/google-play-guide/duns_lookup.png)
 
 영문 사업자 정보를 입력해 신청하면, D&B 측의 검토를 거쳐 최종 승인 후 이메일로 안내를 받을 수 있습니다.
 
