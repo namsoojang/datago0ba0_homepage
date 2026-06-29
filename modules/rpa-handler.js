@@ -5,39 +5,10 @@
 
 // ⚠️ 배포 시 생성하신 Google Apps Script Web App URL로 교체해주셔야 작동합니다.
 // 교체 방법은 docs/google-script-guide.md 문서를 참조하세요.
-const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec";
+const GOOGLE_SHEET_WEBAPP_URL = window.APP_CONFIG?.GAS_WEBAPP_URL || "https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec";
 
-// 타임아웃(1.5초) 및 폴백이 적용된 견고한 IP 수집기 정의
-const getIPAddress = () => {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 1500);
-
-  return fetch('https://api.ipify.org?format=json', { signal: controller.signal })
-    .then(res => res.json())
-    .then(ipData => {
-      clearTimeout(timeoutId);
-      return ipData.ip;
-    })
-    .catch(err => {
-      clearTimeout(timeoutId);
-      console.warn('Primary IP fetch (ipify) failed, trying fallback (ipinfo)...', err);
-      
-      const backupController = new AbortController();
-      const backupTimeoutId = setTimeout(() => backupController.abort(), 1500);
-      
-      return fetch('https://ipinfo.io/json', { signal: backupController.signal })
-        .then(res => res.json())
-        .then(backupData => {
-          clearTimeout(backupTimeoutId);
-          return backupData.ip || '알 수 없음';
-        })
-        .catch(backupErr => {
-          clearTimeout(backupTimeoutId);
-          console.error('All IP fetches failed:', backupErr);
-          return '알 수 없음';
-        });
-    });
-};
+// 전역 유틸리티 IP 수집기 참조
+const getIPAddress = window.APP_UTILS?.getIPAddress || (() => Promise.resolve('알 수 없음'));
 
 document.addEventListener("DOMContentLoaded", () => {
   initModalEvents();

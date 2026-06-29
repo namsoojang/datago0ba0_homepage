@@ -1158,16 +1158,16 @@ function createToastContainer() {
 
 // RPA 작동 이력 수집 헬퍼 함수
 function logRpaUsage(programName, status) {
-  const gasUrl = 'https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec';
+  const gasUrl = window.APP_CONFIG?.GAS_WEBAPP_URL || 'https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec';
+  const fetchIP = window.APP_UTILS?.getIPAddress || (() => Promise.resolve('알 수 없음'));
   
-  fetch('https://api.ipify.org?format=json')
-    .then(res => res.json())
-    .then(ipData => {
+  fetchIP()
+    .then(ip => {
       const payload = {
         type: 'RPA작동로그',
         programName: programName,
         status: status,
-        ip: ipData.ip
+        ip: ip
       };
       
       return fetch(gasUrl, {

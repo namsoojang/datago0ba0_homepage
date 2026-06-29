@@ -1182,41 +1182,11 @@ function initContactForm() {
       payload['type'] = '메세지배달부';
     }
 
-    const formUrl = form.getAttribute('action') || 'https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec';
+    const formUrl = window.APP_CONFIG?.GAS_WEBAPP_URL || form.getAttribute('action') || 'https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec';
 
-    // 타임아웃(1.5초) 및 폴백이 적용된 견고한 IP 수집기 정의
-    const getIPAddress = () => {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 1500);
+    const fetchIP = window.APP_UTILS?.getIPAddress || (() => Promise.resolve('알 수 없음'));
 
-      return fetch('https://api.ipify.org?format=json', { signal: controller.signal })
-        .then(res => res.json())
-        .then(ipData => {
-          clearTimeout(timeoutId);
-          return ipData.ip;
-        })
-        .catch(err => {
-          clearTimeout(timeoutId);
-          console.warn('Primary IP fetch (ipify) failed, trying fallback (ipinfo)...', err);
-          
-          const backupController = new AbortController();
-          const backupTimeoutId = setTimeout(() => backupController.abort(), 1500);
-          
-          return fetch('https://ipinfo.io/json', { signal: backupController.signal })
-            .then(res => res.json())
-            .then(backupData => {
-              clearTimeout(backupTimeoutId);
-              return backupData.ip || '알 수 없음';
-            })
-            .catch(backupErr => {
-              clearTimeout(backupTimeoutId);
-              console.error('All IP fetches failed:', backupErr);
-              return '알 수 없음';
-            });
-        });
-    };
-
-    getIPAddress().then(ip => {
+    fetchIP().then(ip => {
       payload['ip'] = ip;
 
       fetch(formUrl, {
