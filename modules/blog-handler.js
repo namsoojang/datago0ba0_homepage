@@ -205,10 +205,45 @@ async function initBlogDetail(detailEl) {
     }
 
     // F. SEO 및 SNS 공유를 위한 브라우저 타이틀 & 메타 태그 동적 교체
+    const canonicalUrl = `https://datagongbang.kr/blog-detail.html?id=${postMeta.id}`;
+
     document.title = `${postMeta.title} | 데이터공방 공식 블로그`;
+
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", postMeta.summary);
+    }
+
+    let canonicalLink = document.getElementById("canonical-link") || document.querySelector('link[rel="canonical"]');
+    if (canonicalLink) {
+      canonicalLink.setAttribute("href", canonicalUrl);
+    } else {
+      canonicalLink = document.createElement("link");
+      canonicalLink.setAttribute("rel", "canonical");
+      canonicalLink.setAttribute("id", "canonical-link");
+      canonicalLink.setAttribute("href", canonicalUrl);
+      document.head.appendChild(canonicalLink);
+    }
+
+    let ogUrl = document.getElementById("og-url") || document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute("content", canonicalUrl);
+    } else {
+      ogUrl = document.createElement("meta");
+      ogUrl.setAttribute("property", "og:url");
+      ogUrl.setAttribute("id", "og-url");
+      ogUrl.setAttribute("content", canonicalUrl);
+      document.head.appendChild(ogUrl);
+    }
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute("content", postMeta.title);
+    }
+
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) {
+      ogDesc.setAttribute("content", postMeta.summary);
     }
 
   } catch (error) {

@@ -2,8 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- 메인 홈 페이지 -->
   <url>
-    <loc>https://datagongbang.kr/index.html</loc>
-    <lastmod>2026-06-18</lastmod>
+    <loc>https://datagongbang.kr/</loc>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -28,6 +28,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- 메세지 배달부 페이지 -->
+  <url>
+    <loc>https://datagongbang.kr/message-delivery.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- 개인정보처리방침 페이지 -->
   <url>
     <loc>https://datagongbang.kr/privacy.html</loc>
@@ -46,28 +53,56 @@
   <!-- 블로그 상세글 3 (현대백화점그룹 DA 출강 후기) -->
   <url>
     <loc>https://datagongbang.kr/blog-detail.html?id=ref-03</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <!-- 블로그 상세글 4 (이수페타시스 AX Survival) -->
   <url>
     <loc>https://datagongbang.kr/blog-detail.html?id=ref-04</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <!-- 블로그 상세글 5 (영업 직무 AX 특강) -->
   <url>
     <loc>https://datagongbang.kr/blog-detail.html?id=ref-05</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <!-- 블로그 상세글 6 (신한 커리어업 11기 OJT) -->
   <url>
     <loc>https://datagongbang.kr/blog-detail.html?id=ref-06</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- 블로그 상세글 7 (만족도 분석 목적) -->
+  <url>
+    <loc>https://datagongbang.kr/blog-detail.html?id=ref-07</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- 블로그 상세글 8 (메세지배달부 개발기) -->
+  <url>
+    <loc>https://datagongbang.kr/blog-detail.html?id=ref-08</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- 블로그 상세글 9 (AI 실습 강의 설계) -->
+  <url>
+    <loc>https://datagongbang.kr/blog-detail.html?id=ref-09</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- 블로그 상세글 10 (Google Play 출시 준비) -->
+  <url>
+    <loc>https://datagongbang.kr/blog-detail.html?id=ref-10</loc>
+    <lastmod>2026-06-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
