@@ -1,5 +1,15 @@
 [
   {
+    "id": "ref-11",
+    "title": "메세지배달부 Lite, Google Play Store에 출시했습니다",
+    "date": "2026-07-09",
+    "category": "개발일지",
+    "tags": ["메세지배달부", "Google Play", "Play Store", "업무자동화", "Android"],
+    "summary": "공용 업무폰 알림을 Slack으로 전달하는 메세지배달부 Lite가 Google Play Store에 공개되었습니다. APK 직접 설치에서 Play Store 설치 흐름으로 전환한 이유, 알림 접근 기반 Lite 설계, 개인정보 처리 방식과 향후 정비 계획을 기록합니다.",
+    "thumbnail": "./assets/images/blog/message-delivery-icon.png",
+    "contentPath": "data/posts/ref-11.md"
+  },
+  {
     "id": "ref-10",
     "title": "비개발자를 위한 Google Play 출시 준비: D-U-N-S와 조직 계정까지",
     "date": "2026-06-24",
