@@ -156,36 +156,39 @@
       background: linear-gradient(135deg, rgba(2, 195, 154, 0.06) 0%, #F8FAFC 100%);
       border: 1px solid rgba(2, 195, 154, 0.2);
       border-radius: 12px;
-      padding: 24px;
+      padding: 32px;
       margin-top: 40px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
       gap: 20px;
     }
     .download-widget-text h4 {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
       color: #02C39A;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     .download-widget-text p {
-      font-size: 12px;
+      font-size: 13px;
       color: #475569;
       margin-bottom: 0;
+      line-height: 1.6;
     }
     .widget-form {
       display: flex;
-      gap: 10px;
+      gap: 12px;
+      width: 100%;
+      flex-wrap: wrap;
     }
     .widget-input {
       background: #FFFFFF;
       border: 1px solid #CBD5E1;
       border-radius: 6px;
-      padding: 8px 12px;
+      padding: 10px 16px;
       color: #0F172A;
-      font-size: 12px;
-      width: 200px;
+      font-size: 13px;
+      flex: 1;
+      min-width: 200px;
     }
     .widget-input:focus {
       outline: none;
@@ -197,11 +200,12 @@
       color: #FFFFFF;
       border: none;
       border-radius: 6px;
-      padding: 8px 16px;
-      font-size: 12px;
+      padding: 10px 24px;
+      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.3s ease;
+      white-space: nowrap;
     }
     .widget-btn:hover {
       background: #00A896;
