@@ -264,12 +264,8 @@ def build_pdf():
                     print(f"WARNING: 이미지 처리 중 오류 - {e}")
             continue
 
-        # 대분류 (▣ ) -> 시인성 극대화를 위해 각 대분류 진입 전 강제 페이지 분할 (첫 번째 ▣ 제외)
+        # 대분류 (▣ )
         if stripped.startswith("▣ "):
-            h1_count += 1
-            if h1_count > 1:
-                story.append(PageBreak())
-            
             html_text = md_to_html(stripped)
             story.append(Paragraph(html_text, h1_style))
             story.append(Spacer(1, 5))
