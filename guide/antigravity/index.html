@@ -40,8 +40,8 @@
   <style>
     /* 가이드 전용 2컬럼 레이아웃 및 스타일 재정의 */
     body {
-      background-color: #0B0D19;
-      color: #F1F5F9;
+      background-color: #F8FAFC;
+      color: #1E293B;
       font-family: 'Pretendard', sans-serif;
     }
     .guide-container {
@@ -57,16 +57,16 @@
       position: sticky;
       top: 100px;
       height: fit-content;
-      background: rgba(30, 41, 59, 0.4);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
       border-radius: 12px;
       padding: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
     }
     .sidebar-title {
       font-size: 15px;
       font-weight: 700;
-      color: #E5C158;
+      color: #02C39A;
       margin-bottom: 16px;
       letter-spacing: 0.5px;
     }
@@ -79,7 +79,7 @@
       margin-bottom: 12px;
     }
     .sidebar-link {
-      color: #94A3B8;
+      color: #64748B;
       text-decoration: none;
       font-size: 13px;
       transition: all 0.3s ease;
@@ -87,25 +87,26 @@
     }
     .sidebar-link:hover, .sidebar-link.active {
       color: #02C39A;
+      font-weight: 600;
       transform: translateX(4px);
     }
     /* 우측 스크롤 본문 */
     .guide-content {
-      background: rgba(30, 41, 59, 0.2);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
       border-radius: 16px;
       padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     }
     .guide-header {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid #E2E8F0;
       padding-bottom: 24px;
       margin-bottom: 32px;
     }
     .guide-title {
       font-size: 28px;
       font-weight: 800;
-      color: #F1F5F9;
+      color: #0F172A;
       margin-bottom: 8px;
     }
     .guide-meta {
@@ -127,8 +128,8 @@
     }
     .guide-section p {
       font-size: 14px;
-      line-height: 1.7;
-      color: #CBD5E1;
+      line-height: 1.75;
+      color: #334155;
       margin-bottom: 16px;
     }
     .step-list {
@@ -141,19 +142,19 @@
       padding-left: 20px;
       margin-bottom: 10px;
       font-size: 13px;
-      color: #94A3B8;
+      color: #475569;
     }
     .step-list li::before {
       content: "■";
       position: absolute;
       left: 0;
-      color: #E5C158;
+      color: #02C39A;
       font-size: 10px;
     }
     /* 리드 캡처 다운로드 위젯 */
     .download-widget {
-      background: linear-gradient(135deg, rgba(2, 195, 154, 0.15) 0%, rgba(11, 13, 25, 0.8) 100%);
-      border: 1px solid rgba(2, 195, 154, 0.3);
+      background: linear-gradient(135deg, rgba(2, 195, 154, 0.06) 0%, #F8FAFC 100%);
+      border: 1px solid rgba(2, 195, 154, 0.2);
       border-radius: 12px;
       padding: 24px;
       margin-top: 40px;
@@ -170,7 +171,7 @@
     }
     .download-widget-text p {
       font-size: 12px;
-      color: #94A3B8;
+      color: #475569;
       margin-bottom: 0;
     }
     .widget-form {
@@ -178,21 +179,22 @@
       gap: 10px;
     }
     .widget-input {
-      background: rgba(11, 13, 25, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
       border-radius: 6px;
       padding: 8px 12px;
-      color: #F1F5F9;
+      color: #0F172A;
       font-size: 12px;
       width: 200px;
     }
     .widget-input:focus {
       outline: none;
       border-color: #02C39A;
+      box-shadow: 0 0 0 3px rgba(2, 195, 154, 0.15);
     }
     .widget-btn {
       background: #02C39A;
-      color: #0B0D19;
+      color: #FFFFFF;
       border: none;
       border-radius: 6px;
       padding: 8px 16px;
@@ -202,7 +204,7 @@
       transition: all 0.3s ease;
     }
     .widget-btn:hover {
-      background: #00E676;
+      background: #00A896;
     }
     
     @media (max-width: 1024px) {
@@ -220,7 +222,7 @@
     }
   </style>
 </head>
-<body>
+<body class="rpa-light-theme">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVV9V7QN"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -274,8 +276,8 @@
         <p>웹 브라우저로 챗GPT나 클로드에 접속하여 질문할 때는 내가 소스 코드를 복사해서 채팅창에 붙여넣고, AI가 작성해 준 코드를 다시 복사해서 내 에디터로 가져와 붙여넣는 번거로운 반복 작업을 해야 합니다.</p>
         <p>안티그래비티 IDE는 내 로컬 컴퓨터의 특정 프로젝트 폴더에 직접 접근하여 파일을 수정하고, 터미널 명령어를 내려 코드를 컴파일하고 오류가 나면 스스로 디버깅하는 능동형 AI 에이전트 개발 도구입니다. 말 그대로 대화만 하면 알아서 내 하드디스크의 파일을 직접 깎고 다듬어 주어, 코딩 및 자동화 작업의 단순 수작업 단계를 완전히 제거해 줍니다.</p>
         
-        <div style="background: rgba(30, 41, 59, 0.4); border: 1px dashed rgba(255,255,255,0.15); border-radius: 8px; padding: 16px; margin-top: 16px;">
-          <h4 style="font-size: 13px; color: #E5C158; margin-bottom: 8px;">■ 일반 안티그래비티 vs 안티그래비티 IDE의 명확한 차이점</h4>
+        <div style="background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 8px; padding: 16px; margin-top: 16px;">
+          <h4 style="font-size: 13px; color: #02C39A; margin-bottom: 8px;">■ 일반 안티그래비티 vs 안티그래비티 IDE의 명확한 차이점</h4>
           <ul class="step-list" style="margin: 0; padding-left: 0;">
             <li>일반 안티그래비티(웹 비서 도구) : 브라우저나 시스템 알림창 등에서 구동되는 일반 비서형 대화 도구입니다. 간단한 이메일 작성 보조나 RPA 알림 연동 및 가벼운 질의응답을 할 때 주로 사용됩니다.</li>
             <li>안티그래비티 IDE(통합 개발 환경) : 실제 소스 코드를 분석하고 프로그래밍 작업을 처리하기 위해 전문 텍스트 에디터와 내부 터미널이 한 창에 통합되어 구동되는 도구입니다. 실무 데이터 분석 코드를 작성하거나 깃허브 원격 저장소와 연동하여 커밋을 수행하는 등의 진짜 코딩 비서로 활용하려면 반드시 이 안티그래비티 IDE 패키지를 설치해 주셔야 합니다. (설치하실 때 이 두 도구를 혼동하기 쉬우니 목적에 알맞게 IDE 버전을 다운받아 실행하셔야 합니다,,)</li>
@@ -288,9 +290,9 @@
         <div class="section-headline">▣ 1. 안티그래비티 IDE 설치</div>
         <p>안티그래비티 IDE 패키지는 독립된 윈도우 인스톨러(.exe) 형태로 배포되어 다운로드 후 즉시 설치하실 수 있습니다.</p>
         
-        <div class="guide-image-box" style="margin: 16px 0; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19; max-width: 600px;">
-          <img src="../../assets/images/guide/guide_download.png" alt="안티그래비티 IDE 다운로드 화면" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
-          <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 공식 사이트 내 다운로드 버튼 클릭 경로 확인</div>
+        <div class="guide-image-box" style="margin: 16px 0; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; background: #F8FAFC; max-width: 600px;">
+          <img src="../../assets/images/guide/guide_download.png" alt="안티그래비티 IDE 다운로드 화면" style="width: 100%; display: block; border-bottom: 1px solid #E2E8F0;">
+          <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: #F1F5F9;">▲ 공식 사이트 내 다운로드 버튼 클릭 경로 확인</div>
         </div>
 
         <ul class="step-list">
@@ -306,9 +308,9 @@
         <div class="section-headline">▣ 2. 안티그래비티 화면 설명</div>
         <p>안티그래비티의 내부 화면은 사용자가 에이전트와 대화를 나눔과 동시에 소스코드와 결과물을 한눈에 제어하도록 4개의 핵심 분할 패널로 나뉘어 있습니다.</p>
         
-        <div class="guide-image-box" style="margin: 16px 0; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19;">
-          <img src="../../assets/images/guide/guide_layout.png" alt="안티그래비티 화면구성" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
-          <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 안티그래비티 IDE의 기본 분할 패널 구성도 (① 파일 트리, ② 코드 에디터, ③ 내부 터미널, ④ 에이전트 대화창)</div>
+        <div class="guide-image-box" style="margin: 16px 0; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; background: #F8FAFC;">
+          <img src="../../assets/images/guide/guide_layout.png" alt="안티그래비티 화면구성" style="width: 100%; display: block; border-bottom: 1px solid #E2E8F0;">
+          <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: #F1F5F9;">▲ 안티그래비티 IDE의 기본 분할 패널 구성도 (① 파일 트리, ② 코드 에디터, ③ 내부 터미널, ④ 에이전트 대화창)</div>
         </div>
 
         <ul class="step-list">
@@ -324,9 +326,9 @@
         <div class="section-headline">▣ 3. 작업 워크스페이스 폴더 지정 방법</div>
         <p>안티그래비티 에이전트가 내가 원하는 범위 밖의 윈도우 시스템 파일을 건드리지 않고, 지정된 장소 안에서만 안전하게 일하게 하려면 작업 폴더(Cwd) 지정을 해주어야 합니다.</p>
         
-        <div class="guide-image-box" style="margin: 16px 0; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19; max-width: 600px;">
-          <img src="../../assets/images/guide/guide_trust.png" alt="워크스페이스 신뢰 선택" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
-          <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 신규 폴더를 로드할 때 에이전트 구동 허용을 위한 신뢰 버튼 확인</div>
+        <div class="guide-image-box" style="margin: 16px 0; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; background: #F8FAFC; max-width: 600px;">
+          <img src="../../assets/images/guide/guide_trust.png" alt="워크스페이스 신뢰 선택" style="width: 100%; display: block; border-bottom: 1px solid #E2E8F0;">
+          <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: #F1F5F9;">▲ 신규 폴더를 로드할 때 에이전트 구동 허용을 위한 신뢰 버튼 확인</div>
         </div>
 
         <ul class="step-list">
@@ -342,13 +344,13 @@
         <p>어려운 비즈니스 분석인지, 단순 반복적인 맞춤법 교정인지에 따라 에이전트의 중심 두뇌인 대형 언어 모델을 전환하여 사용할 수 있습니다.</p>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;">
-          <div class="guide-image-box" style="border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19;">
-            <img src="../../assets/images/guide/guide_model_select.png" alt="모델 선택 드롭다운" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
-            <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 대화창 내부의 탑재 모델 선택 목록</div>
+          <div class="guide-image-box" style="border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; background: #F8FAFC;">
+            <img src="../../assets/images/guide/guide_model_select.png" alt="모델 선택 드롭다운" style="width: 100%; display: block; border-bottom: 1px solid #E2E8F0;">
+            <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: #F1F5F9;">▲ 대화창 내부의 탑재 모델 선택 목록</div>
           </div>
-          <div class="guide-image-box" style="border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19;">
-            <img src="../../assets/images/guide/guide_at_mention.png" alt="골뱅이 파일 참조" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
-            <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 골뱅이(@) 키를 활용한 파일 참조 기능</div>
+          <div class="guide-image-box" style="border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; background: #F8FAFC;">
+            <img src="../../assets/images/guide/guide_at_mention.png" alt="골뱅이 파일 참조" style="width: 100%; display: block; border-bottom: 1px solid #E2E8F0;">
+            <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: #F1F5F9;">▲ 골뱅이(@) 키를 활용한 파일 참조 기능</div>
           </div>
         </div>
 
@@ -376,9 +378,9 @@
         <div class="section-headline">▣ 6. 코덱스(Codex)를 익스텐션으로 연결하는 방법</div>
         <p>코덱스는 빌드 성공 여부를 로컬에서 자동 검사하고, 문법 규칙 위반(Lint Error)을 사전 필터링하여 무결성 있는 코드만 깃허브 원격 저장소에 커밋하도록 통제해 주는 도구입니다.</p>
         
-        <div class="guide-image-box" style="margin: 16px 0; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19;">
-          <img src="../../assets/images/guide/guide_codex_install.png" alt="코덱스 플러그인 설치" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
-          <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 익스텐션 탭에서 Codex 플러그인 검색 및 설치 버튼 확인</div>
+        <div class="guide-image-box" style="margin: 16px 0; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; background: #F8FAFC;">
+          <img src="../../assets/images/guide/guide_codex_install.png" alt="코덱스 플러그인 설치" style="width: 100%; display: block; border-bottom: 1px solid #E2E8F0;">
+          <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: #F1F5F9;">▲ 익스텐션 탭에서 Codex 플러그인 검색 및 설치 버튼 확인</div>
         </div>
 
         <ul class="step-list">
@@ -394,8 +396,8 @@
         <div class="section-headline">▣ 7. 클로드 코드(Claude Code) 터미널 연동 방법</div>
         <p>클로드 코드는 Anthropic사에서 제공하는 초고속 터미널(CLI) 기반 AI 개발 에이전트 도구입니다. 안티그래비티는 내부 셸 터미널을 통해 이 클로드 코드를 전역 런타임 비서로 쉽게 병렬 연결하여 개발 환경의 시너지를 극대화할 수 있습니다.</p>
         
-        <div style="background: rgba(30, 41, 59, 0.4); border: 1px dashed rgba(255,255,255,0.15); border-radius: 8px; padding: 16px; margin-bottom: 20px;">
-          <h4 style="font-size: 13px; color: #E5C158; margin-bottom: 8px;">■ 선수 조건: Node.js 및 npm 설치</h4>
+        <div style="background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+          <h4 style="font-size: 13px; color: #02C39A; margin-bottom: 8px;">■ 선수 조건: Node.js 및 npm 설치</h4>
           <ul class="step-list" style="margin: 0; padding-left: 0;">
             <li>Node.js 공식 웹사이트(https://nodejs.org/)에 접속합니다.</li>
             <li>대부분의 사용자에게 안정적으로 권장하는 LTS(Long Term Support) 버전 인스톨러를 다운로드합니다.</li>
@@ -414,18 +416,18 @@
           <li>인증 연동이 완수되면 이제 터미널 창에서 클로드 코드가 대기 상태에 접어들며, 안티그래비티 창에 로드된 소스 코드들을 터미널 내부에서 동시에 직접 훑어보며 코딩하는 무결점 AI 협업 루프가 구축 완료됩니다.</li>
         </ul>
 
-        <div style="background: rgba(2, 195, 154, 0.05); border: 1px solid rgba(2, 195, 154, 0.2); border-radius: 8px; padding: 16px; margin-top: 20px;">
+        <div style="background: rgba(2, 195, 154, 0.03); border: 1px solid rgba(2, 195, 154, 0.25); border-radius: 8px; padding: 16px; margin-top: 20px;">
           <h4 style="font-size: 13px; color: #02C39A; margin-bottom: 8px;">▷ 꿀팁: 터미널 창을 우측으로 배치하여 AI 대화창처럼 쓰기</h4>
-          <p style="font-size: 12px; color: #94A3B8; margin-bottom: 12px; line-height: 1.6;">하단 터미널 패널의 탭을 마우스 우클릭하거나 우측 아이콘을 클릭하여 간편하게 오른쪽 세로 화면으로 보낼 수 있습니다. 이렇게 배치하면 제미나이나 코덱스 채팅 패널처럼 세로형 메인 AI 비서 느낌으로 넓고 편안하게 사용하실 수 있습니다.</p>
+          <p style="font-size: 12px; color: #475569; margin-bottom: 12px; line-height: 1.6;">하단 터미널 패널의 탭을 마우스 우클릭하거나 우측 아이콘을 클릭하여 간편하게 오른쪽 세로 화면으로 보낼 수 있습니다. 이렇게 배치하면 제미나이나 코덱스 채팅 패널처럼 세로형 메인 AI 비서 느낌으로 넓고 편안하게 사용하실 수 있습니다.</p>
           
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;">
-            <div class="guide-image-box" style="border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19;">
-              <img src="../../assets/images/guide/guide_terminal_right_click.png" alt="터미널 우클릭 메뉴" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
-              <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 탭 우클릭 후 Panel Position -> Right 선택</div>
+            <div class="guide-image-box" style="border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; background: #F8FAFC;">
+              <img src="../../assets/images/guide/guide_terminal_right_click.png" alt="터미널 우클릭 메뉴" style="width: 100%; display: block; border-bottom: 1px solid #E2E8F0;">
+              <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: #F1F5F9;">▲ 탭 우클릭 후 Panel Position -> Right 선택</div>
             </div>
-            <div class="guide-image-box" style="border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19;">
-              <img src="../../assets/images/guide/guide_terminal_right_docked.png" alt="터미널 우측 고정" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
-              <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 우측으로 고정 정렬이 완료된 터미널 레이아웃</div>
+            <div class="guide-image-box" style="border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden; background: #F8FAFC;">
+              <img src="../../assets/images/guide/guide_terminal_right_docked.png" alt="터미널 우측 고정" style="width: 100%; display: block; border-bottom: 1px solid #E2E8F0;">
+              <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: #F1F5F9;">▲ 우측으로 고정 정렬이 완료된 터미널 레이아웃</div>
             </div>
           </div>
 
