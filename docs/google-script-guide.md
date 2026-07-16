@@ -17,7 +17,7 @@
 
 ```javascript
 /**
- * [통합 버전] 홈페이지 문의 접수 & RPA 사전예약 데이터를 자동 분기하여 수집하는 스크립트
+ * [통합 버전 v9] 홈페이지 문의 접수 & RPA 사전예약 & 다운로드 로그 & RPA 도구 작동 로그를 "문의raw" 시트 하나로 통합 수집하고, 가이드북 신청 시 사용자 자동 메일 회신을 지원하는 스크립트
  */
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -30,169 +30,143 @@ function doPost(e) {
 
   try {
     var doc = SpreadsheetApp.getActiveSpreadsheet();
+    
+    // 모든 데이터를 "문의raw" 단일 시트에 통합 수집
+    var sheet = doc.getSheetByName("문의raw");
+    if (!sheet) {
+      sheet = doc.insertSheet("문의raw");
+      sheet.appendRow([
+        "날짜", 
+        "문의 타입", 
+        "회사명", 
+        "성함 / 직책", 
+        "연락처", 
+        "이메일", 
+        "예상인원", 
+        "교육주제", 
+        "희망시기", 
+        "문의 및 요청사항", 
+        "진행상태",
+        "답신일시",
+        "답신내용",
+        "진행기록"
+      ]);
+    }
+    
     var data = JSON.parse(e.postData.contents);
     var timestamp = new Date();
     
     // 한국 표준시(KST) 포맷 변환
     var formattedDate = Utilities.formatDate(timestamp, "Asia/Seoul", "yyyy-MM-dd HH:mm:ss");
     
+    var type = data.type || "간편 문의";
+    var company = data.company || "";
+    var name = data.name || "";
+    var phone = data.phone || "";
+    var email = data.email || "";
+    var headcount = data.headcount || "";
+    var topic = data.topic || "";
+    var timing = data.timing || "";
+    var message = data.message || "";
+    
     // ----------------------------------------------------
-    // [분기 1] RPA 사전예약 수집 (data.toolName이 전송된 경우)
+    // [RPA 사전예약 수집 연동 보정] (data.toolName이 온 경우)
     // ----------------------------------------------------
     if (data.toolName) {
-      var rpaSheet = doc.getSheetByName("RPA 사전예약");
-      // 탭이 없으면 자동으로 생성
-      if (!rpaSheet) {
-        rpaSheet = doc.insertSheet("RPA 사전예약");
-        rpaSheet.appendRow(["신청 일시", "도구명", "이메일 주소", "연락처"]);
-      }
-      
-      // RPA 신청 데이터 누적 (A: 신청일시, B: 도구명, C: 이메일, D: 연락처)
-      rpaSheet.appendRow([
-        formattedDate,
-        data.toolName,
-        data.email || "",
-        data.phone || ""
-      ]);
-
-      return ContentService.createTextOutput(JSON.stringify({ "success": true, "message": "RPA 사전예약 신청 완료" }))
-        .setMimeType(ContentService.MimeType.JSON)
-        .setHeader("Access-Control-Allow-Origin", "*"); // CORS 제약 해결 헤더 추가
-    } 
+      type = "RPA 사전예약";
+      message = "신청 도구명: " + data.toolName;
+    }
+    
     // ----------------------------------------------------
-    // [분기 2] 자동화 아이디어 제안 수집 (data.type === "자동화 아이디어 제안"인 경우)
+    // [아이디어 제안 수집 연동 보정] (data.type === "자동화 아이디어 제안"인 경우)
     // ----------------------------------------------------
     else if (data.type === "자동화 아이디어 제안") {
-      var suggestSheet = doc.getSheetByName("아이디어 제안");
-      // 탭이 없으면 자동으로 생성
-      if (!suggestSheet) {
-        suggestSheet = doc.insertSheet("아이디어 제안");
-        suggestSheet.appendRow(["제출 일시", "이메일 주소", "연락처", "제안 내용"]);
-      }
-
-      // 제안 데이터 누적 (A: 제출일시, B: 이메일, C: 연락처, D: 제안내용)
-      suggestSheet.appendRow([
-        formattedDate,
-        data.email || "",
-        data.phone || "",
-        data.message || ""
-      ]);
-
-      // 운영자 메일로 실시간 알림 발송
-      var adminEmail = "contact@datagongbang.kr";
-      var subject = "[데이터공방] 새로운 자동화 아이디어 제안 접수";
-      
-      var emailBody = "홈페이지를 통해 새로운 자동화 아이디어 제안이 등록되었습니다.\n\n" +
-                      "------------------------------------\n" +
-                      "■ 제안 일시: " + formattedDate + "\n" +
-                      "■ 이메일: " + (data.email || "") + "\n" +
-                      "■ 연락처: " + (data.phone || "") + "\n\n" +
-                      "■ 제안 내용:\n" + (data.message || "") + "\n" +
-                      "------------------------------------\n\n" +
-                      "▶ 등록된 내용은 구글 스프레드시트 관리 대장의 '아이디어 제안' 탭에서 확인하실 수 있습니다.";
-
-      GmailApp.sendEmail(adminEmail, subject, emailBody);
-
-      return ContentService.createTextOutput(JSON.stringify({ "success": true, "message": "아이디어 제안 접수 완료" }))
-        .setMimeType(ContentService.MimeType.JSON)
-        .setHeader("Access-Control-Allow-Origin", "*");
+      type = "아이디어 제안";
     }
+
     // ----------------------------------------------------
-    // [분기 3] 기존 홈페이지 문의 수집 (기존 로직 보존)
+    // [가이드북 다운로드 수집 연동 보정]
     // ----------------------------------------------------
-    else {
-      // 첫 번째 시트를 문의 내역 탭으로 지정
-      var sheet = doc.getSheetByName("홈페이지 문의") || doc.getSheets()[0];
-      
-      var type = data.type || "간편 문의";
-      var company = data.company || "";
-      var name = data.name || "";
-      var phone = data.phone || "";
-      var email = data.email || "";
-      var headcount = data.headcount || "";
-      var topic = data.topic || "";
-      var timing = data.timing || "";
-      var message = data.message || "";
-      
-      var status = "접수대기"; 
-      var replyDate = "";
-      var replyContent = "";
-      var progressLog = "";
-
-      // A~N열 데이터 매핑
-      sheet.appendRow([
-        formattedDate, 
-        type, 
-        company, 
-        name, 
-        phone, 
-        email, 
-        headcount, 
-        topic, 
-        timing, 
-        message, 
-        status,
-        replyDate,
-        replyContent,
-        progressLog
-      ]);
-
-      // 운영자 메일로 실시간 알림 발송
-      var adminEmail = "contact@datagongbang.kr";
-      var subject = "[데이터공방] 홈페이지 " + type + " 접수 알림 (" + name + " 님)";
-      
-      var emailBody = "홈페이지를 통해 새로운 문의가 등록되었습니다.\n\n" +
-                      "------------------------------------\n" +
-                      "■ 문의 종류: " + type + "\n" +
-                      "■ 접수 일시: " + formattedDate + "\n\n";
-                      
-      if (type === "교육 견적 요청") {
-        emailBody += "■ 회사/기관명: " + company + "\n" +
-                     "■ 성함/직책: " + name + "\n" +
-                     "■ 연락처: " + phone + "\n" +
-                     "■ 이메일: " + email + "\n" +
-                     "■ 예상인원: " + headcount + "\n" +
-                     "■ 교육주제: " + topic + "\n" +
-                     "■ 희망시기: " + timing + "\n" +
-                     "■ 추가 요청사항:\n" + message + "\n";
-      } else {
-        emailBody += "■ 성함/직책: " + name + "\n" +
-                     "■ 연락처: " + phone + "\n" +
-                     "■ 이메일: " + email + "\n" +
-                     "■ 문의내용:\n" + message + "\n";
-      }
-      
-      emailBody += "------------------------------------\n\n" +
-                   "▶ 등록된 상세 내용은 구글 스프레드시트 관리 대장에서 확인하실 수 있습니다.";
-
-      GmailApp.sendEmail(adminEmail, subject, emailBody);
-      
-      // [신청자 메일 자동 회신] 안티그래비티 가이드북 신청 시 PDF 링크 메일 즉시 발송
-      if (type === "안티그래비티 가이드북 다운로드" && email) {
-        var userSubject = "[데이터공방] 요청하신 Antigravity IDE 실무 가이드북 다운로드 링크입니다.";
-        var userBody = "안녕하세요, " + name + "\n\n" +
-                       "데이터공방을 찾아주시고 Antigravity IDE 가이드북을 신청해 주셔서 대단히 감사합니다.\n\n" +
-                       "신청하신 Antigravity IDE 실무 가이드북 (클로드코드, Codex 연동까지) PDF 다운로드 링크를 아래와 같이 전해드립니다.\n\n" +
-                       "▶ 가이드북 PDF 다운로드 링크: https://datagongbang.kr/docs/antigravity_guide.pdf \n\n" +
-                       "본 가이드를 참고하셔서 실무에서 지능형 AI 에이전트를 통한 초고속 코딩 자동화 루프를 완성해 보시기 바랍니다.\n" +
-                       "사용하시다 어려운 점이나 추가 사내 교육 관련 문의가 필요하시면 언제든 이 메일로 답장해 주세요.\n\n" +
-                       "감사합니다.\n" +
-                       "데이터공방 드림";
-        
-        GmailApp.sendEmail(email, userSubject, userBody);
-      }
-
-      return ContentService.createTextOutput(JSON.stringify({ "success": true, "message": "접수 완료" }))
-        .setMimeType(ContentService.MimeType.JSON)
-        .setHeader("Access-Control-Allow-Origin", "*"); // CORS 제약 해결 헤더 추가
+    else if (data.type === "안티그래비티 가이드북 다운로드") {
+      type = "다운로드 로그";
     }
+
+    var status = "접수대기"; 
+    var replyDate = "";
+    var replyContent = "";
+    var progressLog = "";
+
+    // "문의raw" 시트에 A~N열 구조로 통합 누적
+    sheet.appendRow([
+      formattedDate, 
+      type, 
+      company, 
+      name, 
+      phone, 
+      email, 
+      headcount, 
+      topic, 
+      timing, 
+      message, 
+      status,
+      replyDate,
+      replyContent,
+      progressLog
+    ]);
+
+    // ----------------------------------------------------
+    // [알림 처리 1] 운영자 실시간 메일 발송
+    // ----------------------------------------------------
+    var adminEmail = "contact@datagongbang.kr";
+    var subject = "[데이터공방] " + type + " 접수 알림 (" + name + " 님)";
+    var emailBody = "홈페이지를 통해 새로운 데이터가 등록되었습니다.\n\n" +
+                    "------------------------------------\n" +
+                    "■ 분류: " + type + "\n" +
+                    "■ 일시: " + formattedDate + "\n" +
+                    "■ 회사명: " + company + "\n" +
+                    "■ 성함/직책: " + name + "\n" +
+                    "■ 이메일: " + email + "\n" +
+                    "■ 연락처: " + phone + "\n";
+
+    if (type === "교육 견적 요청") {
+      emailBody += "■ 예상인원: " + headcount + "\n" +
+                   "■ 교육주제: " + topic + "\n" +
+                   "■ 희망시기: " + timing + "\n";
+    }
+    
+    emailBody += "■ 상세 내용:\n" + message + "\n" +
+                 "------------------------------------\n\n" +
+                 "▶ 상세 내용은 구글 스프레드시트 '문의raw' 시트에서 확인하실 수 있습니다.";
+
+    GmailApp.sendEmail(adminEmail, subject, emailBody);
+
+    // ----------------------------------------------------
+    // [알림 처리 2] 신청자 메일 자동 회신 (가이드북 다운로드 링크 제공)
+    // ----------------------------------------------------
+    if (data.type === "안티그래비티 가이드북 다운로드" && email) {
+      var userSubject = "[데이터공방] 요청하신 Antigravity IDE 실무 가이드북 다운로드 링크입니다.";
+      var userBody = "안녕하세요, " + name + " 님.\n\n" +
+                     "데이터공방을 찾아주시고 Antigravity IDE 가이드북을 신청해 주셔서 감사합니다.\n\n" +
+                     "신청하신 Antigravity IDE 실무 가이드북 (클로드코드, Codex 연동까지) PDF 다운로드 링크를 아래와 같이 전해드립니다.\n\n" +
+                     "▶ 가이드북 PDF 다운로드 링크: https://datagongbang.kr/docs/antigravity_guide.pdf \n\n" +
+                     "본 가이드를 참고하셔서 실무에서 지능형 AI 에이전트를 통한 초고속 코딩 자동화 루프를 완성해 보시기 바랍니다.\n" +
+                     "사용하시다 어려운 점이나 추가 사내 교육 관련 문의가 필요하시면 언제든 이 메일로 답장해 주세요.\n\n" +
+                     "감사합니다.\n" +
+                     "데이터공방 드림";
+      
+      GmailApp.sendEmail(email, userSubject, userBody);
+    }
+
+    return ContentService.createTextOutput(JSON.stringify({ "success": true, "message": "접수 완료" }))
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeader("Access-Control-Allow-Origin", "*");
 
   } catch (error) {
     return ContentService.createTextOutput(JSON.stringify({ "success": false, "message": error.toString() }))
       .setMimeType(ContentService.MimeType.JSON)
       .setHeader("Access-Control-Allow-Origin", "*");
   } finally {
-    lock.releaseLock(); // 락 해제
+    lock.releaseLock();
   }
 }
 ```
