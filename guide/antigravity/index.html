@@ -521,6 +521,14 @@
       if (form && submitBtn) {
         form.addEventListener('submit', (e) => {
           e.preventDefault();
+          
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          const emailValue = form.email.value.trim();
+          if (!emailRegex.test(emailValue)) {
+            alert('이메일 주소 형식이 올바르지 않습니다. 정확한 주소를 입력해 주세요.');
+            return;
+          }
+
           submitBtn.disabled = true;
           submitBtn.innerText = '전송 중...';
 

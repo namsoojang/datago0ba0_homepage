@@ -149,8 +149,8 @@ function doPost(e) {
       var userBody = "안녕하세요, " + name + " 님.\n\n" +
                      "데이터공방을 찾아주시고 Antigravity IDE 가이드북을 신청해 주셔서 감사합니다.\n\n" +
                      "신청하신 Antigravity IDE 실무 가이드북 (클로드코드, Codex 연동까지) PDF 다운로드 링크를 아래와 같이 전해드립니다.\n\n" +
-                     "▶ 가이드북 PDF 다운로드 링크: https://datagongbang.kr/docs/antigravity_guide.pdf \n\n" +
-                     "본 가이드를 참고하셔서 실무에서 지능형 AI 에이전트를 통한 초고속 코딩 자동화 루프를 완성해 보시기 바랍니다.\n" +
+                     "▶ 가이드북 PDF 다운로드 링크: https://datagongbang.kr/docs/antigravity_guide.pdf?v=20260716 \n\n" +
+                     "본 가이드가 작게나마 도움이 되어, 설치 및 운영에 활용하실 수 있으면 좋겠습니다.\n" +
                      "사용하시다 어려운 점이나 추가 사내 교육 관련 문의가 필요하시면 언제든 이 메일로 답장해 주세요.\n\n" +
                      "감사합니다.\n" +
                      "데이터공방 드림";
