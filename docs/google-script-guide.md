@@ -17,7 +17,7 @@
 
 ```javascript
 /**
- * [통합 버전 v9] 홈페이지 문의 접수 & RPA 사전예약 & 다운로드 로그 & RPA 도구 작동 로그를 "문의raw" 시트 하나로 통합 수집하고, 가이드북 신청 시 사용자 자동 메일 회신을 지원하는 스크립트
+ * [통합 버전 v9.1] 홈페이지 문의 접수 & RPA 사전예약 & 다운로드 로그 & RPA 도구 작동 로그를 "문의raw" 시트 하나로 통합 수집하고, 가이드북 신청 시 사용자 자동 메일 회신을 지원하는 스크립트
  */
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -25,11 +25,13 @@ function doPost(e) {
     lock.waitLock(30000); // 동시 접속 시 데이터 누락 방지를 위한 락 설정 (30초 대기)
   } catch (f) {
     return ContentService.createTextOutput(JSON.stringify({ "success": false, "message": "서버 트래픽 과부하로 처리가 지연되었습니다." }))
-      .setMimeType(ContentService.MimeType.JSON);
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeader("Access-Control-Allow-Origin", "*"); // CORS 제약 해결 헤더 추가
   }
 
   try {
-    var doc = SpreadsheetApp.getActiveSpreadsheet();
+    // 스프레드시트 ID 명시로 안정성 100% 확보
+    var doc = SpreadsheetApp.openById("1v4mfxFicunKG56UTME8Ib-6ZHL89UzQgslBHpUoAW08");
     
     // 모든 데이터를 "문의raw" 단일 시트에 통합 수집
     var sheet = doc.getSheetByName("문의raw");
