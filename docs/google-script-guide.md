@@ -17,7 +17,7 @@
 
 ```javascript
 /**
- * [통합 버전 v9.1] 홈페이지 문의 접수 & RPA 사전예약 & 다운로드 로그 & RPA 도구 작동 로그를 "문의raw" 시트 하나로 통합 수집하고, 가이드북 신청 시 사용자 자동 메일 회신을 지원하는 스크립트
+ * [통합 버전 v9.2] 홈페이지 문의 접수 & RPA 사전예약 & 다운로드 로그 & RPA 도구 작동 로그를 "문의raw" 시트 하나로 통합 수집하고, 가이드북 신청 시 사용자 자동 메일 회신을 지원하는 스크립트
  */
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -25,8 +25,7 @@ function doPost(e) {
     lock.waitLock(30000); // 동시 접속 시 데이터 누락 방지를 위한 락 설정 (30초 대기)
   } catch (f) {
     return ContentService.createTextOutput(JSON.stringify({ "success": false, "message": "서버 트래픽 과부하로 처리가 지연되었습니다." }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*"); // CORS 제약 해결 헤더 추가
+      .setMimeType(ContentService.MimeType.JSON);
   }
 
   try {
@@ -80,7 +79,7 @@ function doPost(e) {
     }
     
     // ----------------------------------------------------
-    // [아이디어 제안 수집 연동 보정] (data.type === "자동화 아이디어 제안"인 경우)
+    // [아이디어 제안 수접 연동 보정] (data.type === "자동화 아이디어 제안"인 경우)
     // ----------------------------------------------------
     else if (data.type === "자동화 아이디어 제안") {
       type = "아이디어 제안";
@@ -160,13 +159,11 @@ function doPost(e) {
     }
 
     return ContentService.createTextOutput(JSON.stringify({ "success": true, "message": "접수 완료" }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*");
+      .setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
     return ContentService.createTextOutput(JSON.stringify({ "success": false, "message": error.toString() }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*");
+      .setMimeType(ContentService.MimeType.JSON);
   } finally {
     lock.releaseLock();
   }
