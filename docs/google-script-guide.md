@@ -166,6 +166,21 @@ function doPost(e) {
                    "▶ 등록된 상세 내용은 구글 스프레드시트 관리 대장에서 확인하실 수 있습니다.";
 
       GmailApp.sendEmail(adminEmail, subject, emailBody);
+      
+      // [신청자 메일 자동 회신] 안티그래비티 가이드북 신청 시 PDF 링크 메일 즉시 발송
+      if (type === "안티그래비티 가이드북 다운로드" && email) {
+        var userSubject = "[데이터공방] 요청하신 Antigravity IDE 실무 가이드북 다운로드 링크입니다.";
+        var userBody = "안녕하세요, " + name + "\n\n" +
+                       "데이터공방을 찾아주시고 Antigravity IDE 가이드북을 신청해 주셔서 대단히 감사합니다.\n\n" +
+                       "신청하신 Antigravity IDE 실무 가이드북 (클로드코드, Codex 연동까지) PDF 다운로드 링크를 아래와 같이 전해드립니다.\n\n" +
+                       "▶ 가이드북 PDF 다운로드 링크: https://datagongbang.kr/docs/antigravity_guide.pdf \n\n" +
+                       "본 가이드를 참고하셔서 실무에서 지능형 AI 에이전트를 통한 초고속 코딩 자동화 루프를 완성해 보시기 바랍니다.\n" +
+                       "사용하시다 어려운 점이나 추가 사내 교육 관련 문의가 필요하시면 언제든 이 메일로 답장해 주세요.\n\n" +
+                       "감사합니다.\n" +
+                       "데이터공방 드림";
+        
+        GmailApp.sendEmail(email, userSubject, userBody);
+      }
 
       return ContentService.createTextOutput(JSON.stringify({ "success": true, "message": "접수 완료" }))
         .setMimeType(ContentService.MimeType.JSON)

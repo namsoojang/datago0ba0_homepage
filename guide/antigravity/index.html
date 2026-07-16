@@ -469,10 +469,12 @@
       <div class="download-widget">
         <div class="download-widget-text">
           <h4>▷ 실무 가이드북 인쇄용 PDF 무료 소장하기</h4>
-          <p>이메일 주소와 회사명을 입력해 주시면, 본 실무 가이드라인의 고해상도 PDF 다운로드 링크와 소스 코드를 메일로 자동 발송해 드립니다.</p>
+          <p>아래 정보를 입력해 주시면 본 실무 가이드라인의 고해상도 PDF 다운로드 링크와 소스 코드를 입력하신 이메일로 즉시 자동 전송해 드립니다.</p>
         </div>
         <form class="widget-form" id="widget-download-form">
           <input type="text" name="company" placeholder="회사명" required class="widget-input">
+          <input type="text" name="name" placeholder="이름" required class="widget-input">
+          <input type="text" name="position" placeholder="직책" required class="widget-input">
           <input type="email" name="email" placeholder="이메일 주소" required class="widget-input">
           <button type="submit" class="widget-btn" id="widget-submit-btn">가이드북 다운로드</button>
         </form>
@@ -524,7 +526,9 @@
 
           const payload = {
             'company': form.company.value,
+            'name': form.name.value + ' (' + form.position.value + ')',
             'email': form.email.value,
+            'message': 'Antigravity IDE 설치 가이드북 다운로드 요청 (웹페이지)',
             'type': '안티그래비티 가이드북 다운로드'
           };
 
@@ -552,9 +556,7 @@
                   'event_label': 'Antigravity Guide PDF'
                 });
               }
-              // PDF 즉시 열기/다운로드
-              window.open('../../docs/antigravity_guide.pdf', '_blank');
-              alert('성공적으로 접수되었습니다. 고해상도 PDF 파일을 오픈합니다.');
+              alert('가이드북 다운로드 신청이 성공적으로 완료되었습니다! 입력하신 이메일 주소로 다운로드 링크를 담은 안내 메일이 즉시 발송되었으니 메일함을 확인해 주세요.');
             } else {
               alert(data.message || '전송 실패');
             }
