@@ -165,7 +165,7 @@
     .download-widget-text h4 {
       font-size: 17px;
       font-weight: 700;
-      color: #02C39A;
+      color: #028090;
       margin-bottom: 6px;
     }
     .download-widget-text p {
@@ -192,11 +192,11 @@
     }
     .widget-input:focus {
       outline: none;
-      border-color: #02C39A;
-      box-shadow: 0 0 0 3px rgba(2, 195, 154, 0.15);
+      border-color: #028090;
+      box-shadow: 0 0 0 3px rgba(2, 128, 144, 0.15);
     }
     .widget-btn {
-      background: #02C39A;
+      background: #028090;
       color: #FFFFFF;
       border: none;
       border-radius: 6px;
@@ -226,7 +226,7 @@
     }
     .rpa-light-theme .nav-link:hover,
     .rpa-light-theme .nav-link.active {
-      color: #02C39A !important;
+      color: #028090 !important;
     }
     .rpa-light-theme .menu-toggle i {
       color: #0F172A !important;
@@ -422,27 +422,27 @@
         <p>클로드 코드는 Anthropic사에서 제공하는 초고속 터미널(CLI) 기반 AI 개발 에이전트 도구입니다. 안티그래비티는 내부 셸 터미널을 통해 이 클로드 코드를 전역 런타임 비서로 쉽게 병렬 연결하여 개발 환경의 시너지를 극대화할 수 있습니다.</p>
         
         <div style="background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
-          <h4 style="font-size: 13px; color: #02C39A; margin-bottom: 8px;">■ 선수 조건: Node.js 및 npm 설치</h4>
+          <h4 style="font-size: 13px; color: #028090; margin-bottom: 8px;">■ 선수 조건: Node.js 및 npm 설치</h4>
           <ul class="step-list" style="margin: 0; padding-left: 0;">
             <li>Node.js 공식 웹사이트(https://nodejs.org/)에 접속합니다.</li>
             <li>대부분의 사용자에게 안정적으로 권장하는 LTS(Long Term Support) 버전 인스톨러를 다운로드합니다.</li>
             <li>다운로드한 셋업 파일을 실행하고 다음(Next)을 계속 클릭하여 설치를 완료합니다.</li>
             <li>설치가 끝난 뒤, 환경변수를 반영하기 위해 안티그래비티 IDE 프로그램을 완전히 종료했다가 재부팅합니다.</li>
-            <li>안티그래비티 하단 터미널(Terminal)에 <code style="color: #02C39A;">node -v</code> 및 <code style="color: #02C39A;">npm -v</code>를 입력하여 버전 숫자가 정상 확인되는지 검증합니다.</li>
+            <li>안티그래비티 하단 터미널(Terminal)에 <code style="color: #028090;">node -v</code> 및 <code style="color: #028090;">npm -v</code>를 입력하여 버전 숫자가 정상 확인되는지 검증합니다.</li>
           </ul>
         </div>
 
         <ul class="step-list">
           <li>안티그래비티 IDE 하단의 터미널(Terminal) 탭을 활성화합니다.</li>
           <li>터미널 명령창에 아래의 npm 전역 설치 코드를 입력하고 실행하여 모듈을 내려받습니다:<br>
-            <code style="background: rgba(0,0,0,0.3); padding: 4px 8px; border-radius: 4px; color: #E5C158; font-size: 12px; margin-top: 6px; display: inline-block;">npm install -g @anthropic-ai/claude-code</code>
+            <code style="background: #0F172A; padding: 6px 12px; border-radius: 6px; color: #38BDF8; border: 1px solid #1E293B; font-size: 12px; margin-top: 6px; display: inline-block; font-family: monospace;">npm install -g @anthropic-ai/claude-code</code>
           </li>
-          <li>설치가 끝나면 터미널 창에 <code style="color: #02C39A;">claude</code>를 쳐서 구동한 후, 터미널창에 표시되는 원타임 보안 링크에 접속하여 Anthropic 계정 로그인을 처리해 줍니다.</li>
+          <li>설치가 끝나면 터미널 창에 <code style="color: #028090;">claude</code>를 쳐서 구동한 후, 터미널창에 표시되는 원타임 보안 링크에 접속하여 Anthropic 계정 로그인을 처리해 줍니다.</li>
           <li>인증 연동이 완수되면 이제 터미널 창에서 클로드 코드가 대기 상태에 접어들며, 안티그래비티 창에 로드된 소스 코드들을 터미널 내부에서 동시에 직접 훑어보며 코딩하는 무결점 AI 협업 루프가 구축 완료됩니다.</li>
         </ul>
 
         <div style="background: rgba(2, 195, 154, 0.03); border: 1px solid rgba(2, 195, 154, 0.25); border-radius: 8px; padding: 16px; margin-top: 20px;">
-          <h4 style="font-size: 13px; color: #02C39A; margin-bottom: 8px;">▷ 꿀팁: 터미널 창을 우측으로 배치하여 AI 대화창처럼 쓰기</h4>
+          <h4 style="font-size: 13px; color: #028090; margin-bottom: 8px;">▷ 꿀팁: 터미널 창을 우측으로 배치하여 AI 대화창처럼 쓰기</h4>
           <p style="font-size: 12px; color: #475569; margin-bottom: 12px; line-height: 1.6;">하단 터미널 패널의 탭을 마우스 우클릭하거나 우측 아이콘을 클릭하여 간편하게 오른쪽 세로 화면으로 보낼 수 있습니다. 이렇게 배치하면 제미나이나 코덱스 채팅 패널처럼 세로형 메인 AI 비서 느낌으로 넓고 편안하게 사용하실 수 있습니다.</p>
           
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;">
