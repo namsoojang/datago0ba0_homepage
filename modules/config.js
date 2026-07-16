@@ -4,7 +4,7 @@
  */
 window.APP_CONFIG = {
   // 구글 스프레드시트 연동용 Apps Script Web App URL
-  GAS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbzvdfCHU2TGbpaANU5VNn6AzA7Xt7HjIAosQKfXNzTa87xlq28ceshMkOD2I519bRJiAQ/exec",
+  GAS_WEBAPP_URL: "https://script.google.com/macros/s/AKfycbzbPLLNTIV9c1Ef-Uzd0AeomCWQXUSQY-McEvLBfqekbPgG8gVrFFg_vTACKpkz6qZNIg/exec",
   
   // 외부 API 주소 정의
   API: {
