@@ -281,11 +281,17 @@
       <section class="guide-section" id="screen">
         <div class="section-headline">▣ 2. 안티그래비티 화면 설명</div>
         <p>안티그래비티의 내부 화면은 사용자가 에이전트와 대화를 나눔과 동시에 소스코드와 결과물을 한눈에 제어하도록 4개의 핵심 분할 패널로 나뉘어 있습니다.</p>
+        
+        <div class="guide-image-box" style="margin: 16px 0; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19;">
+          <img src="./assets/images/guide/guide_layout.png" alt="안티그래비티 화면구성" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 안티그래비티 IDE의 기본 분할 패널 구성도 (① 파일 트리, ② 코드 에디터, ③ 내부 터미널, ④ 에이전트 대화창)</div>
+        </div>
+
         <ul class="step-list">
-          <li>에이전트 대화창(Left Panel) : 인공지능 에이전트에게 구현 계획 수립이나 디버깅을 직접 소통하며 명령을 내리는 메인 채팅방입니다.</li>
-          <li>에디터 작업 공간(Center Panel) : 현재 다루고 있는 파일들의 목록을 트리로 보여주고 소스코드를 직접 타이핑하여 가다듬는 메인 에디터 영역입니다.</li>
-          <li>샌드박스 터미널(Bottom Panel) : 깃 푸시나 파이썬 실행 등 직접 명령어를 쳐서 테스트하거나 에이전트가 제안한 스크립트가 실행되는 셸 터미널 공간입니다.</li>
-          <li>아티팩트 뷰어(Right Panel) : 에이전트가 실시간으로 써내는 작업 계획서(implementation_plan.md)나 진행상황(task.md) 체크리스트를 정돈된 비주얼 서식으로 렌더링해 주는 탭 화면입니다.</li>
+          <li>① 파일 탐색기 (Explorer Panel) : 현재 워크스페이스에 열린 프로젝트 파일들을 계층 트랙 형태로 파악하는 공간입니다.</li>
+          <li>② 에디터 작업 공간 (Editor Panel) : 내가 연 소스 파일을 직접 눈으로 읽거나 개별적으로 텍스트를 입력하여 편집하는 에디터 창입니다.</li>
+          <li>③ 샌드박스 터미널 (Terminal Panel) : 에이전트가 실행하는 명령어나 직접 동작시킬 빌드/테스트 스크립트의 작동 상태를 모니터링하는 내부 셸입니다.</li>
+          <li>④ 에이전트 대화창 (Agent Panel) : 인공지능 에이전트와 페어 프로그래밍을 위해 요구사항을 지시하고, 수행 중 발생하는 에러를 토론하는 핵심 소통 채널입니다.</li>
         </ul>
       </section>
 
@@ -293,10 +299,16 @@
       <section class="guide-section" id="workspace">
         <div class="section-headline">▣ 3. 작업 워크스페이스 폴더 지정 방법</div>
         <p>안티그래비티 에이전트가 내가 원하는 범위 밖의 윈도우 시스템 파일을 건드리지 않고, 지정된 장소 안에서만 안전하게 일하게 하려면 작업 폴더(Cwd) 지정을 해주어야 합니다.</p>
+        
+        <div class="guide-image-box" style="margin: 16px 0; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19; max-width: 600px;">
+          <img src="./assets/images/guide/guide_trust.png" alt="워크스페이스 신뢰 선택" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 신규 폴더를 로드할 때 에이전트 구동 허용을 위한 신뢰 버튼 확인</div>
+        </div>
+
         <ul class="step-list">
           <li>화면 좌측 최상단의 주 메뉴에서 [File] -> [Open Workspace] 메뉴를 클릭합니다.</li>
           <li>내가 작업하고자 하는 대상 로컬 폴더(예: C:/Users/장남수/Documents/00_데이터공방/1_Project/메세지배달부)를 선택하여 열기를 완료합니다.</li>
-          <li>에이전트 구동 시작 시 폴더 읽기 및 파일 생성 권한 요구 팝업창이 나타나면 반드시 '허용(Allow)'을 선택해 주셔야 샌드박스가 정상 기동합니다.</li>
+          <li>에이전트 구동 시작 시 폴더 읽기 및 파일 생성 권한 요구 팝업창이 나타나면 반드시 'Yes, I trust the authors' 버튼을 클릭해 주셔야 샌드박스가 정상 기동합니다.</li>
         </ul>
       </section>
 
@@ -304,6 +316,18 @@
       <section class="guide-section" id="llm">
         <div class="section-headline">▣ 4. LLM 모델 지정 및 질문 방법</div>
         <p>어려운 비즈니스 분석인지, 단순 반복적인 맞춤법 교정인지에 따라 에이전트의 중심 두뇌인 대형 언어 모델을 전환하여 사용할 수 있습니다.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;">
+          <div class="guide-image-box" style="border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19;">
+            <img src="./assets/images/guide/guide_model_select.png" alt="모델 선택 드롭다운" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 대화창 내부의 탑재 모델 선택 목록</div>
+          </div>
+          <div class="guide-image-box" style="border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19;">
+            <img src="./assets/images/guide/guide_at_mention.png" alt="골뱅이 파일 참조" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 골뱅이(@) 키를 활용한 파일 참조 기능</div>
+          </div>
+        </div>
+
         <ul class="step-list">
           <li>질문 입력창 우측 하단의 선택 바를 클릭하여 작업 목적에 맞춘 전용 모델로 교체할 수 있습니다.</li>
           <li>Gemini 3.5 Flash (Medium) : 단순 오타 교정, 스크린샷 크기 조절 스크립트 작성 등 응답 시간과 고속 처리가 최우선일 때 선택하면 엄청나게 신속합니다.</li>
@@ -327,6 +351,12 @@
       <section class="guide-section" id="codex">
         <div class="section-headline">▣ 6. 코덱스(Codex)를 익스텐션으로 연결하는 방법</div>
         <p>코덱스는 빌드 성공 여부를 로컬에서 자동 검사하고, 문법 규칙 위반(Lint Error)을 사전 필터링하여 무결성 있는 코드만 깃허브 원격 저장소에 커밋하도록 통제해 주는 도구입니다.</p>
+        
+        <div class="guide-image-box" style="margin: 16px 0; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; background: #0B0D19;">
+          <img src="./assets/images/guide/guide_codex_install.png" alt="코덱스 플러그인 설치" style="width: 100%; display: block; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <div style="font-size: 11px; color: #64748B; padding: 10px 12px; background: rgba(30, 41, 59, 0.2);">▲ 익스텐션 탭에서 Codex 플러그인 검색 및 설치 버튼 확인</div>
+        </div>
+
         <ul class="step-list">
           <li>IDE 왼쪽 바에 있는 네모난 퍼즐 아이콘의 [Extensions] 패널을 활성화합니다.</li>
           <li>검색창에 'Codex'를 입력하고 정식 제공 플러그인을 찾아 설치 버튼을 클릭합니다.</li>

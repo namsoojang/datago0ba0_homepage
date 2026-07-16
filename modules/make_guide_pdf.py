@@ -1,11 +1,14 @@
 import os
 import sys
+import re
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, HRFlowable
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, HRFlowable, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib import colors
+from PIL import Image as PILImage
+
 
 def setup_font():
     # 윈도우 시스템 기본 한글 폰트(맑은 고딕) 경로 탐색 및 등록
@@ -98,6 +101,35 @@ def build_pdf():
             story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#E2E8F0'), spaceBefore=10, spaceAfter=15))
             continue
             
+        # 이미지 태그 처리 (![alt](path))
+        img_match = re.match(r'^!\[(.*?)\]\((.*?)\)$', stripped)
+        if img_match:
+            alt_text = img_match.group(1)
+            rel_img_path = img_match.group(2)
+            
+            # docs/ 폴더 기준 상대경로를 절대경로로 변환
+            base_dir = os.path.dirname(os.path.dirname(md_path))
+            clean_path = rel_img_path.lstrip('./').replace('../', '')
+            full_img_path = os.path.join(base_dir, clean_path)
+            
+            if os.path.exists(full_img_path):
+                try:
+                    # PIL을 활용해 원본 이미지 크기 획득 후 letter 폭(가로 최대 504pt)에 맞춰 종횡비 보존 스케일링
+                    with PILImage.open(full_img_path) as pil_img:
+                        orig_w, orig_h = pil_img.size
+                    
+                    target_w = 400
+                    target_h = int((orig_h / orig_w) * target_w)
+                    
+                    story.append(Spacer(1, 10))
+                    story.append(Image(full_img_path, width=target_w, height=target_h))
+                    story.append(Spacer(1, 10))
+                except Exception as e:
+                    print(f"WARNING: 이미지 처리 중 오류 발생 - {e}")
+            else:
+                print(f"WARNING: 이미지 파일을 찾을 수 없습니다 - {full_img_path}")
+            continue
+
         # 대제목 (# )
         if stripped.startswith("# "):
             text = stripped[2:]
