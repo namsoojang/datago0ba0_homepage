@@ -129,7 +129,7 @@
                 <strong>여기에 CSV 파일을 드롭하거나 클릭하여 선택하세요</strong>
                 <span>Excel/Tally/구글 설문에서 다운로드한 CSV 포맷을 지원합니다.</span>
                 <span class="file-hint">(한글 깨짐을 자동으로 방지하기 위해 UTF-8 및 CP949 인코딩을 모두 검토합니다)</span>
-                <input type="file" id="csv-file" accept=".csv" class="file-input" style="display:none;">
+                <input type="file" id="csv-file" accept=".csv" class="file-input" aria-label="만족도 분석 CSV 파일 선택" style="display:none;">
               </label>
             </div>
           </div>
@@ -137,6 +137,7 @@
           <!-- 표 붙여넣기 탭 -->
           <div id="paste-content" class="tab-content">
             <div class="form-group">
+              <label for="paste-area" class="sr-only">만족도 설문 표 데이터 붙여넣기</label>
               <textarea id="paste-area" class="textarea-control" placeholder="엑셀, 구글 스프레드시트 등의 셀 범위나 설문 결과 데이터 표 전체를 복사(Ctrl+C)하여 여기에 그대로 붙여넣기(Ctrl+V) 하세요.&#10;구분자는 탭(TSV) 및 쉼표(CSV)를 자동으로 파싱합니다."></textarea>
             </div>
             <div class="action-bar" style="justify-content: flex-end;">
