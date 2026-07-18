@@ -1,5 +1,15 @@
 [
   {
+    "id": "ref-12",
+    "title": "SeSAC 패션 브랜드 마케팅 실무과정 AI Survival 교육 후기",
+    "date": "2026-07-14",
+    "category": "출강후기",
+    "tags": ["SeSAC", "AI Survival", "패션마케팅", "NotebookLM", "생성형AI"],
+    "summary": "패션 브랜드 마케팅 교육생들과 생성형 AI 자료 조사, 질문 설계, NotebookLM, Agentic AI를 살펴본 교육 현장과 27명의 만족도 결과, 다음 교육을 위한 개선점을 소개합니다.",
+    "thumbnail": "./assets/images/blog/sesac-ai-survival-20260714.jpg",
+    "contentPath": "data/posts/ref-12.md"
+  },
+  {
     "id": "ref-11",
     "title": "메세지배달부 Lite, Google Play Store에 출시했습니다",
     "date": "2026-07-09",

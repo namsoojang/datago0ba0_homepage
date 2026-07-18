@@ -267,7 +267,7 @@ ul {
 }
 
 /* 6. 헤더 및 네비게이션 */
-header {
+#header {
   height: var(--nav-height);
   position: fixed;
   top: 0;
@@ -280,7 +280,7 @@ header {
   transition: all 0.3s ease;
 }
 
-header.scrolled {
+#header.scrolled {
   background: rgba(8, 14, 30, 0.95);
   box-shadow: var(--shadow-sm);
   height: 70px;
