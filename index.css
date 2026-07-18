@@ -1890,3 +1890,17 @@ footer .footer-logo span strong {
     box-shadow: 0 0 10px rgba(var(--primary-teal-rgb), 0.3);
   }
 }
+/* Practical Guide journey */
+.guide-preview-section { background: linear-gradient(180deg, rgba(2,195,154,.035), transparent); }
+.guide-preview-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
+.guide-preview-card { display: flex; min-height: 260px; flex-direction: column; padding: 28px; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(15,23,42,.72); }
+.guide-preview-card.featured { border-color: rgba(2,195,154,.45); box-shadow: 0 16px 40px rgba(2,195,154,.09); }
+.guide-preview-card.action-card { background: linear-gradient(145deg, rgba(2,128,144,.2), rgba(15,23,42,.78)); }
+.guide-step { color: #02C39A; font-size: 11px; font-weight: 800; letter-spacing: .1em; }
+.guide-preview-card h3 { margin: 16px 0 12px; color: #fff; font-size: 21px; }
+.guide-preview-card p { margin: 0 0 24px; color: #CBD5E1; font-size: 14px; line-height: 1.75; }
+.guide-preview-link { margin-top: auto; color: #5EEAD4; font-size: 14px; font-weight: 700; text-decoration: none; }
+.guide-preview-link i { margin-left: 6px; transition: transform .2s ease; }
+.guide-preview-link:hover i { transform: translateX(4px); }
+.guide-preview-more { margin-top: 28px; text-align: center; }
+@media (max-width: 900px) { .guide-preview-grid { grid-template-columns: 1fr; } .guide-preview-card { min-height: auto; } }

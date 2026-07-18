@@ -256,18 +256,6 @@ Windows에서는 WSL 또는 Git for Windows 환경이 필요할 수 있습니다
 
 제품 오류나 기능 요청은 Antigravity의 `Settings > Provide Feedback`에서 전달할 수 있습니다.
 
-## 12. 문서 운영 원칙: 홈페이지와 PDF의 단일 원본
-
-이 파일 `docs/antigravity_guide.md`를 **내용의 단일 원본**으로 사용합니다.
-
-- 홈페이지: 표준 Markdown 제목(`##`, `###`), 목록, 표, 이미지 경로를 읽어 렌더링합니다.
-- PDF: `modules/make_guide_pdf.py`가 동일한 Markdown을 읽어 제작합니다.
-- 이미지: `assets/images/guide/`에서 공동 사용합니다.
-- 사실 검증: 각 절의 “공식 근거” 링크를 기준으로 정기 점검합니다.
-- 버전 관리: 작성일과 공식 문서 검증일을 분리해 기록합니다.
-
-홈페이지 HTML과 PDF용 문장을 따로 복사해 관리하지 않습니다. 화면 전용 다운로드 폼이나 내비게이션처럼 표현 계층에만 필요한 요소는 홈페이지 템플릿에 두고, 본문은 이 파일을 기준으로 동기화합니다.
-
 ## 공식 자료
 
 - [Google Antigravity 공식 다운로드](https://antigravity.google/download)
