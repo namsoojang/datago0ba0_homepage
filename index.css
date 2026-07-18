@@ -362,8 +362,24 @@ ul {
   width: 100%;
 }
 
+.nav-link.nav-cta {
+  padding: 9px 14px;
+  border-radius: 8px;
+  background: var(--accent-teal);
+  color: #fff;
+  font-weight: 700;
+}
+
+.nav-link.nav-cta::after {
+  display: none;
+}
+
 .menu-toggle {
   display: none;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: inherit;
   font-size: 1.5rem;
   cursor: pointer;
 }
@@ -1615,7 +1631,7 @@ body.rpa-light-theme .submit-btn {
 }
 
 /* 태블릿/모바일 반응형 최적화 */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .contact-form-widget {
     padding: 20px;
   }
@@ -1764,6 +1780,11 @@ footer .footer-logo span strong {
     padding: 12px 0;
     font-size: 1.05rem;
     width: 100%;
+  }
+
+  .nav-link.nav-cta {
+    margin-top: 8px;
+    padding: 12px;
   }
   
   .nav-link::after {

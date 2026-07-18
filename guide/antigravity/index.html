@@ -381,15 +381,17 @@
         <img class="logo-symbol brand-logo-img" id="header-logo-img" src="../../assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
         <span>데이터<strong>공방</strong></span>
       </a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="../../index.html" class="nav-link">Home</a></li>
-          <li><a href="../../index.html#about" class="nav-link">About</a></li>
-          <li><a href="../../rpa.html" class="nav-link">RPA</a></li>
-          <li><a href="../../blog.html" class="nav-link">Blog</a></li>
-          <li><a href="../index.html" class="nav-link">Guide Hub</a></li>
+      <nav aria-label="주요 메뉴">
+        <ul class="nav-links" id="primary-navigation">
+          <li><a href="../../index.html#curriculum" class="nav-link">교육·서비스</a></li>
+          <li><a href="../../index.html#references" class="nav-link">성과·사례</a></li>
+          <li><a href="../../rpa.html" class="nav-link">업무도구</a></li>
+          <li><a href="../index.html" class="nav-link active" aria-current="page">실무가이드</a></li>
+          <li><a href="../../blog.html" class="nav-link">블로그</a></li>
+          <li><a href="../../index.html#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
         </ul>
       </nav>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-navigation"><i class="fas fa-bars"></i></button>
     </div>
   </header>
 
@@ -617,6 +619,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>const guideMenu=document.getElementById('menu-toggle');const guideNav=document.querySelector('.nav-links');guideMenu.addEventListener('click',()=>{const open=guideNav.classList.toggle('mobile-active');guideMenu.setAttribute('aria-expanded',String(open));guideMenu.setAttribute('aria-label',open?'메뉴 닫기':'메뉴 열기');guideMenu.querySelector('i').className=open?'fas fa-times':'fas fa-bars'});guideNav.addEventListener('click',()=>{guideNav.classList.remove('mobile-active');guideMenu.setAttribute('aria-expanded','false');guideMenu.setAttribute('aria-label','메뉴 열기');guideMenu.querySelector('i').className='fas fa-bars'});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&guideNav.classList.contains('mobile-active')){guideNav.classList.remove('mobile-active');guideMenu.setAttribute('aria-expanded','false');guideMenu.setAttribute('aria-label','메뉴 열기');guideMenu.querySelector('i').className='fas fa-bars';guideMenu.focus()}});</script>
   <script>
     // Markdown 단일 원본을 홈페이지 본문과 목차로 렌더링한다.
     document.addEventListener('DOMContentLoaded', async () => {

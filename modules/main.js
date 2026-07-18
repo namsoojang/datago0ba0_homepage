@@ -229,8 +229,10 @@ function initNavigation() {
     });
 
     navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href.startsWith('#')) return;
       link.classList.remove('active');
-      if (link.getAttribute('href').slice(1) === current) {
+      if (href.slice(1) === current) {
         link.classList.add('active');
       }
     });
@@ -240,6 +242,8 @@ function initNavigation() {
   if (menuToggle && navList) {
     menuToggle.addEventListener('click', () => {
       navList.classList.toggle('mobile-active');
+      menuToggle.setAttribute('aria-expanded', String(navList.classList.contains('mobile-active')));
+      menuToggle.setAttribute('aria-label', navList.classList.contains('mobile-active') ? '메뉴 닫기' : '메뉴 열기');
       const icon = menuToggle.querySelector('i');
       if (navList.classList.contains('mobile-active')) {
         icon.className = 'fas fa-times';
@@ -252,8 +256,20 @@ function initNavigation() {
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         navList.classList.remove('mobile-active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', '메뉴 열기');
         menuToggle.querySelector('i').className = 'fas fa-bars';
       });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && navList.classList.contains('mobile-active')) {
+        navList.classList.remove('mobile-active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', '메뉴 열기');
+        menuToggle.querySelector('i').className = 'fas fa-bars';
+        menuToggle.focus();
+      }
     });
   }
 }
