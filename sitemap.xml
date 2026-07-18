@@ -113,4 +113,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- 블로그 상세글 12 (SeSAC AI Survival 교육 후기) -->
+  <url>
+    <loc>https://datagongbang.kr/blog-detail.html?id=ref-12</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
