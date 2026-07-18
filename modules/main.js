@@ -1188,6 +1188,10 @@ function initContactForm() {
     formData.forEach((value, key) => {
       payload[key] = value;
     });
+    payload['source_page'] = window.location.pathname || '/';
+    payload['source_url'] = window.location.href.split('#')[0];
+    payload['referrer'] = document.referrer || 'direct';
+    payload['submitted_at'] = new Date().toISOString();
 
     // 문의 타입 속성 강제 지정
     if (type === 'general') {
@@ -1238,10 +1242,7 @@ function initContactForm() {
             } else if (type === 'estimate') {
               eventName = 'submit_estimate_request';
               eventParams['event_label'] = 'Estimate Request';
-              eventParams['company'] = payload['company'] || '';
-              eventParams['headcount'] = payload['headcount'] || '';
               eventParams['topic'] = payload['topic'] || '';
-              eventParams['timing'] = payload['timing'] || '';
             } else if (type === 'message-delivery') {
               eventName = 'submit_message_delivery_contact';
               eventParams['event_label'] = 'Message Delivery Inquiry';

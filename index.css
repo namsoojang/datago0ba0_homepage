@@ -1625,6 +1625,10 @@ ul {
   color: #ef4444;
   margin-left: 2px;
 }
+.form-group .optional { color: var(--text-muted); font-size: .78rem; font-weight: 500; }
+.consent-row { display:flex;align-items:flex-start;gap:10px;color:var(--text-secondary);font-size:.84rem;line-height:1.55;text-align:left; }
+.consent-row input { width:18px;height:18px;margin-top:2px;accent-color:var(--primary-teal);flex:0 0 auto; }
+.consent-row a { color:var(--accent-teal);text-decoration:underline;text-underline-offset:2px; }
 
 .form-group input,
 .form-group textarea,
