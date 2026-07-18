@@ -2012,5 +2012,6 @@ footer .footer-logo span strong {
 .guide-preview-actions { display: grid; gap: 9px; margin-top: auto; }
 .guide-preview-actions .guide-preview-link { margin-top: 0; }
 .guide-preview-pdf { color: #CBD5E1; font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.faq-container{max-width:900px}.faq-list{display:grid;gap:12px}.faq-list details{border:1px solid var(--card-border);border-radius:12px;background:var(--card-bg)}.faq-list summary{position:relative;padding:20px 52px 20px 22px;color:var(--text-primary);font-weight:700;cursor:pointer;list-style:none}.faq-list summary::-webkit-details-marker{display:none}.faq-list summary::after{content:"+";position:absolute;right:22px;top:50%;transform:translateY(-50%);color:var(--accent-teal);font-size:1.35rem}.faq-list details[open] summary::after{content:"−"}.faq-list details p{margin:0;padding:0 22px 22px;color:var(--text-secondary);line-height:1.75}.faq-list summary:focus-visible{outline:2px solid var(--accent-teal);outline-offset:3px;border-radius:10px}
 .guide-preview-more { margin-top: 28px; text-align: center; }
 @media (max-width: 900px) { .guide-preview-grid { grid-template-columns: 1fr; } .guide-preview-card { min-height: auto; } }
