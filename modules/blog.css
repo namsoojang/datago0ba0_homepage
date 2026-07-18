@@ -528,7 +528,7 @@
 }
 
 /* 헤더 및 네비게이션 가독성 보장 */
-.rpa-light-theme header {
+.rpa-light-theme #header {
   background: rgba(255, 255, 255, 0.9) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
   border-bottom: 1px solid #e2e8f0 !important;
@@ -536,7 +536,7 @@
   -webkit-backdrop-filter: blur(10px) !important;
 }
 
-.rpa-light-theme header.scrolled {
+.rpa-light-theme #header.scrolled {
   background: #ffffff !important;
   height: 70px !important;
 }
@@ -691,4 +691,3 @@
   width: 100% !important;
   box-sizing: border-box !important;
 }
-
