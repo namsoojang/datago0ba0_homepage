@@ -1045,6 +1045,16 @@ ul {
 }
 
 /* 12. References Section */
+.journey-section { background: rgba(2,195,154,.035); }
+.journey-grid { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px; }
+.journey-card { display:flex;flex-direction:column;min-width:0;padding:26px;border:1px solid var(--card-border);border-radius:var(--border-radius-md);background:var(--card-bg); }
+.journey-card > span { color:var(--accent-teal);font-size:.76rem;font-weight:800;letter-spacing:.05em; }
+.journey-card h3 { margin:12px 0;font-size:1.13rem;line-height:1.45; }
+.journey-card p { margin:0 0 22px;color:var(--text-secondary);font-size:.9rem;line-height:1.65; }
+.journey-card a { display:inline-flex;align-items:center;gap:7px;margin-top:auto;color:var(--accent-teal);font-weight:700; }
+@media(max-width:1024px){.journey-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.journey-grid{grid-template-columns:1fr}}
+
 .case-study-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
