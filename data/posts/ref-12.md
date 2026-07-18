@@ -1,5 +1,7 @@
 # SeSAC 패션 브랜드 마케팅 실무과정 AI Survival 교육 후기
 
+![SeSAC 패션 브랜드 마케팅 실무과정 AI Survival 강의 현장](assets/images/blog/sesac-ai-survival-20260714.jpg)
+
 2026년 7월 14일 화요일 오전, SeSAC 패션 브랜드 마케팅 실무과정 교육생을 대상으로 `AI Survival` 특강을 진행했습니다.
 
 이번 교육은 디지털 전환의 흐름부터 생성형 AI, 자료 조사와 질문 설계, NotebookLM, Agentic AI까지 연결해 패션 마케팅 직무에서 AI를 바라보는 시야를 넓히는 데 목적을 두었습니다.
