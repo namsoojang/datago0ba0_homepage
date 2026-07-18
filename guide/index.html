@@ -41,10 +41,11 @@
   <footer>© 2026 데이터공방 · 데이터 분석, 업무 자동화, 생성형 AI 실무 교육</footer>
   <script>
     const hubMenu=document.querySelector('.hub-menu');const hubLinks=document.querySelector('.hub-links');hubMenu.addEventListener('click',()=>{const open=hubLinks.classList.toggle('mobile-active');hubMenu.setAttribute('aria-expanded',String(open));hubMenu.setAttribute('aria-label',open?'메뉴 닫기':'메뉴 열기');hubMenu.textContent=open?'×':'☰'});hubLinks.addEventListener('click',()=>{hubLinks.classList.remove('mobile-active');hubMenu.setAttribute('aria-expanded','false');hubMenu.setAttribute('aria-label','메뉴 열기');hubMenu.textContent='☰'});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&hubLinks.classList.contains('mobile-active')){hubLinks.classList.remove('mobile-active');hubMenu.setAttribute('aria-expanded','false');hubMenu.setAttribute('aria-label','메뉴 열기');hubMenu.textContent='☰';hubMenu.focus()}});
-    gtag('event','view_guide_hub');
-    document.querySelectorAll('[data-guide-step]').forEach(link=>link.addEventListener('click',()=>gtag('event','select_guide_step',{step:link.dataset.guideStep,guide_name:link.dataset.guideName})));
-    document.querySelectorAll('[data-pdf-name]').forEach(link=>link.addEventListener('click',()=>gtag('event','download_guide_pdf',{guide_name:link.dataset.pdfName})));
-    document.querySelectorAll('[data-consult-source]').forEach(link=>link.addEventListener('click',()=>gtag('event','click_team_consultation',{source_guide:link.dataset.consultSource})));
+    const sourcePage=location.pathname;gtag('event','view_guide_hub',{source_page:sourcePage});
+    document.querySelectorAll('.hub-links a').forEach(link=>link.addEventListener('click',()=>gtag('event','click_global_nav',{nav_item:link.textContent.trim(),source_page:sourcePage})));
+    document.querySelectorAll('[data-guide-step]').forEach(link=>link.addEventListener('click',()=>gtag('event','select_guide_step',{step:link.dataset.guideStep,guide_name:link.dataset.guideName,source_page:sourcePage})));
+    document.querySelectorAll('[data-pdf-name]').forEach(link=>link.addEventListener('click',()=>gtag('event','download_guide_pdf',{guide_name:link.dataset.pdfName,source_page:sourcePage})));
+    document.querySelectorAll('[data-consult-source]').forEach(link=>link.addEventListener('click',()=>gtag('event','click_team_consultation',{source_guide:link.dataset.consultSource,source_page:sourcePage})));
   </script>
 </body>
 </html>

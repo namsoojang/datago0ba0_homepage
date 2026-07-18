@@ -39,6 +39,11 @@ function showToast(message, type = 'success', duration = 3000) {
   }, duration);
 }
 
+window.trackCRMEvent = function(eventName, params = {}) {
+  if (typeof gtag !== 'function') return;
+  gtag('event', eventName, { source_page: window.location.pathname || '/', ...params });
+};
+
 // 1-2. 화면 중앙 대형 완료 안내 모달 팝업 기능 (GTM/GA4 완료 이벤트 보완)
 window.showSuccessModal = function(title, message, buttonText = "확인") {
   // 기존 모달이 있다면 중복 방지를 위해 제거
@@ -125,7 +130,21 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit(initLogoFallback, 'Logo Fallback');
   safeInit(initLogoSliders, 'Logo Sliders Drag & Scroll');
   safeInit(initContactForm, 'Contact Form Widgets');
+  safeInit(initCRMTracking, 'CRM Funnel Tracking');
 });
+
+function initCRMTracking() {
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a');
+    if (!link) return;
+    if (link.classList.contains('nav-link')) {
+      window.trackCRMEvent('click_global_nav', { nav_item: link.textContent.trim() });
+    }
+    if (link.dataset.guideStep) window.trackCRMEvent('select_guide_step', { step: link.dataset.guideStep, guide_name: link.dataset.guideName || '' });
+    if (link.dataset.pdfName) window.trackCRMEvent('download_guide_pdf', { guide_name: link.dataset.pdfName });
+    if (link.dataset.consultSource) window.trackCRMEvent('click_team_consultation', { source_guide: link.dataset.consultSource });
+  });
+}
 
 /* ----------------------------------------------------
    ★ 5대 애니메이션 패턴 구현 (GSAP & ScrollTrigger)
@@ -1248,14 +1267,7 @@ function initContactForm() {
               eventParams['event_label'] = 'Message Delivery Inquiry';
             }
 
-            window.dataLayer.push({
-              'event': eventName,
-              ...eventParams
-            });
-
-            if (typeof gtag === 'function') {
-              gtag('event', eventName, eventParams);
-            }
+            window.trackCRMEvent('submit_contact_form', { inquiry_type: type });
 
             // 알림 메시지 정의
             let successTitle = '';

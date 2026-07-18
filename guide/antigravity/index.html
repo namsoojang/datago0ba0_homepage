@@ -755,5 +755,6 @@
       }
     });
   </script>
+  <script>const analyticsSource=location.pathname;document.querySelectorAll('.nav-links a').forEach(link=>link.addEventListener('click',()=>gtag('event','click_global_nav',{nav_item:link.textContent.trim(),source_page:analyticsSource})));document.querySelectorAll('[data-guide-step]').forEach(link=>link.addEventListener('click',()=>gtag('event','select_guide_step',{step:link.dataset.guideStep,guide_name:link.dataset.guideName,source_page:analyticsSource})));document.querySelectorAll('[data-pdf-name]').forEach(link=>link.addEventListener('click',()=>gtag('event','download_guide_pdf',{guide_name:link.dataset.pdfName,source_page:analyticsSource})));document.querySelectorAll('[data-consult-source]').forEach(link=>link.addEventListener('click',()=>gtag('event','click_team_consultation',{source_guide:link.dataset.consultSource,source_page:analyticsSource})));</script>
 </body>
 </html>
