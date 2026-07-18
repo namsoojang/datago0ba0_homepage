@@ -490,10 +490,46 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="../../modules/toast.js?v=1.2"></script>
   <script>
-    // 목차 스크롤 하이라이팅 및 리드 전송 스크립트 단독 이식
-    document.addEventListener('DOMContentLoaded', () => {
+    // Markdown 단일 원본을 홈페이지 본문과 목차로 렌더링한다.
+    document.addEventListener('DOMContentLoaded', async () => {
+      const guideContent = document.querySelector('.guide-content');
+      const downloadWidget = document.querySelector('.download-widget');
+
+      try {
+        const response = await fetch('../../docs/antigravity_guide.md?v=20260718');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const markdown = (await response.text())
+          .replaceAll('](../assets/', '](../../assets/');
+        const article = document.createElement('article');
+        article.className = 'markdown-body antigravity-guide-source';
+        article.innerHTML = marked.parse(markdown);
+
+        guideContent.replaceChildren(article);
+        if (downloadWidget) guideContent.appendChild(downloadWidget);
+
+        const sidebarList = document.querySelector('.sidebar-links');
+        const headings = article.querySelectorAll('h2');
+        sidebarList.replaceChildren(...Array.from(headings, (heading, index) => {
+          const id = `section-${index + 1}`;
+          heading.id = id;
+          heading.classList.add('guide-section');
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `#${id}`;
+          link.className = `sidebar-link${index === 0 ? ' active' : ''}`;
+          link.textContent = heading.textContent;
+          item.appendChild(link);
+          return item;
+        }));
+      } catch (error) {
+        console.error('Antigravity 가이드 Markdown을 불러오지 못했습니다.', error);
+      }
+
+      // 목차 스크롤 하이라이팅 및 리드 전송 스크립트
       const sections = document.querySelectorAll('.guide-section');
       const sidebarLinks = document.querySelectorAll('.sidebar-link');
 

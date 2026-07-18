@@ -54,16 +54,20 @@ class NumberedCanvas(canvas.Canvas):
 
 
 def setup_font():
-    # 윈도우 시스템 기본 한글 폰트(맑은 고딕) 경로 등록
-    font_path = r"C:\Windows\Fonts\malgun.ttf"
-    if not os.path.exists(font_path):
-        font_path = r"C:\Windows\Fonts\gulim.ttc"
-        if not os.path.exists(font_path):
-            print("ERROR: 한글 폰트 파일을 찾을 수 없습니다. 시스템 폰트를 확인해주세요.")
-            sys.exit(1)
-        pdfmetrics.registerFont(TTFont("KoreanFont", font_path, subfontIndex=0))
-    else:
-        pdfmetrics.registerFont(TTFont("KoreanFont", font_path))
+    # Windows와 WSL/Linux에서 사용 가능한 한글 폰트를 순서대로 탐색한다.
+    candidates = [
+        (r"C:\Windows\Fonts\malgun.ttf", None),
+        (r"/mnt/c/Windows/Fonts/malgun.ttf", None),
+        (r"C:\Windows\Fonts\gulim.ttc", 0),
+        (r"/mnt/c/Windows/Fonts/gulim.ttc", 0),
+        (r"/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc", 0),
+    ]
+    for font_path, subfont_index in candidates:
+        if os.path.exists(font_path):
+            kwargs = {} if subfont_index is None else {"subfontIndex": subfont_index}
+            pdfmetrics.registerFont(TTFont("KoreanFont", font_path, **kwargs))
+            return
+    raise FileNotFoundError("한글 폰트를 찾지 못했습니다. 맑은 고딕 또는 Noto Sans CJK를 설치하세요.")
 
 
 def md_to_html(text):
@@ -93,8 +97,9 @@ def md_to_html(text):
 
 def build_pdf():
     setup_font()
-    
-    pdf_path = r"c:\Users\장남수\Documents\00_데이터공방\0_홈페이지\docs\antigravity_guide.pdf"
+
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    pdf_path = os.path.join(project_root, "docs", "antigravity_guide.pdf")
     
     # 런닝 헤더 간격(상단 72pt) 및 여백 조정으로 레이아웃 안정성 확보 (가로 영역 = 504pt)
     doc = SimpleDocTemplate(
@@ -179,7 +184,7 @@ def build_pdf():
 
     story = []
     
-    md_path = r"c:\Users\장남수\Documents\00_데이터공방\0_홈페이지\docs\antigravity_guide.md"
+    md_path = os.path.join(project_root, "docs", "antigravity_guide.md")
     if not os.path.exists(md_path):
         print("ERROR: 원본 마크다운 가이드 파일이 존재하지 않습니다.")
         return
@@ -203,7 +208,7 @@ def build_pdf():
             if stripped.startswith("# "):
                 title_text = stripped[2:]
                 continue
-            if stripped.startswith("작성일:") or stripped.startswith("제작자:"):
+            if stripped.startswith(("부제:", "초판:", "공식 문서 검증:", "기획·검수:")):
                 meta_info.append(stripped)
                 continue
             if stripped == "---":
@@ -264,22 +269,39 @@ def build_pdf():
                     print(f"WARNING: 이미지 처리 중 오류 - {e}")
             continue
 
-        # 대분류 (▣ )
-        if stripped.startswith("▣ "):
-            html_text = md_to_html(stripped)
+        # 표준 Markdown 2단계 제목
+        if stripped.startswith("## "):
+            html_text = md_to_html(stripped[3:])
             story.append(Paragraph(html_text, h1_style))
             story.append(Spacer(1, 5))
             continue
-            
-        # 중분류 (■ )
-        if stripped.startswith("■ "):
-            html_text = md_to_html(stripped)
+
+        # 표준 Markdown 3단계 제목
+        if stripped.startswith("### "):
+            html_text = md_to_html(stripped[4:])
             story.append(Paragraph(html_text, h2_style))
             story.append(Spacer(1, 4))
             continue
+
+        # 인용문
+        if stripped.startswith("> "):
+            story.append(Paragraph("※ " + md_to_html(stripped[2:]), list_style))
+            continue
+
+        # 코드 펜스는 구분 기호만 생략하고 내부 명령은 본문으로 출력한다.
+        if stripped.startswith("```"):
+            continue
+
+        # Markdown 표 구분 행은 생략한다. 데이터 행은 가독성 있는 텍스트로 변환한다.
+        if re.match(r'^\|?[\s:|-]+\|?$', stripped):
+            continue
+        if stripped.startswith("|") and stripped.endswith("|"):
+            cells = [cell.strip() for cell in stripped.strip("|").split("|")]
+            story.append(Paragraph(" · ".join(md_to_html(cell) for cell in cells), list_style))
+            continue
             
         # 숫자 및 블릿 리스트 아이템 (1., 2., -, * 등)
-        list_match = re.match(r'^([\-*\u25b7\u25b6]|[0-9]+\.)\s+(.*)$', stripped)
+        list_match = re.match(r'^([\-*\u25b7\u25b6]|[0-9]+\.|- \[[ xX]\])\s+(.*)$', stripped)
         if list_match:
             bullet = list_match.group(1)
             content = list_match.group(2)
