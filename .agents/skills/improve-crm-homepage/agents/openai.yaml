@@ -1,0 +1,4 @@
+interface:
+  display_name: "데이터공방 CRM 홈페이지 개선"
+  short_description: "메뉴·메시지·CTA·폼·측정을 단계적으로 개선합니다"
+  default_prompt: "Use $improve-crm-homepage to audit the current site and implement the next highest-priority CRM improvement."
