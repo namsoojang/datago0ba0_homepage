@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8H79VM0RM8');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>무료 CRM 고객명단 점검기 | 중복·전화번호·이메일 정리 | 데이터공방</title>
+  <meta name="description" content="CSV 고객명단의 빈 값, 전화번호, 이메일, 완전 중복과 중복 후보를 브라우저에서 안전하게 점검하고 정리·마스킹 파일로 다운로드합니다.">
+  <meta name="keywords" content="CRM 명단 점검, 고객명단 중복 제거, 엑셀 전화번호 정리, 이메일 형식 검사, CSV 고객 데이터 정리, 개인정보 마스킹">
+  <meta property="og:title" content="무료 CRM 고객명단 점검기 | 데이터공방">
+  <meta property="og:description" content="고객명단의 중복과 연락처 오류를 서버 업로드 없이 점검하고 정리합니다.">
+  <meta property="og:image" content="https://datagongbang.kr/assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://datagongbang.kr/crm-list-checker.html">
+  <link rel="canonical" href="https://datagongbang.kr/crm-list-checker.html">
+  <link rel="icon" type="image/png" href="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <link rel="stylesheet" href="./index.css?v=1.2">
+  <link rel="stylesheet" href="./modules/toast.css?v=1.2">
+  <link rel="stylesheet" href="./modules/tiff-converter.css?v=1.2">
+  <link rel="stylesheet" href="./modules/crm-list-checker.css?v=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CRM 고객명단 점검기","applicationCategory":"BusinessApplication","operatingSystem":"Web Browser","url":"https://datagongbang.kr/crm-list-checker.html","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}</script>
+</head>
+<body class="rpa-light-theme">
+  <div id="bg-canvas-container"></div>
+  <header id="header"><div class="container nav-container"><a href="index.html" class="logo" aria-label="데이터공방 홈"><img class="logo-symbol brand-logo-img" id="header-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26"><span>데이터<strong>공방</strong></span></a><nav aria-label="주요 메뉴"><ul class="nav-links" id="primary-navigation"><li><a href="index.html#curriculum" class="nav-link">교육·서비스</a></li><li><a href="index.html#references" class="nav-link">성과·사례</a></li><li><a href="rpa.html" class="nav-link active" aria-current="page">업무도구</a></li><li><a href="guide/index.html" class="nav-link">실무가이드</a></li><li><a href="blog.html" class="nav-link">블로그</a></li><li><a href="index.html#contact" class="nav-link nav-cta">교육·협업 문의</a></li></ul></nav><button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-navigation"><i class="fas fa-bars"></i></button></div></header>
+
+  <main class="converter-section"><div class="converter-container crm-tool-shell">
+    <div class="converter-title-area"><h1 class="section-title">무료 <span>CRM 고객명단 점검기</span></h1><p>CSV 고객명단의 인코딩·빈 값·연락처 형식·중복을 점검하고 안전한 정리본을 만듭니다. 불확실한 중복은 자동 삭제하지 않습니다.</p><a href="rpa.html" class="back-to-hub-link"><i class="fas fa-arrow-left"></i> 무료 업무도구 목록으로 돌아가기</a></div>
+    <div class="crm-privacy-banner" role="note"><i class="fas fa-shield-alt"></i><div><strong>고객명단은 데이터공방 서버로 업로드되지 않습니다.</strong><p>파일 내용은 현재 브라우저 메모리에서만 처리됩니다. 분석 이벤트에도 파일명·열 이름·고객정보를 보내지 않습니다.</p></div></div>
+
+    <section class="crm-panel" aria-labelledby="crm-upload-title">
+      <h2 class="crm-panel-title" id="crm-upload-title"><span class="crm-step-badge">1</span> 파일 선택과 인코딩 확인</h2>
+      <div id="crm-dropzone" class="crm-dropzone" role="button" tabindex="0" aria-label="CRM 고객명단 CSV 파일 선택"><i class="fas fa-file-csv"></i><strong>고객명단 CSV 파일을 놓거나 클릭하세요</strong><span>CSV·TXT, 최대 50MB · 파일 내용은 브라우저에서만 처리</span><input id="crm-file" class="crm-file-input" type="file" accept=".csv,.txt,text/csv,text/plain"></div>
+      <div id="crm-file-summary" class="crm-file-summary" aria-live="polite"></div>
+      <div class="crm-input-grid" style="margin-top:16px;"><div class="crm-field"><label for="crm-encoding">원본 인코딩</label><select id="crm-encoding"><option value="auto">자동 감지</option><option value="euc-kr">CP949 / EUC-KR</option><option value="utf-8">UTF-8 / UTF-8 BOM</option></select></div><div class="crm-field"><label for="crm-delimiter">구분자</label><select id="crm-delimiter"><option value="auto">자동 감지</option><option value=",">쉼표</option><option value="tab">탭</option><option value=";">세미콜론</option><option value="|">세로선</option></select></div><div class="crm-field"><label for="crm-consent-value">수신동의 인정값</label><input id="crm-consent-value" type="text" value="Y,동의,예,1,true" aria-describedby="crm-consent-help"><p class="crm-help" id="crm-consent-help">문자·이메일 목록 추출 시 사용</p></div></div>
+      <div class="crm-actions"><button id="crm-read" class="btn btn-secondary" type="button" disabled><i class="fas fa-search"></i> 파일 다시 읽기</button><button id="crm-reset" class="btn btn-secondary" type="button" disabled><i class="far fa-trash-alt"></i> 초기화</button></div>
+    </section>
+
+    <section id="crm-map-panel" class="crm-panel crm-hidden" aria-labelledby="crm-map-title">
+      <h2 class="crm-panel-title" id="crm-map-title"><span class="crm-step-badge">2</span> 주요 컬럼 확인</h2>
+      <p class="crm-help" style="margin-bottom:14px;">열 이름과 표본 값으로 자동 추천했습니다. 잘못 연결된 항목은 직접 바꿔주세요.</p>
+      <div class="crm-column-grid"><div class="crm-field"><label for="crm-name-column">이름</label><select id="crm-name-column"></select></div><div class="crm-field"><label for="crm-phone-column">전화번호</label><select id="crm-phone-column"></select></div><div class="crm-field"><label for="crm-email-column">이메일</label><select id="crm-email-column"></select></div><div class="crm-field"><label for="crm-business-column">사업자번호</label><select id="crm-business-column"></select></div><div class="crm-field"><label for="crm-id-column">주민·외국인번호 후보</label><select id="crm-id-column"></select><p class="crm-help">화면에서 마스킹하며 중복 후보 탐지에만 사용</p></div><div class="crm-field"><label for="crm-consent-column">광고 수신동의</label><select id="crm-consent-column"></select></div></div>
+      <div class="crm-actions"><button id="crm-run" class="btn btn-primary" type="button"><i class="fas fa-clipboard-check"></i> 명단 점검 실행</button></div>
+    </section>
+
+    <section id="crm-result-panel" class="crm-panel crm-hidden" aria-labelledby="crm-result-title">
+      <h2 class="crm-panel-title" id="crm-result-title"><span class="crm-step-badge">3</span> 사전점검 결과</h2>
+      <div id="crm-status" class="crm-status" aria-live="polite"></div><div id="crm-metrics" class="crm-metrics"></div>
+      <div class="crm-results-grid"><div class="crm-result-box"><h3>형식·빈 값 점검</h3><ul id="crm-format-issues" class="crm-issue-list"></ul></div><div class="crm-result-box"><h3>중복 점검</h3><ul id="crm-duplicate-issues" class="crm-issue-list"></ul></div></div>
+      <div class="crm-preview-wrap"><table class="crm-preview-table"><thead id="crm-preview-head"></thead><tbody id="crm-preview-body"></tbody></table></div>
+    </section>
+
+    <section id="crm-output-panel" class="crm-panel crm-hidden" aria-labelledby="crm-output-title">
+      <h2 class="crm-panel-title" id="crm-output-title"><span class="crm-step-badge">4</span> 정리 결과 내려받기</h2>
+      <div class="crm-mask-options"><strong style="font-size:.82rem;color:#334155;">마스킹할 항목</strong><label><input type="checkbox" id="crm-mask-name" checked> 이름</label><label><input type="checkbox" id="crm-mask-phone" checked> 전화번호</label><label><input type="checkbox" id="crm-mask-email" checked> 이메일</label><label><input type="checkbox" id="crm-mask-id" checked> 식별번호</label></div>
+      <div class="crm-output-grid"><article class="crm-output-card"><h3>정리된 전체 CSV</h3><p>공백·전화번호·이메일 형식을 통일하고 완전히 동일한 중복 행은 마지막 행만 남깁니다.</p><button id="crm-download-clean" class="btn btn-primary" type="button"><i class="fas fa-download"></i> 전체 정리본 다운로드</button></article><article class="crm-output-card"><h3>개인정보 마스킹 CSV</h3><p>선택 항목을 가린 새 CSV를 생성합니다. 원본 파일이나 숨김 시트를 복사하지 않습니다.</p><button id="crm-download-mask" class="btn btn-secondary" type="button"><i class="fas fa-user-shield"></i> 마스킹본 다운로드</button></article><article class="crm-output-card"><h3>문자 발송 대상</h3><p>유효한 휴대전화 번호를 중복 없이 복사합니다. 수신동의 열이 있으면 동의자만 포함합니다.</p><button id="crm-copy-phone" class="btn btn-secondary" type="button"><i class="far fa-copy"></i> 휴대전화 번호 복사</button></article><article class="crm-output-card"><h3>이메일 발송 대상</h3><p>형식이 정상인 이메일을 중복 없이 복사합니다. 수신동의 열이 있으면 동의자만 포함합니다.</p><button id="crm-copy-email" class="btn btn-secondary" type="button"><i class="far fa-copy"></i> 이메일 주소 복사</button></article></div>
+      <div class="crm-warning-note"><strong>발송 전 확인:</strong> 이 도구는 연락처 형식과 파일 내 수신동의 값만 점검합니다. 광고성 문자·이메일 전송에 필요한 적법한 사전 동의와 수신거부 요건은 사용자가 별도로 확인해야 합니다.</div>
+    </section>
+
+    <section class="csv-next-step"><h2>반복되는 고객명단 정리나 CRM 이전이 더 복잡한가요?</h2><p>여러 파일 통합, 시스템별 필드 매핑, 반복 자동화가 필요하면 현재 업무 흐름을 알려주세요.</p><a href="index.html#contact" class="btn btn-secondary" data-consult-source="crm_list_checker"><i class="far fa-envelope"></i> 고객데이터 자동화 상담</a></section>
+  </div></main>
+  <footer><div class="container"><div class="footer-logo"><img class="logo-symbol brand-logo-img" id="footer-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26"><span>데이터<strong>공방</strong></span></div><p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="rpa.html" style="text-decoration:underline;opacity:.8;margin-left:5px;">무료 업무도구</a> | <a href="privacy.html" style="text-decoration:underline;opacity:.8;margin-left:5px;">개인정보처리방침</a></p></div></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script><script src="./modules/main.js?v=1.2"></script><script src="./modules/crm-list-checker.js?v=1.0"></script>
+</body>
+</html>
