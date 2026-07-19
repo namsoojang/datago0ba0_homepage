@@ -5,7 +5,7 @@
 
 // ⚠️ 배포 시 생성하신 Google Apps Script Web App URL로 교체해주셔야 작동합니다.
 // 교체 방법은 docs/google-script-guide.md 문서를 참조하세요.
-const GOOGLE_SHEET_WEBAPP_URL = window.APP_CONFIG?.GAS_WEBAPP_URL || "https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec";
+const GOOGLE_SHEET_WEBAPP_URL = window.APP_CONFIG?.GAS_WEBAPP_URL || "https://script.google.com/macros/s/AKfycbwPXMJA-q3BFlDhLQX_rw1BtFWp5qSewHumJ-VA4fBD_-6NrrRusoqcGTGHhjTHnIGhYA/exec";
 
 // 전역 유틸리티 IP 수집기 참조
 const getIPAddress = window.APP_UTILS?.getIPAddress || (() => Promise.resolve('알 수 없음'));

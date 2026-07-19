@@ -422,7 +422,7 @@
           </p>
 
           <form id="message-delivery-contact-form" class="contact-form active"
-            action="https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec"
+            action="https://script.google.com/macros/s/AKfycbwPXMJA-q3BFlDhLQX_rw1BtFWp5qSewHumJ-VA4fBD_-6NrrRusoqcGTGHhjTHnIGhYA/exec"
             method="POST">
             <input type="hidden" name="type" value="메세지배달부">
 
@@ -482,7 +482,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const downloadButtons = document.querySelectorAll('.download-link-btn');
-      const gasUrl = window.APP_CONFIG?.GAS_WEBAPP_URL || 'https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec';
+      const gasUrl = window.APP_CONFIG?.GAS_WEBAPP_URL || 'https://script.google.com/macros/s/AKfycbwPXMJA-q3BFlDhLQX_rw1BtFWp5qSewHumJ-VA4fBD_-6NrrRusoqcGTGHhjTHnIGhYA/exec';
       const fetchIP = window.APP_UTILS?.getIPAddress || (() => Promise.resolve('알 수 없음'));
 
       downloadButtons.forEach(btn => {
