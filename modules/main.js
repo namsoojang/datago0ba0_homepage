@@ -1221,7 +1221,7 @@ function initContactForm() {
       payload['type'] = '메세지배달부';
     }
 
-    const formUrl = window.APP_CONFIG?.GAS_WEBAPP_URL || form.getAttribute('action') || 'https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec';
+    const formUrl = window.APP_CONFIG?.GAS_WEBAPP_URL || form.getAttribute('action') || 'https://script.google.com/macros/s/AKfycbwPXMJA-q3BFlDhLQX_rw1BtFWp5qSewHumJ-VA4fBD_-6NrrRusoqcGTGHhjTHnIGhYA/exec';
 
     const fetchIP = window.APP_UTILS?.getIPAddress || (() => Promise.resolve('알 수 없음'));
 

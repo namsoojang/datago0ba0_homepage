@@ -597,7 +597,7 @@ function trackEvent(eventName, params = {}) {
 
 // RPA 작동 이력 수집 헬퍼 함수
 function logRpaUsage(programName, status) {
-  const gasUrl = window.APP_CONFIG?.GAS_WEBAPP_URL || 'https://script.google.com/macros/s/AKfycbxdOOK1B8GqDiEfmBIutF8zevAsmjR7EY_q8iyq_Meijx4d52rrKbJAD5_UVrbYtE75nA/exec';
+  const gasUrl = window.APP_CONFIG?.GAS_WEBAPP_URL || 'https://script.google.com/macros/s/AKfycbwPXMJA-q3BFlDhLQX_rw1BtFWp5qSewHumJ-VA4fBD_-6NrrRusoqcGTGHhjTHnIGhYA/exec';
   const fetchIP = window.APP_UTILS?.getIPAddress || (() => Promise.resolve('알 수 없음'));
   
   fetchIP()
