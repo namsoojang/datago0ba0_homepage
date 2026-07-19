@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8H79VM0RM8');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV 한글 깨짐 복구·UTF-8 BOM 변환기 | 데이터공방</title>
+  <meta name="description" content="엑셀에서 한글이 깨지는 CSV 파일을 CP949/EUC-KR 또는 UTF-8로 읽고 Excel 호환 UTF-8 BOM CSV로 변환합니다. 파일은 서버에 업로드하지 않고 브라우저에서만 처리합니다.">
+  <meta name="keywords" content="CSV 한글 깨짐, CSV UTF-8 변환, UTF-8 BOM, utf-8-sig, CP949 변환, EUC-KR 변환, 엑셀 CSV 깨짐">
+  <meta property="og:title" content="CSV 한글 깨짐 복구·UTF-8 BOM 변환기 | 데이터공방">
+  <meta property="og:description" content="서버 업로드 없이 브라우저에서 CSV 인코딩을 확인하고 Excel용 UTF-8 BOM 파일로 변환합니다.">
+  <meta property="og:image" content="https://datagongbang.kr/assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://datagongbang.kr/csv-encoding-converter.html">
+  <link rel="canonical" href="https://datagongbang.kr/csv-encoding-converter.html">
+  <link rel="icon" type="image/png" href="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <link rel="stylesheet" href="./index.css?v=1.2">
+  <link rel="stylesheet" href="./modules/toast.css?v=1.2">
+  <link rel="stylesheet" href="./modules/tiff-converter.css?v=1.2">
+  <link rel="stylesheet" href="./modules/csv-encoding-converter.css?v=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSV 한글 깨짐 복구·UTF-8 BOM 변환기","applicationCategory":"BusinessApplication","operatingSystem":"Web Browser","url":"https://datagongbang.kr/csv-encoding-converter.html","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}</script>
+</head>
+<body class="rpa-light-theme">
+  <div id="bg-canvas-container"></div>
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo" aria-label="데이터공방 홈">
+        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <ul class="nav-links" id="primary-navigation">
+          <li><a href="index.html#curriculum" class="nav-link">교육·서비스</a></li>
+          <li><a href="index.html#references" class="nav-link">성과·사례</a></li>
+          <li><a href="rpa.html" class="nav-link active" aria-current="page">업무도구</a></li>
+          <li><a href="guide/index.html" class="nav-link">실무가이드</a></li>
+          <li><a href="blog.html" class="nav-link">블로그</a></li>
+          <li><a href="index.html#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-navigation"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <main class="converter-section">
+    <div class="converter-container csv-tool-shell">
+      <div class="converter-title-area">
+        <h1 class="section-title">CSV 한글 깨짐 <span>복구·UTF-8 변환기</span></h1>
+        <p>CSV 원본 인코딩을 확인하고 Excel에서 열기 좋은 UTF-8 BOM 형식으로 저장합니다. 변환 전 행·열 구조와 깨진 문자도 간단히 점검합니다.</p>
+        <a href="rpa.html" class="back-to-hub-link"><i class="fas fa-arrow-left"></i> 무료 업무도구 목록으로 돌아가기</a>
+      </div>
+
+      <div class="csv-privacy-banner" role="note">
+        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+        <div><strong>파일 내용은 서버로 업로드되지 않습니다.</strong><p>선택한 파일은 현재 브라우저 메모리에서만 읽고 변환합니다. 페이지를 닫거나 새로고침하면 작업 데이터가 사라집니다.</p></div>
+      </div>
+
+      <div class="csv-tool-grid">
+        <section class="csv-panel" aria-labelledby="csv-settings-title">
+          <h2 class="csv-panel-title" id="csv-settings-title"><i class="fas fa-file-csv"></i> 파일과 변환 설정</h2>
+          <div id="csv-dropzone" class="csv-dropzone" role="button" tabindex="0" aria-label="CSV 또는 TXT 파일 선택">
+            <i class="far fa-folder-open"></i>
+            <strong>CSV 파일을 놓거나 클릭하세요</strong>
+            <span>CSV·TXT, 최대 100MB · 한 번에 한 파일</span>
+            <input id="csv-file" class="csv-file-input" type="file" accept=".csv,.txt,text/csv,text/plain">
+          </div>
+          <div id="csv-file-summary" class="csv-file-summary" aria-live="polite"></div>
+
+          <div class="csv-settings">
+            <div class="csv-field">
+              <label for="csv-source-encoding">원본 파일 인코딩</label>
+              <select id="csv-source-encoding">
+                <option value="auto">자동 감지</option>
+                <option value="euc-kr">CP949 / EUC-KR</option>
+                <option value="utf-8">UTF-8 / UTF-8 BOM</option>
+              </select>
+              <p class="csv-help">미리보기가 깨지면 다른 인코딩을 직접 선택해 비교하세요.</p>
+            </div>
+            <div class="csv-field">
+              <label for="csv-delimiter">열 구분자</label>
+              <select id="csv-delimiter">
+                <option value="auto">자동 감지</option>
+                <option value=",">쉼표 (,)</option>
+                <option value="tab">탭</option>
+                <option value=";">세미콜론 (;)</option>
+                <option value="|">세로선 (|)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="csv-actions">
+            <button id="csv-analyze" type="button" class="btn btn-secondary" disabled><i class="fas fa-search"></i> 다시 분석</button>
+            <button id="csv-download" type="button" class="btn btn-primary" disabled><i class="fas fa-download"></i> UTF-8 BOM 다운로드</button>
+          </div>
+          <button id="csv-reset" type="button" class="btn btn-secondary" disabled style="width:100%;justify-content:center;margin-top:10px;border-radius:9px;"><i class="far fa-trash-alt"></i> 다른 파일 선택</button>
+        </section>
+
+        <section class="csv-panel" aria-labelledby="csv-result-title">
+          <h2 class="csv-panel-title" id="csv-result-title"><i class="fas fa-clipboard-check"></i> 사전검사와 미리보기</h2>
+          <div id="csv-status" class="csv-status" aria-live="polite">CSV 또는 TXT 파일을 선택하면 자동으로 분석합니다.</div>
+          <div id="csv-metrics" class="csv-metrics"></div>
+          <ul id="csv-checks" class="csv-check-list"></ul>
+          <div class="csv-preview-label"><label for="csv-preview">변환 미리보기</label><span id="csv-preview-count"></span></div>
+          <textarea id="csv-preview" class="csv-preview" readonly spellcheck="false" placeholder="파일을 선택하면 내용이 여기에 표시됩니다."></textarea>
+        </section>
+      </div>
+
+      <section class="csv-next-step">
+        <h2>인코딩뿐 아니라 고객명단의 중복·연락처 오류도 점검하고 싶으신가요?</h2>
+        <p>다음 도구로 CRM 명단 점검기를 준비하고 있습니다. 필요한 기능이나 파일 문제를 알려주시면 개발 우선순위에 반영합니다.</p>
+        <a href="rpa.html#suggest-trigger-card" class="btn btn-secondary" data-consult-source="csv_encoding_converter"><i class="far fa-lightbulb"></i> 필요한 점검 기능 제안하기</a>
+      </section>
+    </div>
+  </main>
+
+  <footer><div class="container"><div class="footer-logo"><img class="logo-symbol brand-logo-img" id="footer-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26"><span>데이터<strong>공방</strong></span></div><p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="rpa.html" style="text-decoration:underline;opacity:.8;margin-left:5px;">무료 업무도구</a> | <a href="privacy.html" style="text-decoration:underline;opacity:.8;margin-left:5px;">개인정보처리방침</a></p></div></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="./modules/main.js?v=1.2"></script>
+  <script src="./modules/csv-encoding-converter.js?v=1.0"></script>
+</body>
+</html>

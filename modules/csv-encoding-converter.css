@@ -1,0 +1,149 @@
+.csv-tool-shell {
+  display: grid;
+  gap: 24px;
+}
+
+.csv-privacy-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(22, 163, 74, 0.25);
+  border-radius: 12px;
+  background: rgba(240, 253, 244, 0.9);
+  color: #166534;
+}
+
+.csv-privacy-banner i { margin-top: 3px; }
+.csv-privacy-banner strong { display: block; margin-bottom: 3px; }
+.csv-privacy-banner p { margin: 0; color: #3f6212; font-size: 0.92rem; line-height: 1.55; }
+
+.csv-tool-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 24px;
+}
+
+.csv-panel {
+  padding: 26px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.csv-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 20px;
+  color: #0f172a;
+  font-size: 1.1rem;
+}
+
+.csv-dropzone {
+  position: relative;
+  display: flex;
+  min-height: 190px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 28px;
+  border: 2px dashed #94a3b8;
+  border-radius: 14px;
+  background: #f8fafc;
+  color: #475569;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.csv-dropzone:hover,
+.csv-dropzone:focus-visible,
+.csv-dropzone.is-dragging {
+  border-color: #ca8a04;
+  background: #fffbeb;
+  outline: none;
+}
+
+.csv-dropzone i { color: #ca8a04; font-size: 2rem; }
+.csv-dropzone strong { color: #0f172a; }
+.csv-dropzone span { font-size: 0.87rem; }
+.csv-file-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+.csv-file-summary {
+  display: none;
+  margin-top: 14px;
+  padding: 13px 15px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.9rem;
+}
+
+.csv-file-summary.is-visible { display: block; }
+.csv-settings { display: grid; gap: 16px; margin-top: 20px; }
+.csv-field label { display: block; margin-bottom: 7px; color: #334155; font-size: 0.9rem; font-weight: 700; }
+.csv-field select { width: 100%; padding: 11px 12px; border: 1px solid #cbd5e1; border-radius: 9px; background: #fff; color: #0f172a; font: inherit; }
+.csv-help { margin: 6px 0 0; color: #64748b; font-size: 0.8rem; line-height: 1.5; }
+.csv-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+.csv-actions .btn { justify-content: center; border-radius: 9px; }
+.csv-actions .btn:disabled { cursor: not-allowed; filter: grayscale(0.7); opacity: 0.5; }
+
+.csv-status {
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.csv-status.is-error { background: #fef2f2; color: #b91c1c; }
+.csv-status.is-success { background: #f0fdf4; color: #166534; }
+
+.csv-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.csv-metric { padding: 13px 10px; border-radius: 10px; background: #f8fafc; text-align: center; }
+.csv-metric strong { display: block; color: #0f172a; font-size: 1.15rem; }
+.csv-metric span { color: #64748b; font-size: 0.76rem; }
+
+.csv-check-list { display: grid; gap: 8px; margin: 0 0 18px; padding: 0; list-style: none; }
+.csv-check-list li { display: flex; gap: 9px; align-items: flex-start; padding: 10px 12px; border-radius: 9px; background: #f8fafc; color: #475569; font-size: 0.86rem; line-height: 1.5; }
+.csv-check-list li.ok i { color: #16a34a; }
+.csv-check-list li.warning i { color: #d97706; }
+.csv-check-list li.error i { color: #dc2626; }
+
+.csv-preview-label { display: flex; justify-content: space-between; gap: 12px; margin: 0 0 8px; color: #334155; font-size: 0.85rem; font-weight: 700; }
+.csv-preview {
+  width: 100%;
+  min-height: 260px;
+  resize: vertical;
+  padding: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font: 0.82rem/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.csv-next-step { padding: 22px; border: 1px solid rgba(202, 138, 4, 0.25); border-radius: 14px; background: #fffbeb; text-align: center; }
+.csv-next-step h2 { margin: 0 0 8px; color: #713f12; font-size: 1.08rem; }
+.csv-next-step p { margin: 0 0 14px; color: #854d0e; font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+  .csv-tool-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .csv-panel { padding: 18px; }
+  .csv-actions { grid-template-columns: 1fr; }
+  .csv-metrics { grid-template-columns: repeat(2, 1fr); }
+  .csv-privacy-banner { padding: 14px; }
+}

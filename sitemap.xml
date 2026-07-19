@@ -10,8 +10,14 @@
   <!-- RPA 포털 페이지 -->
   <url>
     <loc>https://datagongbang.kr/rpa.html</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://datagongbang.kr/csv-encoding-converter.html</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <!-- TIFF to PNG 변환기 페이지 -->
