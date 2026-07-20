@@ -231,7 +231,7 @@ Claude Code는 Anthropic의 지능형 코딩 에이전트 도구입니다. Antig
 
 공식 근거: [Anthropic Claude Code 설정](https://docs.anthropic.com/en/docs/claude-code/getting-started)
 
-## 10. 데이터공방 장남수의 실무 체크리스트
+## 10. 데이터공방의 실무 체크리스트
 
 ### 시작 전
 
