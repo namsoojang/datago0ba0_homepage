@@ -748,17 +748,21 @@ function initThemeToggle() {
   const headerLogo = document.getElementById('header-logo-img');
   const footerLogo = document.getElementById('footer-logo-img');
 
+  // 하위 디렉터리(/blog/, /guide/)에서도 동작하도록 루트 절대 경로를 사용합니다.
+  // './assets/...' 를 쓰면 /blog/assets/... 로 해석되어 로고가 깨집니다.
+  const LOGO_BASE = '/assets/images/logos/';
+
   const updateLogoSource = (theme) => {
     if (!headerLogo || !footerLogo) return;
     if (theme === 'teal') {
-      headerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_teal.png';
-      footerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_teal.png';
+      headerLogo.src = LOGO_BASE + 'sketch_var7_ultrasimple_teal.png';
+      footerLogo.src = LOGO_BASE + 'sketch_var7_ultrasimple_teal.png';
       if (heroP5Instance && typeof heroP5Instance.updateColor === 'function') {
         heroP5Instance.updateColor('#02C39A');
       }
     } else {
-      headerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_gold.png';
-      footerLogo.src = './assets/images/logos/sketch_var7_ultrasimple_gold.png';
+      headerLogo.src = LOGO_BASE + 'sketch_var7_ultrasimple_gold.png';
+      footerLogo.src = LOGO_BASE + 'sketch_var7_ultrasimple_gold.png';
       if (heroP5Instance && typeof heroP5Instance.updateColor === 'function') {
         heroP5Instance.updateColor('#E5C158');
       }
@@ -1189,6 +1193,14 @@ function initContactForm() {
   }
 
   function handleFormSubmit(form, type) {
+    // 허니팟: 사람에게 보이지 않는 필드가 채워졌다면 봇으로 간주하고 조용히 무시합니다.
+    // (봇에게 차단 사실을 알리지 않기 위해 성공 UI도 에러 UI도 띄우지 않습니다)
+    const honeypot = form.querySelector('.hp-field');
+    if (honeypot && honeypot.value.trim() !== '') {
+      console.warn('Honeypot triggered — 제출을 무시합니다.');
+      return;
+    }
+
     const submitBtn = form.querySelector('.submit-btn');
     const submitText = submitBtn.querySelector('span');
     const submitIcon = submitBtn.querySelector('i');
@@ -1207,6 +1219,7 @@ function initContactForm() {
     formData.forEach((value, key) => {
       payload[key] = value;
     });
+    delete payload['website']; // 허니팟 필드는 시트로 보내지 않습니다
     payload['source_page'] = window.location.pathname || '/';
     payload['source_url'] = window.location.href.split('#')[0];
     payload['referrer'] = document.referrer || 'direct';
