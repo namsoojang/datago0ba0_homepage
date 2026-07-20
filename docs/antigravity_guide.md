@@ -186,26 +186,50 @@ Git 저장소에서는 Codex 입력창에 `/review`를 입력해 기준 브랜�
 
 > 설치 버튼이 없거나 확장이 정상 동작하지 않으면 비공식 확장으로 대체하지 마세요. 공식 지원 편집기에서 Codex IDE extension을 사용하거나, Antigravity IDE의 터미널에서 Codex CLI를 별도로 사용하는 방법을 검토하세요.
 
-## 9. 선택 사항: Claude Code를 터미널에서 사용하기
+## 9. Claude Code 연동하기 (익스텐션 설치 및 터미널 활용)
 
-Claude Code는 Antigravity의 내장 기능이나 익스텐션이 아니라 Anthropic의 별도 터미널형 코딩 에이전트입니다. 동일한 프로젝트에서 여러 에이전트를 동시에 수정 모드로 실행하면 충돌할 수 있으므로 역할과 작업 폴더를 분리합니다.
+Claude Code는 Anthropic의 지능형 코딩 에이전트 도구입니다. Antigravity IDE 환경에서는 **클로드 코드 익스텐션(Claude Code Extension)**을 설치하여 에디터 패널에서 편리하게 대화형으로 사용하는 방식이 가장 직관적이고 편리합니다. (필요 시 터미널 CLI 방식도 병행 사용이 가능합니다.)
 
-공식 문서가 안내하는 npm 설치 방식은 Node.js 18 이상이 필요합니다.
+### 9.1 방법 1: 클로드 코드 익스텐션 설치 및 로그인 (추천)
 
-```bash
-npm install -g @anthropic-ai/claude-code
-cd <프로젝트-폴더>
-claude
-```
+1. **익스텐션 패널 열기 및 검색**
+   IDE 좌측 메인 메뉴의 **Extensions(확장)** 아이콘을 선택하고, 검색창에 `Claude Code`를 입력합니다. 게시자가 Anthropic인지 확인한 뒤 **Install** 버튼을 누릅니다.
+   ![Claude Code 익스텐션 검색 및 설치](../assets/images/guide/guide_claude_extension_install.png)
 
-Windows에서는 WSL 또는 Git for Windows 환경이 필요할 수 있습니다. 설치 후 `claude doctor`로 상태를 점검하고 화면 안내에 따라 Anthropic 계정 인증을 완료합니다. `sudo npm install -g`는 권장되지 않습니다.
+2. **계정 인증 및 승인**
+   설치 후 화면에 로그인 안내 창이 표시되면 웹 브라우저가 열리며 Anthropic 계정 로그인 및 연동 승인(Approve)을 완료합니다.
+   ![Claude Code 계정 승인 화면](../assets/images/guide/guide_claude_approve.png)
+
+3. **인증 코드 복사 및 입력**
+   웹 브라우저 화면에 표시되는 OAuth 승인 코드(Authentication Code)를 복사하여, IDE의 인증 코드 입력란에 붙여넣습니다.
+   ![인증 코드 확인 화면](../assets/images/guide/guide_claude_auth_code.png)
+   ![인증 코드 붙여넣기 화면](../assets/images/guide/guide_claude_auth_paste.png)
+
+4. **인증 완료 및 에이전트 기동**
+   인증이 정상 처리되면 사이드바 패널에 로그인 완료 상태가 안내되며, 대화창을 통해 소스코드 분석, 수정 요청, 자동화 작업을 편안하게 시작할 수 있습니다.
+   ![클로드 코드 익스텐션 로그인 완료](../assets/images/guide/guide_claude_extension_logged_in.png)
+   ![클로드 코드 익스텐션 실행 화면](../assets/images/guide/guide_claude_extension_running.png)
+
+### 9.2 방법 2: 터미널(CLI)에서 Claude Code 사용하기 (대안)
+
+익스텐션 방식 외에, Node.js 전용 터미널(CLI) 명령어로 구동할 수도 있습니다.
+
+1. Node.js 18 이상 환경에서 전용 모듈을 전역 설치합니다.
+   ```bash
+   npm install -g @anthropic-ai/claude-code
+   ```
+   ![클로드 코드 터미널 설치 화면](../assets/images/guide/guide_claude_terminal_install.png)
+
+2. 작업 폴더에서 `claude` 명령을 실행하고 화면 안내에 따라 인증을 완료합니다.
+
+### 9.3 꿀팁: 터미널 및 세로 패널 우측 배치
+
+터미널이나 익스텐션 패널의 탭을 마우스 우클릭하여 `[Panel Position] -> [Right]`를 선택하면 세로형 대화창으로 전환되어 좌측의 코드를 읽으며 우측에서 클로드 코드와 세로 화면으로 넓게 소통할 수 있습니다.
+
+![터미널 우클릭 메뉴](../assets/images/guide/guide_terminal_right_click.png)
+![우측으로 이동한 터미널](../assets/images/guide/guide_terminal_right_docked.png)
 
 공식 근거: [Anthropic Claude Code 설정](https://docs.anthropic.com/en/docs/claude-code/getting-started)
-
-터미널 패널은 필요하면 우측으로 옮길 수 있습니다.
-
-![터미널 패널 위치 메뉴](../assets/images/guide/guide_terminal_right_click.png)
-![우측으로 이동한 터미널](../assets/images/guide/guide_terminal_right_docked.png)
 
 ## 10. 데이터공방 장남수의 실무 체크리스트
 
