@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8H79VM0RM8');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KVV9V7QN');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메세지배달부 Lite, Google Play Store에 출시했습니다 | 데이터공방</title>
+
+  <meta name="description" content="공용 업무폰 알림을 Slack으로 전달하는 메세지배달부 Lite가 Google Play Store에 공개되었습니다. APK 직접 설치에서 Play Store 설치 흐름으로 전환한 이유, 알림 접근 기반 Lite 설계, 개인정보 처리 방식과 향후 정비 계획을 기록합니다.">
+  <meta name="robots" content="index, follow">
+  <meta name="naver-site-verification" content="6b1811d6074cc78b96b89f616ba7cc1278f1666f" />
+  <meta name="google-site-verification" content="Oc6kBZ-qy21JGaAiEqgg8tZzyi-uIToJVG_DXRJmL0k" />
+
+  <link rel="canonical" href="https://datagongbang.kr/blog/ref-11.html">
+  <meta property="og:url" content="https://datagongbang.kr/blog/ref-11.html">
+  <meta property="og:title" content="메세지배달부 Lite, Google Play Store에 출시했습니다">
+  <meta property="og:description" content="공용 업무폰 알림을 Slack으로 전달하는 메세지배달부 Lite가 Google Play Store에 공개되었습니다. APK 직접 설치에서 Play Store 설치 흐름으로 전환한 이유, 알림 접근 기반 Lite 설계, 개인정보 처리 방식과 향후 정비 계획을 기록합니다.">
+  <meta property="og:image" content="https://datagongbang.kr/assets/images/blog/message-delivery-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2026-07-09">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"메세지배달부 Lite, Google Play Store에 출시했습니다","description":"공용 업무폰 알림을 Slack으로 전달하는 메세지배달부 Lite가 Google Play Store에 공개되었습니다. APK 직접 설치에서 Play Store 설치 흐름으로 전환한 이유, 알림 접근 기반 Lite 설계, 개인정보 처리 방식과 향후 정비 계획을 기록합니다.","image":"https://datagongbang.kr/assets/images/blog/message-delivery-icon.png","datePublished":"2026-07-09","dateModified":"2026-07-09","author":{"@type":"Person","name":"장남수","url":"https://datagongbang.kr/"},"publisher":{"@type":"Organization","name":"데이터공방","logo":{"@type":"ImageObject","url":"https://datagongbang.kr/assets/images/logos/sketch_var7_ultrasimple_gold.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://datagongbang.kr/blog/ref-11.html"},"keywords":"메세지배달부, Google Play, Play Store, 업무자동화, Android"}</script>
+
+  <link rel="icon" type="image/png" href="/assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <link rel="stylesheet" href="/index.css?v=1.4">
+  <link rel="stylesheet" href="/modules/toast.css?v=1.2">
+  <link rel="stylesheet" href="/modules/blog.css?v=1.3">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+</head>
+<body class="rpa-light-theme">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVV9V7QN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div id="bg-canvas-container"></div>
+
+  <header id="header">
+    <div class="container nav-container">
+      <a href="/index.html" class="logo" aria-label="데이터공방 홈">
+        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="/assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <ul class="nav-links" id="primary-navigation">
+          <li><a href="/index.html#curriculum" class="nav-link">교육·서비스</a></li>
+          <li><a href="/index.html#references" class="nav-link">성과·사례</a></li>
+          <li><a href="/rpa.html" class="nav-link">업무도구</a></li>
+          <li><a href="/guide/index.html" class="nav-link">실무가이드</a></li>
+          <li><a href="/blog.html" class="nav-link active" aria-current="page">블로그</a></li>
+          <li><a href="/index.html#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="converter-section">
+    <div class="blog-detail-container">
+      <a href="/blog.html" class="blog-back-link">
+        <i class="fas fa-arrow-left"></i> 블로그 목록으로 돌아가기
+      </a>
+
+      <article class="blog-detail-card" id="blog-detail-content-area">
+        <header class="post-header">
+          <div class="post-meta-top">
+            <span class="post-detail-category">개발일지</span>
+            <span class="post-detail-date"><i class="far fa-calendar-alt"></i> 2026-07-09</span>
+          </div>
+          <h1 class="post-detail-title">메세지배달부 Lite, Google Play Store에 출시했습니다</h1>
+          <div class="post-detail-tags"><span class="post-tag">#메세지배달부</span> <span class="post-tag">#Google Play</span> <span class="post-tag">#Play Store</span> <span class="post-tag">#업무자동화</span> <span class="post-tag">#Android</span></div>
+        </header>
+
+        <section class="post-body-contentmarkdown markdown-body">
+<h1>메세지배달부 Lite, Google Play Store에 출시했습니다</h1>
+<p><img alt="메세지배달부 Lite 앱 아이콘" src="/assets/images/blog/message-delivery-icon.png" /></p>
+<p>공용 업무폰에 도착하는 문자, 부재중 전화, 주요 앱 알림을 Slack 같은 협업 채널로 전달해 주는 <strong>메세지배달부 Lite</strong>가 Google Play Store에 공개되었습니다.</p>
+<p>앱명은 <strong>메세지배달부 Lite - 업무용 알림 동기화 도구</strong>이고, 패키지명은 <code>com.company.smsforwarder</code>입니다. 2026년 7월 1일 업데이트된 <strong>v1.0.4</strong> 기준으로 Play Store 직접 링크에서 설치 페이지가 정상적으로 열리는 것을 확인했습니다.</p>
+<p>→ <a href="https://play.google.com/store/apps/details?id=com.company.smsforwarder&amp;pcampaignid=web_share">Google Play에서 메세지배달부 Lite 설치하기</a></p>
+<hr />
+<h2>1. 드디어 Play Store 링크가 열렸습니다</h2>
+<p>처음 메세지배달부를 만들었을 때는 업무 현장에서 빨리 써보는 것이 우선이었습니다. 그래서 초기 버전은 APK 파일을 직접 내려받아 설치하는 방식으로 배포했습니다. 내부 테스트나 제한된 사용자에게는 빠르게 전달할 수 있었지만, 실제 사용자 입장에서는 부담이 있었습니다.</p>
+<p>APK 직접 설치는 브라우저 보안 경고, 알 수 없는 앱 설치 허용, 제조사별 보안 설정 같은 단계를 거쳐야 합니다. 앱을 만든 사람에게는 익숙한 절차일 수 있지만, 업무용 공용폰을 관리하는 실무자에게는 매번 설명이 필요한 설치 흐름이었습니다.</p>
+<p>이번 Play Store 공개로 설치 흐름은 훨씬 단순해졌습니다. 사용자는 직접 링크를 열고, Play Store에서 설치하면 됩니다.</p>
+<hr />
+<h2>2. 왜 APK 직접 배포에서 Play Store 배포로 바꿨나</h2>
+<p>업무 자동화 앱은 "설치가 쉬운가"도 제품 품질의 일부입니다. 좋은 기능을 만들어도 설치 과정에서 불안감을 주면 현장 도입은 느려집니다.</p>
+<p>Play Store 배포로 전환하면서 얻은 가장 큰 변화는 세 가지입니다.</p>
+<ol>
+<li>사용자가 보안 경고를 우회하지 않아도 됩니다.</li>
+<li>업데이트와 버전 확인이 더 명확해집니다.</li>
+<li>앱을 처음 접하는 사용자에게 최소한의 신뢰 경로를 제공합니다.</li>
+</ol>
+<p>메세지배달부 Lite는 아직 신규 앱이라 Play Store 검색 노출이 충분히 반영되지 않았을 수 있습니다. 당분간은 검색으로 찾기보다 아래 직접 링크로 접근하는 방식을 안내합니다.</p>
+<p>→ <a href="https://play.google.com/store/apps/details?id=com.company.smsforwarder&amp;pcampaignid=web_share">Play Store 직접 링크</a></p>
+<hr />
+<h2>3. Google Play 정책에 맞추기 위해 바꾼 것들</h2>
+<p>초기 메세지배달부는 공용폰의 문자와 통화 이벤트를 직접 감지하는 방향까지 검토했습니다. 하지만 Google Play에 공개되는 Lite 버전은 정책에 맞춰 설계를 정리했습니다.</p>
+<p>Lite 버전은 직접 SMS/Call Log 권한을 쓰는 방식이 아니라 <strong>알림 접근 기반</strong>으로 작동합니다. 기기에 표시되는 문자 알림, 부재중 전화 알림, 카카오톡 같은 주요 앱 알림을 감지하고, 사용자가 설정한 Slack Webhook으로 전달하는 구조입니다.</p>
+<p>이 방식은 권한 범위를 줄이고, 사용자가 어떤 알림을 전달할지 더 명확하게 이해할 수 있다는 장점이 있습니다. 업무용 공용폰의 핵심 목적에도 잘 맞습니다. 전화번호부와 메시지함 전체를 들여다보는 앱이 아니라, 업무 채널로 공유해야 할 알림을 전달하는 앱에 가깝게 다듬은 셈입니다.</p>
+<hr />
+<h2>4. 메세지배달부 Lite가 해결하려는 문제</h2>
+<p>공용 업무폰은 작지만 중요한 병목이 됩니다. 고객 문의 문자, 부재중 전화, 카카오톡 채널 알림이 한 기기에만 도착하면 담당자가 자리를 비운 순간 팀 전체가 늦게 알게 됩니다.</p>
+<p>메세지배달부 Lite는 이 문제를 줄이기 위해 만들었습니다.</p>
+<ul>
+<li>공용폰에 도착한 업무 알림을 Slack 같은 협업 채널로 전달합니다.</li>
+<li>담당자 한 명이 아니라 팀 전체가 연락 발생 사실을 빠르게 확인할 수 있게 합니다.</li>
+<li>고객 문의 누락, 부재중 전화 확인 지연, 앱 알림 미확인 문제를 줄이는 것이 목적입니다.</li>
+</ul>
+<p>개인 스마트폰이 아니라 조직이나 팀이 함께 관리하는 <strong>업무용 공용폰</strong>에 설치하는 것을 권장합니다.</p>
+<hr />
+<h2>5. 개인정보와 메시지 내용은 어디에 저장되나</h2>
+<p>메세지배달부 Lite는 알림 내용을 데이터공방 서버에 저장하지 않습니다.</p>
+<p>앱은 사용자가 직접 입력한 Webhook 주소로 알림 내용을 기기에서 전송합니다. 즉, 데이터공방이 별도의 중계 서버에 메시지 본문을 쌓아두는 구조가 아닙니다. 업무 알림의 흐름을 단순하게 유지하고, 불필요한 저장 지점을 만들지 않는 것이 기본 원칙입니다.</p>
+<p>자세한 개인정보 처리 기준은 아래 문서에 정리해 두었습니다.</p>
+<p>→ <a href="https://datagongbang.kr/privacy.html">데이터공방 개인정보처리방침</a></p>
+<hr />
+<h2>6. 출시 후 바로 확인한 것</h2>
+<p>Play Store 직접 링크 기준으로 설치 페이지가 열리고, 앱명과 개발자 정보가 정상적으로 표시되는 것을 확인했습니다.</p>
+<ul>
+<li>앱명: 메세지배달부 Lite - 업무용 알림 동기화 도구</li>
+<li>패키지명: <code>com.company.smsforwarder</code></li>
+<li>개발자: DATAGONGBANG</li>
+<li>버전: 1.0.4</li>
+<li>업데이트일: 2026년 7월 1일</li>
+</ul>
+<p>다만 신규 앱은 Play Store 검색 색인에 시간이 걸릴 수 있습니다. 홈페이지에서는 당분간 검색 안내보다 직접 링크 버튼을 중심으로 안내할 예정입니다.</p>
+<hr />
+<h2>7. 아직 남은 일</h2>
+<p>출시는 끝이 아니라 운영의 시작입니다. 앞으로는 다음 항목을 차근차근 정비할 계획입니다.</p>
+<ul>
+<li>Play Store 검색 노출 안정화 확인</li>
+<li>실제 공용폰 환경에서 배터리 최적화 예외 안내 보강</li>
+<li>사용자 피드백 기반 알림 필터와 문구 개선</li>
+<li>홈페이지 소개 페이지의 설치 흐름과 FAQ 지속 정리</li>
+</ul>
+<p>기존 APK 직접 배포 방식은 전면 안내에서 내리고, 기업용 별도 배포나 맞춤 설치가 필요한 경우에만 문의 흐름으로 분리하려고 합니다.</p>
+<hr />
+<h2>8. 설치 링크 안내</h2>
+<p>메세지배달부 Lite는 아래 Play Store 직접 링크로 설치할 수 있습니다.</p>
+<p>→ <a href="https://play.google.com/store/apps/details?id=com.company.smsforwarder&amp;pcampaignid=web_share">Google Play에서 메세지배달부 Lite 설치하기</a></p>
+<p>신규 앱이라 검색 반영에는 시간이 걸릴 수 있습니다. 검색 결과에서 바로 보이지 않더라도 위 직접 링크를 이용하면 설치 페이지로 이동할 수 있습니다.</p>
+        </section>
+      </article>
+
+      <section class="blog-cta-panel">
+        <div class="cta-glow-effect"></div>
+        <div class="blog-cta-content">
+          <h3>🏢 우리 부서 맞춤형 자동화 워크숍이 필요하신가요?</h3>
+          <p>임직원들의 단순 수작업 엑셀 취합 업무, 파이썬 분석, RPA 구축을 직무 로데이터 맞춤 교육과 현장 디버깅 실습으로 해결해 드립니다. 지금 커리큘럼 설계 및 무료 견적 상담을 받아보세요.</p>
+          <a href="/index.html#contact" class="btn btn-primary blog-cta-btn" data-consult-source="blog_ref-11">
+            <i class="far fa-envelope"></i> 사내 교육 및 출강 상담 신청하기
+          </a>
+        </div>
+      </section>
+
+      <div style="text-align: center; margin-top: 32px;">
+        <a href="/blog.html" class="blog-back-link" style="margin-bottom: 0;">
+          <i class="fas fa-list"></i> 전체 칼럼 목록 보기
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img class="logo-symbol brand-logo-img" id="footer-logo-img" src="/assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </div>
+      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="/rpa.html" style="text-decoration:underline; opacity:0.8; margin-left:5px;">무료 RPA 도구</a> | <a href="/privacy.html" style="text-decoration:underline; opacity:0.8; margin-left:5px;">개인정보처리방침</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  <script src="/modules/main.js?v=1.4"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script>
+    document.querySelectorAll('[data-consult-source]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        if (typeof window.trackCRMEvent === 'function') {
+          window.trackCRMEvent('click_team_consultation', { source_guide: el.dataset.consultSource });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

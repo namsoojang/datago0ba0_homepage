@@ -69,7 +69,7 @@ async function initBlogList(gridEl) {
         : "";
 
       return `
-        <a href="blog-detail.html?id=${post.id}" class="blog-card" data-id="${post.id}">
+        <a href="blog/${post.id}.html" class="blog-card" data-id="${post.id}">
           <div class="blog-card-thumb-wrapper">
             <img src="${post.thumbnail || './assets/images/logos/sketch_var7_ultrasimple_gold.png'}" class="blog-card-thumb" alt="${post.title} 썸네일" onerror="this.src='./assets/images/logos/sketch_var7_ultrasimple_gold.png'">
             <span class="blog-card-category-badge">${post.category}</span>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8H79VM0RM8');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KVV9V7QN');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비개발자를 위한 Google Play 출시 준비: D-U-N-S와 조직 계정까지 | 데이터공방</title>
+
+  <meta name="description" content="2023년 11월 이후 신규 개인 개발자 계정에 적용된 12명/14일 비공개 테스트의 장벽을 피하기 위해 개인사업자로 조직 계정을 생성하고, D-U-N-S 번호를 무료로 발급받아 구글 플레이스토어에 앱을 무사히 등록하기 위한 실전 행정 및 배포 전략을 상세히 정리합니다.">
+  <meta name="robots" content="index, follow">
+  <meta name="naver-site-verification" content="6b1811d6074cc78b96b89f616ba7cc1278f1666f" />
+  <meta name="google-site-verification" content="Oc6kBZ-qy21JGaAiEqgg8tZzyi-uIToJVG_DXRJmL0k" />
+
+  <link rel="canonical" href="https://datagongbang.kr/blog/ref-10.html">
+  <meta property="og:url" content="https://datagongbang.kr/blog/ref-10.html">
+  <meta property="og:title" content="비개발자를 위한 Google Play 출시 준비: D-U-N-S와 조직 계정까지">
+  <meta property="og:description" content="2023년 11월 이후 신규 개인 개발자 계정에 적용된 12명/14일 비공개 테스트의 장벽을 피하기 위해 개인사업자로 조직 계정을 생성하고, D-U-N-S 번호를 무료로 발급받아 구글 플레이스토어에 앱을 무사히 등록하기 위한 실전 행정 및 배포 전략을 상세히 정리합니다.">
+  <meta property="og:image" content="https://datagongbang.kr/assets/images/blog/google_play_cover.png">
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2026-06-24">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"비개발자를 위한 Google Play 출시 준비: D-U-N-S와 조직 계정까지","description":"2023년 11월 이후 신규 개인 개발자 계정에 적용된 12명/14일 비공개 테스트의 장벽을 피하기 위해 개인사업자로 조직 계정을 생성하고, D-U-N-S 번호를 무료로 발급받아 구글 플레이스토어에 앱을 무사히 등록하기 위한 실전 행정 및 배포 전략을 상세히 정리합니다.","image":"https://datagongbang.kr/assets/images/blog/google_play_cover.png","datePublished":"2026-06-24","dateModified":"2026-06-24","author":{"@type":"Person","name":"장남수","url":"https://datagongbang.kr/"},"publisher":{"@type":"Organization","name":"데이터공방","logo":{"@type":"ImageObject","url":"https://datagongbang.kr/assets/images/logos/sketch_var7_ultrasimple_gold.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://datagongbang.kr/blog/ref-10.html"},"keywords":"Google Play, D-U-N-S, 조직계정, 비공개테스트, 앱출시"}</script>
+
+  <link rel="icon" type="image/png" href="/assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <link rel="stylesheet" href="/index.css?v=1.4">
+  <link rel="stylesheet" href="/modules/toast.css?v=1.2">
+  <link rel="stylesheet" href="/modules/blog.css?v=1.3">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+</head>
+<body class="rpa-light-theme">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVV9V7QN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div id="bg-canvas-container"></div>
+
+  <header id="header">
+    <div class="container nav-container">
+      <a href="/index.html" class="logo" aria-label="데이터공방 홈">
+        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="/assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <ul class="nav-links" id="primary-navigation">
+          <li><a href="/index.html#curriculum" class="nav-link">교육·서비스</a></li>
+          <li><a href="/index.html#references" class="nav-link">성과·사례</a></li>
+          <li><a href="/rpa.html" class="nav-link">업무도구</a></li>
+          <li><a href="/guide/index.html" class="nav-link">실무가이드</a></li>
+          <li><a href="/blog.html" class="nav-link active" aria-current="page">블로그</a></li>
+          <li><a href="/index.html#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="converter-section">
+    <div class="blog-detail-container">
+      <a href="/blog.html" class="blog-back-link">
+        <i class="fas fa-arrow-left"></i> 블로그 목록으로 돌아가기
+      </a>
+
+      <article class="blog-detail-card" id="blog-detail-content-area">
+        <header class="post-header">
+          <div class="post-meta-top">
+            <span class="post-detail-category">개발일지</span>
+            <span class="post-detail-date"><i class="far fa-calendar-alt"></i> 2026-06-24</span>
+          </div>
+          <h1 class="post-detail-title">비개발자를 위한 Google Play 출시 준비: D-U-N-S와 조직 계정까지</h1>
+          <div class="post-detail-tags"><span class="post-tag">#Google Play</span> <span class="post-tag">#D-U-N-S</span> <span class="post-tag">#조직계정</span> <span class="post-tag">#비공개테스트</span> <span class="post-tag">#앱출시</span></div>
+        </header>
+
+        <section class="post-body-contentmarkdown markdown-body">
+<h1>비개발자를 위한 Google Play 출시 준비: D-U-N-S와 조직 계정까지</h1>
+<h2>구글 플레이스토어 앱 출시 가이드: D-U-N-S, 조직 계정, 12명 비공개 테스트 정리</h2>
+<p>앱을 직접 만들어 구글 플레이스토어에 출시하려다 보니, 개발 그 자체보다 더 낯설고 까다로운 과정이 기다리고 있었습니다. 바로 <strong>구글 플레이 개발자 계정 생성</strong>, <strong>D-U-N-S(기업 식별) 번호 발급</strong>, 그리고 <strong>앱 심사 준비</strong>였습니다.</p>
+<p>저처럼 개발자가 아니거나, 노코딩/바이브코딩으로 앱을 만들어서 직접 출시해보려는 분들은 이 단계에서 큰 어려움을 겪기 쉽습니다. 이에 저희 데이터공방이 직접 앱 출시를 준비하며 겪고 정리한 실질적인 정보와 최소 비용 가이드를 공유해 드립니다.</p>
+<hr />
+<h2>1. 개인 계정으로 출시하려면 '12명 비공개 테스트' 장벽을 넘어야 한다</h2>
+<p>구글 플레이스토어에 앱을 배포하려면 먼저 <a href="https://play.google.com/console/about/">Google Play Console</a> 개발자 계정을 만들어야 합니다. 이때 가입 유형은 크게 <strong>개인 계정</strong>과 <strong>조직(기업) 계정</strong> 두 가지로 나뉩니다.</p>
+<p>처음에는 개인 계정으로 가입하는 것이 훨씬 간단해 보입니다. 하지만 <strong>2023년 11월 13일 이후 새로 생성된 개인 개발자 계정</strong>은 앱을 개발하자마자 바로 프로덕션(스토어)에 출시할 수 없습니다.</p>
+<p>구글의 정책상, 새 개인 계정으로 등록한 앱을 정식 출시하려면 <strong>최소 12명의 테스터가 14일 동안 연속으로 비공개 테스트에 참여</strong>해야 합니다. (정책 도입 초기에는 20명이 기준이었으나, 이후 완화되어 현재 구글의 공식 기준은 <strong>12명</strong>입니다.)</p>
+<blockquote>
+<p>📌 <strong>구글 공식 가이드 문서 확인하기</strong><br />
+<a href="https://support.google.com/googleplay/android-developer/answer/14151465">Google Play 개인 개발자 계정 테스트 요건</a></p>
+</blockquote>
+<p>이 조건은 개인 개발자나 비개발자 1인 메이커에게는 매우 번거롭고 까다로운 제약입니다.</p>
+<ul>
+<li>어떻게든 12명의 테스터를 구해서 그들의 구글 계정을 등록해야 합니다.</li>
+<li>테스터들이 테스트 전용 링크를 통해 정상적으로 <strong>opt-in(참여 수락)</strong>해야 합니다.</li>
+<li>테스터들이 14일 동안 연속으로 테스트 참여 상태(opt-in)를 유지해야 합니다.</li>
+<li>중간에 참여 인원이 부족해지면 프로덕션 신청 요건 충족이 지연될 수 있습니다.</li>
+<li>이 과정을 모두 성공적으로 마친 뒤에야 비로소 구글에 '프로덕션 액세스(정식 출시 권한)' 심사를 신청할 수 있습니다.</li>
+</ul>
+<p>혼자 조용히 앱을 론칭하고 싶은 사람에게는 이 12명 비공개 테스트 과정 자체가 큰 진입 장벽이 됩니다.</p>
+<hr />
+<h2>2. 개인사업자가 있다면? '조직 계정'이라는 대안</h2>
+<p>만약 이미 개인사업자등록증을 갖고 계시다면, 굳이 지인들을 동원할 필요 없이 <strong>조직(기업) 계정으로 진행하는 방법</strong>을 추천해 드립니다.</p>
+<p>조직 계정은 큰 법인만 가입할 수 있는 게 아닙니다. 1인 사업자도 사업자등록증과 영문 정보, D-U-N-S 번호만 준비되면 조직 계정 가입이 가능합니다.</p>
+<p>조직 계정으로 가입하면 개인 계정에 의무 적용되는 '12명/14일 비공개 테스트'를 거치지 않고 바로 프로덕션 심사를 신청할 수 있습니다. 출시까지 들어가는 시간과 노력을 크게 아낄 수 있는 실속 있는 방법입니다.</p>
+<p><img alt="Google Play Console 계정 유형 선택 화면" src="/assets/blog/google-play-guide/play_console_type.png" /></p>
+<p><em>(※ 단, 기본적인 앱 정책 및 보안 심사는 동일하게 진행됩니다.)</em></p>
+<h4>💡 만약 아직 개인사업자가 없다면?</h4>
+<p>아직 사업자등록을 하지 않은 상태라면, 온라인을 통해 개인사업자를 무료로 빠르게 신청하여 준비하시는 것을 권장합니다. 홈택스를 이용하면 비용이 들지 않고 대개 하루 이내에 신속히 발급됩니다. </p>
+<p>직장인의 경우 겸업 제한 등에 대한 불안감이 생길 수 있으나, 근무 시간 내에 상업적 업무를 수행하지 않는 이상 개인사업자 개설 자체만으로는 직장 생활에 불이익이 발생하지 않으므로 안심하셔도 괜찮습니다. 상호명이나 세부 업종은 차후에도 홈택스를 통해 언제든 자유롭게 수정 및 변경이 가능하므로 가벼운 마음으로 첫 사업자를 개설해 보시는 것을 추천해 드립니다.</p>
+<hr />
+<h2>3. D-U-N-S 발급 준비하기</h2>
+<p>조직 계정을 만들 때 꼭 필요한 게 바로 D-U-N-S(기업 식별) 번호인데요. </p>
+<p>대한민국은 사업자등록번호 체계가 고도로 전산화되어 있어 번호 하나로 어떤 기업인지 바로 조회가 가능하지만, 미국 등 해외에서는 한국 사업자 정보를 신속히 파악하기가 쉽지 않습니다. D-U-N-S 번호는 국제적으로 우리 사업자가 실제로 존재함을 증명해 주는 범용 기업 고유 코드라고 이해하시면 됩니다.</p>
+<p>D-U-N-S 번호를 발급받으려면 우선 우리가 대한민국의 적법한 사업자임을 증명해야 합니다. 국세청에서 사업자등록증명서를 발급받아야 하는데, 이때 가장 중요한 점은 반드시 <strong>'영문'</strong>으로 발급받아야 한다는 것입니다.</p>
+<hr />
+<h2>4. 국세청 영문 사업자등록증명 발급 방법</h2>
+<p>온라인으로 세무서 방문 없이 홈택스에서 바로 무료 발급이 가능합니다.</p>
+<ul>
+<li><strong>국세청 홈택스:</strong> <a href="https://www.hometax.go.kr">https://www.hometax.go.kr</a></li>
+<li><strong>정부24:</strong> <a href="https://www.gov.kr">https://www.gov.kr</a></li>
+</ul>
+<p>기본적으로 홈택스를 이용하는 것이 가장 직관적이고 빠릅니다. 홈택스에 로그인한 후 아래 경로를 따라 신청하시면 됩니다.</p>
+<pre><code class="language-text">홈택스 로그인 
+-&gt; 상단 메뉴 [증명·등록·신청·사업장현황] 선택
+-&gt; [민원증명] 카테고리에서 [국세 민원 서류 찾기] 선택
+-&gt; 검색창에 &quot;사업자등록증명&quot; 입력 후 조회 -&gt; 사업자등록증명 [신청하기] 클릭
+-&gt; 발급 신청 양식에서 사업자등록번호 에서 해당하는 사업자 선택
+-&gt; 발급 유형을 ‘영문증명’으로 선택 후 신청
+-&gt; 영문 상호명, 영문 대표자명, 영문 주소명 입력 후 발급 신청
+</code></pre>
+<p><img alt="홈택스 사업자등록증명 민원 서류 검색" src="/assets/blog/google-play-guide/hometax_search.png" /></p>
+<p><img alt="사업자등록증명 신청하기 버튼" src="/assets/blog/google-play-guide/hometax_apply_button.png" /></p>
+<p><em>(※ 영문 정보 입력 단계가 가장 중요합니다. 이후 구글 가입 과정에서 진행하는 모든 인증서류 상의 이름이 이 영문 정보와 완전히 일치해야 합니다.)</em></p>
+<p><img alt="사업자등록증명 영문증명 유형 선택" src="/assets/blog/google-play-guide/hometax_english_selection.png" /></p>
+<p><img alt="영문 상호명 및 주소 입력 단계" src="/assets/blog/google-play-guide/hometax_english_info.png" /></p>
+<hr />
+<h2>5. D-U-N-S 번호, 대행료를 아끼는 무료 신청 방법</h2>
+<p>영문 사업자등록증명이 준비되었으면, 이제 본격적으로 D-U-N-S 번호를 발급받으면 됩니다.</p>
+<p>포털에 검색해 보면 국내 유료 대행을 광고하는 링크들이 가득합니다. 적게는 10만 원에서 많게는 30만~50만 원까지 비용을 요구하는 경우가 많아, 급한 마음에 덜컥 비싼 비용을 지불하고 결제할 뻔하기도 했죠.</p>
+<p>하지만 일정에 약간의 여유(약 5일~2주)가 있다면 D&amp;B 공식 사이트를 통해 비용을 들이지 않고 직접 무료로 신청할 수 있습니다.</p>
+<blockquote>
+<p>🔍 <strong>D-U-N-S 공식 무료 조회 및 신청 페이지</strong><br />
+<a href="https://www.dnb.com/duns-number">Dun &amp; Bradstreet D-U-N-S Number Lookup (https://www.dnb.com/duns-number)</a></p>
+</blockquote>
+<p><img alt="D&amp;B D-U-N-S Lookup 페이지" src="/assets/blog/google-play-guide/duns_lookup.png" /></p>
+<p>영문 사업자 정보를 입력해 신청하면, D&amp;B 측의 검토를 거쳐 최종 승인 후 이메일로 안내를 받을 수 있습니다.</p>
+<hr />
+<h2>6. 가장 중요한 주의사항: 영문 표기 일치시키기</h2>
+<p>D-U-N-S 신청과 구글 플레이 콘솔 가입 시 승인 지연을 피하기 위한 핵심 포인트가 있습니다.</p>
+<p>바로 국세청 영문 사업자등록증명에 적힌 정보와 D-U-N-S 신청 정보, 그리고 구글 플레이 콘솔에 적을 정보의 철자, 띄어쓰기, 주소 표기를 가능한 한 동일하게 맞추는 것입니다.</p>
+<p><strong>[예시]</strong><br />
+* <strong>상호 영문명 (Business Name):</strong> DATAGONGBANG<br />
+* <strong>영문 사업장 주소 (Business Address):</strong> 123, Teheran-ro, Gangnam-gu, Seoul, Republic of Korea</p>
+<p>주소 표기가 서로 다르면 검증 과정에서 추가 정보를 요구받거나 승인이 마냥 지연될 수 있습니다. 신청 전에 미리 메모장에 국세청 영문 사업자등록증명 상의 정확한 영문 표기를 적어두고 그대로 복사해서 사용하시는 것을 추천합니다.</p>
+<hr />
+<h2>■ 비용을 아끼는 최종 준비 순서 요약</h2>
+<p>1) <strong>홈택스</strong>에서 영문 사업자등록증명 무료 발급<br />
+2) <strong>D&amp;B 공식 사이트</strong>에서 D-U-N-S 번호 무료 신청 (최종 승인 및 발급까지 약 5일 소요)<br />
+3) 대기하는 동안 스토어에 등록할 앱 아이콘, 스크린샷, 개인정보처리방침(노션 링크 등) 준비하기<br />
+4) D-U-N-S 번호가 발급되면 <strong>구글 플레이 콘솔 조직 계정</strong> 가입 후 25달러 등록비 결제<br />
+5) 개인 계정의 12명/14일 필수 테스트 요건 없이 프로덕션 심사 신청!</p>
+<p>이렇게 진행하시면 순수 구글 계정 등록비인 25달러(약 3만 원대) 외에는 추가 비용을 크게 들이지 않고, 앱 출시 준비에 필요한 계정 요건을 마련할 수 있습니다.</p>
+<p>가입 과정에서 입력 양식이 복잡하거나 구글 심사 준비(개인정보처리방침 작성, 민감 권한 소명서 작성 등)의 구체적인 가이드라인이 더 궁금하시다면, 아래 데이터공방 블로그의 원본 가이드북에 꼼꼼히 정리해 두었으니 참고해 보세요.</p>
+<p>→ <a href="https://datagongbang.kr/blog/ref-10.html">데이터공방 공식 가이드북: 비개발자를 위한 Google Play 출시 준비 바로가기</a></p>
+<p>새로운 도전을 통해 자신만의 앱을 세상에 선보이고 계신 모든 1인 기업가분들과 실무자분들의 여정을 진심으로 응원합니다.</p>
+        </section>
+      </article>
+
+      <section class="blog-cta-panel">
+        <div class="cta-glow-effect"></div>
+        <div class="blog-cta-content">
+          <h3>🏢 우리 부서 맞춤형 자동화 워크숍이 필요하신가요?</h3>
+          <p>임직원들의 단순 수작업 엑셀 취합 업무, 파이썬 분석, RPA 구축을 직무 로데이터 맞춤 교육과 현장 디버깅 실습으로 해결해 드립니다. 지금 커리큘럼 설계 및 무료 견적 상담을 받아보세요.</p>
+          <a href="/index.html#contact" class="btn btn-primary blog-cta-btn" data-consult-source="blog_ref-10">
+            <i class="far fa-envelope"></i> 사내 교육 및 출강 상담 신청하기
+          </a>
+        </div>
+      </section>
+
+      <div style="text-align: center; margin-top: 32px;">
+        <a href="/blog.html" class="blog-back-link" style="margin-bottom: 0;">
+          <i class="fas fa-list"></i> 전체 칼럼 목록 보기
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img class="logo-symbol brand-logo-img" id="footer-logo-img" src="/assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </div>
+      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="/rpa.html" style="text-decoration:underline; opacity:0.8; margin-left:5px;">무료 RPA 도구</a> | <a href="/privacy.html" style="text-decoration:underline; opacity:0.8; margin-left:5px;">개인정보처리방침</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  <script src="/modules/main.js?v=1.4"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script>
+    document.querySelectorAll('[data-consult-source]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        if (typeof window.trackCRMEvent === 'function') {
+          window.trackCRMEvent('click_team_consultation', { source_guide: el.dataset.consultSource });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

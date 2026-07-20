@@ -2,147 +2,35 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-8H79VM0RM8');
-  </script>
-
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KVV9V7QN');</script>
-  <!-- End Google Tag Manager -->
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>칼럼 읽기 | 데이터공방</title>
-  
-  <meta property="og:url" id="og-url" content="https://datagongbang.kr/blog-detail.html">
-  <link rel="canonical" id="canonical-link" href="https://datagongbang.kr/blog-detail.html">
-  <meta name="description" content="데이터공방 공식 블로그 상세 보기 페이지입니다.">
-  <meta name="robots" content="index, follow">
-  
-  <!-- 오픈그래프 (OG) 기본 메타 태그 (소셜 미디어 미리보기용) -->
-  <meta property="og:title" content="데이터공방 블로그 | AI & 데이터 분석 전문 칼럼">
-  <meta property="og:description" content="기업 AX 워크숍, 업무 자동화(RPA) 강의 및 데이터 분석에 관한 데이터공방의 실무 인사이트 칼럼을 만나보세요.">
-  <meta property="og:image" content="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
-  <meta property="og:type" content="website">
-  
-  <!-- 파비콘 및 앱 아이콘 설정 -->
-  <link rel="icon" type="image/png" href="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
-  
-  <!-- 스타일시트 연동 -->
-  <link rel="stylesheet" href="./index.css?v=1.3">
-  <link rel="stylesheet" href="./modules/toast.css?v=1.2">
-  <link rel="stylesheet" href="./modules/blog.css?v=1.3">
-  
-  <!-- Prism.js 코드 블록 구문 강조 CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
-  
-  <!-- 외부 폰트/아이콘 라이브러리 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <title>이동 중입니다 | 데이터공방</title>
+
+  <!--
+    구버전 URL 호환용 리다이렉트 페이지입니다.
+
+    블로그 글은 blog-detail.html?id=ref-NN 형태의 쿼리스트링 단일 페이지에서
+    blog/ref-NN.html 정적 경로로 전환되었습니다. 검색엔진이 이 주소를
+    "표준 URL 없는 중복 페이지"로 처리하던 문제를 해결하기 위해서입니다.
+
+    이미 공유된 링크와 검색결과에 남아 있는 주소를 살리기 위해 이 페이지를 유지하되,
+    새 주소로 즉시 이동시키고 색인 대상에서는 제외합니다.
+  -->
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://datagongbang.kr/blog.html">
+
+  <script>
+    (function () {
+      var id = new URLSearchParams(window.location.search).get('id');
+      // ref-12 처럼 예상된 형태일 때만 이동시킵니다 (임의 값으로 인한 오작동 방지)
+      var target = /^ref-\d+$/.test(id || '') ? 'blog/' + id + '.html' : 'blog.html';
+      window.location.replace(target);
+    })();
+  </script>
 </head>
-<body class="rpa-light-theme">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVV9V7QN"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-  <!-- 전체 백그라운드 데코용 캔버스 컨테이너 -->
-  <div id="bg-canvas-container"></div>
-
-  <!-- 1. 헤더 및 네비게이션 -->
-  <header id="header">
-    <div class="container nav-container">
-      <a href="index.html" class="logo">
-        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
-        <span>데이터<strong>공방</strong></span>
-      </a>
-      <nav aria-label="주요 메뉴">
-        <ul class="nav-links" id="primary-navigation">
-          <li><a href="index.html#curriculum" class="nav-link">교육·서비스</a></li>
-          <li><a href="index.html#references" class="nav-link">성과·사례</a></li>
-          <li><a href="rpa.html" class="nav-link">업무도구</a></li>
-          <li><a href="guide/index.html" class="nav-link">실무가이드</a></li>
-          <li><a href="blog.html" class="nav-link active" aria-current="page">블로그</a></li>
-          <li><a href="index.html#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
-        </ul>
-      </nav>
-      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-navigation">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-  </header>
-
-  <!-- 2. 블로그 상세 본문 뷰어 영역 -->
-  <main class="converter-section">
-    <div class="blog-detail-container">
-      
-      <!-- 뒤로 가기 링크 (직전 히스토리 이동 분기 탑재) -->
-      <a href="blog.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)) { event.preventDefault(); history.back(); }" class="blog-back-link">
-        <i class="fas fa-arrow-left"></i> 이전 페이지로 돌아가기
-      </a>
-
-      <!-- 상세 본문 카드 패널 -->
-      <article class="blog-detail-card" id="blog-detail-content-area">
-        <!-- 자바스크립트로 posts.json과 마크다운 렌더링 -->
-        <div class="blog-loading">
-          <i class="fas fa-spinner fa-spin"></i> 칼럼 본문을 불러오는 중입니다...
-        </div>
-      </article>
-
-      <!-- B2B 리드 전환을 위한 강력한 하단 고정 CTA 섹션 -->
-      <section class="blog-cta-panel">
-        <div class="cta-glow-effect"></div>
-        <div class="blog-cta-content">
-          <h3>🏢 우리 부서 맞춤형 자동화 워크숍이 필요하신가요?</h3>
-          <p>임직원들의 단순 수작업 엑셀 취합 업무, 파이썬 분석, RPA 구축을 직무 로데이터 맞춤 교육과 현장 디버깅 실습으로 해결해 드립니다. 지금 커리큘럼 설계 및 무료 견적 상담을 받아보세요.</p>
-          <a href="index.html#contact" class="btn btn-primary blog-cta-btn">
-            <i class="far fa-envelope"></i> 사내 교육 및 출강 상담 신청하기
-          </a>
-        </div>
-      </section>
-
-      <!-- 하단 전체 칼럼 목록 복귀용 보조 네비게이션 버튼 -->
-      <div style="text-align: center; margin-top: 32px;">
-        <a href="blog.html" onclick="if(document.referrer && document.referrer.includes(window.location.host)) { event.preventDefault(); history.back(); }" class="blog-back-link" style="margin-bottom: 0;">
-          <i class="fas fa-list"></i> 이전 페이지/목록 보기
-        </a>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- 3. Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-logo">
-        <img class="logo-symbol brand-logo-img" id="footer-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
-        <span>데이터<strong>공방</strong></span>
-      </div>
-      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="rpa.html" style="text-decoration:underline; opacity:0.8; transition:opacity 0.2s; margin-left:5px;">무료 RPA 도구</a> | <a href="privacy.html" style="text-decoration:underline; opacity:0.8; transition:opacity 0.2s; margin-left:5px;">개인정보처리방침</a></p>
-    </div>
-  </footer>
-
-  <!-- 외부 캔버스 데코 효과 구현용 라이브러리 및 메인 스크립트 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
-  <!-- 홈페이지 기본 main.js -->
-  <script src="./modules/main.js?v=1.2"></script>
-  
-  <!-- marked.js 마크다운 파서 CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  
-  <!-- Prism.js 코드 블록 하이라이터 CDN 및 파이썬 컴포넌트 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-
-  <!-- 블로그 처리 전용 자바스크립트 핸들러 -->
-  <script src="./modules/blog-handler.js?v=1.2"></script>
+<body>
+  <p style="font-family:Pretendard,'Malgun Gothic',sans-serif;padding:40px;text-align:center;">
+    새 주소로 이동 중입니다.
+    자동으로 넘어가지 않으면 <a href="blog.html">블로그 목록</a>을 눌러 주세요.
+  </p>
 </body>
 </html>
