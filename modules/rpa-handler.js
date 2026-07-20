@@ -10,6 +10,63 @@ const GOOGLE_SHEET_WEBAPP_URL = window.APP_CONFIG?.GAS_WEBAPP_URL || "https://sc
 // 전역 유틸리티 IP 수집기 참조
 const getIPAddress = window.APP_UTILS?.getIPAddress || (() => Promise.resolve('알 수 없음'));
 
+/**
+ * 허니팟 검사. 사람에게 보이지 않는 필드가 채워졌다면 봇으로 간주합니다.
+ * 봇에게 차단 사실을 알리지 않기 위해 호출부에서는 조용히 종료합니다.
+ */
+function isHoneypotTriggered(form) {
+  const honeypot = form.querySelector(".hp-field");
+  if (honeypot && honeypot.value.trim() !== "") {
+    console.warn("Honeypot triggered — 제출을 무시합니다.");
+    return true;
+  }
+  return false;
+}
+
+/**
+ * 유입 출처 컨텍스트를 수집합니다.
+ * modules/main.js 의 handleFormSubmit() 과 동일한 키를 사용해,
+ * 어떤 콘텐츠가 리드를 만들었는지 시트에서 일관되게 집계할 수 있게 합니다.
+ */
+function getSourceContext() {
+  return {
+    source_page: window.location.pathname || '/',
+    source_url: window.location.href.split('#')[0],
+    referrer: document.referrer || 'direct',
+    submitted_at: new Date().toISOString()
+  };
+}
+
+/**
+ * 구글 앱스 스크립트로 리드를 전송하고 실제 저장 여부를 검증합니다.
+ *
+ * 과거에는 CORS 우회를 위해 no-cors 모드를 사용했으나, 이 경우 브라우저가 응답을
+ * 읽지 못해 서버가 실패해도 성공으로 처리되어 리드 유실을 탐지할 수 없었습니다.
+ * modules/main.js 의 handleFormSubmit() 과 동일하게 cors 모드로 전송하고
+ * 응답을 검증합니다. (동일 엔드포인트가 이미 cors 로 정상 동작 중)
+ *
+ * @returns {Promise<void>} 저장 성공 시 resolve, 실패 시 Error 를 throw
+ */
+async function submitLeadToGAS(payload) {
+  const response = await fetch(GOOGLE_SHEET_WEBAPP_URL, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    throw new Error(`Network response was not ok (${response.status})`);
+  }
+
+  const data = await response.json();
+  if (!data.success) {
+    throw new Error(data.message || "서버가 저장 실패를 반환했습니다.");
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initModalEvents();
   initSuggestModalEvents();
@@ -95,6 +152,8 @@ function initModalEvents() {
     e.preventDefault();
     clearErrors();
 
+    if (isHoneypotTriggered(form)) return;
+
     const email = emailInput.value.trim();
     const phone = phoneInput.value.trim();
     const toolName = toolNameInput.value;
@@ -129,7 +188,8 @@ function initModalEvents() {
       toolName: toolName,
       email: email,
       phone: phone,
-      ip: ip
+      ip: ip,
+      ...getSourceContext()
     };
 
     // GA4 분석 이벤트 트리깅
@@ -150,18 +210,9 @@ function initModalEvents() {
     }
 
     try {
-      // CORS 충돌 및 구글 리다이렉션으로 인한 차단을 방지하기 위해 no-cors 모드로 전송합니다.
-      // no-cors 모드는 브라우저가 응답 내용을 직접 읽지 못하지만, 구글 스프레드시트 서버로의 데이터 전달 및 저장은 정상적으로 이루어집니다.
-      await fetch(GOOGLE_SHEET_WEBAPP_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-      });
+      // 서버가 실제로 저장에 성공했음을 확인한 뒤에만 완료로 처리합니다.
+      await submitLeadToGAS(payload);
 
-      // no-cors 모드에서는 응답 본문을 읽을 수 없으므로, fetch 전송이 catch 블록으로 빠지지 않고 무사히 완료되면 신청 성공으로 처리합니다.
       const modalMsg = `<strong>${toolName}</strong> 사전 알림 신청이 성공적으로 접수되었습니다.<br>도구 출시가 완료되면 입력해주신 이메일과 연락처로 신속히 알림을 전송해 드리겠습니다.`;
       
       if (typeof window.showSuccessModal === "function") {
@@ -302,6 +353,8 @@ function initSuggestModalEvents() {
     e.preventDefault();
     clearErrors();
 
+    if (isHoneypotTriggered(form)) return;
+
     const message = messageInput.value.trim();
     const email = emailInput.value.trim();
     const phone = phoneInput.value.trim();
@@ -348,7 +401,8 @@ function initSuggestModalEvents() {
       email: email,
       phone: phone || "미입력",
       message: message,
-      ip: ip
+      ip: ip,
+      ...getSourceContext()
     };
 
     // GA4 분석 이벤트 트리깅
@@ -368,14 +422,8 @@ function initSuggestModalEvents() {
     }
 
     try {
-      await fetch(GOOGLE_SHEET_WEBAPP_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-      });
+      // 서버가 실제로 저장에 성공했음을 확인한 뒤에만 완료로 처리합니다.
+      await submitLeadToGAS(payload);
 
       const successMsg = `업무 자동화 아이디어 제안을 성공적으로 접수했습니다.<br>보내주신 의견을 신중히 검토하여, 빠른 시일 내에 유용한 도구로 출시하겠습니다. 소중한 의견 감사합니다!`;
       

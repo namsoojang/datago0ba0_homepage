@@ -31,7 +31,7 @@
   <meta property="og:type" content="website">
   
   <link rel="icon" type="image/png" href="../../assets/images/logos/sketch_var7_ultrasimple_gold.png">
-  <link rel="stylesheet" href="../../index.css?v=1.2">
+  <link rel="stylesheet" href="../../index.css?v=1.4">
   <link rel="stylesheet" href="../../modules/toast.css?v=1.2">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -584,6 +584,8 @@
             <option value="기타 협업">기타 협업</option>
           </select>
           <label class="privacy-consent"><input type="checkbox" name="consent" required><span>상담 답변을 위한 개인정보 수집·이용에 동의합니다. <a href="../../privacy.html" target="_blank">개인정보처리방침</a></span></label>
+          <!-- 스팸 봇 차단용 허니팟. 실제 사용자에게는 보이지 않으며, 값이 채워지면 제출을 무시합니다. -->
+          <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button type="submit" class="widget-btn" id="widget-submit-btn">교육·도입 상담 요청</button>
         </form>
       </div>
@@ -599,6 +601,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../../modules/config.js?v=1.2"></script>
   <script>const guideMenu=document.getElementById('menu-toggle');const guideNav=document.querySelector('.nav-links');guideMenu.addEventListener('click',()=>{const open=guideNav.classList.toggle('mobile-active');guideMenu.setAttribute('aria-expanded',String(open));guideMenu.setAttribute('aria-label',open?'메뉴 닫기':'메뉴 열기');guideMenu.querySelector('i').className=open?'fas fa-times':'fas fa-bars'});guideNav.addEventListener('click',()=>{guideNav.classList.remove('mobile-active');guideMenu.setAttribute('aria-expanded','false');guideMenu.setAttribute('aria-label','메뉴 열기');guideMenu.querySelector('i').className='fas fa-bars'});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&guideNav.classList.contains('mobile-active')){guideNav.classList.remove('mobile-active');guideMenu.setAttribute('aria-expanded','false');guideMenu.setAttribute('aria-label','메뉴 열기');guideMenu.querySelector('i').className='fas fa-bars';guideMenu.focus()}});</script>
   <script>
     // Markdown 단일 원본을 홈페이지 본문과 목차로 렌더링한다.
@@ -676,7 +679,14 @@
       if (form && submitBtn) {
         form.addEventListener('submit', (e) => {
           e.preventDefault();
-          
+
+          // 허니팟: 보이지 않는 필드가 채워졌다면 봇으로 간주하고 조용히 무시합니다.
+          const honeypot = form.querySelector('.hp-field');
+          if (honeypot && honeypot.value.trim() !== '') {
+            console.warn('Honeypot triggered — 제출을 무시합니다.');
+            return;
+          }
+
           const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
           const emailValue = form.email.value.trim();
           if (!emailRegex.test(emailValue)) {
@@ -692,10 +702,25 @@
             'name': form.name.value || '가이드 방문자',
             'email': form.email.value,
             'message': 'Antigravity 가이드 기반 상담 요청 · 관심 분야: ' + form.useCase.value,
-            'type': 'Antigravity 교육·도입 상담'
+            'type': 'Antigravity 교육·도입 상담',
+            // 다른 폼과 동일한 유입 출처 키 (modules/main.js 참조)
+            'source_page': window.location.pathname || '/',
+            'source_url': window.location.href.split('#')[0],
+            'referrer': document.referrer || 'direct',
+            'submitted_at': new Date().toISOString()
           };
 
-          const gasUrl = 'https://script.google.com/macros/s/AKfycbzbPLLNTIV9c1Ef-Uzd0AeomCWQXUSQY-McEvLBfqekbPgG8gVrFFg_vTACKpkz6qZNIg/exec';
+          // 다른 모든 폼과 동일한 엔드포인트로 통합합니다.
+          // 과거 이 폼만 별도 배포본으로 전송되어 리드가 다른 시트에 쌓일 수 있었습니다.
+          const gasUrl = window.APP_CONFIG?.GAS_WEBAPP_URL;
+
+          if (!gasUrl) {
+            console.error('APP_CONFIG.GAS_WEBAPP_URL 을 찾을 수 없습니다. modules/config.js 로드를 확인하세요.');
+            alert('일시적인 오류로 접수하지 못했습니다. contact@datagongbang.kr 로 연락 주시면 빠르게 도와드리겠습니다.');
+            submitBtn.disabled = false;
+            submitBtn.innerText = '교육·도입 상담 요청';
+            return;
+          }
 
           fetch(gasUrl, {
             method: 'POST',
