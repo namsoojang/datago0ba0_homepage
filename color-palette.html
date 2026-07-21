@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8H79VM0RM8');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이미지 컬러 팔레트 추출·추천 | 데이터공방</title>
+  <meta name="description" content="이미지에서 대표 색상을 추출하고 메인·보조·포인트·배경·본문 컬러를 추천합니다. 대비 검사, UI 미리보기, CSS 변수와 AI 프롬프트를 무료로 제공합니다.">
+  <meta name="keywords" content="이미지 색상 추출, 컬러 팔레트, 브랜드 컬러, 메인 컬러 추천, 보조 컬러, 포인트 컬러, 색상 조합, CSS 색상 변수">
+  <meta property="og:title" content="이미지 컬러 팔레트 추출·추천 | 데이터공방">
+  <meta property="og:description" content="이미지 한 장에서 바로 사용할 수 있는 컬러 시스템과 AI 제작 프롬프트를 만드세요.">
+  <meta property="og:image" content="https://datagongbang.kr/assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://datagongbang.kr/color-palette.html">
+  <link rel="canonical" href="https://datagongbang.kr/color-palette.html">
+  <link rel="icon" type="image/png" href="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <link rel="stylesheet" href="./index.css?v=1.2">
+  <link rel="stylesheet" href="./modules/toast.css?v=1.2">
+  <link rel="stylesheet" href="./modules/tiff-converter.css?v=1.2">
+  <link rel="stylesheet" href="./modules/color-palette.css?v=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"이미지 컬러 팔레트 추출·추천","applicationCategory":"DesignApplication","operatingSystem":"Web Browser","url":"https://datagongbang.kr/color-palette.html","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}</script>
+</head>
+<body class="rpa-light-theme">
+  <div id="bg-canvas-container"></div>
+  <header id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo" aria-label="데이터공방 홈">
+        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <ul class="nav-links" id="primary-navigation">
+          <li><a href="index.html#curriculum" class="nav-link">교육·서비스</a></li>
+          <li><a href="index.html#references" class="nav-link">성과·사례</a></li>
+          <li><a href="rpa.html" class="nav-link active" aria-current="page">업무도구</a></li>
+          <li><a href="guide/index.html" class="nav-link">실무가이드</a></li>
+          <li><a href="blog.html" class="nav-link">블로그</a></li>
+          <li><a href="index.html#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-navigation"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <main class="converter-section">
+    <div class="converter-container palette-tool-shell">
+      <div class="converter-title-area">
+        <p class="palette-eyebrow">무료 컬러 DNA 도구</p>
+        <h1 class="section-title">이미지 한 장으로 <span>바로 쓰는 컬러 시스템</span></h1>
+        <p>대표색만 뽑는 데서 끝나지 않습니다. 메인·보조·포인트 역할과 읽기 쉬운 배경·본문 조합, UI 미리보기까지 한 번에 확인하세요.</p>
+        <a href="rpa.html" class="back-to-hub-link"><i class="fas fa-arrow-left"></i> 무료 업무도구 목록으로 돌아가기</a>
+      </div>
+
+      <div class="palette-privacy-banner" role="note">
+        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+        <div><strong>이미지는 서버로 업로드되지 않습니다.</strong><p>선택한 이미지는 현재 브라우저에서만 분석하며 페이지를 닫거나 새로고침하면 사라집니다.</p></div>
+      </div>
+
+      <section class="palette-workspace" aria-labelledby="palette-upload-title">
+        <div class="palette-upload-panel">
+          <h2 id="palette-upload-title"><span>1</span> 이미지 선택</h2>
+          <div id="palette-dropzone" class="palette-dropzone" role="button" tabindex="0" aria-label="JPG, PNG 또는 WebP 이미지 선택">
+            <div id="palette-empty-state" class="palette-empty-state">
+              <i class="far fa-image" aria-hidden="true"></i>
+              <strong>이미지를 놓거나 클릭하세요</strong>
+              <span>JPG·PNG·WebP, 최대 15MB</span>
+            </div>
+            <img id="palette-image-preview" class="palette-image-preview" alt="선택한 이미지 미리보기">
+            <input id="palette-file" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+          </div>
+          <div class="palette-upload-actions">
+            <button type="button" id="palette-reselect" class="btn btn-secondary" disabled><i class="far fa-folder-open"></i> 다른 이미지</button>
+            <button type="button" id="palette-analyze" class="btn btn-primary" disabled><i class="fas fa-wand-magic-sparkles"></i> 색상 분석하기</button>
+          </div>
+          <p id="palette-file-status" class="palette-file-status" aria-live="polite">이미지를 선택하면 브라우저에서 바로 분석할 수 있습니다.</p>
+        </div>
+
+        <div class="palette-extract-panel">
+          <div class="palette-section-heading">
+            <div><h2><span>2</span> 이미지에서 찾은 대표색</h2><p>메인으로 사용할 색상을 누르면 추천 조합이 다시 만들어집니다.</p></div>
+          </div>
+          <div id="palette-extracted" class="palette-extracted" aria-live="polite">
+            <div class="palette-placeholder">분석 결과가 여기에 표시됩니다.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="palette-results" class="palette-results" aria-labelledby="palette-results-title" hidden>
+        <div class="palette-section-heading palette-results-heading">
+          <div><p class="palette-step-label">3 · 추천 결과</p><h2 id="palette-results-title">이 색으로 만든 추천 팔레트</h2><p>원본 중심, 차분한 B2B, 선명한 강조 중 원하는 분위기를 선택하세요.</p></div>
+        </div>
+        <div id="palette-variants" class="palette-variants" role="tablist" aria-label="추천 팔레트 선택"></div>
+
+        <div class="palette-result-grid">
+          <section class="palette-role-panel" aria-labelledby="palette-role-title">
+            <h3 id="palette-role-title">색상 역할과 사용법</h3>
+            <div id="palette-role-list" class="palette-role-list"></div>
+          </section>
+
+          <section class="palette-preview-panel" aria-labelledby="palette-preview-title">
+            <div class="palette-preview-header"><h3 id="palette-preview-title">실시간 UI 미리보기</h3><span id="palette-contrast-summary"></span></div>
+            <div id="palette-ui-preview" class="palette-ui-preview">
+              <div class="demo-nav"><strong>YOUR BRAND</strong><span>서비스&nbsp;&nbsp; 사례&nbsp;&nbsp; 문의</span></div>
+              <div class="demo-hero">
+                <span class="demo-badge">새로운 시작</span>
+                <h4>좋은 색은 메시지를<br>더 분명하게 만듭니다.</h4>
+                <p>추출한 컬러 시스템이 제목, 본문, 카드와 버튼에서 어떻게 작동하는지 확인하세요.</p>
+                <div class="demo-actions"><button type="button" class="demo-primary">시작하기</button><button type="button" class="demo-secondary">자세히 보기</button></div>
+              </div>
+              <div class="demo-card"><span>추천 조합</span><strong>일관된 브랜드 경험</strong><p>포인트 색상은 가장 중요한 행동에만 사용합니다.</p></div>
+            </div>
+          </section>
+        </div>
+
+        <section class="palette-accessibility" aria-labelledby="palette-accessibility-title">
+          <div><h3 id="palette-accessibility-title"><i class="fas fa-universal-access"></i> 기본 대비 검사</h3><p>본문과 버튼에서 읽기 쉬운 조합인지 확인합니다.</p></div>
+          <div id="palette-contrast-checks" class="palette-contrast-checks"></div>
+        </section>
+
+        <section class="palette-export" aria-labelledby="palette-export-title">
+          <div class="palette-section-heading"><div><h2 id="palette-export-title"><span>4</span> 바로 가져다 쓰기</h2><p>CSS 변수나 AI 제작 프롬프트를 복사해 사용하세요.</p></div></div>
+          <div class="palette-export-grid">
+            <div class="palette-code-card">
+              <div class="palette-code-header"><strong>CSS 변수</strong><button type="button" id="copy-palette-css" class="palette-copy-btn"><i class="far fa-copy"></i> 복사</button></div>
+              <pre id="palette-css-output"></pre>
+            </div>
+            <div class="palette-code-card palette-prompt-card">
+              <div class="palette-code-header"><strong>AI 제작 프롬프트</strong><button type="button" id="copy-palette-prompt" class="palette-copy-btn"><i class="far fa-copy"></i> 복사</button></div>
+              <p id="palette-prompt-output"></p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="palette-next-step">
+        <div><span>다음 단계</span><h2>이 컬러 시스템을 실제 홈페이지에 적용하고 싶으신가요?</h2><p>브랜드 색상 정리부터 고객 여정과 문의 전환을 고려한 홈페이지 개선·교육까지 함께 설계합니다.</p></div>
+        <a href="index.html#contact" class="btn btn-primary" data-consult-source="image_color_palette"><i class="far fa-comments"></i> 교육·협업 문의하기</a>
+      </section>
+    </div>
+  </main>
+
+  <canvas id="palette-analysis-canvas" hidden></canvas>
+  <footer><div class="container"><div class="footer-logo"><img class="logo-symbol brand-logo-img" id="footer-logo-img" src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26"><span>데이터<strong>공방</strong></span></div><p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="rpa.html" style="text-decoration:underline;opacity:.8;margin-left:5px;">무료 업무도구</a> | <a href="privacy.html" style="text-decoration:underline;opacity:.8;margin-left:5px;">개인정보처리방침</a></p></div></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="./modules/main.js?v=1.2"></script>
+  <script src="./modules/color-palette.js?v=1.0"></script>
+</body>
+</html>
