@@ -130,19 +130,86 @@ Git은 저장할 때마다 이 세 가지를 함께 기록합니다. 바뀐 내�
 
 > **작업 폴더에서 수정 → 커밋으로 기록 → 푸시로 GitHub에 전송**
 
-## 2. 용어는 다섯 개만
+## 2. 로컬과 클라우드, 그리고 커밋·푸시·풀
 
-전부 알 필요 없습니다. 아래 다섯 개면 이 가이드를 끝까지 진행할 수 있습니다.
+여기가 이 가이드에서 가장 중요한 장입니다. 이 그림 하나만 머리에 남으면 나머지는 따라옵니다.
 
-| 용어 | 무엇인가 | 언제 쓰나 | 비유 |
+### 2.1 같은 프로젝트가 두 곳에 있습니다
+
+Git으로 일할 때는 **내 프로젝트가 두 군데에 각각 존재**합니다.
+
+- **로컬(Local)**: 내 PC의 작업 폴더. 인터넷이 끊겨도 작업할 수 있는 곳.
+- **원격(Remote)**: GitHub에 있는 저장소. 흔히 말하는 클라우드.
+
+여기서 초보자가 가장 크게 오해하는 지점이 있습니다.
+
+> **두 곳은 자동으로 동기화되지 않습니다.**
+
+구글드라이브나 네이버클라우드는 파일을 저장하면 알아서 올라갑니다. Git은 다릅니다. **내가 "지금 올려라"라고 명시적으로 지시해야** 원격에 반영됩니다.
+
+불편해 보이지만 이건 의도된 설계입니다. 드라이브는 저장하는 순간 미완성 상태까지 전부 올라가지만, Git은 **내가 완성했다고 판단한 것만 골라서** 올립니다. 실험하다 망가진 코드가 공유 저장소에 자동으로 퍼지는 일이 없습니다.
+
+### 2.2 두 공간을 오가는 세 가지 동작
+
+<!-- PDF-SKIP-START -->
+<div style="margin:24px 0;border:1px solid #E2E8F0;border-radius:12px;padding:20px;background:#F8FAFC;">
+  <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch;">
+    <div style="flex:1 1 220px;border:1px solid #CBD5E1;border-top:3px solid #64748B;border-radius:10px;padding:14px;background:#FFFFFF;">
+      <div style="font-size:11px;font-weight:700;color:#64748B;letter-spacing:.06em;">로컬 · 내 PC</div>
+      <div style="font-size:14px;font-weight:700;color:#0F172A;margin:6px 0 8px;">작업 폴더</div>
+      <div style="font-size:12px;color:#475569;line-height:1.6;">파일을 수정하고 <b>커밋</b>으로 기록을 쌓는 곳. 여기까지는 인터넷이 필요 없습니다.</div>
+      <div style="margin-top:10px;padding:8px 10px;border-radius:6px;background:#F1F5F9;font-size:12px;color:#0F172A;"><b>커밋</b> · 로컬 안에서만 일어남</div>
+    </div>
+    <div style="flex:0 0 130px;display:flex;flex-direction:column;justify-content:center;gap:10px;min-width:130px;">
+      <div style="text-align:center;padding:8px 6px;border-radius:8px;background:#028090;color:#FFFFFF;font-size:12px;font-weight:700;">푸시 (push) →</div>
+      <div style="text-align:center;padding:8px 6px;border-radius:8px;background:#FFFFFF;border:1px solid #028090;color:#028090;font-size:12px;font-weight:700;">← 풀 (pull)</div>
+    </div>
+    <div style="flex:1 1 220px;border:1px solid rgba(2,128,144,.35);border-top:3px solid #028090;border-radius:10px;padding:14px;background:#FFFFFF;">
+      <div style="font-size:11px;font-weight:700;color:#028090;letter-spacing:.06em;">클라우드 · GitHub</div>
+      <div style="font-size:14px;font-weight:700;color:#0F172A;margin:6px 0 8px;">원격 저장소</div>
+      <div style="font-size:12px;color:#475569;line-height:1.6;">푸시한 기록이 쌓이는 곳. 다른 PC와 동료, 그리고 배포 서비스가 여기를 봅니다.</div>
+      <div style="margin-top:10px;padding:8px 10px;border-radius:6px;background:#F1F7F6;font-size:12px;color:#0F172A;"><b>Cloudflare가 읽는 곳</b></div>
+    </div>
+  </div>
+</div>
+<!-- PDF-SKIP-END -->
+
+> 로컬(내 PC)에서 **커밋**으로 기록을 쌓고, **푸시**로 GitHub에 올리고, **풀**로 GitHub의 변경을 내려받습니다. 커밋은 로컬 안에서만 일어나는 일이라 그 자체로는 GitHub에 아무것도 올라가지 않습니다.
+
+| 동작 | 어디서 어디로 | 언제 쓰나 | 비유 |
 |---|---|---|---|
-| 저장소 (repository) | 이력이 기록되는 프로젝트 폴더 단위 | 프로젝트 하나에 하나 만든다 | 프로젝트 서류철 |
-| 커밋 (commit) | 지금 상태를 이유와 함께 기록하는 것 | 의미 있는 작업을 마칠 때마다 | 작업일지에 한 줄 적기 |
-| 푸시 (push) | 내 PC의 기록을 GitHub로 보내는 것 | 커밋 몇 개를 모아 올릴 때 | 서류철을 창고로 옮기기 |
-| 클론 (clone) | GitHub의 저장소를 내 PC로 내려받는 것 | 다른 PC에서 이어서 작업할 때 | 창고에서 서류철 꺼내오기 |
-| 브랜치 (branch) | 원본을 건드리지 않고 갈라서 실험하는 선 | 혼자 실습할 땐 몰라도 된다 | 복사본에서 먼저 시도해 보기 |
+| **커밋 (commit)** | 로컬 안에서 (이동 없음) | 의미 있는 작업을 마칠 때마다 | 작업일지에 한 줄 적기 |
+| **푸시 (push)** | 로컬 → 클라우드 | 커밋 몇 개를 모아 올릴 때 | 서류철을 창고로 옮기기 |
+| **풀 (pull)** | 클라우드 → 로컬 | 작업을 시작하기 전 | 창고의 최신 서류를 가져오기 |
+| **클론 (clone)** | 클라우드 → 로컬 (최초 1회) | 다른 PC에서 처음 시작할 때 | 창고에서 서류철 통째로 꺼내오기 |
 
-혼자 실습하는 동안은 사실상 **커밋과 푸시 두 개**만 씁니다. 브랜치는 배포 편에서 미리보기 개념을 설명할 때 다시 나옵니다.
+클론과 풀은 방향이 같지만 쓰는 때가 다릅니다. **클론은 처음 한 번**, **풀은 그 뒤로 계속**입니다.
+
+### 2.3 "커밋했는데 왜 GitHub에 없죠?"
+
+처음 하는 사람의 90%가 겪는 상황입니다. 답은 간단합니다.
+
+> **커밋은 로컬에 기록하는 것까지입니다. 푸시해야 GitHub에 올라갑니다.**
+
+커밋만 하고 푸시를 안 하면 기록은 내 PC 안에만 쌓여 있습니다. GitHub 저장소 화면을 아무리 새로고침해도 보이지 않고, Cloudflare도 변화를 감지하지 못해 사이트가 그대로입니다.
+
+**배포한 사이트가 안 바뀐다면 가장 먼저 "푸시했나?"를 확인하세요.** 배포 편에서 다시 나오는 이야기입니다.
+
+### 2.4 풀은 언제 필요한가요
+
+혼자 PC 한 대로만 작업한다면 풀 쓸 일이 거의 없습니다. 하지만 아래 상황에서는 반드시 필요합니다.
+
+- **PC가 두 대일 때**: 회사에서 푸시하고 집에서 이어서 작업한다면, 시작 전에 풀부터 해야 합니다.
+- **GitHub 웹에서 직접 고쳤을 때**: README를 브라우저에서 수정하는 경우가 흔한데, 이때 원격에만 새 기록이 생깁니다.
+- **여러 명이 함께할 때**: 동료가 올린 변경을 받아와야 합니다.
+
+풀을 건너뛰고 작업하면 **로컬과 원격이 서로 다른 방향으로 갈라집니다.** 이 상태에서 푸시하면 Git이 거부합니다. 그래서 습관을 이렇게 잡는 편이 안전합니다.
+
+> **작업 시작 전에 풀, 작업 끝나고 커밋, 그리고 푸시.**
+
+### 2.5 브랜치는 나중에
+
+**브랜치(branch)** 는 원본을 건드리지 않고 갈라서 실험하는 선입니다. 혼자 실습하는 동안은 몰라도 됩니다. 배포 편에서 "발표 전에 안전하게 시험해 보는 방법"으로 다시 나옵니다.
 
 ---
 
@@ -323,20 +390,48 @@ Claude Code는 터미널 CLI, 데스크톱 앱(Mac·Windows), 웹, IDE 확장에
 
 ---
 
-## 6. 이후의 일상 3동작
+## 6. 이후의 일상 루프
 
-연결이 끝나면 앞으로 반복하는 것은 세 동작뿐입니다.
+연결이 끝나면 앞으로 반복하는 것은 이 흐름뿐입니다.
 
-> **수정한다 → 커밋한다 → 푸시한다**
+> **(풀) → 수정한다 → 커밋한다 → 푸시한다**
+
+PC 한 대로만 작업한다면 맨 앞의 풀은 건너뛰어도 됩니다. PC가 두 대이거나 GitHub 웹에서 파일을 고친 적이 있다면 **반드시 풀부터** 하세요.
+
+<!-- PDF-SKIP-START -->
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0;align-items:stretch;">
+  <div style="flex:1 1 130px;border:1px dashed #CBD5E1;border-radius:10px;padding:12px;background:#FFFFFF;">
+    <div style="font-size:11px;font-weight:700;color:#94A3B8;">0 · 선택</div>
+    <div style="font-size:13px;font-weight:700;color:#475569;margin:5px 0 3px;">풀 (pull)</div>
+    <div style="font-size:12px;color:#94A3B8;line-height:1.5;">GitHub의 최신 상태를 내려받는다</div>
+  </div>
+  <div style="flex:1 1 130px;border:1px solid #E2E8F0;border-top:3px solid #028090;border-radius:10px;padding:12px;background:#F8FAFC;">
+    <div style="font-size:11px;font-weight:700;color:#028090;">1 · 로컬</div>
+    <div style="font-size:13px;font-weight:700;color:#0F172A;margin:5px 0 3px;">수정</div>
+    <div style="font-size:12px;color:#64748B;line-height:1.5;">AI 도구로 파일을 고친다</div>
+  </div>
+  <div style="flex:1 1 130px;border:1px solid #E2E8F0;border-top:3px solid #028090;border-radius:10px;padding:12px;background:#F8FAFC;">
+    <div style="font-size:11px;font-weight:700;color:#028090;">2 · 로컬</div>
+    <div style="font-size:13px;font-weight:700;color:#0F172A;margin:5px 0 3px;">커밋 (commit)</div>
+    <div style="font-size:12px;color:#64748B;line-height:1.5;">바꾼 이유와 함께 기록한다</div>
+  </div>
+  <div style="flex:1 1 130px;border:1px solid rgba(2,128,144,.35);border-top:3px solid #028090;border-radius:10px;padding:12px;background:#F1F7F6;">
+    <div style="font-size:11px;font-weight:700;color:#028090;">3 · 클라우드</div>
+    <div style="font-size:13px;font-weight:700;color:#0F172A;margin:5px 0 3px;">푸시 (push)</div>
+    <div style="font-size:12px;color:#475569;line-height:1.5;">GitHub에 올린다. <b>여기까지 해야 반영된다</b></div>
+  </div>
+</div>
+<!-- PDF-SKIP-END -->
 
 AI 도구에 요청하는 말과 실제로 실행되는 명령은 이렇게 대응합니다. 외울 필요는 없고, 승인 화면에서 읽을 수 있으면 충분합니다.
 
-| AI에게 하는 말 | 실제로 실행되는 명령 | 의미 |
+| AI에게 하는 말 | 실제로 실행되는 명령 | 어디서 어디로 |
 |---|---|---|
-| "지금 뭐가 바뀌었는지 보여줘" | `git status`, `git diff` | 변경된 파일과 내용 확인 |
-| "차트 색상 수정한 걸로 커밋해줘" | `git add`, `git commit -m "..."` | 이유와 함께 기록 |
-| "GitHub에 올려줘" | `git push` | 온라인 저장소로 전송 |
-| "어제 상태로 되돌려줘" | `git log`, `git revert` 등 | 이력에서 특정 시점으로 복구 |
+| "GitHub의 최신 내용을 받아와줘" | `git pull` | 클라우드 → 로컬 |
+| "지금 뭐가 바뀌었는지 보여줘" | `git status`, `git diff` | 로컬 확인만 |
+| "차트 색상 수정한 걸로 커밋해줘" | `git add`, `git commit -m "..."` | 로컬에 기록 |
+| "GitHub에 올려줘" | `git push` | 로컬 → 클라우드 |
+| "어제 상태로 되돌려줘" | `git log`, `git revert` 등 | 로컬 이력에서 복구 |
 
 커밋 메시지는 "수정"이 아니라 **무엇을 왜 바꿨는지** 적습니다. `차트 색상 변경`보다 `색약 사용자 구분을 위해 차트 색상 대비 강화`가 3주 뒤의 나에게 훨씬 유용합니다.
 
@@ -344,6 +439,8 @@ AI 도구에 요청하는 말과 실제로 실행되는 명령은 이렇게 대�
 
 | 증상 | 원인 | 해결 |
 |---|---|---|
+| 커밋했는데 GitHub에 안 보임 | 푸시를 하지 않음 | 푸시한다. 2.3절 참고 |
+| 푸시가 거부됨(rejected) | 원격에 내가 안 받은 커밋이 있음 | **먼저 풀**로 원격 변경을 받아 합친 뒤 다시 푸시 |
 | 푸시할 때 인증 실패 | 비밀번호 방식은 지원되지 않음 | 브라우저 로그인으로 인증하거나 개인 액세스 토큰 사용 |
 | 저장소가 이미 존재한다는 오류 | GitHub에서 README를 만들었는데 로컬에도 파일이 있음 | 원격 내용을 먼저 가져와 합친 뒤 푸시 |
 | 파일명이 깨져 보임 | 한글·공백이 포함된 파일명 | 영문 소문자와 하이픈으로 변경 |
@@ -360,6 +457,8 @@ AI 도구에 요청하는 말과 실제로 실행되는 명령은 이렇게 대�
 - [ ] 원본 데이터와 키 파일은 `.gitignore`로 제외했다
 - [ ] 작업 폴더가 GitHub 저장소에 올라가 있고 브라우저에서 파일이 보인다
 - [ ] 파일을 하나 수정해 커밋·푸시했더니 GitHub에도 반영되는 것을 확인했다
+- [ ] **커밋과 푸시가 다른 동작이라는 것**을 설명할 수 있다
+- [ ] 로컬(내 PC)과 클라우드(GitHub)가 자동 동기화되지 않는다는 것을 이해했다
 - [ ] AI가 실행하려는 명령을 읽고 승인하는 흐름에 익숙해졌다
 
 여기까지 되었다면 창고에 물건이 들어간 상태입니다. 이제 **매장에 진열할 차례**입니다. 다음 편에서 Cloudflare Pages로 대시보드를 실제 주소에 띄웁니다.
