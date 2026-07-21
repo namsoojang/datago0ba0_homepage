@@ -144,7 +144,7 @@
   }
 
   function renderPreview(palette) {
-    const properties={background:palette.background,text:palette.text,primary:palette.primary,secondary:palette.secondary,accent:palette.accent,surface:palette.surface,muted:palette.muted,onPrimary:palette.onPrimary,accentText:palette.accent};
+    const properties={background:palette.background,text:palette.text,primary:palette.primary,secondary:palette.secondary,accent:palette.accent,surface:palette.surface,muted:palette.muted,onPrimary:palette.onPrimary,accentText:palette.accentText};
     Object.entries(properties).forEach(([key,value])=>el.preview.style.setProperty(`--demo-${key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())}`,value));
   }
 
