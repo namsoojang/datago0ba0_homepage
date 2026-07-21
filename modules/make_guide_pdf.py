@@ -16,6 +16,8 @@ class NumberedCanvas(canvas.Canvas):
     총 페이지 수를 동적으로 계산하여 하단에 '- Page X of Y -' 번호를 정밀 정렬해 출력하고,
     2페이지부터는 상단에 세련된 실시간 런닝 헤더 라인을 렌더링하는 고품격 캔버스
     """
+    header_text = "데이터공방 실무 가이드라인  ▷  Antigravity IDE 설치 및 연동 가이드"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._saved_page_states = []
@@ -42,7 +44,7 @@ class NumberedCanvas(canvas.Canvas):
         self.setFillColor(colors.HexColor('#64748B'))
         
         # 런닝 헤더 드로잉
-        self.drawString(54, 745, "데이터공방 실무 가이드라인  ▷  Antigravity IDE 설치 및 연동 가이드")
+        self.drawString(54, 745, self.header_text)
         self.setStrokeColor(colors.HexColor('#CBD5E1'))
         self.setLineWidth(0.5)
         self.line(54, 737, 558, 737)
@@ -95,12 +97,39 @@ def md_to_html(text):
     return text
 
 
-def build_pdf():
+# 홈페이지에서만 보여줄 HTML 도식을 감싸는 표식. PDF 빌드 시 이 구간은 통째로 건너뛴다.
+PDF_SKIP_START = "<!-- PDF-SKIP-START -->"
+PDF_SKIP_END = "<!-- PDF-SKIP-END -->"
+
+# 가이드별 원본 마크다운, 출력 PDF, 런닝 헤더 문구를 한곳에서 관리한다.
+GUIDES = {
+    "antigravity": (
+        "antigravity_guide.md",
+        "antigravity_guide.pdf",
+        "데이터공방 실무 가이드라인  ▷  Antigravity IDE 설치 및 연동 가이드",
+    ),
+    "github-start": (
+        "github_start_guide.md",
+        "github_start_guide.pdf",
+        "데이터공방 실무 가이드라인  ▷  깃허브 처음 시작하기",
+    ),
+    "cloudflare-pages": (
+        "cloudflare_pages_deploy_guide.md",
+        "cloudflare_pages_deploy_guide.pdf",
+        "데이터공방 실무 가이드라인  ▷  내 대시보드 배포하기 (Cloudflare Pages)",
+    ),
+}
+
+
+def build_pdf(guide_key="antigravity"):
     setup_font()
 
+    md_name, pdf_name, header_text = GUIDES[guide_key]
+    NumberedCanvas.header_text = header_text
+
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    pdf_path = os.path.join(project_root, "docs", "antigravity_guide.pdf")
-    
+    pdf_path = os.path.join(project_root, "docs", pdf_name)
+
     # 런닝 헤더 간격(상단 72pt) 및 여백 조정으로 레이아웃 안정성 확보 (가로 영역 = 504pt)
     doc = SimpleDocTemplate(
         pdf_path, 
@@ -184,7 +213,7 @@ def build_pdf():
 
     story = []
     
-    md_path = os.path.join(project_root, "docs", "antigravity_guide.md")
+    md_path = os.path.join(project_root, "docs", md_name)
     if not os.path.exists(md_path):
         print("ERROR: 원본 마크다운 가이드 파일이 존재하지 않습니다.")
         return
@@ -199,6 +228,7 @@ def build_pdf():
     
     parsing_stage = 0  # 0: 타이틀 및 인트로 파싱, 1: 본문 파싱
     h1_count = 0  # 페이지 나눔을 위한 변수
+    skipping_html = False  # 홈페이지 전용 도식 구간 여부
     
     for line in lines:
         stripped = line.strip()
@@ -222,7 +252,18 @@ def build_pdf():
         # 2. 본문 단계 파싱
         if not stripped:
             continue
-            
+
+        # 홈페이지 전용 HTML 도식 구간은 PDF에서 건너뛴다.
+        # 도식 바로 뒤에 같은 내용을 요약한 문장을 두어 PDF 독자도 흐름을 놓치지 않게 한다.
+        if stripped == PDF_SKIP_START:
+            skipping_html = True
+            continue
+        if stripped == PDF_SKIP_END:
+            skipping_html = False
+            continue
+        if skipping_html:
+            continue
+
         # 수동 구분선 처리 시 페이지 나눔
         if stripped == "---":
             story.append(PageBreak())
@@ -338,8 +379,16 @@ def build_pdf():
 
     # PDF 빌드 실행 (NumberedCanvas 캔버스메이커 장착)
     doc.build(story, canvasmaker=NumberedCanvas)
-    print("SUCCESS: antigravity_guide.pdf 빌드 성공")
+    print(f"SUCCESS: {pdf_name} 빌드 성공")
 
 
 if __name__ == "__main__":
-    build_pdf()
+    # 인자가 없으면 기존과 동일하게 Antigravity 가이드만 빌드한다.
+    targets = sys.argv[1:] or ["antigravity"]
+    if targets == ["all"]:
+        targets = list(GUIDES)
+    for target in targets:
+        if target not in GUIDES:
+            print(f"ERROR: 알 수 없는 가이드 키 '{target}'. 사용 가능: {', '.join(GUIDES)}, all")
+            continue
+        build_pdf(target)

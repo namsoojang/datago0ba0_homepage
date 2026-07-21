@@ -64,7 +64,7 @@
   <!-- 실무 가이드 허브 -->
   <url>
     <loc>https://datagongbang.kr/guide/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -77,6 +77,18 @@
   <url>
     <loc>https://datagongbang.kr/guide/antigravity-rules-skills/index.html</loc>
     <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://datagongbang.kr/guide/github-start/index.html</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://datagongbang.kr/guide/cloudflare-pages/index.html</loc>
+    <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

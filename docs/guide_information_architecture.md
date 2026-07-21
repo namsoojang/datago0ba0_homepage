@@ -8,18 +8,20 @@
 홈페이지
 └── Guide
     └── 가이드 허브
-        ├── STEP 01 Antigravity 실무 시작
-        │   ├── 웹 가이드
-        │   └── PDF
-        ├── STEP 02 Rules & Skills 설계
-        │   ├── 웹 가이드
-        │   └── PDF
-        └── STEP 03 팀 적용
+        ├── TRACK 01 AI 도구로 일하기
+        │   ├── STEP 01 Antigravity 실무 시작 (웹 + PDF)
+        │   └── STEP 02 Rules & Skills 설계 (웹 + PDF)
+        ├── TRACK 02 결과물을 세상에 내보내기
+        │   ├── STEP 03 깃허브 처음 시작하기 (웹 + PDF)
+        │   └── STEP 04 내 대시보드 배포하기 (웹 + PDF)
+        └── 팀 적용
             ├── 교육·도입 상담
             └── 적용 사례
 ```
 
-두 문서는 독립 콘텐츠가 아니라 `도구 시작 → 업무 표준화 → 조직 적용`의 연속된 여정으로 안내합니다.
+TRACK 01은 `도구 시작 → 업무 표준화`, TRACK 02는 `버전 관리 → 배포`의 연속된 여정입니다. 두 트랙은 독립적으로 시작할 수 있으며, 조직 적용 상담이 공통 종착점입니다.
+
+TRACK 02는 "AI를 활용한 데이터분석" 강의 수강생이 대시보드 결과물을 외부 공유 가능한 주소로 배포하는 과정을 지원하기 위해 설계했습니다. STEP 03 도입부에서 AI 코딩 도구, Git, GitHub, Cloudflare의 역할 구분을 먼저 다루는 이유도 여기에 있습니다.
 
 ## CRM 원칙
 
@@ -37,7 +39,7 @@
 | `view_guide_hub` | 가이드 허브 방문 | 유입 페이지 |
 | `select_guide_step` | 단계별 가이드 선택 | `step`, `guide_name` |
 | `download_guide_pdf` | PDF 다운로드 | `guide_name` |
-| `submit_antigravity_guide_consultation` | 상담 폼 완료 | `use_case` |
+| `submit_antigravity_guide_consultation` | 상담 폼 완료 | `event_label`(관심 분야), `guide_name` |
 | `click_team_consultation` | 팀 적용 CTA 선택 | `source_guide` |
 
 ## 우선 확인할 지표

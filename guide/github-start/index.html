@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8H79VM0RM8');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KVV9V7QN');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>깃허브 처음 시작하기 | 데이터공방 장남수</title>
+  
+  <meta property="og:url" content="https://datagongbang.kr/guide/github-start/index.html">
+  <link rel="canonical" href="https://datagongbang.kr/guide/github-start/index.html">
+  <meta name="description" content="Git과 GitHub가 무엇인지, 구글드라이브와 무엇이 다른지부터 저장소 생성과 AI 코딩 도구(Antigravity·Codex·Claude Code)로 연결하는 방법까지 초보자용으로 정리한 데이터공방 실무 가이드입니다.">
+  <meta property="og:title" content="깃허브 처음 시작하기 | 데이터공방 장남수">
+  <meta property="og:description" content="왜 깃허브를 쓰는지부터 가입, 저장소 생성, Public/Private 판단, AI 도구로 연결하기까지 단계별로 안내합니다.">
+  <meta property="og:image" content="../../assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <meta property="og:type" content="website">
+  
+  <link rel="icon" type="image/png" href="../../assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <link rel="stylesheet" href="../../index.css?v=1.4">
+  <link rel="stylesheet" href="../../modules/toast.css?v=1.2">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  
+  <style>
+    /* 가이드 전용 2컬럼 레이아웃 및 스타일 재정의 */
+    body {
+      background-color: #F8FAFC;
+      color: #1E293B;
+      font-family: 'Pretendard', sans-serif;
+    }
+    .guide-container {
+      max-width: 1200px;
+      margin: 100px auto 60px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+    }
+    /* 좌측 고정 사이드바 목차 */
+    .guide-sidebar {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+    .sidebar-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #02C39A;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+    .sidebar-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar-links li {
+      margin-bottom: 12px;
+    }
+    .sidebar-link {
+      color: #64748B;
+      text-decoration: none;
+      font-size: 13px;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    .sidebar-link:hover, .sidebar-link.active {
+      color: #02C39A;
+      font-weight: 600;
+      transform: translateX(4px);
+    }
+    /* 우측 스크롤 본문 */
+    .guide-content {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+    .guide-header {
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .guide-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 8px;
+    }
+    .guide-meta {
+      font-size: 12px;
+      color: #64748B;
+    }
+    .guide-section {
+      margin-bottom: 48px;
+      scroll-margin-top: 100px;
+    }
+    .section-headline {
+      font-size: 18px;
+      font-weight: 700;
+      color: #028090;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .guide-section p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #334155;
+      margin-bottom: 16px;
+    }
+    /* Markdown 단일 원본 렌더링 스타일 */
+    .guide-markdown-source {
+      color: #334155;
+      font-size: 14px;
+      line-height: 1.75;
+      overflow-wrap: anywhere;
+    }
+    .guide-markdown-source h1 {
+      color: #0F172A;
+      font-size: 28px;
+      line-height: 1.35;
+      margin: 0 0 12px;
+    }
+    .guide-markdown-source h2 {
+      color: #028090;
+      font-size: 20px;
+      line-height: 1.45;
+      margin: 48px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .guide-markdown-source h2:first-of-type { margin-top: 36px; }
+    .guide-markdown-source h3 {
+      color: #0F172A;
+      font-size: 16px;
+      margin: 28px 0 12px;
+    }
+    .guide-markdown-source p { margin: 0 0 16px; }
+    .guide-markdown-source ul,
+    .guide-markdown-source ol { margin: 0 0 18px; padding-left: 24px; }
+    .guide-markdown-source li { margin-bottom: 8px; }
+    .guide-markdown-source blockquote {
+      margin: 20px 0;
+      padding: 16px 20px;
+      border-left: 4px solid #02A896;
+      border-radius: 0 8px 8px 0;
+      background: #F8FAFC;
+      color: #475569;
+    }
+    .guide-markdown-source blockquote p { margin: 0; }
+    .guide-markdown-source table {
+      width: 100%;
+      margin: 24px 0;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .guide-markdown-source th,
+    .guide-markdown-source td {
+      padding: 10px 12px;
+      border: 1px solid #E2E8F0;
+      text-align: left;
+      vertical-align: top;
+    }
+    .guide-markdown-source th { background: #F1F5F9; color: #0F172A; }
+    .guide-markdown-source pre {
+      overflow-x: auto;
+      margin: 20px 0;
+      padding: 16px;
+      border-radius: 8px;
+      background: #0F172A;
+      color: #F8FAFC;
+    }
+    .guide-markdown-source code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #F1F5F9;
+      color: #0F172A;
+      font-family: Consolas, Monaco, monospace;
+    }
+    .guide-markdown-source pre code { padding: 0; background: transparent; color: inherit; }
+    .guide-markdown-source img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 24px auto;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+    .guide-loading,
+    .guide-load-error {
+      padding: 32px;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      background: #F8FAFC;
+      color: #475569;
+      text-align: center;
+    }
+    .step-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+    }
+    .step-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #475569;
+    }
+    .step-list li::before {
+      content: "■";
+      position: absolute;
+      left: 0;
+      color: #028090;
+      font-size: 10px;
+    }
+    /* 리드 캡처 다운로드 위젯 */
+    .download-widget {
+      background: linear-gradient(135deg, rgba(2, 195, 154, 0.06) 0%, #F8FAFC 100%);
+      border: 1px solid rgba(2, 195, 154, 0.2);
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .download-widget-text h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #028090;
+      margin-bottom: 6px;
+    }
+    .download-widget-text p {
+      font-size: 13px;
+      color: #475569;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+    .widget-form {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+    .widget-input {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 10px 16px;
+      color: #0F172A;
+      font-size: 13px;
+      flex: 1;
+      min-width: 200px;
+    }
+    .widget-input:focus {
+      outline: none;
+      border-color: #028090;
+      box-shadow: 0 0 0 3px rgba(2, 128, 144, 0.15);
+    }
+    .widget-btn {
+      background: #028090;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 24px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    .widget-btn:hover {
+      background: #00A896;
+    }
+    .guide-path {
+      margin-bottom: 24px;
+      padding: 18px 20px;
+      border: 1px solid rgba(2, 128, 144, 0.2);
+      border-radius: 10px;
+      background: #F0F9F7;
+      color: #334155;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .guide-path a { color: #028090; font-weight: 700; }
+    .download-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .download-direct {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 6px;
+      background: #028090;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .privacy-consent { display: flex; width: 100%; align-items: flex-start; gap: 8px; color: #64748B; font-size: 11px; }
+    .privacy-consent input { margin-top: 3px; }
+    
+    /* 라이트 모드 상단 헤더/네비바 가독성 보강 */
+    .rpa-light-theme header {
+      background: rgba(255, 255, 255, 0.98) !important;
+      border-bottom: 1px solid #E2E8F0 !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+    }
+    .rpa-light-theme .logo span {
+      color: #0F172A !important;
+    }
+    .rpa-light-theme .nav-link {
+      color: #475569 !important;
+      font-weight: 600 !important;
+    }
+    .rpa-light-theme .nav-link:hover,
+    .rpa-light-theme .nav-link.active {
+      color: #028090 !important;
+    }
+    .rpa-light-theme .menu-toggle i {
+      color: #0F172A !important;
+    }
+
+    @media (max-width: 1024px) {
+      .guide-container {
+        grid-template-columns: 1fr;
+        margin-top: 80px;
+      }
+      .guide-sidebar {
+        position: static;
+        margin-bottom: 20px;
+      }
+      .download-widget {
+        grid-template-columns: 1fr;
+      }
+      .guide-content { padding: 24px 20px; }
+      .guide-markdown-source h1 { font-size: 24px; }
+      .guide-markdown-source h2 { font-size: 18px; }
+      .guide-markdown-source table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body class="rpa-light-theme">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVV9V7QN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- 1. 헤더 및 네비게이션 -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="../../index.html" class="logo">
+        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="../../assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <ul class="nav-links" id="primary-navigation">
+          <li><a href="../../index.html#curriculum" class="nav-link">교육·서비스</a></li>
+          <li><a href="../../index.html#references" class="nav-link">성과·사례</a></li>
+          <li><a href="../../rpa.html" class="nav-link">업무도구</a></li>
+          <li><a href="../index.html" class="nav-link active" aria-current="page">실무가이드</a></li>
+          <li><a href="../../blog.html" class="nav-link">블로그</a></li>
+          <li><a href="../../index.html#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-navigation"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- 2. 가이드 본문 컨테이너 -->
+  <div class="guide-container">
+    <!-- 좌측 사이드바 목차 -->
+    <aside class="guide-sidebar">
+      <div class="sidebar-title">▣ 가이드 항목</div>
+      <ul class="sidebar-links">
+        <li class="sidebar-link">목차를 불러오는 중입니다.</li>
+      </ul>
+    </aside>
+
+    <!-- 우측 상세 스크롤 본문 -->
+    <main class="guide-content">
+      <div class="guide-path"><b>STEP 03 · 배포 트랙 시작</b><br>깃허브에 코드를 올렸다면 <a href="../cloudflare-pages/index.html">STEP 04 대시보드 배포 가이드</a>에서 접속 가능한 주소를 만드는 단계로 이어가세요.</div>
+      <div class="guide-loading" role="status">가이드 본문을 불러오는 중입니다.</div>
+      <!-- 리드 캡처 및 PDF 다운로드 위젯 -->
+      <div class="download-widget">
+        <div class="download-widget-text">
+          <h4>▷ PDF로 저장하거나, 팀 적용 상담 받기</h4>
+          <p>PDF는 바로 내려받을 수 있습니다. 사내 교육이나 업무 적용이 필요하면 아래 선택 폼으로 현재 상황을 알려주세요.</p>
+          <div class="download-actions"><a class="download-direct" href="../../docs/github_start_guide.pdf" data-pdf-name="github-start" download>PDF 바로 다운로드</a><a class="download-direct" href="../cloudflare-pages/index.html" data-guide-step="4" data-guide-name="cloudflare-pages" style="background:#FFFFFF;color:#028090;border:1px solid #028090;">STEP 04 다음 가이드</a></div>
+        </div>
+        <form class="widget-form" id="widget-download-form">
+          <input type="email" name="email" placeholder="업무용 이메일 *" required class="widget-input">
+          <input type="text" name="name" placeholder="이름 (선택)" class="widget-input">
+          <input type="text" name="company" placeholder="회사·기관명 (선택)" class="widget-input">
+          <select name="useCase" class="widget-input" aria-label="관심 분야">
+            <option value="사내 교육">사내 교육</option>
+            <option value="업무 자동화">업무 자동화</option>
+            <option value="깃허브·배포 실습">깃허브·배포 실습</option>
+            <option value="Rules/Skills 설계">Rules/Skills 설계</option>
+            <option value="기타 협업">기타 협업</option>
+          </select>
+          <label class="privacy-consent"><input type="checkbox" name="consent" required><span>상담 답변을 위한 개인정보 수집·이용에 동의합니다. <a href="../../privacy.html" target="_blank">개인정보처리방침</a></span></label>
+          <!-- 스팸 봇 차단용 허니팟. 실제 사용자에게는 보이지 않으며, 값이 채워지면 제출을 무시합니다. -->
+          <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="widget-btn" id="widget-submit-btn">교육·도입 상담 요청</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- 3. 푸터 -->
+  <footer id="footer">
+    <div class="container footer-content" style="text-align: center; padding: 40px 0;">
+      <p style="font-size: 12px; color: #64748B; margin-bottom: 8px;">© 2026 데이터공방. All rights reserved.</p>
+      <p style="font-size: 11px; color: #475569;">문의처: contact@datagongbang.kr | 주소: 서울시 마포구 백범로 35 (신수동)</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../../modules/config.js?v=1.2"></script>
+  <script>const guideMenu=document.getElementById('menu-toggle');const guideNav=document.querySelector('.nav-links');guideMenu.addEventListener('click',()=>{const open=guideNav.classList.toggle('mobile-active');guideMenu.setAttribute('aria-expanded',String(open));guideMenu.setAttribute('aria-label',open?'메뉴 닫기':'메뉴 열기');guideMenu.querySelector('i').className=open?'fas fa-times':'fas fa-bars'});guideNav.addEventListener('click',()=>{guideNav.classList.remove('mobile-active');guideMenu.setAttribute('aria-expanded','false');guideMenu.setAttribute('aria-label','메뉴 열기');guideMenu.querySelector('i').className='fas fa-bars'});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&guideNav.classList.contains('mobile-active')){guideNav.classList.remove('mobile-active');guideMenu.setAttribute('aria-expanded','false');guideMenu.setAttribute('aria-label','메뉴 열기');guideMenu.querySelector('i').className='fas fa-bars';guideMenu.focus()}});</script>
+  <script>
+    // Markdown 단일 원본을 홈페이지 본문과 목차로 렌더링한다.
+    document.addEventListener('DOMContentLoaded', async () => {
+      const guideContent = document.querySelector('.guide-content');
+      const downloadWidget = document.querySelector('.download-widget');
+      const guidePath = document.querySelector('.guide-path');
+      const legacyGuide = document.getElementById('legacy-guide-source');
+      if (legacyGuide) legacyGuide.remove();
+
+      try {
+        const response = await fetch('../../docs/github_start_guide.md?v=20260721');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const markdown = (await response.text())
+          .replaceAll('](../assets/', '](../../assets/');
+        const article = document.createElement('article');
+        article.className = 'markdown-body guide-markdown-source';
+        article.innerHTML = marked.parse(markdown);
+
+        guideContent.replaceChildren(article);
+        if (guidePath) guideContent.prepend(guidePath);
+        if (downloadWidget) guideContent.appendChild(downloadWidget);
+
+        const sidebarList = document.querySelector('.sidebar-links');
+        const headings = article.querySelectorAll('h2');
+        sidebarList.replaceChildren(...Array.from(headings, (heading, index) => {
+          const id = `section-${index + 1}`;
+          heading.id = id;
+          heading.classList.add('guide-section');
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `#${id}`;
+          link.className = `sidebar-link${index === 0 ? ' active' : ''}`;
+          link.textContent = heading.textContent;
+          item.appendChild(link);
+          return item;
+        }));
+      } catch (error) {
+        console.error('깃허브 시작 가이드 Markdown을 불러오지 못했습니다.', error);
+        const loadingMessage = document.querySelector('.guide-loading');
+        if (loadingMessage) {
+          loadingMessage.className = 'guide-load-error';
+          loadingMessage.innerHTML = '가이드 본문을 불러오지 못했습니다. 잠시 후 다시 시도하거나 <a href="../../docs/github_start_guide.pdf?v=20260721">PDF 원본</a>을 확인해 주세요.';
+        }
+        const sidebarList = document.querySelector('.sidebar-links');
+        if (sidebarList) sidebarList.replaceChildren();
+      }
+
+      // 목차 스크롤 하이라이팅 및 리드 전송 스크립트
+      const sections = document.querySelectorAll('.guide-section');
+      const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+      window.addEventListener('scroll', () => {
+        let currentSectionId = '';
+        sections.forEach(sec => {
+          const top = sec.getBoundingClientRect().top;
+          if (top < 150) {
+            currentSectionId = sec.getAttribute('id');
+          }
+        });
+
+        sidebarLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // 리드 캡처 폼 전송
+      const form = document.getElementById('widget-download-form');
+      const submitBtn = document.getElementById('widget-submit-btn');
+
+      if (form && submitBtn) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          // 허니팟: 보이지 않는 필드가 채워졌다면 봇으로 간주하고 조용히 무시합니다.
+          const honeypot = form.querySelector('.hp-field');
+          if (honeypot && honeypot.value.trim() !== '') {
+            console.warn('Honeypot triggered — 제출을 무시합니다.');
+            return;
+          }
+
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          const emailValue = form.email.value.trim();
+          if (!emailRegex.test(emailValue)) {
+            alert('이메일 주소 형식이 올바르지 않습니다. 정확한 주소를 입력해 주세요.');
+            return;
+          }
+
+          submitBtn.disabled = true;
+          submitBtn.innerText = '전송 중...';
+
+          const payload = {
+            'company': form.company.value || '미입력',
+            'name': form.name.value || '가이드 방문자',
+            'email': form.email.value,
+            'message': '깃허브 시작 가이드 기반 상담 요청 · 관심 분야: ' + form.useCase.value,
+            'type': '깃허브·배포 교육 상담',
+            // 다른 폼과 동일한 유입 출처 키 (modules/main.js 참조)
+            'source_page': window.location.pathname || '/',
+            'source_url': window.location.href.split('#')[0],
+            'referrer': document.referrer || 'direct',
+            'submitted_at': new Date().toISOString()
+          };
+
+          // 다른 모든 폼과 동일한 엔드포인트로 통합합니다.
+          // 과거 이 폼만 별도 배포본으로 전송되어 리드가 다른 시트에 쌓일 수 있었습니다.
+          const gasUrl = window.APP_CONFIG?.GAS_WEBAPP_URL;
+
+          if (!gasUrl) {
+            console.error('APP_CONFIG.GAS_WEBAPP_URL 을 찾을 수 없습니다. modules/config.js 로드를 확인하세요.');
+            alert('일시적인 오류로 접수하지 못했습니다. contact@datagongbang.kr 로 연락 주시면 빠르게 도와드리겠습니다.');
+            submitBtn.disabled = false;
+            submitBtn.innerText = '교육·도입 상담 요청';
+            return;
+          }
+
+          fetch(gasUrl, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(payload)
+          })
+          .then(res => {
+            if (!res.ok) throw new Error();
+            return res.json();
+          })
+          .then(data => {
+            if (data.success) {
+              form.reset();
+              // GA4 이벤트 전송
+              if (typeof gtag === 'function') {
+                gtag('event', 'submit_antigravity_guide_consultation', {
+                  'event_category': 'Contact',
+                  'event_label': form.useCase.value,
+                  'guide_name': 'github-start'
+                });
+              }
+              alert('상담 요청이 접수되었습니다. 확인 후 입력하신 이메일로 연락드리겠습니다.');
+            } else {
+              alert(data.message || '전송 실패');
+            }
+          })
+          .catch(() => {
+            alert('네트워크 오류가 발생했습니다. 연결을 확인하고 다시 시도해 주세요.');
+          })
+          .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerText = '교육·도입 상담 요청';
+          });
+        });
+      }
+    });
+  </script>
+  <script>const analyticsSource=location.pathname;document.querySelectorAll('.nav-links a').forEach(link=>link.addEventListener('click',()=>gtag('event','click_global_nav',{nav_item:link.textContent.trim(),source_page:analyticsSource})));document.querySelectorAll('[data-guide-step]').forEach(link=>link.addEventListener('click',()=>gtag('event','select_guide_step',{step:link.dataset.guideStep,guide_name:link.dataset.guideName,source_page:analyticsSource})));document.querySelectorAll('[data-pdf-name]').forEach(link=>link.addEventListener('click',()=>gtag('event','download_guide_pdf',{guide_name:link.dataset.pdfName,source_page:analyticsSource})));document.querySelectorAll('[data-consult-source]').forEach(link=>link.addEventListener('click',()=>gtag('event','click_team_consultation',{source_guide:link.dataset.consultSource,source_page:analyticsSource})));</script>
+</body>
+</html>
