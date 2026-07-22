@@ -13,7 +13,7 @@
       variants: document.getElementById('palette-variants'), roles: document.getElementById('palette-role-list'), preview: document.getElementById('palette-ui-preview'),
       contrastSummary: document.getElementById('palette-contrast-summary'), checks: document.getElementById('palette-contrast-checks'), css: document.getElementById('palette-css-output'),
       prompt: document.getElementById('palette-prompt-output'), copyCss: document.getElementById('copy-palette-css'), copyPrompt: document.getElementById('copy-palette-prompt'),
-      canvas: document.getElementById('palette-analysis-canvas')
+      canvas: document.getElementById('palette-analysis-canvas'), pptDeck: document.getElementById('palette-ppt-deck'), pptDownload: document.getElementById('download-palette-pptx')
     });
     if (!el.dropzone) return;
     bindEvents();
@@ -30,6 +30,7 @@
     el.analyze.addEventListener('click', analyzeImage);
     el.copyCss.addEventListener('click', () => copyOutput(el.css.textContent, 'CSS 변수를 복사했습니다.', 'css'));
     el.copyPrompt.addEventListener('click', () => copyOutput(el.prompt.textContent, 'AI 제작 프롬프트를 복사했습니다.', 'prompt'));
+    el.pptDownload.addEventListener('click', downloadPptx);
   }
 
   function selectFile(file) {
@@ -145,7 +146,10 @@
 
   function renderPreview(palette) {
     const properties={background:palette.background,text:palette.text,primary:palette.primary,secondary:palette.secondary,accent:palette.accent,surface:palette.surface,muted:palette.muted,onPrimary:palette.onPrimary,accentText:palette.accentText};
-    Object.entries(properties).forEach(([key,value])=>el.preview.style.setProperty(`--demo-${key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())}`,value));
+    // UI 미리보기와 PPT 템플릿이 같은 --demo-* 변수를 참조하므로 두 컨테이너에 함께 주입합니다.
+    [el.preview,el.pptDeck].filter(Boolean).forEach(target=>{
+      Object.entries(properties).forEach(([key,value])=>target.style.setProperty(`--demo-${key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())}`,value));
+    });
   }
 
   function renderAccessibility(palette) {
@@ -157,6 +161,104 @@
   function renderExports(palette) {
     el.css.textContent=`:root {\n  --color-primary: ${palette.primary};\n  --color-secondary: ${palette.secondary};\n  --color-accent: ${palette.accent};\n  --color-background: ${palette.background};\n  --color-surface: ${palette.surface};\n  --color-text: ${palette.text};\n  --color-muted: ${palette.muted};\n  --color-on-primary: ${palette.onPrimary};\n}`;
     el.prompt.textContent=`${palette.name} 컬러 시스템을 적용한다. 메인 컬러 ${palette.primary}은 주요 CTA와 핵심 제목에 사용하고, 보조 컬러 ${palette.secondary}는 카드와 보조 요소에 사용한다. 포인트 컬러 ${palette.accent}는 가장 중요한 행동과 강조에만 제한적으로 적용한다. 전체 배경은 ${palette.background}, 카드 표면은 ${palette.surface}, 본문은 ${palette.text}를 사용한다. 넓은 영역에는 배경과 표면 컬러를 중심으로 사용하고 본문과 버튼의 명도 대비를 유지한다.`;
+  }
+
+  /* ----------------------------------------------------
+     PPT 템플릿(.pptx) 생성
+     화면 미리보기와 같은 3장(표지·목차·본문) 구성을 좌표로 옮깁니다.
+  ---------------------------------------------------- */
+  const PPTX_CDN='https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js';
+  const PPT_FONT='Malgun Gothic';
+  const PPT_TOC=[['01','추진 배경','왜 지금 이 과제인가'],['02','현황 분석','업무 흐름과 병목 구간'],['03','개선 방안','자동화 적용 범위'],['04','기대 효과','시간·비용 절감 추정'],['05','실행 계획','일정과 담당 역할']];
+  const PPT_BULLETS=['부서별 자료 취합에 주당 12시간이 소요됩니다.','양식이 달라 매번 재가공이 필요합니다.','오류가 생겨도 원인 추적이 어렵습니다.'];
+  const PPT_CARDS=[['12시간','주당 반복 업무'],['4개 부서','양식 불일치'],['27%','재작업 비율']];
+  let pptxLoader=null;
+
+  // 약 1MB 라이브러리이므로 페이지 로드가 아니라 버튼을 누른 시점에 내려받습니다.
+  function loadPptxGen() {
+    if (window.PptxGenJS) return Promise.resolve(window.PptxGenJS);
+    if (pptxLoader) return pptxLoader;
+    pptxLoader=new Promise((resolve,reject)=>{
+      const script=document.createElement('script');
+      script.src=PPTX_CDN; script.async=true;
+      script.onload=()=>window.PptxGenJS?resolve(window.PptxGenJS):reject(new Error('PptxGenJS 로드 실패'));
+      script.onerror=()=>{ pptxLoader=null; reject(new Error('PptxGenJS 로드 실패')); };
+      document.head.appendChild(script);
+    });
+    return pptxLoader;
+  }
+
+  async function downloadPptx() {
+    const palette=state.variants[state.variantIndex];
+    if (!palette) return;
+    const button=el.pptDownload; const original=button.innerHTML;
+    button.disabled=true; button.innerHTML='<i class="fas fa-spinner fa-spin"></i> PPT 만드는 중';
+    try {
+      const PptxGenJS=await loadPptxGen();
+      const deck=new PptxGenJS();
+      deck.layout='LAYOUT_16x9';
+      buildCoverSlide(deck,palette); buildTocSlide(deck,palette); buildBodySlide(deck,palette);
+      await deck.writeFile({ fileName:`데이터공방_PPT템플릿_${palette.name}.pptx` });
+      if (window.showToast) window.showToast('PPT 템플릿을 내려받았습니다.');
+      track('palette_ppt_downloaded',{variant_name:palette.name});
+    } catch (error) {
+      if (window.showToast) window.showToast('PPT 템플릿을 만들지 못했습니다. 잠시 후 다시 시도해 주세요.','error');
+    } finally {
+      button.disabled=false; button.innerHTML=original;
+    }
+  }
+
+  function pptText(value) { return String(value).replace('#',''); }
+  function pptFont(options) { return Object.assign({ fontFace:PPT_FONT },options); }
+
+  function buildCoverSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    slide.addShape(deck.ShapeType.rect,{ x:0,y:0,w:0.28,h:5.63,fill:{color:pptText(palette.primary)} });
+    slide.addShape(deck.ShapeType.ellipse,{ x:8.6,y:0.55,w:0.85,h:0.85,fill:{color:pptText(palette.accent)} });
+    slide.addText('2026 상반기 보고',pptFont({ x:1,y:1.6,w:6,h:0.3,fontSize:12,bold:true,charSpacing:1,color:pptText(palette.primary) }));
+    slide.addText('업무 자동화 추진 결과 보고서',pptFont({ x:1,y:1.95,w:7.3,h:1,fontSize:34,bold:true,color:pptText(palette.text) }));
+    slide.addText('반복 업무를 줄여 만든 실제 변화',pptFont({ x:1,y:3,w:7.3,h:0.4,fontSize:14,color:pptText(palette.muted) }));
+    slide.addShape(deck.ShapeType.rect,{ x:1,y:4.5,w:8,h:0.012,fill:{color:pptText(palette.surface)} });
+    slide.addText('기획전략팀',pptFont({ x:1,y:4.6,w:4,h:0.35,fontSize:11,color:pptText(palette.muted) }));
+    slide.addText('2026. 07.',pptFont({ x:5,y:4.6,w:4,h:0.35,fontSize:11,align:'right',color:pptText(palette.muted) }));
+  }
+
+  function buildTocSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    slide.addText('목차',pptFont({ x:0.9,y:0.5,w:4,h:0.6,fontSize:26,bold:true,color:pptText(palette.text) }));
+    slide.addShape(deck.ShapeType.rect,{ x:0.95,y:1.15,w:0.6,h:0.06,fill:{color:pptText(palette.accent)} });
+    PPT_TOC.forEach(([number,title,description],index)=>{
+      const y=1.6+index*0.68;
+      slide.addShape(deck.ShapeType.ellipse,{ x:0.9,y,w:0.42,h:0.42,fill:{color:pptText(palette.primary)} });
+      slide.addText(number,pptFont({ x:0.9,y,w:0.42,h:0.42,fontSize:11,bold:true,align:'center',valign:'middle',color:pptText(palette.onPrimary) }));
+      slide.addText(title,pptFont({ x:1.55,y,w:2.6,h:0.42,fontSize:14,bold:true,valign:'middle',color:pptText(palette.text) }));
+      slide.addText(description,pptFont({ x:4.1,y,w:5,h:0.42,fontSize:11,valign:'middle',color:pptText(palette.muted) }));
+      if (index<PPT_TOC.length-1) slide.addShape(deck.ShapeType.rect,{ x:0.9,y:y+0.53,w:8.2,h:0.01,fill:{color:pptText(palette.surface)} });
+    });
+  }
+
+  function buildBodySlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    slide.addShape(deck.ShapeType.rect,{ x:0,y:0,w:10,h:0.95,fill:{color:pptText(palette.primary)} });
+    slide.addText('현황 분석',pptFont({ x:0.6,y:0,w:6,h:0.95,fontSize:20,bold:true,valign:'middle',color:pptText(palette.onPrimary) }));
+    slide.addText('02',pptFont({ x:8.4,y:0,w:1,h:0.95,fontSize:14,align:'right',valign:'middle',color:pptText(palette.onPrimary) }));
+    PPT_BULLETS.forEach((line,index)=>{
+      const y=1.45+index*0.72;
+      slide.addShape(deck.ShapeType.ellipse,{ x:0.65,y:y+0.09,w:0.11,h:0.11,fill:{color:pptText(palette.accent)} });
+      slide.addText(line,pptFont({ x:0.95,y,w:3.9,h:0.6,fontSize:12,color:pptText(palette.text) }));
+    });
+    PPT_CARDS.forEach(([value,label],index)=>{
+      const y=1.35+index*0.92;
+      slide.addShape(deck.ShapeType.rect,{ x:5.4,y,w:4,h:0.78,fill:{color:pptText(palette.surface)} });
+      slide.addShape(deck.ShapeType.rect,{ x:5.4,y,w:0.08,h:0.78,fill:{color:pptText(palette.accent)} });
+      slide.addText([
+        { text:value,options:{ fontSize:15,bold:true,color:pptText(palette.text),breakLine:true } },
+        { text:label,options:{ fontSize:10,color:pptText(palette.muted) } }
+      ],pptFont({ x:5.65,y,w:3.6,h:0.78,valign:'middle' }));
+    });
+    slide.addShape(deck.ShapeType.rect,{ x:0.6,y:4.5,w:8.8,h:0.65,fill:{color:pptText(palette.surface)} });
+    slide.addShape(deck.ShapeType.rect,{ x:0.6,y:4.5,w:0.08,h:0.65,fill:{color:pptText(palette.accent)} });
+    slide.addText('자동화를 적용하면 연간 약 600시간을 절감할 수 있습니다.',pptFont({ x:0.85,y:4.5,w:8.4,h:0.65,fontSize:12,bold:true,valign:'middle',color:pptText(palette.text) }));
   }
 
   async function copyOutput(text,message,type) { try { await navigator.clipboard.writeText(text); if(window.showToast) window.showToast(message); track('palette_output_copied',{output_type:type}); } catch(_) { if(window.showToast) window.showToast('복사하지 못했습니다. 직접 선택해 복사해 주세요.','error'); } }

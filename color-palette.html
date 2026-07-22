@@ -13,10 +13,10 @@
   <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>이미지 컬러 팔레트 추출·추천 | 데이터공방</title>
-  <meta name="description" content="이미지에서 대표 색상을 추출하고 메인·보조·포인트·배경·본문 컬러를 추천합니다. 대비 검사, UI 미리보기, CSS 변수와 AI 프롬프트를 무료로 제공합니다.">
-  <meta name="keywords" content="이미지 색상 추출, 컬러 팔레트, 브랜드 컬러, 메인 컬러 추천, 보조 컬러, 포인트 컬러, 색상 조합, CSS 색상 변수">
+  <meta name="description" content="이미지에서 대표 색상을 추출하고 메인·보조·포인트·배경·본문 컬러를 추천합니다. 대비 검사, UI 미리보기, PPT 템플릿(.pptx) 다운로드, CSS 변수와 AI 프롬프트를 무료로 제공합니다.">
+  <meta name="keywords" content="이미지 색상 추출, 컬러 팔레트, 브랜드 컬러, 메인 컬러 추천, 보조 컬러, 포인트 컬러, 색상 조합, CSS 색상 변수, PPT 템플릿, 브랜드 컬러 PPT">
   <meta property="og:title" content="이미지 컬러 팔레트 추출·추천 | 데이터공방">
-  <meta property="og:description" content="이미지 한 장에서 바로 사용할 수 있는 컬러 시스템과 AI 제작 프롬프트를 만드세요.">
+  <meta property="og:description" content="이미지 한 장에서 바로 사용할 수 있는 컬러 시스템과 PPT 템플릿, AI 제작 프롬프트를 만드세요.">
   <meta property="og:image" content="https://datagongbang.kr/assets/images/logos/sketch_var7_ultrasimple_gold.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://datagongbang.kr/color-palette">
@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="./index.css?v=1.4">
   <link rel="stylesheet" href="./modules/toast.css?v=1.2">
   <link rel="stylesheet" href="./modules/tiff-converter.css?v=1.2">
-  <link rel="stylesheet" href="./modules/color-palette.css?v=1.0">
+  <link rel="stylesheet" href="./modules/color-palette.css?v=1.1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"이미지 컬러 팔레트 추출·추천","applicationCategory":"DesignApplication","operatingSystem":"Web Browser","url":"https://datagongbang.kr/color-palette","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}</script>
@@ -61,7 +61,7 @@
       <div class="converter-title-area">
         <p class="palette-eyebrow">무료 컬러 DNA 도구</p>
         <h1 class="section-title">이미지 한 장으로 <span>바로 쓰는 컬러 시스템</span></h1>
-        <p>대표색만 뽑는 데서 끝나지 않습니다. 메인·보조·포인트 역할과 읽기 쉬운 배경·본문 조합, UI 미리보기까지 한 번에 확인하세요.</p>
+        <p>대표색만 뽑는 데서 끝나지 않습니다. 메인·보조·포인트 역할과 읽기 쉬운 배경·본문 조합, UI 미리보기, 바로 쓰는 PPT 템플릿까지 한 번에 만드세요.</p>
         <a href="/rpa" class="back-to-hub-link"><i class="fas fa-arrow-left"></i> 무료 업무도구 목록으로 돌아가기</a>
       </div>
 
@@ -131,8 +131,63 @@
           <div id="palette-contrast-checks" class="palette-contrast-checks"></div>
         </section>
 
+        <section class="palette-ppt" aria-labelledby="palette-ppt-title">
+          <div class="palette-section-heading">
+            <div><h2 id="palette-ppt-title"><span>4</span> PPT 템플릿 미리보기</h2><p>표지·목차·본문 3장으로 구성된 범용 보고서 템플릿입니다. 선택한 팔레트가 그대로 적용됩니다.</p></div>
+            <button type="button" id="download-palette-pptx" class="btn btn-primary palette-ppt-download"><i class="fas fa-file-powerpoint"></i> PPT 템플릿 내려받기</button>
+          </div>
+          <div id="palette-ppt-deck" class="palette-ppt-deck">
+            <figure class="ppt-slide-wrap">
+              <div class="ppt-slide ppt-cover">
+                <span class="ppt-cover-bar" aria-hidden="true"></span>
+                <span class="ppt-cover-dot" aria-hidden="true"></span>
+                <div class="ppt-cover-body">
+                  <p class="ppt-kicker">2026 상반기 보고</p>
+                  <h4>업무 자동화 추진 결과 보고서</h4>
+                  <p class="ppt-sub">반복 업무를 줄여 만든 실제 변화</p>
+                </div>
+                <div class="ppt-cover-foot"><span>기획전략팀</span><span>2026. 07.</span></div>
+              </div>
+              <figcaption>표지</figcaption>
+            </figure>
+            <figure class="ppt-slide-wrap">
+              <div class="ppt-slide ppt-toc">
+                <h4>목차</h4>
+                <span class="ppt-toc-rule" aria-hidden="true"></span>
+                <ol>
+                  <li><span class="ppt-num">01</span><span class="ppt-item"><strong>추진 배경</strong><small>왜 지금 이 과제인가</small></span></li>
+                  <li><span class="ppt-num">02</span><span class="ppt-item"><strong>현황 분석</strong><small>업무 흐름과 병목 구간</small></span></li>
+                  <li><span class="ppt-num">03</span><span class="ppt-item"><strong>개선 방안</strong><small>자동화 적용 범위</small></span></li>
+                  <li><span class="ppt-num">04</span><span class="ppt-item"><strong>기대 효과</strong><small>시간·비용 절감 추정</small></span></li>
+                  <li><span class="ppt-num">05</span><span class="ppt-item"><strong>실행 계획</strong><small>일정과 담당 역할</small></span></li>
+                </ol>
+              </div>
+              <figcaption>목차</figcaption>
+            </figure>
+            <figure class="ppt-slide-wrap">
+              <div class="ppt-slide ppt-body">
+                <div class="ppt-body-head"><strong>현황 분석</strong><span>02</span></div>
+                <div class="ppt-body-grid">
+                  <ul class="ppt-bullets">
+                    <li>부서별 자료 취합에 주당 12시간이 소요됩니다.</li>
+                    <li>양식이 달라 매번 재가공이 필요합니다.</li>
+                    <li>오류가 생겨도 원인 추적이 어렵습니다.</li>
+                  </ul>
+                  <div class="ppt-cards">
+                    <div><strong>12시간</strong><small>주당 반복 업무</small></div>
+                    <div><strong>4개 부서</strong><small>양식 불일치</small></div>
+                    <div><strong>27%</strong><small>재작업 비율</small></div>
+                  </div>
+                </div>
+                <p class="ppt-highlight">자동화를 적용하면 연간 약 600시간을 절감할 수 있습니다.</p>
+              </div>
+              <figcaption>본문</figcaption>
+            </figure>
+          </div>
+        </section>
+
         <section class="palette-export" aria-labelledby="palette-export-title">
-          <div class="palette-section-heading"><div><h2 id="palette-export-title"><span>4</span> 바로 가져다 쓰기</h2><p>CSS 변수나 AI 제작 프롬프트를 복사해 사용하세요.</p></div></div>
+          <div class="palette-section-heading"><div><h2 id="palette-export-title"><span>5</span> 바로 가져다 쓰기</h2><p>CSS 변수나 AI 제작 프롬프트를 복사해 사용하세요.</p></div></div>
           <div class="palette-export-grid">
             <div class="palette-code-card">
               <div class="palette-code-header"><strong>CSS 변수</strong><button type="button" id="copy-palette-css" class="palette-copy-btn"><i class="far fa-copy"></i> 복사</button></div>
@@ -158,6 +213,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="./modules/main.js?v=1.4"></script>
-  <script src="./modules/color-palette.js?v=1.0"></script>
+  <script src="./modules/color-palette.js?v=1.1"></script>
 </body>
 </html>
