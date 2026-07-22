@@ -168,6 +168,8 @@
      화면 미리보기와 같은 3장(표지·목차·본문) 구성을 좌표로 옮깁니다.
   ---------------------------------------------------- */
   const PPTX_CDN='https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js';
+  // 맑은 고딕은 Windows 전 버전과 Mac용 Office 에 기본 탑재된 유일한 한글 폰트라,
+  // 받는 사람 PC 에서 폰트가 대체되어 레이아웃이 깨질 일이 없습니다.
   const PPT_FONT='Malgun Gothic';
   const PPT_TOC=[['01','추진 배경','왜 지금 이 과제인가'],['02','현황 분석','업무 흐름과 병목 구간'],['03','개선 방안','자동화 적용 범위'],['04','기대 효과','시간·비용 절감 추정'],['05','실행 계획','일정과 담당 역할']];
   const PPT_BULLETS=['부서별 자료 취합에 주당 12시간이 소요됩니다.','양식이 달라 매번 재가공이 필요합니다.','오류가 생겨도 원인 추적이 어렵습니다.'];
@@ -216,7 +218,7 @@
     slide.addShape(deck.ShapeType.rect,{ x:0,y:0,w:0.28,h:5.63,fill:{color:pptText(palette.primary)} });
     slide.addShape(deck.ShapeType.ellipse,{ x:8.6,y:0.55,w:0.85,h:0.85,fill:{color:pptText(palette.accent)} });
     slide.addText('2026 상반기 보고',pptFont({ x:1,y:1.6,w:6,h:0.3,fontSize:12,bold:true,charSpacing:1,color:pptText(palette.primary) }));
-    slide.addText('업무 자동화 추진 결과 보고서',pptFont({ x:1,y:1.95,w:7.3,h:1,fontSize:34,bold:true,color:pptText(palette.text) }));
+    slide.addText('업무 자동화 추진 결과 보고서',pptFont({ x:1,y:1.9,w:7.3,h:1.05,fontSize:38,bold:true,charSpacing:-0.8,color:pptText(palette.text) }));
     slide.addText('반복 업무를 줄여 만든 실제 변화',pptFont({ x:1,y:3,w:7.3,h:0.4,fontSize:14,color:pptText(palette.muted) }));
     slide.addShape(deck.ShapeType.rect,{ x:1,y:4.5,w:8,h:0.012,fill:{color:pptText(palette.surface)} });
     slide.addText('기획전략팀',pptFont({ x:1,y:4.6,w:4,h:0.35,fontSize:11,color:pptText(palette.muted) }));
@@ -225,7 +227,7 @@
 
   function buildTocSlide(deck,palette) {
     const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
-    slide.addText('목차',pptFont({ x:0.9,y:0.5,w:4,h:0.6,fontSize:26,bold:true,color:pptText(palette.text) }));
+    slide.addText('목차',pptFont({ x:0.9,y:0.45,w:4,h:0.65,fontSize:29,bold:true,charSpacing:-0.5,color:pptText(palette.text) }));
     slide.addShape(deck.ShapeType.rect,{ x:0.95,y:1.15,w:0.6,h:0.06,fill:{color:pptText(palette.accent)} });
     PPT_TOC.forEach(([number,title,description],index)=>{
       const y=1.6+index*0.68;
@@ -240,12 +242,13 @@
   function buildBodySlide(deck,palette) {
     const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
     slide.addShape(deck.ShapeType.rect,{ x:0,y:0,w:10,h:0.95,fill:{color:pptText(palette.primary)} });
-    slide.addText('현황 분석',pptFont({ x:0.6,y:0,w:6,h:0.95,fontSize:20,bold:true,valign:'middle',color:pptText(palette.onPrimary) }));
+    slide.addText('현황 분석',pptFont({ x:0.6,y:0,w:6,h:0.95,fontSize:23,bold:true,charSpacing:-0.5,valign:'middle',color:pptText(palette.onPrimary) }));
     slide.addText('02',pptFont({ x:8.4,y:0,w:1,h:0.95,fontSize:14,align:'right',valign:'middle',color:pptText(palette.onPrimary) }));
+    // 불릿 점과 문장을 같은 높이의 행에 넣고 세로 가운데로 맞춥니다(오른쪽 카드와도 행이 일치).
     PPT_BULLETS.forEach((line,index)=>{
-      const y=1.45+index*0.72;
-      slide.addShape(deck.ShapeType.ellipse,{ x:0.65,y:y+0.09,w:0.11,h:0.11,fill:{color:pptText(palette.accent)} });
-      slide.addText(line,pptFont({ x:0.95,y,w:3.9,h:0.6,fontSize:12,color:pptText(palette.text) }));
+      const y=1.35+index*0.92;
+      slide.addShape(deck.ShapeType.ellipse,{ x:0.62,y:y+0.335,w:0.11,h:0.11,fill:{color:pptText(palette.accent)} });
+      slide.addText(line,pptFont({ x:0.88,y,w:4.35,h:0.78,fontSize:11,valign:'middle',margin:0,color:pptText(palette.text) }));
     });
     PPT_CARDS.forEach(([value,label],index)=>{
       const y=1.35+index*0.92;
