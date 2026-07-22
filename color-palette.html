@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="./index.css?v=1.4">
   <link rel="stylesheet" href="./modules/toast.css?v=1.2">
   <link rel="stylesheet" href="./modules/tiff-converter.css?v=1.2">
-  <link rel="stylesheet" href="./modules/color-palette.css?v=1.5">
+  <link rel="stylesheet" href="./modules/color-palette.css?v=1.6">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"이미지 컬러 팔레트 추출·추천","applicationCategory":"DesignApplication","operatingSystem":"Web Browser","url":"https://datagongbang.kr/color-palette","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}</script>
@@ -133,12 +133,12 @@
 
         <section class="palette-ppt" aria-labelledby="palette-ppt-title">
           <div class="palette-section-heading">
-            <div><h2 id="palette-ppt-title"><span>4</span> PPT 템플릿 미리보기</h2><p>보고서용과 발표용 두 벌을 제공합니다. 선택한 팔레트가 모든 장에 그대로 적용됩니다.</p></div>
+            <div><h2 id="palette-ppt-title"><span>4</span> PPT 템플릿 미리보기</h2><p>보고서용과 발표용 두 벌을 제공합니다. 선택한 팔레트가 모든 장에 적용되고, 발표용에는 올린 이미지도 함께 들어갑니다.</p></div>
             <button type="button" id="download-palette-pptx" class="btn btn-primary palette-ppt-download"><i class="fas fa-file-powerpoint"></i> 보고서용 내려받기</button>
           </div>
           <div class="palette-ppt-tabs" role="tablist" aria-label="PPT 템플릿 종류">
             <button type="button" class="palette-ppt-tab" role="tab" aria-selected="true" data-deck="report"><strong>보고서용 6장</strong><small>배포·회람용 · 흰 배경에 촘촘한 정보</small></button>
-            <button type="button" class="palette-ppt-tab" role="tab" aria-selected="false" data-deck="presentation"><strong>발표용 12장</strong><small>화면 투사용 · 큰 글씨에 한 장 한 메시지</small></button>
+            <button type="button" class="palette-ppt-tab" role="tab" aria-selected="false" data-deck="presentation"><strong>발표용 12장</strong><small>화면 투사용 · 다크 테마에 올린 이미지가 함께 들어갑니다</small></button>
           </div>
           <div id="palette-ppt-deck" class="palette-ppt-deck" data-deck="report">
             <figure class="ppt-slide-wrap">
@@ -256,7 +256,7 @@
                   <p class="ppt-sub">3주 과정 커리큘럼 제안서</p>
                   <p class="ppt-p-meta">데이터공방 · 2026. 07.</p>
                 </div>
-                <span class="ppt-ph" aria-hidden="true">이미지</span>
+                <span class="ppt-p-photo" aria-hidden="true"><em>이미지</em></span>
               </div>
               <figcaption>표지</figcaption>
             </figure>
@@ -276,9 +276,11 @@
             </figure>
             <figure class="ppt-slide-wrap">
               <div class="ppt-slide ppt-p ppt-p-divider">
-                <p class="ppt-p-divider-num">01</p>
-                <h4>제안 배경</h4>
-                <p>왜 지금 이 교육이 필요한지 짚어 봅니다.</p>
+                <div>
+                  <p class="ppt-p-divider-num">01</p>
+                  <h4>제안 배경</h4>
+                  <p>왜 지금 이 교육이 필요한지 짚어 봅니다.</p>
+                </div>
               </div>
               <figcaption>섹션 구분</figcaption>
             </figure>
@@ -289,7 +291,7 @@
                   <p>도구는 이미 조직에 들어와 있지만, 실제 업무에 쓰는 사람은 소수에 머무릅니다.</p>
                   <p>필요한 것은 기능 소개가 아니라 내 업무 데이터로 직접 해보는 경험입니다.</p>
                 </div>
-                <span class="ppt-ph" aria-hidden="true">이미지</span>
+                <span class="ppt-p-photo" aria-hidden="true"><em>이미지</em></span>
               </div>
               <figcaption>좌우 분할 본문</figcaption>
             </figure>
@@ -376,7 +378,7 @@
             </figure>
             <figure class="ppt-slide-wrap">
               <div class="ppt-slide ppt-p ppt-p-closing">
-                <span class="ppt-ph is-wide" aria-hidden="true">이미지</span>
+                <span class="ppt-p-photo is-wide" aria-hidden="true"><em>이미지</em></span>
                 <div class="ppt-p-closing-body">
                   <h4>함께 시작하시죠.</h4>
                   <dl>
@@ -433,6 +435,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="./modules/main.js?v=1.4"></script>
-  <script src="./modules/color-palette.js?v=1.5"></script>
+  <script src="./modules/color-palette.js?v=1.6"></script>
 </body>
 </html>
