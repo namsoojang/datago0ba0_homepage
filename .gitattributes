@@ -1,0 +1,14 @@
+# 저장소의 줄바꿈을 LF로 통일합니다.
+# 도구마다 CRLF/LF가 달라져 한 줄만 고쳐도 파일 전체 diff가 되는 문제를 막습니다.
+* text=auto eol=lf
+
+# Windows 배치 파일은 CRLF여야 정상 동작합니다.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 바이너리는 줄바꿈 변환 대상에서 제외합니다.
+*.png binary
+*.jpg binary
+*.JPG binary
+*.ico binary
+*.pdf binary
