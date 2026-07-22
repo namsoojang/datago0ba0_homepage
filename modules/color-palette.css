@@ -90,36 +90,40 @@
 .ppt-slide-wrap figcaption { margin-top: 8px; color: #64748b; font-size: .74rem; font-weight: 700; text-align: center; }
 /* 컨테이너 쿼리 단위(cqw)로 슬라이드 폭에 맞춰 글자 크기가 함께 줄어듭니다. */
 .ppt-slide { position: relative; aspect-ratio: 16/9; overflow: hidden; border: 1px solid rgba(15,23,42,.12); border-radius: 10px; background: var(--demo-background); color: var(--demo-text); font-size: 11px; font-size: 3cqw; line-height: 1.4; }
-.ppt-cover { display: grid; align-content: space-between; padding: 16% 8% 9% 12%; }
-.ppt-cover-bar { position: absolute; top: 0; left: 0; width: 2.8%; height: 100%; background: var(--demo-primary); }
-.ppt-cover-dot { position: absolute; top: 10%; right: 8%; width: 9%; aspect-ratio: 1; border-radius: 50%; background: var(--demo-accent); }
-.ppt-kicker { margin: 0 0 .5em; color: var(--demo-primary); font-size: .78em; font-weight: 800; letter-spacing: .06em; }
-.ppt-cover h4 { margin: 0 0 .45em; color: var(--demo-text); font-size: 1.75em; font-weight: 800; line-height: 1.2; letter-spacing: -.03em; }
-.ppt-sub { margin: 0; color: var(--demo-muted); font-size: .88em; }
-.ppt-cover-foot { display: flex; justify-content: space-between; gap: 1em; padding-top: .7em; border-top: 1px solid color-mix(in srgb,var(--demo-text) 15%,transparent); color: var(--demo-muted); font-size: .72em; }
-.ppt-toc { padding: 7% 8% 5% 9%; }
-.ppt-toc h4 { margin: 0; color: var(--demo-text); font-size: 1.25em; font-weight: 800; }
-.ppt-toc-rule { display: block; width: 2em; height: .2em; margin: .4em 0 .8em; background: var(--demo-accent); }
-.ppt-toc ol { display: grid; gap: .35em; margin: 0; padding: 0; list-style: none; }
-.ppt-toc li { display: flex; align-items: center; gap: .65em; padding-bottom: .35em; border-bottom: 1px solid var(--demo-surface); }
+/* 표지: 메인 컬러 전면 + 하단 정보 밴드 (컨설팅 보고서 표지 관례) */
+.ppt-cover { display: grid; grid-template-rows: 1fr auto; background: var(--demo-primary); color: var(--demo-on-primary); }
+.ppt-cover-body { align-self: center; padding: 0 9%; }
+.ppt-cover-mark { display: block; width: 3.4em; height: .3em; margin-bottom: 1.1em; background: var(--demo-accent); }
+.ppt-kicker { margin: 0 0 .5em; color: color-mix(in srgb,var(--demo-on-primary) 70%,var(--demo-primary)); font-size: .72em; font-weight: 700; letter-spacing: .1em; }
+.ppt-cover h4 { margin: 0 0 .5em; font-size: 1.55em; font-weight: 800; line-height: 1.25; letter-spacing: -.03em; }
+.ppt-sub { margin: 0; color: color-mix(in srgb,var(--demo-on-primary) 72%,var(--demo-primary)); font-size: .8em; }
+.ppt-cover-foot { display: flex; justify-content: space-between; gap: 1em; padding: 1.1em 9%; background: var(--demo-background); color: var(--demo-muted); font-size: .7em; }
+/* 목차·본문 공통: 흰 배경 + 얇은 머리말 구분선 + 우하단 쪽번호 */
+.ppt-toc,.ppt-body { display: grid; align-content: start; padding: 7.5% 7% 0; }
+.ppt-doc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1em; }
+.ppt-doc-head strong { color: var(--demo-text); font-size: 1.2em; font-weight: 800; letter-spacing: -.02em; }
+.ppt-doc-head span { color: var(--demo-muted); font-size: .66em; }
+.ppt-toc .ppt-doc-head strong { letter-spacing: .12em; }
+.ppt-rule { display: block; height: .22em; margin: .55em 0 0; background: linear-gradient(to right,var(--demo-accent) 0 9%,var(--demo-primary) 9%); }
+.ppt-page { position: absolute; right: 7%; bottom: 5%; color: var(--demo-muted); font-size: .62em; font-weight: 700; }
+.ppt-toc ol { display: grid; gap: .3em; margin: .9em 0 0; padding: 0; list-style: none; }
+.ppt-toc li { display: flex; align-items: center; gap: .7em; padding-bottom: .3em; border-bottom: 1px solid var(--demo-surface); }
 .ppt-toc li:last-child { border-bottom: 0; }
-.ppt-num { display: grid; flex: 0 0 auto; width: 1.9em; height: 1.9em; place-items: center; border-radius: 50%; background: var(--demo-primary); color: var(--demo-on-primary); font-size: .7em; font-weight: 800; }
+.ppt-num { display: grid; flex: 0 0 auto; width: 1.8em; height: 1.8em; place-items: center; border-radius: 50%; background: var(--demo-primary); color: var(--demo-on-primary); font-size: .68em; font-weight: 800; }
 .ppt-item { display: flex; min-width: 0; align-items: baseline; gap: .7em; }
-.ppt-item strong { color: var(--demo-text); font-size: .88em; white-space: nowrap; }
-.ppt-item small { overflow: hidden; color: var(--demo-muted); font-size: .72em; text-overflow: ellipsis; white-space: nowrap; }
-.ppt-body { display: grid; align-content: start; grid-template-rows: auto 1fr auto; }
-.ppt-body-head { display: flex; align-items: center; justify-content: space-between; gap: 1em; padding: .85em 6%; background: var(--demo-primary); color: var(--demo-on-primary); }
-.ppt-body-head strong { font-size: 1.05em; font-weight: 800; }
-.ppt-body-head span { font-size: .8em; opacity: .75; }
-.ppt-body-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 5%; padding: 4.5% 6% 0; }
-.ppt-bullets { display: grid; align-content: start; gap: .5em; margin: 0; padding: 0; list-style: none; }
-.ppt-bullets li { position: relative; padding-left: 1em; color: var(--demo-text); font-size: .76em; line-height: 1.45; }
-.ppt-bullets li::before { position: absolute; top: .5em; left: 0; width: .38em; height: .38em; border-radius: 50%; background: var(--demo-accent); content: ""; }
-.ppt-cards { display: grid; align-content: start; gap: .35em; }
-.ppt-cards div { padding: .3em .6em; border-left: .25em solid var(--demo-accent); border-radius: .3em; background: var(--demo-surface); }
-.ppt-cards strong { display: block; color: var(--demo-text); font-size: .95em; font-weight: 800; }
-.ppt-cards small { display: block; margin-top: .1em; color: var(--demo-muted); font-size: .66em; }
-.ppt-highlight { margin: 3.5% 6% 4.5%; padding: .5em .8em; border-left: .25em solid var(--demo-accent); border-radius: .3em; background: var(--demo-surface); color: var(--demo-text); font-size: .76em; font-weight: 700; }
+.ppt-item strong { color: var(--demo-text); font-size: .84em; white-space: nowrap; }
+.ppt-item small { overflow: hidden; color: var(--demo-muted); font-size: .68em; text-overflow: ellipsis; white-space: nowrap; }
+.ppt-section { margin: .7em 0 0; color: var(--demo-primary); font-size: .82em; font-weight: 800; }
+.ppt-lead { margin: .3em 0 0; color: var(--demo-muted); font-size: .68em; }
+.ppt-body-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 6%; margin-top: .8em; }
+.ppt-bullets { display: grid; align-content: start; gap: .45em; margin: 0; padding: 0; list-style: none; }
+.ppt-bullets li { position: relative; padding-left: .95em; color: var(--demo-text); font-size: .7em; line-height: 1.45; }
+.ppt-bullets li::before { position: absolute; top: .48em; left: 0; width: .34em; height: .34em; background: var(--demo-accent); content: ""; }
+.ppt-cards { display: grid; align-content: start; gap: .3em; }
+.ppt-cards div { display: flex; align-items: baseline; justify-content: space-between; gap: .5em; padding: .3em .6em; border-left: .22em solid var(--demo-primary); background: var(--demo-surface); }
+.ppt-cards strong { color: var(--demo-text); font-size: .82em; font-weight: 800; }
+.ppt-cards small { color: var(--demo-muted); font-size: .62em; }
+.ppt-highlight { margin: .9em 0 0; padding: .5em .75em; border-left: .22em solid var(--demo-accent); background: var(--demo-surface); color: var(--demo-text); font-size: .7em; font-weight: 700; }
 .palette-export { display: grid; gap: 18px; }
 .palette-export-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .palette-code-card { min-width: 0; overflow: hidden; border-radius: 12px; background: #0f172a; color: #e2e8f0; }

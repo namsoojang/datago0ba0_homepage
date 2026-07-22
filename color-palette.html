@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="./index.css?v=1.4">
   <link rel="stylesheet" href="./modules/toast.css?v=1.2">
   <link rel="stylesheet" href="./modules/tiff-converter.css?v=1.2">
-  <link rel="stylesheet" href="./modules/color-palette.css?v=1.2">
+  <link rel="stylesheet" href="./modules/color-palette.css?v=1.3">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"이미지 컬러 팔레트 추출·추천","applicationCategory":"DesignApplication","operatingSystem":"Web Browser","url":"https://datagongbang.kr/color-palette","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}</script>
@@ -139,12 +139,11 @@
           <div id="palette-ppt-deck" class="palette-ppt-deck">
             <figure class="ppt-slide-wrap">
               <div class="ppt-slide ppt-cover">
-                <span class="ppt-cover-bar" aria-hidden="true"></span>
-                <span class="ppt-cover-dot" aria-hidden="true"></span>
                 <div class="ppt-cover-body">
-                  <p class="ppt-kicker">2026 상반기 보고</p>
+                  <span class="ppt-cover-mark" aria-hidden="true"></span>
+                  <p class="ppt-kicker">2026 상반기 실적 보고</p>
                   <h4>업무 자동화 추진 결과 보고서</h4>
-                  <p class="ppt-sub">반복 업무를 줄여 만든 실제 변화</p>
+                  <p class="ppt-sub">반복 업무 축소를 통한 생산성 개선 방안</p>
                 </div>
                 <div class="ppt-cover-foot"><span>기획전략팀</span><span>2026. 07.</span></div>
               </div>
@@ -152,8 +151,8 @@
             </figure>
             <figure class="ppt-slide-wrap">
               <div class="ppt-slide ppt-toc">
-                <h4>목차</h4>
-                <span class="ppt-toc-rule" aria-hidden="true"></span>
+                <div class="ppt-doc-head"><strong>CONTENTS</strong><span>전략 보고서</span></div>
+                <span class="ppt-rule" aria-hidden="true"></span>
                 <ol>
                   <li><span class="ppt-num">01</span><span class="ppt-item"><strong>추진 배경</strong><small>왜 지금 이 과제인가</small></span></li>
                   <li><span class="ppt-num">02</span><span class="ppt-item"><strong>현황 분석</strong><small>업무 흐름과 병목 구간</small></span></li>
@@ -161,12 +160,16 @@
                   <li><span class="ppt-num">04</span><span class="ppt-item"><strong>기대 효과</strong><small>시간·비용 절감 추정</small></span></li>
                   <li><span class="ppt-num">05</span><span class="ppt-item"><strong>실행 계획</strong><small>일정과 담당 역할</small></span></li>
                 </ol>
+                <span class="ppt-page">02</span>
               </div>
               <figcaption>목차</figcaption>
             </figure>
             <figure class="ppt-slide-wrap">
               <div class="ppt-slide ppt-body">
-                <div class="ppt-body-head"><strong>현황 분석</strong><span>02</span></div>
+                <div class="ppt-doc-head"><strong>현황 분석</strong><span>전략 보고서</span></div>
+                <span class="ppt-rule" aria-hidden="true"></span>
+                <p class="ppt-section">1. 업무 흐름과 병목 구간</p>
+                <p class="ppt-lead">부서별 자료 취합 과정에서 반복 작업이 어디에 집중되는지 정리했습니다.</p>
                 <div class="ppt-body-grid">
                   <ul class="ppt-bullets">
                     <li>부서별 자료 취합에 주당 12시간이 소요됩니다.</li>
@@ -179,7 +182,8 @@
                     <div><strong>27%</strong><small>재작업 비율</small></div>
                   </div>
                 </div>
-                <p class="ppt-highlight">자동화를 적용하면 연간 약 600시간을 절감할 수 있습니다.</p>
+                <p class="ppt-highlight">자동화 적용 시 연간 약 600시간의 업무 시간 절감이 가능합니다.</p>
+                <span class="ppt-page">03</span>
               </div>
               <figcaption>본문</figcaption>
             </figure>
@@ -213,6 +217,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="./modules/main.js?v=1.4"></script>
-  <script src="./modules/color-palette.js?v=1.2"></script>
+  <script src="./modules/color-palette.js?v=1.3"></script>
 </body>
 </html>

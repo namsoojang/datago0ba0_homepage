@@ -213,55 +213,68 @@
   function pptText(value) { return String(value).replace('#',''); }
   function pptFont(options) { return Object.assign({ fontFace:PPT_FONT },options); }
 
+  // 표지: 메인 컬러를 전면에 깔고 하단에 정보 밴드를 두는 컨설팅 보고서 표지 구성입니다.
   function buildCoverSlide(deck,palette) {
-    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
-    slide.addShape(deck.ShapeType.rect,{ x:0,y:0,w:0.28,h:5.63,fill:{color:pptText(palette.primary)} });
-    slide.addShape(deck.ShapeType.ellipse,{ x:8.6,y:0.55,w:0.85,h:0.85,fill:{color:pptText(palette.accent)} });
-    slide.addText('2026 상반기 보고',pptFont({ x:1,y:1.6,w:6,h:0.3,fontSize:12,bold:true,charSpacing:1,color:pptText(palette.primary) }));
-    slide.addText('업무 자동화 추진 결과 보고서',pptFont({ x:1,y:1.9,w:7.3,h:1.05,fontSize:38,bold:true,charSpacing:-0.8,color:pptText(palette.text) }));
-    slide.addText('반복 업무를 줄여 만든 실제 변화',pptFont({ x:1,y:3,w:7.3,h:0.4,fontSize:14,color:pptText(palette.muted) }));
-    slide.addShape(deck.ShapeType.rect,{ x:1,y:4.5,w:8,h:0.012,fill:{color:pptText(palette.surface)} });
-    slide.addText('기획전략팀',pptFont({ x:1,y:4.6,w:4,h:0.35,fontSize:11,color:pptText(palette.muted) }));
-    slide.addText('2026. 07.',pptFont({ x:5,y:4.6,w:4,h:0.35,fontSize:11,align:'right',color:pptText(palette.muted) }));
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.primary) };
+    const onPrimarySoft=mixColors(palette.onPrimary,palette.primary,0.3);
+    slide.addShape(deck.ShapeType.rect,{ x:0.9,y:1.62,w:0.62,h:0.055,fill:{color:pptText(palette.accent)} });
+    slide.addText('2026 상반기 실적 보고',pptFont({ x:0.9,y:1.85,w:7,h:0.3,fontSize:11,bold:true,charSpacing:1.6,color:pptText(onPrimarySoft) }));
+    slide.addText('업무 자동화 추진 결과 보고서',pptFont({ x:0.9,y:2.2,w:7.6,h:0.85,fontSize:32,bold:true,charSpacing:-0.8,color:pptText(palette.onPrimary) }));
+    slide.addText('반복 업무 축소를 통한 생산성 개선 방안',pptFont({ x:0.9,y:3.12,w:7.6,h:0.35,fontSize:13,color:pptText(onPrimarySoft) }));
+    // 하단 정보 밴드(높이 20%)
+    slide.addShape(deck.ShapeType.rect,{ x:0,y:4.5,w:10,h:1.13,fill:{color:pptText(palette.background)} });
+    slide.addText('기획전략팀',pptFont({ x:0.9,y:4.5,w:4,h:1.13,fontSize:11,valign:'middle',margin:0,color:pptText(palette.muted) }));
+    slide.addText('2026. 07.',pptFont({ x:5,y:4.5,w:4.1,h:1.13,fontSize:11,align:'right',valign:'middle',margin:0,color:pptText(palette.muted) }));
+  }
+
+  // 목차·본문 공통 머리말: 제목 + 우측 문서 라벨 + 포인트색이 물린 얇은 구분선
+  function buildDocHeader(deck,slide,palette,title,charSpacing) {
+    slide.addText(title,pptFont({ x:0.9,y:0.5,w:4.4,h:0.42,fontSize:19,bold:true,valign:'middle',margin:0,charSpacing,color:pptText(palette.text) }));
+    slide.addText('전략 보고서',pptFont({ x:5.5,y:0.5,w:3.6,h:0.42,fontSize:10,align:'right',valign:'middle',margin:0,color:pptText(palette.muted) }));
+    slide.addShape(deck.ShapeType.rect,{ x:0.9,y:1.02,w:8.2,h:0.035,fill:{color:pptText(palette.primary)} });
+    slide.addShape(deck.ShapeType.rect,{ x:0.9,y:1.02,w:0.74,h:0.035,fill:{color:pptText(palette.accent)} });
+  }
+
+  function buildPageNumber(deck,slide,palette,number) {
+    slide.addText(number,pptFont({ x:8.1,y:5.05,w:1,h:0.3,fontSize:9,bold:true,align:'right',margin:0,color:pptText(palette.muted) }));
   }
 
   function buildTocSlide(deck,palette) {
     const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
-    slide.addText('목차',pptFont({ x:0.9,y:0.45,w:4,h:0.65,fontSize:29,bold:true,charSpacing:-0.5,color:pptText(palette.text) }));
-    slide.addShape(deck.ShapeType.rect,{ x:0.95,y:1.15,w:0.6,h:0.06,fill:{color:pptText(palette.accent)} });
+    buildDocHeader(deck,slide,palette,'CONTENTS',2.5);
     PPT_TOC.forEach(([number,title,description],index)=>{
-      const y=1.6+index*0.68;
-      slide.addShape(deck.ShapeType.ellipse,{ x:0.9,y,w:0.42,h:0.42,fill:{color:pptText(palette.primary)} });
-      slide.addText(number,pptFont({ x:0.9,y,w:0.42,h:0.42,fontSize:11,bold:true,align:'center',valign:'middle',color:pptText(palette.onPrimary) }));
-      slide.addText(title,pptFont({ x:1.55,y,w:2.6,h:0.42,fontSize:14,bold:true,valign:'middle',color:pptText(palette.text) }));
-      slide.addText(description,pptFont({ x:4.1,y,w:5,h:0.42,fontSize:11,valign:'middle',color:pptText(palette.muted) }));
-      if (index<PPT_TOC.length-1) slide.addShape(deck.ShapeType.rect,{ x:0.9,y:y+0.53,w:8.2,h:0.01,fill:{color:pptText(palette.surface)} });
+      const y=1.42+index*0.66;
+      slide.addShape(deck.ShapeType.ellipse,{ x:0.9,y:y+0.06,w:0.38,h:0.38,fill:{color:pptText(palette.primary)} });
+      slide.addText(number,pptFont({ x:0.9,y:y+0.06,w:0.38,h:0.38,fontSize:10,bold:true,align:'center',valign:'middle',margin:0,color:pptText(palette.onPrimary) }));
+      slide.addText(title,pptFont({ x:1.45,y,w:2.4,h:0.5,fontSize:13,bold:true,valign:'middle',margin:0,color:pptText(palette.text) }));
+      slide.addText(description,pptFont({ x:3.95,y,w:5.15,h:0.5,fontSize:10.5,valign:'middle',margin:0,color:pptText(palette.muted) }));
+      if (index<PPT_TOC.length-1) slide.addShape(deck.ShapeType.rect,{ x:0.9,y:y+0.53,w:8.2,h:0.008,fill:{color:pptText(palette.surface)} });
     });
+    buildPageNumber(deck,slide,palette,'02');
   }
 
   function buildBodySlide(deck,palette) {
     const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
-    slide.addShape(deck.ShapeType.rect,{ x:0,y:0,w:10,h:0.95,fill:{color:pptText(palette.primary)} });
-    slide.addText('현황 분석',pptFont({ x:0.6,y:0,w:6,h:0.95,fontSize:23,bold:true,charSpacing:-0.5,valign:'middle',color:pptText(palette.onPrimary) }));
-    slide.addText('02',pptFont({ x:8.4,y:0,w:1,h:0.95,fontSize:14,align:'right',valign:'middle',color:pptText(palette.onPrimary) }));
-    // 불릿 점과 문장을 같은 높이의 행에 넣고 세로 가운데로 맞춥니다(오른쪽 카드와도 행이 일치).
+    buildDocHeader(deck,slide,palette,'현황 분석',-0.5);
+    slide.addText('1. 업무 흐름과 병목 구간',pptFont({ x:0.9,y:1.2,w:8.2,h:0.3,fontSize:13,bold:true,margin:0,color:pptText(palette.primary) }));
+    slide.addText('부서별 자료 취합 과정에서 반복 작업이 어디에 집중되는지 정리했습니다.',pptFont({ x:0.9,y:1.53,w:8.2,h:0.3,fontSize:10,margin:0,color:pptText(palette.muted) }));
+    // 왼쪽 불릿과 오른쪽 지표 카드를 같은 행에 맞춥니다.
     PPT_BULLETS.forEach((line,index)=>{
-      const y=1.35+index*0.92;
-      slide.addShape(deck.ShapeType.ellipse,{ x:0.62,y:y+0.335,w:0.11,h:0.11,fill:{color:pptText(palette.accent)} });
-      slide.addText(line,pptFont({ x:0.88,y,w:4.35,h:0.78,fontSize:11,valign:'middle',margin:0,color:pptText(palette.text) }));
+      const y=2.0+index*0.66;
+      slide.addShape(deck.ShapeType.rect,{ x:0.92,y:y+0.24,w:0.09,h:0.09,fill:{color:pptText(palette.accent)} });
+      slide.addText(line,pptFont({ x:1.15,y,w:3.95,h:0.56,fontSize:10.5,valign:'middle',margin:0,color:pptText(palette.text) }));
     });
     PPT_CARDS.forEach(([value,label],index)=>{
-      const y=1.35+index*0.92;
-      slide.addShape(deck.ShapeType.rect,{ x:5.4,y,w:4,h:0.78,fill:{color:pptText(palette.surface)} });
-      slide.addShape(deck.ShapeType.rect,{ x:5.4,y,w:0.08,h:0.78,fill:{color:pptText(palette.accent)} });
-      slide.addText([
-        { text:value,options:{ fontSize:15,bold:true,color:pptText(palette.text),breakLine:true } },
-        { text:label,options:{ fontSize:10,color:pptText(palette.muted) } }
-      ],pptFont({ x:5.65,y,w:3.6,h:0.78,valign:'middle' }));
+      const y=2.0+index*0.66;
+      slide.addShape(deck.ShapeType.rect,{ x:5.3,y,w:3.8,h:0.56,fill:{color:pptText(palette.surface)} });
+      slide.addShape(deck.ShapeType.rect,{ x:5.3,y,w:0.07,h:0.56,fill:{color:pptText(palette.primary)} });
+      slide.addText(value,pptFont({ x:5.55,y,w:1.6,h:0.56,fontSize:12,bold:true,valign:'middle',margin:0,color:pptText(palette.text) }));
+      slide.addText(label,pptFont({ x:7.1,y,w:1.85,h:0.56,fontSize:9.5,align:'right',valign:'middle',margin:0,color:pptText(palette.muted) }));
     });
-    slide.addShape(deck.ShapeType.rect,{ x:0.6,y:4.5,w:8.8,h:0.65,fill:{color:pptText(palette.surface)} });
-    slide.addShape(deck.ShapeType.rect,{ x:0.6,y:4.5,w:0.08,h:0.65,fill:{color:pptText(palette.accent)} });
-    slide.addText('자동화를 적용하면 연간 약 600시간을 절감할 수 있습니다.',pptFont({ x:0.85,y:4.5,w:8.4,h:0.65,fontSize:12,bold:true,valign:'middle',color:pptText(palette.text) }));
+    slide.addShape(deck.ShapeType.rect,{ x:0.9,y:4.35,w:8.2,h:0.58,fill:{color:pptText(palette.surface)} });
+    slide.addShape(deck.ShapeType.rect,{ x:0.9,y:4.35,w:0.07,h:0.58,fill:{color:pptText(palette.accent)} });
+    slide.addText('자동화 적용 시 연간 약 600시간의 업무 시간 절감이 가능합니다.',pptFont({ x:1.15,y:4.35,w:7.8,h:0.58,fontSize:11,bold:true,valign:'middle',margin:0,color:pptText(palette.text) }));
+    buildPageNumber(deck,slide,palette,'03');
   }
 
   async function copyOutput(text,message,type) { try { await navigator.clipboard.writeText(text); if(window.showToast) window.showToast(message); track('palette_output_copied',{output_type:type}); } catch(_) { if(window.showToast) window.showToast('복사하지 못했습니다. 직접 선택해 복사해 주세요.','error'); } }
