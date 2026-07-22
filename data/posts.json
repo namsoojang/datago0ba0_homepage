@@ -1,5 +1,15 @@
 [
   {
+    "id": "ref-13",
+    "title": "비개발자도 따라 할 수 있는 홈페이지 배포 가이드를 만든 이유",
+    "date": "2026-07-22",
+    "category": "개발일지",
+    "tags": ["GitHub", "Cloudflare Pages", "홈페이지배포", "비개발자", "Antigravity"],
+    "summary": "홈페이지 문구 하나를 바꾸는 일도 남에게 부탁해야 하는 이유는 코딩 실력이 아니라 흐름을 모르기 때문입니다. 로컬과 클라우드의 차이부터 다시 설명하는 가이드를 만든 과정과 설계 원칙을 기록합니다.",
+    "thumbnail": "./assets/images/blog/guide-devlog-codex-20260722.png",
+    "contentPath": "data/posts/ref-13.md"
+  },
+  {
     "id": "ref-12",
     "title": "SeSAC 패션 브랜드 마케팅 실무과정 AI Survival 교육 후기",
     "date": "2026-07-14",
