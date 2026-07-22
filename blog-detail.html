@@ -16,13 +16,13 @@
     새 주소로 즉시 이동시키고 색인 대상에서는 제외합니다.
   -->
   <meta name="robots" content="noindex, follow">
-  <link rel="canonical" href="https://datagongbang.kr/blog.html">
+  <link rel="canonical" href="https://datagongbang.kr/blog">
 
   <script>
     (function () {
       var id = new URLSearchParams(window.location.search).get('id');
       // ref-12 처럼 예상된 형태일 때만 이동시킵니다 (임의 값으로 인한 오작동 방지)
-      var target = /^ref-\d+$/.test(id || '') ? 'blog/' + id + '.html' : 'blog.html';
+      var target = /^ref-\d+$/.test(id || '') ? '/blog/' + id : '/blog';
       window.location.replace(target);
     })();
   </script>
@@ -30,7 +30,7 @@
 <body>
   <p style="font-family:Pretendard,'Malgun Gothic',sans-serif;padding:40px;text-align:center;">
     새 주소로 이동 중입니다.
-    자동으로 넘어가지 않으면 <a href="blog.html">블로그 목록</a>을 눌러 주세요.
+    자동으로 넘어가지 않으면 <a href="/blog">블로그 목록</a>을 눌러 주세요.
   </p>
 </body>
 </html>

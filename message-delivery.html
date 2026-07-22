@@ -38,10 +38,10 @@
   <meta property="og:description" content="업무용 공용폰에 오는 연락을 슬랙 채널에 실시간으로 자동 공유해주는 안드로이드 앱. Google Play 설치 링크와 상세 사용 가이드를 제공합니다.">
   <meta property="og:image" content="./assets/images/blog/message-delivery-icon.png">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://datagongbang.kr/message-delivery.html">
+  <meta property="og:url" content="https://datagongbang.kr/message-delivery">
 
   <!-- Canonical URL 설정 -->
-  <link rel="canonical" href="https://datagongbang.kr/message-delivery.html">
+  <link rel="canonical" href="https://datagongbang.kr/message-delivery">
 
   <!-- 파비콘 및 앱 아이콘 설정 -->
   <link rel="icon" type="image/png" href="./assets/images/logos/sketch_var7_ultrasimple_gold.png">
@@ -170,19 +170,19 @@
   <!-- 1. 헤더 및 네비게이션 -->
   <header id="header">
     <div class="container nav-container">
-      <a href="index.html" class="logo">
+      <a href="/" class="logo">
         <img class="logo-symbol brand-logo-img" id="header-logo-img"
           src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
         <span>데이터<strong>공방</strong></span>
       </a>
       <nav aria-label="주요 메뉴">
         <ul class="nav-links" id="primary-navigation">
-          <li><a href="index.html#curriculum" class="nav-link">교육·서비스</a></li>
-          <li><a href="index.html#references" class="nav-link">성과·사례</a></li>
-          <li><a href="rpa.html" class="nav-link active" aria-current="page">업무도구</a></li>
-          <li><a href="guide/index.html" class="nav-link">실무가이드</a></li>
-          <li><a href="blog.html" class="nav-link">블로그</a></li>
-          <li><a href="index.html#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
+          <li><a href="/#curriculum" class="nav-link">교육·서비스</a></li>
+          <li><a href="/#references" class="nav-link">성과·사례</a></li>
+          <li><a href="/rpa" class="nav-link active" aria-current="page">업무도구</a></li>
+          <li><a href="/guide/" class="nav-link">실무가이드</a></li>
+          <li><a href="/blog" class="nav-link">블로그</a></li>
+          <li><a href="/#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
         </ul>
       </nav>
       <button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-navigation">
@@ -199,7 +199,7 @@
       <div class="converter-title-area">
         <h1 class="section-title">공용폰 <span>메세지배달부 앱</span></h1>
         <p>공용 안드로이드폰에 도착하는 문자, 부재중 전화, 카카오톡 알림을 실시간으로 슬랙 채널에 전송하는 업무 자동화 앱입니다.</p>
-        <a href="rpa.html" class="back-to-hub-link"><i class="fas fa-arrow-left"></i> RPA 자동화 도구 목록으로 돌아가기</a>
+        <a href="/rpa" class="back-to-hub-link"><i class="fas fa-arrow-left"></i> RPA 자동화 도구 목록으로 돌아가기</a>
       </div>
 
       <!-- 단일 컬럼 레이아웃 (가독성 향상을 위해 최대 너비 860px 제한 및 중앙 정렬) -->
@@ -352,7 +352,7 @@
               <span>개인정보 처리 방식</span>
             </div>
             메세지배달부 Lite는 알림 내용을 데이터공방 서버에 저장하지 않습니다. 사용자가 앱에 입력한 Slack Webhook 주소로 기기에서 직접 전송하며, 자세한 내용은
-            <a href="privacy.html" style="color: var(--color-gold); text-decoration: underline; font-weight: 600;">개인정보처리방침</a>에서 확인할 수 있습니다.
+            <a href="/privacy" style="color: var(--color-gold); text-decoration: underline; font-weight: 600;">개인정보처리방침</a>에서 확인할 수 있습니다.
           </div>
 
           <!-- 개발 비하인드 & 기술 정보 -->
@@ -362,7 +362,7 @@
               <span>개발 비하인드 & 기술 정보</span>
             </div>
             메세지배달부 앱의 탄생 배경과 Play Store 출시 과정이 궁금하시다면 아래 개발기 글을 함께 읽어보세요.
-            <a href="blog-detail.html?id=ref-11"
+            <a href="/blog/ref-11"
               style="color: var(--color-gold); text-decoration: underline; font-weight: 600; margin-top: 4px; display: inline-block;">메세지배달부 Lite Google Play 출시 글 읽기 <i class="fas fa-chevron-right" style="font-size:0.75rem;"></i></a>
           </div>
         </section>
@@ -444,7 +444,7 @@
                 <textarea id="contact-message" name="message" rows="5"
                   placeholder="궁금하신 내용이나 개선 아이디어, 오류 상황 등을 자세히 남겨주세요." required></textarea>
               </div>
-              <label class="consent-row full-width"><input type="checkbox" name="privacy_consent" value="동의" required><span>문의 답변을 위한 개인정보 수집·이용에 동의합니다. <a href="privacy.html">처리방침 보기</a></span></label>
+              <label class="consent-row full-width"><input type="checkbox" name="privacy_consent" value="동의" required><span>문의 답변을 위한 개인정보 수집·이용에 동의합니다. <a href="/privacy">처리방침 보기</a></span></label>
               <!-- 스팸 봇 차단용 허니팟. 실제 사용자에게는 보이지 않으며, 값이 채워지면 제출을 무시합니다. -->
               <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
             </div>
@@ -469,9 +469,9 @@
           src="./assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
         <span>데이터<strong>공방</strong></span>
       </div>
-      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="rpa.html"
+      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="/rpa"
           style="text-decoration:underline; opacity:0.8; transition:opacity 0.2s; margin-left:5px;">무료 RPA 도구</a> | <a
-          href="privacy.html"
+          href="/privacy"
           style="text-decoration:underline; opacity:0.8; transition:opacity 0.2s; margin-left:5px;">개인정보처리방침</a></p>
     </div>
   </footer>

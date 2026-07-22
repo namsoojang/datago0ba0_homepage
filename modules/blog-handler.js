@@ -69,7 +69,7 @@ async function initBlogList(gridEl) {
         : "";
 
       return `
-        <a href="blog/${post.id}.html" class="blog-card" data-id="${post.id}">
+        <a href="/blog/${post.id}" class="blog-card" data-id="${post.id}">
           <div class="blog-card-thumb-wrapper">
             <img src="${post.thumbnail || './assets/images/logos/sketch_var7_ultrasimple_gold.png'}" class="blog-card-thumb" alt="${post.title} 썸네일" onerror="this.src='./assets/images/logos/sketch_var7_ultrasimple_gold.png'">
             <span class="blog-card-category-badge">${post.category}</span>
@@ -205,7 +205,7 @@ async function initBlogDetail(detailEl) {
     }
 
     // F. SEO 및 SNS 공유를 위한 브라우저 타이틀 & 메타 태그 동적 교체
-    const canonicalUrl = `https://datagongbang.kr/blog-detail.html?id=${postMeta.id}`;
+    const canonicalUrl = `https://datagongbang.kr/blog/${postMeta.id}`;
 
     document.title = `${postMeta.title} | 데이터공방 공식 블로그`;
 
@@ -257,7 +257,7 @@ async function initBlogDetail(detailEl) {
       <div class="blog-error-state" style="text-align:center; padding: 40px 20px;">
         <i class="fas fa-exclamation-triangle" style="font-size:2.5rem; color:#f87171; margin-bottom:16px;"></i>
         <p style="color:#475569; font-size:1.1rem; line-height:1.6;">${msg}</p>
-        <a href="blog.html" class="btn btn-secondary" style="margin-top:20px; display:inline-block; padding: 10px 20px; border-radius:6px;">블로그 목록으로 돌아가기</a>
+        <a href="/blog" class="btn btn-secondary" style="margin-top:20px; display:inline-block; padding: 10px 20px; border-radius:6px;">블로그 목록으로 돌아가기</a>
       </div>
     `;
   }

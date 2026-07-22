@@ -41,7 +41,7 @@ def to_absolute_paths(html: str) -> str:
     # 본문에 남아 있는 구 블로그 URL 을 새 정적 경로로 정리
     html = re.sub(
         r'https://datagongbang\.kr/blog-detail\.html\?id=(ref-\d+)',
-        rf'{SITE}/blog/\1.html',
+        rf'{SITE}/blog/\1',
         html,
     )
 
@@ -73,7 +73,7 @@ def esc(text: str) -> str:
 
 
 def render_page(post: dict, body_html: str) -> str:
-    url = f"{SITE}/blog/{post['id']}.html"
+    url = f"{SITE}/blog/{post['id']}"
     title = esc(post["title"])
     summary = esc(post["summary"])
     image = thumb_url(post)
@@ -160,18 +160,18 @@ def render_page(post: dict, body_html: str) -> str:
 
   <header id="header">
     <div class="container nav-container">
-      <a href="/index.html" class="logo" aria-label="데이터공방 홈">
+      <a href="/" class="logo" aria-label="데이터공방 홈">
         <img class="logo-symbol brand-logo-img" id="header-logo-img" src="/assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
         <span>데이터<strong>공방</strong></span>
       </a>
       <nav aria-label="주요 메뉴">
         <ul class="nav-links" id="primary-navigation">
-          <li><a href="/index.html#curriculum" class="nav-link">교육·서비스</a></li>
-          <li><a href="/index.html#references" class="nav-link">성과·사례</a></li>
-          <li><a href="/rpa.html" class="nav-link">업무도구</a></li>
-          <li><a href="/guide/index.html" class="nav-link">실무가이드</a></li>
-          <li><a href="/blog.html" class="nav-link active" aria-current="page">블로그</a></li>
-          <li><a href="/index.html#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
+          <li><a href="/#curriculum" class="nav-link">교육·서비스</a></li>
+          <li><a href="/#references" class="nav-link">성과·사례</a></li>
+          <li><a href="/rpa" class="nav-link">업무도구</a></li>
+          <li><a href="/guide/" class="nav-link">실무가이드</a></li>
+          <li><a href="/blog" class="nav-link active" aria-current="page">블로그</a></li>
+          <li><a href="/#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
         </ul>
       </nav>
       <button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-navigation">
@@ -182,7 +182,7 @@ def render_page(post: dict, body_html: str) -> str:
 
   <main class="converter-section">
     <div class="blog-detail-container">
-      <a href="/blog.html" class="blog-back-link">
+      <a href="/blog" class="blog-back-link">
         <i class="fas fa-arrow-left"></i> 블로그 목록으로 돌아가기
       </a>
 
@@ -206,14 +206,14 @@ def render_page(post: dict, body_html: str) -> str:
         <div class="blog-cta-content">
           <h3>🏢 우리 부서 맞춤형 자동화 워크숍이 필요하신가요?</h3>
           <p>임직원들의 단순 수작업 엑셀 취합 업무, 파이썬 분석, RPA 구축을 직무 로데이터 맞춤 교육과 현장 디버깅 실습으로 해결해 드립니다. 지금 커리큘럼 설계 및 무료 견적 상담을 받아보세요.</p>
-          <a href="/index.html#contact" class="btn btn-primary blog-cta-btn" data-consult-source="blog_{post['id']}">
+          <a href="/#contact" class="btn btn-primary blog-cta-btn" data-consult-source="blog_{post['id']}">
             <i class="far fa-envelope"></i> 사내 교육 및 출강 상담 신청하기
           </a>
         </div>
       </section>
 
       <div style="text-align: center; margin-top: 32px;">
-        <a href="/blog.html" class="blog-back-link" style="margin-bottom: 0;">
+        <a href="/blog" class="blog-back-link" style="margin-bottom: 0;">
           <i class="fas fa-list"></i> 전체 칼럼 목록 보기
         </a>
       </div>
@@ -226,7 +226,7 @@ def render_page(post: dict, body_html: str) -> str:
         <img class="logo-symbol brand-logo-img" id="footer-logo-img" src="/assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
         <span>데이터<strong>공방</strong></span>
       </div>
-      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="/rpa.html" style="text-decoration:underline; opacity:0.8; margin-left:5px;">무료 RPA 도구</a> | <a href="/privacy.html" style="text-decoration:underline; opacity:0.8; margin-left:5px;">개인정보처리방침</a></p>
+      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="/rpa" style="text-decoration:underline; opacity:0.8; margin-left:5px;">무료 RPA 도구</a> | <a href="/privacy" style="text-decoration:underline; opacity:0.8; margin-left:5px;">개인정보처리방침</a></p>
     </div>
   </footer>
 
@@ -265,7 +265,7 @@ def update_sitemap(posts: list) -> None:
     for post in sorted(posts, key=lambda p: p["date"], reverse=True):
         entries.append(
             "  <url>\n"
-            f"    <loc>{SITE}/blog/{post['id']}.html</loc>\n"
+            f"    <loc>{SITE}/blog/{post['id']}</loc>\n"
             f"    <lastmod>{post['date']}</lastmod>\n"
             "    <changefreq>monthly</changefreq>\n"
             "    <priority>0.7</priority>\n"

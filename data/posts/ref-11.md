@@ -68,7 +68,7 @@ Lite 버전은 직접 SMS/Call Log 권한을 쓰는 방식이 아니라 **알림
 
 자세한 개인정보 처리 기준은 아래 문서에 정리해 두었습니다.
 
-→ [데이터공방 개인정보처리방침](https://datagongbang.kr/privacy.html)
+→ [데이터공방 개인정보처리방침](https://datagongbang.kr/privacy)
 
 ---
 

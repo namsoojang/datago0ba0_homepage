@@ -56,4 +56,4 @@
 
 출강 문의 및 커리큘럼 상담은 아래 링크를 통해 편리하게 요청해 주십시오.
 
-* 👉 <strong>[데이터공방 사내 AX 교육 견적 및 커리큘럼 문의하기](index.html#contact)</strong>
+* 👉 <strong>[데이터공방 사내 AX 교육 견적 및 커리큘럼 문의하기](/#contact)</strong>
