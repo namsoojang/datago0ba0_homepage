@@ -2,7 +2,7 @@
   'use strict';
 
   const MAX_FILE_SIZE = 15 * 1024 * 1024;
-  const state = { file: null, imageUrl: '', colors: [], primaryIndex: 0, variants: [], variantIndex: 0 };
+  const state = { file: null, imageUrl: '', colors: [], primaryIndex: 0, variants: [], variantIndex: 0, deckKind: 'report' };
   const el = {};
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +13,8 @@
       variants: document.getElementById('palette-variants'), roles: document.getElementById('palette-role-list'), preview: document.getElementById('palette-ui-preview'),
       contrastSummary: document.getElementById('palette-contrast-summary'), checks: document.getElementById('palette-contrast-checks'), css: document.getElementById('palette-css-output'),
       prompt: document.getElementById('palette-prompt-output'), copyCss: document.getElementById('copy-palette-css'), copyPrompt: document.getElementById('copy-palette-prompt'),
-      canvas: document.getElementById('palette-analysis-canvas'), pptDeck: document.getElementById('palette-ppt-deck'), pptDownload: document.getElementById('download-palette-pptx')
+      canvas: document.getElementById('palette-analysis-canvas'), pptDeck: document.getElementById('palette-ppt-deck'), pptDownload: document.getElementById('download-palette-pptx'),
+      pptDeckPresentation: document.getElementById('palette-ppt-deck-presentation'), pptTabs: Array.from(document.querySelectorAll('.palette-ppt-tab'))
     });
     if (!el.dropzone) return;
     bindEvents();
@@ -31,6 +32,22 @@
     el.copyCss.addEventListener('click', () => copyOutput(el.css.textContent, 'CSS 변수를 복사했습니다.', 'css'));
     el.copyPrompt.addEventListener('click', () => copyOutput(el.prompt.textContent, 'AI 제작 프롬프트를 복사했습니다.', 'prompt'));
     el.pptDownload.addEventListener('click', downloadPptx);
+    el.pptTabs.forEach(tab=>tab.addEventListener('click',()=>selectDeck(tab.dataset.deck)));
+  }
+
+  const DECKS={
+    report:{ label:'보고서용', build:[buildCoverSlide,buildTocSlide,buildBodySlide,buildProcessSlide,buildDiagramSlide,buildTableSlide] },
+    presentation:{ label:'발표용', build:[buildPCoverSlide,buildPAgendaSlide,buildPDividerSlide,buildPSplitSlide,buildPFlowSlide,buildPCompareSlide,buildPStepsSlide,buildPMatrixSlide,buildPTimelineSlide,buildPMetricsSlide,buildPClosingSlide,buildPColorsSlide] }
+  };
+
+  function selectDeck(kind) {
+    if (!DECKS[kind]) return;
+    state.deckKind=kind;
+    el.pptTabs.forEach(tab=>tab.setAttribute('aria-selected',String(tab.dataset.deck===kind)));
+    el.pptDeck.hidden=kind!=='report';
+    el.pptDeckPresentation.hidden=kind!=='presentation';
+    el.pptDownload.innerHTML=`<i class="fas fa-file-powerpoint"></i> ${DECKS[kind].label} 내려받기`;
+    track('palette_ppt_deck_changed',{deck_kind:kind});
   }
 
   function selectFile(file) {
@@ -146,10 +163,12 @@
 
   function renderPreview(palette) {
     const properties={background:palette.background,text:palette.text,primary:palette.primary,secondary:palette.secondary,accent:palette.accent,surface:palette.surface,muted:palette.muted,onPrimary:palette.onPrimary,accentText:palette.accentText};
-    // UI 미리보기와 PPT 템플릿이 같은 --demo-* 변수를 참조하므로 두 컨테이너에 함께 주입합니다.
-    [el.preview,el.pptDeck].filter(Boolean).forEach(target=>{
+    // UI 미리보기와 두 벌의 PPT 템플릿이 같은 --demo-* 변수를 참조하므로 모든 컨테이너에 함께 주입합니다.
+    [el.preview,el.pptDeck,el.pptDeckPresentation].filter(Boolean).forEach(target=>{
       Object.entries(properties).forEach(([key,value])=>target.style.setProperty(`--demo-${key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())}`,value));
     });
+    // 발표용 마지막 장(컬러 안내)의 hex 값을 채웁니다.
+    if (el.pptDeckPresentation) el.pptDeckPresentation.querySelectorAll('[data-hex]').forEach(node=>{ node.textContent=palette[node.dataset.hex]||''; });
   }
 
   function renderAccessibility(palette) {
@@ -203,11 +222,11 @@
       const PptxGenJS=await loadPptxGen();
       const deck=new PptxGenJS();
       deck.layout='LAYOUT_16x9';
-      buildCoverSlide(deck,palette); buildTocSlide(deck,palette); buildBodySlide(deck,palette);
-      buildProcessSlide(deck,palette); buildDiagramSlide(deck,palette); buildTableSlide(deck,palette);
-      await deck.writeFile({ fileName:`데이터공방_PPT템플릿_${palette.name}.pptx` });
-      if (window.showToast) window.showToast('PPT 템플릿을 내려받았습니다.');
-      track('palette_ppt_downloaded',{variant_name:palette.name});
+      const set=DECKS[state.deckKind];
+      set.build.forEach(build=>build(deck,palette));
+      await deck.writeFile({ fileName:`데이터공방_PPT템플릿_${set.label}_${palette.name}.pptx` });
+      if (window.showToast) window.showToast(`${set.label} PPT 템플릿을 내려받았습니다.`);
+      track('palette_ppt_downloaded',{variant_name:palette.name,deck_kind:state.deckKind});
     } catch (error) {
       if (window.showToast) window.showToast('PPT 템플릿을 만들지 못했습니다. 잠시 후 다시 시도해 주세요.','error');
     } finally {
@@ -343,6 +362,180 @@
     });
     buildConclusion(deck,slide,palette,'2027년 1분기까지 효과 측정을 마치고 차기 과제를 선정합니다.');
     buildPageNumber(deck,slide,palette,'06');
+  }
+
+  /* ----------------------------------------------------
+     발표용 12장 (라이트 배경 · 큰 타이포 · 한 장 한 메시지)
+  ---------------------------------------------------- */
+  const PPT_P_AGENDA=[['01','제안 배경'],['02','교육 목표'],['03','커리큘럼'],['04','운영 방식'],['05','기대 효과'],['06','다음 단계']];
+  const PPT_P_FLOW=[['도구만 도입','업무에 정착'],['일부만 사용','전 부서 활용'],['사례 공유 없음','사내 노하우 축적']];
+  const PPT_P_COMPARE=[['01','기능 위주 특강','업무 과제 중심 실습'],['02','실습 자료가 남의 데이터','우리 부서 실제 데이터'],['03','교육 후 활용 중단','사후 가이드로 정착']];
+  const PPT_P_STEPS=[['STEP 1','사전 진단과 과제 수집'],['STEP 2','부서 맞춤 커리큘럼 설계'],['STEP 3','실습 중심 집합 교육'],['STEP 4','사후 가이드와 정착 점검']];
+  const PPT_P_MATRIX_HEAD=['항목','일반 특강','데이터공방 과정'];
+  const PPT_P_MATRIX_ROWS=[['실습 데이터','예제 파일','우리 부서 실데이터'],['진행 방식','강의 중심','과제 해결 중심'],['교육 후','자료 배포','정착 점검 포함']];
+  const PPT_P_TIMELINE=[['1주차','사전 진단'],['2주차','기본 과정'],['3주차','심화 실습'],['4주차','정착 점검']];
+  const PPT_P_METRICS=[['주 4시간','반복 업무 절감','ellipse'],['92%','수강 만족도','rect'],['3개월','사내 정착 기간','triangle']];
+  const PPT_P_CONTACT=[['담당','데이터공방 장남수'],['메일','hello@datagongbang.kr'],['홈페이지','datagongbang.kr']];
+  const PPT_P_COLOR_ROLES=[['메인','primary'],['보조','secondary'],['포인트','accent'],['표면','surface'],['배경','background'],['본문','text']];
+
+  // 사진을 넣을 자리는 점선 상자로 비워 둡니다(파워포인트에서 바꿔 끼우면 됩니다).
+  function pPlaceholder(deck,slide,palette,x,y,w,h) {
+    slide.addShape(deck.ShapeType.rect,{ x,y,w,h,fill:{color:pptText(palette.surface)},line:{ color:pptText(mixColors(palette.text,palette.background,0.7)),width:1,dashType:'dash' } });
+    slide.addText('이미지를 넣으세요',pptFont({ x,y,w,h,fontSize:11,align:'center',valign:'middle',margin:0,color:pptText(palette.muted) }));
+  }
+
+  function pTitle(slide,palette,text,x,y,w,h,fontSize) {
+    slide.addText(text,pptFont({ x,y,w,h,fontSize,bold:true,charSpacing:-0.8,valign:'top',margin:0,color:pptText(palette.primary) }));
+  }
+
+  function buildPCoverSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    slide.addShape(deck.ShapeType.rect,{ x:0.8,y:1.5,w:0.62,h:0.055,fill:{color:pptText(palette.accent)} });
+    slide.addText('2026 사내 교육 제안',pptFont({ x:0.8,y:1.74,w:4.8,h:0.3,fontSize:12,bold:true,charSpacing:1.6,margin:0,color:pptText(palette.muted) }));
+    pTitle(slide,palette,'실무에 바로 쓰는\nAI 활용 교육',0.8,2.08,5,1.5,32);
+    slide.addText('3주 과정 커리큘럼 제안서',pptFont({ x:0.8,y:3.55,w:5,h:0.35,fontSize:14,margin:0,color:pptText(palette.muted) }));
+    slide.addText('데이터공방 · 2026. 07.',pptFont({ x:0.8,y:4.5,w:5,h:0.3,fontSize:11,bold:true,margin:0,color:pptText(palette.muted) }));
+    pPlaceholder(deck,slide,palette,6.05,0.45,3.25,4.73);
+  }
+
+  function buildPAgendaSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    pTitle(slide,palette,'목차',0.8,0.7,4,0.7,30);
+    slide.addShape(deck.ShapeType.rect,{ x:0.85,y:1.5,w:0.6,h:0.05,fill:{color:pptText(palette.accent)} });
+    PPT_P_AGENDA.forEach(([number,title],index)=>{
+      const x=0.8+(index%2)*4.4; const y=2.05+Math.floor(index/2)*0.66;
+      slide.addText(number,pptFont({ x,y,w:0.55,h:0.45,fontSize:12,bold:true,valign:'middle',margin:0,color:pptText(palette.primary) }));
+      slide.addText(title,pptFont({ x:x+0.6,y,w:3.3,h:0.45,fontSize:15,bold:true,valign:'middle',margin:0,color:pptText(palette.text) }));
+      slide.addShape(deck.ShapeType.rect,{ x,y:y+0.5,w:4,h:0.008,fill:{color:pptText(palette.surface)} });
+    });
+  }
+
+  function buildPDividerSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.primary) };
+    slide.addText('01',pptFont({ x:0.9,y:1.6,w:3,h:0.9,fontSize:44,bold:true,margin:0,color:pptText(mixColors(palette.onPrimary,palette.primary,0.55)) }));
+    slide.addText('제안 배경',pptFont({ x:0.9,y:2.6,w:6,h:0.8,fontSize:32,bold:true,charSpacing:-0.8,margin:0,color:pptText(palette.onPrimary) }));
+    slide.addText('왜 지금 이 교육이 필요한지 짚어 봅니다.',pptFont({ x:0.9,y:3.55,w:6,h:0.4,fontSize:13,margin:0,color:pptText(mixColors(palette.onPrimary,palette.primary,0.28)) }));
+  }
+
+  function buildPSplitSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    pTitle(slide,palette,'왜 지금 AI 활용 교육인가',0.8,1.25,4.2,1.1,26);
+    slide.addText('도구는 이미 조직에 들어와 있지만, 실제 업무에 쓰는 사람은 소수에 머무릅니다.',pptFont({ x:0.8,y:2.5,w:4.2,h:0.9,fontSize:13,margin:0,color:pptText(palette.text) }));
+    slide.addText('필요한 것은 기능 소개가 아니라 내 업무 데이터로 직접 해보는 경험입니다.',pptFont({ x:0.8,y:3.45,w:4.2,h:0.9,fontSize:13,margin:0,color:pptText(palette.muted) }));
+    pPlaceholder(deck,slide,palette,5.6,0.85,3.6,3.95);
+  }
+
+  function buildPFlowSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    pTitle(slide,palette,'교육 전과 후',0.8,0.7,6,0.6,26);
+    PPT_P_FLOW.forEach(([before,after],index)=>{
+      const x=0.8+index*2.9;
+      slide.addShape(deck.ShapeType.rect,{ x,y:1.85,w:2.6,h:0.85,fill:{color:pptText(palette.surface)} });
+      slide.addText(before,pptFont({ x,y:1.85,w:2.6,h:0.85,fontSize:12,align:'center',valign:'middle',margin:0,color:pptText(palette.muted) }));
+      slide.addShape(deck.ShapeType.downArrow,{ x:x+1.14,y:2.85,w:0.32,h:0.38,fill:{color:pptText(palette.accent)} });
+      slide.addShape(deck.ShapeType.rect,{ x,y:3.38,w:2.6,h:0.95,fill:{color:pptText(palette.primary)} });
+      slide.addText(after,pptFont({ x,y:3.38,w:2.6,h:0.95,fontSize:13,bold:true,align:'center',valign:'middle',margin:0,color:pptText(palette.onPrimary) }));
+    });
+  }
+
+  function buildPCompareSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    pTitle(slide,palette,'무엇이 달라지나',0.8,0.7,6,0.6,26);
+    [['현재',0.8,false],['교육 후',5.2,true]].forEach(([label,x,strong])=>{
+      slide.addShape(deck.ShapeType.rect,{ x,y:1.8,w:4,h:0.5,fill:{color:pptText(strong?palette.primary:palette.surface)} });
+      slide.addText(label,pptFont({ x,y:1.8,w:4,h:0.5,fontSize:13,bold:true,align:'center',valign:'middle',margin:0,color:pptText(strong?palette.onPrimary:palette.muted) }));
+    });
+    PPT_P_COMPARE.forEach(([number,before,after],index)=>{
+      const y=2.48+index*0.66;
+      [[0.8,before,false],[5.2,after,true]].forEach(([x,text,strong])=>{
+        slide.addShape(deck.ShapeType.rect,{ x,y,w:4,h:0.54,fill:{color:pptText(palette.surface)} });
+        if (strong) slide.addShape(deck.ShapeType.rect,{ x,y,w:0.07,h:0.54,fill:{color:pptText(palette.accent)} });
+        slide.addText(number,pptFont({ x:x+0.25,y,w:0.5,h:0.54,fontSize:11,bold:true,valign:'middle',margin:0,color:pptText(strong?palette.primary:palette.muted) }));
+        slide.addText(text,pptFont({ x:x+0.8,y,w:3.05,h:0.54,fontSize:12,bold:true,valign:'middle',margin:0,color:pptText(palette.text) }));
+      });
+    });
+  }
+
+  function buildPStepsSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    pTitle(slide,palette,'진행 방식',0.8,1.55,3.1,0.6,26);
+    slide.addText('사전 진단부터 사후 지원까지 네 단계로 운영합니다.',pptFont({ x:0.8,y:2.3,w:3.1,h:0.9,fontSize:12,margin:0,color:pptText(palette.muted) }));
+    PPT_P_STEPS.forEach(([step,text],index)=>{
+      const y=1.35+index*0.85;
+      slide.addShape(deck.ShapeType.rect,{ x:4.6,y,w:4.6,h:0.7,fill:{color:pptText(palette.surface)} });
+      slide.addShape(deck.ShapeType.rect,{ x:4.6,y,w:0.07,h:0.7,fill:{color:pptText(palette.primary)} });
+      slide.addText(step,pptFont({ x:4.85,y,w:1,h:0.7,fontSize:11,bold:true,valign:'middle',margin:0,color:pptText(palette.primary) }));
+      slide.addText(text,pptFont({ x:5.95,y,w:3.1,h:0.7,fontSize:12,bold:true,valign:'middle',margin:0,color:pptText(palette.text) }));
+    });
+  }
+
+  function buildPMatrixSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    pTitle(slide,palette,'일반 특강과의 차이',0.8,0.7,6,0.6,26);
+    const border=[{ pt:1,color:pptText(palette.background) }];
+    const head=PPT_P_MATRIX_HEAD.map((text,column)=>({ text,options:{
+      bold:true,align:column===0?'left':'center',
+      color:pptText(column===2?palette.onPrimary:palette.muted),
+      fill:{color:pptText(column===2?palette.primary:palette.surface)}
+    } }));
+    const rows=PPT_P_MATRIX_ROWS.map(cells=>cells.map((text,column)=>({ text,options:{
+      bold:column!==1,align:column===0?'left':'center',
+      color:pptText(column===1?palette.muted:palette.text),
+      fill:{color:pptText(column===2?palette.surface:palette.background)}
+    } })));
+    slide.addTable([head,...rows],{ x:0.8,y:1.85,w:8.4,colW:[2.6,2.9,2.9],rowH:0.55,fontFace:PPT_FONT,fontSize:12,valign:'middle',border,margin:8 });
+  }
+
+  function buildPTimelineSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    pTitle(slide,palette,'3주 일정',0.8,0.7,6,0.6,26);
+    PPT_P_TIMELINE.forEach(([week,label],index)=>{
+      const x=0.8+index*2.1;
+      // 한 색의 명도만 단계적으로 낮춰 진행감을 표현합니다.
+      const fill=mixColors(palette.primary,palette.background,[0.5,0.33,0.16,0][index]);
+      slide.addShape(deck.ShapeType.rect,{ x,y:2.05,w:2.1,h:0.62,fill:{color:pptText(fill)} });
+      slide.addText(week,pptFont({ x,y:2.05,w:2.1,h:0.62,fontSize:12,bold:true,align:'center',valign:'middle',margin:0,color:pptText(bestText(fill,'button')) }));
+      const lead=index%2?1.05:0.55;
+      slide.addShape(deck.ShapeType.rect,{ x:x+1.045,y:2.67,w:0.012,h:lead,fill:{color:pptText(mixColors(palette.text,palette.background,0.6))} });
+      slide.addText(label,pptFont({ x,y:2.67+lead,w:2.1,h:0.35,fontSize:11,bold:true,align:'center',margin:0,color:pptText(palette.text) }));
+    });
+  }
+
+  function buildPMetricsSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    pTitle(slide,palette,'기대 효과',0.8,0.7,6,0.6,26);
+    PPT_P_METRICS.forEach(([value,label,shape],index)=>{
+      const x=0.8+index*2.9;
+      slide.addShape(deck.ShapeType.rect,{ x,y:1.9,w:2.6,h:2.3,fill:{color:pptText(palette.surface)} });
+      slide.addShape(deck.ShapeType[shape],{ x:x+0.35,y:2.25,w:0.5,h:0.5,fill:{color:pptText(palette.accent)} });
+      slide.addText(value,pptFont({ x:x+0.35,y:3.05,w:2,h:0.5,fontSize:20,bold:true,margin:0,color:pptText(palette.primary) }));
+      slide.addText(label,pptFont({ x:x+0.35,y:3.58,w:2,h:0.35,fontSize:11,margin:0,color:pptText(palette.muted) }));
+    });
+  }
+
+  function buildPClosingSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    pPlaceholder(deck,slide,palette,0,0,10,2.14);
+    pTitle(slide,palette,'함께 시작하시죠.',0.8,2.75,4.4,0.7,26);
+    PPT_P_CONTACT.forEach(([label,value],index)=>{
+      const y=2.68+index*0.55;
+      slide.addText(label,pptFont({ x:5.6,y,w:1.1,h:0.4,fontSize:10,bold:true,valign:'middle',margin:0,color:pptText(palette.muted) }));
+      slide.addText(value,pptFont({ x:6.8,y,w:2.6,h:0.4,fontSize:12,bold:true,valign:'middle',margin:0,color:pptText(palette.text) }));
+    });
+  }
+
+  // 마지막 장에 팔레트 값을 남겨 두면 나중에 덱을 편집할 때 색을 다시 찾을 필요가 없습니다.
+  function buildPColorsSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    pTitle(slide,palette,'이 문서의 색상',0.8,0.7,6,0.6,24);
+    slide.addText('발표 후 편집할 때 이 값을 그대로 쓰세요.',pptFont({ x:0.8,y:1.35,w:6,h:0.35,fontSize:12,margin:0,color:pptText(palette.muted) }));
+    PPT_P_COLOR_ROLES.forEach(([label,role],index)=>{
+      const x=0.8+index*1.42;
+      slide.addShape(deck.ShapeType.ellipse,{ x:x+0.4,y:2.1,w:0.62,h:0.62,fill:{color:pptText(palette[role])},line:{ color:pptText(mixColors(palette.text,palette.background,0.75)),width:1 } });
+      slide.addText(label,pptFont({ x,y:2.85,w:1.42,h:0.3,fontSize:10,bold:true,align:'center',margin:0,color:pptText(palette.text) }));
+      slide.addText(palette[role],pptFont({ x,y:3.15,w:1.42,h:0.3,fontSize:9,align:'center',margin:0,color:pptText(palette.muted) }));
+    });
+    slide.addText('글꼴: 맑은 고딕 · 제목 굵게, 본문 보통',pptFont({ x:0.8,y:4.3,w:6,h:0.35,fontSize:10,margin:0,color:pptText(palette.muted) }));
   }
 
   async function copyOutput(text,message,type) { try { await navigator.clipboard.writeText(text); if(window.showToast) window.showToast(message); track('palette_output_copied',{output_type:type}); } catch(_) { if(window.showToast) window.showToast('복사하지 못했습니다. 직접 선택해 복사해 주세요.','error'); } }
