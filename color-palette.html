@@ -13,7 +13,7 @@
   <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>이미지 컬러 팔레트 추출·추천 | 데이터공방</title>
-  <meta name="description" content="이미지에서 대표 색상을 추출하고 메인·보조·포인트·배경·본문 컬러를 추천합니다. 대비 검사, UI 미리보기, PPT 템플릿(.pptx) 다운로드, CSS 변수와 AI 프롬프트를 무료로 제공합니다.">
+  <meta name="description" content="이미지에서 대표 색상을 추출하고 메인·보조·포인트·배경·본문 컬러를 추천합니다. 대비 검사, UI 미리보기, 6장짜리 PPT 템플릿(.pptx) 다운로드, CSS 변수와 AI 프롬프트를 무료로 제공합니다.">
   <meta name="keywords" content="이미지 색상 추출, 컬러 팔레트, 브랜드 컬러, 메인 컬러 추천, 보조 컬러, 포인트 컬러, 색상 조합, CSS 색상 변수, PPT 템플릿, 브랜드 컬러 PPT">
   <meta property="og:title" content="이미지 컬러 팔레트 추출·추천 | 데이터공방">
   <meta property="og:description" content="이미지 한 장에서 바로 사용할 수 있는 컬러 시스템과 PPT 템플릿, AI 제작 프롬프트를 만드세요.">
@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="./index.css?v=1.4">
   <link rel="stylesheet" href="./modules/toast.css?v=1.2">
   <link rel="stylesheet" href="./modules/tiff-converter.css?v=1.2">
-  <link rel="stylesheet" href="./modules/color-palette.css?v=1.3">
+  <link rel="stylesheet" href="./modules/color-palette.css?v=1.4">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"이미지 컬러 팔레트 추출·추천","applicationCategory":"DesignApplication","operatingSystem":"Web Browser","url":"https://datagongbang.kr/color-palette","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}</script>
@@ -133,7 +133,7 @@
 
         <section class="palette-ppt" aria-labelledby="palette-ppt-title">
           <div class="palette-section-heading">
-            <div><h2 id="palette-ppt-title"><span>4</span> PPT 템플릿 미리보기</h2><p>표지·목차·본문 3장으로 구성된 범용 보고서 템플릿입니다. 선택한 팔레트가 그대로 적용됩니다.</p></div>
+            <div><h2 id="palette-ppt-title"><span>4</span> PPT 템플릿 미리보기</h2><p>표지·목차·본문·프로세스·다이어그램·표 6장으로 구성된 범용 보고서 템플릿입니다. 선택한 팔레트가 그대로 적용됩니다.</p></div>
             <button type="button" id="download-palette-pptx" class="btn btn-primary palette-ppt-download"><i class="fas fa-file-powerpoint"></i> PPT 템플릿 내려받기</button>
           </div>
           <div id="palette-ppt-deck" class="palette-ppt-deck">
@@ -187,6 +187,59 @@
               </div>
               <figcaption>본문</figcaption>
             </figure>
+            <figure class="ppt-slide-wrap">
+              <div class="ppt-slide ppt-body">
+                <div class="ppt-doc-head"><strong>추진 프로세스</strong><span>전략 보고서</span></div>
+                <span class="ppt-rule" aria-hidden="true"></span>
+                <p class="ppt-section">2. 4단계 실행 절차</p>
+                <p class="ppt-lead">조사에서 정착까지 단계별로 무엇을 하는지 정리했습니다.</p>
+                <ol class="ppt-steps">
+                  <li><span class="ppt-step-head">01 현황 진단</span><p>반복 업무 유형과 소요 시간을 조사합니다.</p></li>
+                  <li><span class="ppt-step-head">02 우선순위 선정</span><p>효과와 난이도를 기준으로 과제를 고릅니다.</p></li>
+                  <li><span class="ppt-step-head">03 자동화 구축</span><p>도구를 도입하고 업무 절차를 재설계합니다.</p></li>
+                  <li><span class="ppt-step-head">04 정착·확산</span><p>교육과 운영 가이드를 배포합니다.</p></li>
+                </ol>
+                <p class="ppt-highlight">1~2단계는 3개월 내 완료하고, 3단계부터 전사로 넓혀 갑니다.</p>
+                <span class="ppt-page">04</span>
+              </div>
+              <figcaption>프로세스</figcaption>
+            </figure>
+            <figure class="ppt-slide-wrap">
+              <div class="ppt-slide ppt-body">
+                <div class="ppt-doc-head"><strong>개선 방안</strong><span>전략 보고서</span></div>
+                <span class="ppt-rule" aria-hidden="true"></span>
+                <p class="ppt-section">3. 적용 범위와 필요 자원</p>
+                <p class="ppt-lead">무엇을 바꾸고, 무엇을 얻고, 무엇이 필요한지 나눠 보았습니다.</p>
+                <div class="ppt-columns">
+                  <div><strong>적용 범위</strong><ul><li>부서별 자료 취합 자동화</li><li>보고서 양식 표준화</li><li>오류 검증 절차 자동화</li></ul></div>
+                  <div><strong>기대 효과</strong><ul><li>연 600시간 업무 절감</li><li>재작업 비율 27% 감소</li><li>담당자 업무 만족도 개선</li></ul></div>
+                  <div><strong>필요 자원</strong><ul><li>실무 담당 2인 배치</li><li>자동화 도구 라이선스</li><li>실무자 교육 4시간</li></ul></div>
+                </div>
+                <p class="ppt-highlight">담당 2인과 교육 4시간만 확보되면 올해 안에 적용할 수 있습니다.</p>
+                <span class="ppt-page">05</span>
+              </div>
+              <figcaption>다이어그램</figcaption>
+            </figure>
+            <figure class="ppt-slide-wrap">
+              <div class="ppt-slide ppt-body">
+                <div class="ppt-doc-head"><strong>실행 계획</strong><span>전략 보고서</span></div>
+                <span class="ppt-rule" aria-hidden="true"></span>
+                <p class="ppt-section">4. 단계별 일정과 담당</p>
+                <p class="ppt-lead">단계마다 담당 조직과 완료 목표 시점을 명확히 했습니다.</p>
+                <table class="ppt-table">
+                  <thead><tr><th>구분</th><th class="is-left">주요 활동</th><th>담당</th><th>완료 목표</th></tr></thead>
+                  <tbody>
+                    <tr><td>1단계</td><td class="is-left">업무 현황 조사와 과제 선정</td><td>기획전략팀</td><td>2026. 08.</td></tr>
+                    <tr><td>2단계</td><td class="is-left">자동화 도구 도입과 시범 적용</td><td>정보시스템팀</td><td>2026. 10.</td></tr>
+                    <tr><td>3단계</td><td class="is-left">전사 확산과 실무자 교육</td><td>기획전략팀</td><td>2026. 12.</td></tr>
+                    <tr><td>4단계</td><td class="is-left">운영 안정화와 효과 측정</td><td>전 부서</td><td>2027. 03.</td></tr>
+                  </tbody>
+                </table>
+                <p class="ppt-highlight">2027년 1분기까지 효과 측정을 마치고 차기 과제를 선정합니다.</p>
+                <span class="ppt-page">06</span>
+              </div>
+              <figcaption>표</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -217,6 +270,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="./modules/main.js?v=1.4"></script>
-  <script src="./modules/color-palette.js?v=1.3"></script>
+  <script src="./modules/color-palette.js?v=1.4"></script>
 </body>
 </html>

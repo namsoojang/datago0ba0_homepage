@@ -174,6 +174,10 @@
   const PPT_TOC=[['01','추진 배경','왜 지금 이 과제인가'],['02','현황 분석','업무 흐름과 병목 구간'],['03','개선 방안','자동화 적용 범위'],['04','기대 효과','시간·비용 절감 추정'],['05','실행 계획','일정과 담당 역할']];
   const PPT_BULLETS=['부서별 자료 취합에 주당 12시간이 소요됩니다.','양식이 달라 매번 재가공이 필요합니다.','오류가 생겨도 원인 추적이 어렵습니다.'];
   const PPT_CARDS=[['12시간','주당 반복 업무'],['4개 부서','양식 불일치'],['27%','재작업 비율']];
+  const PPT_STEPS=[['01','현황 진단','반복 업무 유형과 소요 시간을 조사합니다.'],['02','우선순위 선정','효과와 난이도를 기준으로 과제를 고릅니다.'],['03','자동화 구축','도구를 도입하고 업무 절차를 재설계합니다.'],['04','정착·확산','교육과 운영 가이드를 배포합니다.']];
+  const PPT_COLUMNS=[['적용 범위',['부서별 자료 취합 자동화','보고서 양식 표준화','오류 검증 절차 자동화']],['기대 효과',['연 600시간 업무 절감','재작업 비율 27% 감소','담당자 업무 만족도 개선']],['필요 자원',['실무 담당 2인 배치','자동화 도구 라이선스','실무자 교육 4시간']]];
+  const PPT_TABLE_HEAD=['구분','주요 활동','담당','완료 목표'];
+  const PPT_TABLE_ROWS=[['1단계','업무 현황 조사와 과제 선정','기획전략팀','2026. 08.'],['2단계','자동화 도구 도입과 시범 적용','정보시스템팀','2026. 10.'],['3단계','전사 확산과 실무자 교육','기획전략팀','2026. 12.'],['4단계','운영 안정화와 효과 측정','전 부서','2027. 03.']];
   let pptxLoader=null;
 
   // 약 1MB 라이브러리이므로 페이지 로드가 아니라 버튼을 누른 시점에 내려받습니다.
@@ -200,6 +204,7 @@
       const deck=new PptxGenJS();
       deck.layout='LAYOUT_16x9';
       buildCoverSlide(deck,palette); buildTocSlide(deck,palette); buildBodySlide(deck,palette);
+      buildProcessSlide(deck,palette); buildDiagramSlide(deck,palette); buildTableSlide(deck,palette);
       await deck.writeFile({ fileName:`데이터공방_PPT템플릿_${palette.name}.pptx` });
       if (window.showToast) window.showToast('PPT 템플릿을 내려받았습니다.');
       track('palette_ppt_downloaded',{variant_name:palette.name});
@@ -235,6 +240,19 @@
     slide.addShape(deck.ShapeType.rect,{ x:0.9,y:1.02,w:0.74,h:0.035,fill:{color:pptText(palette.accent)} });
   }
 
+  // 번호형 소제목 + 리드 문장 (모든 본문 슬라이드 공통)
+  function buildSectionIntro(slide,palette,heading,lead) {
+    slide.addText(heading,pptFont({ x:0.9,y:1.2,w:8.2,h:0.3,fontSize:13,bold:true,margin:0,color:pptText(palette.primary) }));
+    slide.addText(lead,pptFont({ x:0.9,y:1.53,w:8.2,h:0.3,fontSize:10,margin:0,color:pptText(palette.muted) }));
+  }
+
+  // 하단 결론 스트립
+  function buildConclusion(deck,slide,palette,text) {
+    slide.addShape(deck.ShapeType.rect,{ x:0.9,y:4.35,w:8.2,h:0.58,fill:{color:pptText(palette.surface)} });
+    slide.addShape(deck.ShapeType.rect,{ x:0.9,y:4.35,w:0.07,h:0.58,fill:{color:pptText(palette.accent)} });
+    slide.addText(text,pptFont({ x:1.15,y:4.35,w:7.8,h:0.58,fontSize:11,bold:true,valign:'middle',margin:0,color:pptText(palette.text) }));
+  }
+
   function buildPageNumber(deck,slide,palette,number) {
     slide.addText(number,pptFont({ x:8.1,y:5.05,w:1,h:0.3,fontSize:9,bold:true,align:'right',margin:0,color:pptText(palette.muted) }));
   }
@@ -256,8 +274,7 @@
   function buildBodySlide(deck,palette) {
     const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
     buildDocHeader(deck,slide,palette,'현황 분석',-0.5);
-    slide.addText('1. 업무 흐름과 병목 구간',pptFont({ x:0.9,y:1.2,w:8.2,h:0.3,fontSize:13,bold:true,margin:0,color:pptText(palette.primary) }));
-    slide.addText('부서별 자료 취합 과정에서 반복 작업이 어디에 집중되는지 정리했습니다.',pptFont({ x:0.9,y:1.53,w:8.2,h:0.3,fontSize:10,margin:0,color:pptText(palette.muted) }));
+    buildSectionIntro(slide,palette,'1. 업무 흐름과 병목 구간','부서별 자료 취합 과정에서 반복 작업이 어디에 집중되는지 정리했습니다.');
     // 왼쪽 불릿과 오른쪽 지표 카드를 같은 행에 맞춥니다.
     PPT_BULLETS.forEach((line,index)=>{
       const y=2.0+index*0.66;
@@ -271,10 +288,61 @@
       slide.addText(value,pptFont({ x:5.55,y,w:1.6,h:0.56,fontSize:12,bold:true,valign:'middle',margin:0,color:pptText(palette.text) }));
       slide.addText(label,pptFont({ x:7.1,y,w:1.85,h:0.56,fontSize:9.5,align:'right',valign:'middle',margin:0,color:pptText(palette.muted) }));
     });
-    slide.addShape(deck.ShapeType.rect,{ x:0.9,y:4.35,w:8.2,h:0.58,fill:{color:pptText(palette.surface)} });
-    slide.addShape(deck.ShapeType.rect,{ x:0.9,y:4.35,w:0.07,h:0.58,fill:{color:pptText(palette.accent)} });
-    slide.addText('자동화 적용 시 연간 약 600시간의 업무 시간 절감이 가능합니다.',pptFont({ x:1.15,y:4.35,w:7.8,h:0.58,fontSize:11,bold:true,valign:'middle',margin:0,color:pptText(palette.text) }));
+    buildConclusion(deck,slide,palette,'자동화 적용 시 연간 약 600시간의 업무 시간 절감이 가능합니다.');
     buildPageNumber(deck,slide,palette,'03');
+  }
+
+  // 프로세스: 화살표(쉐브론) 4단계
+  function buildProcessSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    buildDocHeader(deck,slide,palette,'추진 프로세스',-0.5);
+    buildSectionIntro(slide,palette,'2. 4단계 실행 절차','조사에서 정착까지 단계별로 무엇을 하는지 정리했습니다.');
+    PPT_STEPS.forEach(([number,title,description],index)=>{
+      const x=0.9+index*1.96;
+      slide.addShape(deck.ShapeType.chevron,{ x,y:2.05,w:2.25,h:0.72,fill:{color:pptText(palette.primary)} });
+      slide.addText(`${number}  ${title}`,pptFont({ x:x+0.12,y:2.05,w:1.85,h:0.72,fontSize:11,bold:true,align:'center',valign:'middle',margin:0,color:pptText(palette.onPrimary) }));
+      slide.addText(description,pptFont({ x,y:2.95,w:2.05,h:0.8,fontSize:9.5,align:'center',margin:0,color:pptText(palette.muted) }));
+    });
+    buildConclusion(deck,slide,palette,'1~2단계는 3개월 내 완료하고, 3단계부터 전사로 넓혀 갑니다.');
+    buildPageNumber(deck,slide,palette,'04');
+  }
+
+  // 다이어그램: 머리띠가 있는 3단 비교 카드
+  function buildDiagramSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    buildDocHeader(deck,slide,palette,'개선 방안',-0.5);
+    buildSectionIntro(slide,palette,'3. 적용 범위와 필요 자원','무엇을 바꾸고, 무엇을 얻고, 무엇이 필요한지 나눠 보았습니다.');
+    PPT_COLUMNS.forEach(([title,items],index)=>{
+      const x=0.9+index*2.85;
+      slide.addShape(deck.ShapeType.rect,{ x,y:2.05,w:2.5,h:0.48,fill:{color:pptText(palette.primary)} });
+      slide.addText(title,pptFont({ x,y:2.05,w:2.5,h:0.48,fontSize:11.5,bold:true,align:'center',valign:'middle',margin:0,color:pptText(palette.onPrimary) }));
+      slide.addShape(deck.ShapeType.rect,{ x,y:2.53,w:2.5,h:1.6,fill:{color:pptText(palette.surface)} });
+      items.forEach((item,row)=>{
+        const y=2.68+row*0.48;
+        slide.addShape(deck.ShapeType.rect,{ x:x+0.18,y:y+0.16,w:0.08,h:0.08,fill:{color:pptText(palette.accent)} });
+        slide.addText(item,pptFont({ x:x+0.36,y,w:2,h:0.4,fontSize:9.5,valign:'middle',margin:0,color:pptText(palette.text) }));
+      });
+    });
+    buildConclusion(deck,slide,palette,'담당 2인과 교육 4시간만 확보되면 올해 안에 적용할 수 있습니다.');
+    buildPageNumber(deck,slide,palette,'05');
+  }
+
+  // 표: 머리행에 메인 컬러를 쓴 기본 일정표
+  function buildTableSlide(deck,palette) {
+    const slide=deck.addSlide(); slide.background={ color:pptText(palette.background) };
+    buildDocHeader(deck,slide,palette,'실행 계획',-0.5);
+    buildSectionIntro(slide,palette,'4. 단계별 일정과 담당','단계마다 담당 조직과 완료 목표 시점을 명확히 했습니다.');
+    const border=[{ pt:1,color:pptText(palette.surface) }];
+    const head=PPT_TABLE_HEAD.map(text=>({ text,options:{ bold:true,color:pptText(palette.onPrimary),fill:{color:pptText(palette.primary)},align:'center' } }));
+    const rows=PPT_TABLE_ROWS.map(cells=>cells.map((text,column)=>({
+      text,options:{ color:pptText(column===0?palette.text:palette.muted),bold:column===0,align:column===1?'left':'center' }
+    })));
+    slide.addTable([head,...rows],{
+      x:0.9,y:2.05,w:8.2,colW:[1.4,3.8,1.5,1.5],rowH:0.42,
+      fontFace:PPT_FONT,fontSize:10,valign:'middle',border,margin:6
+    });
+    buildConclusion(deck,slide,palette,'2027년 1분기까지 효과 측정을 마치고 차기 과제를 선정합니다.');
+    buildPageNumber(deck,slide,palette,'06');
   }
 
   async function copyOutput(text,message,type) { try { await navigator.clipboard.writeText(text); if(window.showToast) window.showToast(message); track('palette_output_copied',{output_type:type}); } catch(_) { if(window.showToast) window.showToast('복사하지 못했습니다. 직접 선택해 복사해 주세요.','error'); } }

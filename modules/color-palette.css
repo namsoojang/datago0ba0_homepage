@@ -124,6 +124,23 @@
 .ppt-cards strong { color: var(--demo-text); font-size: .82em; font-weight: 800; }
 .ppt-cards small { color: var(--demo-muted); font-size: .62em; }
 .ppt-highlight { margin: .9em 0 0; padding: .5em .75em; border-left: .22em solid var(--demo-accent); background: var(--demo-surface); color: var(--demo-text); font-size: .7em; font-weight: 700; }
+/* 프로세스: 화살표 4단계 */
+.ppt-steps { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .3em; margin: .9em 0 0; padding: 0; list-style: none; }
+.ppt-step-head { display: grid; height: 2.1em; padding: 0 .9em 0 .5em; place-items: center; background: var(--demo-primary); color: var(--demo-on-primary); font-size: .62em; font-weight: 800; text-align: center; clip-path: polygon(0 0,calc(100% - .7em) 0,100% 50%,calc(100% - .7em) 100%,0 100%); }
+.ppt-steps p { margin: .5em .5em 0 0; color: var(--demo-muted); font-size: .58em; line-height: 1.45; text-align: center; }
+/* 다이어그램: 머리띠가 있는 3단 비교 카드 */
+.ppt-columns { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .45em; margin-top: .9em; }
+.ppt-columns strong { display: block; padding: .45em; background: var(--demo-primary); color: var(--demo-on-primary); font-size: .68em; font-weight: 800; text-align: center; }
+.ppt-columns ul { display: grid; gap: .3em; margin: 0; padding: .5em .6em; background: var(--demo-surface); list-style: none; }
+.ppt-columns li { position: relative; padding-left: .85em; color: var(--demo-text); font-size: .6em; line-height: 1.4; }
+.ppt-columns li::before { position: absolute; top: .42em; left: 0; width: .3em; height: .3em; background: var(--demo-accent); content: ""; }
+/* 표: 머리행에 메인 컬러 */
+.ppt-table { width: 100%; margin-top: .9em; border-collapse: collapse; font-size: .58em; }
+.ppt-table th,.ppt-table td { padding: .45em .5em; text-align: center; }
+.ppt-table th { background: var(--demo-primary); color: var(--demo-on-primary); font-weight: 800; }
+.ppt-table td { border-bottom: 1px solid var(--demo-surface); color: var(--demo-muted); }
+.ppt-table td:first-child { color: var(--demo-text); font-weight: 700; }
+.ppt-table .is-left { text-align: left; }
 .palette-export { display: grid; gap: 18px; }
 .palette-export-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .palette-code-card { min-width: 0; overflow: hidden; border-radius: 12px; background: #0f172a; color: #e2e8f0; }
