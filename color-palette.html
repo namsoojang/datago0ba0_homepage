@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="./index.css?v=1.4">
   <link rel="stylesheet" href="./modules/toast.css?v=1.2">
   <link rel="stylesheet" href="./modules/tiff-converter.css?v=1.2">
-  <link rel="stylesheet" href="./modules/color-palette.css?v=1.6">
+  <link rel="stylesheet" href="./modules/color-palette.css?v=1.7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"이미지 컬러 팔레트 추출·추천","applicationCategory":"DesignApplication","operatingSystem":"Web Browser","url":"https://datagongbang.kr/color-palette","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}</script>
@@ -409,14 +409,14 @@
         </section>
 
         <section class="palette-export" aria-labelledby="palette-export-title">
-          <div class="palette-section-heading"><div><h2 id="palette-export-title"><span>5</span> 바로 가져다 쓰기</h2><p>CSS 변수나 AI 제작 프롬프트를 복사해 사용하세요.</p></div></div>
+          <div class="palette-section-heading"><div><h2 id="palette-export-title"><span>5</span> 바로 가져다 쓰기</h2><p>CSS 변수를 복사하거나, 영문 프롬프트를 ChatGPT·Claude·v0 같은 AI 도구에 그대로 붙여 넣으세요.</p></div></div>
           <div class="palette-export-grid">
             <div class="palette-code-card">
               <div class="palette-code-header"><strong>CSS 변수</strong><button type="button" id="copy-palette-css" class="palette-copy-btn"><i class="far fa-copy"></i> 복사</button></div>
               <pre id="palette-css-output"></pre>
             </div>
             <div class="palette-code-card palette-prompt-card">
-              <div class="palette-code-header"><strong>AI 제작 프롬프트</strong><button type="button" id="copy-palette-prompt" class="palette-copy-btn"><i class="far fa-copy"></i> 복사</button></div>
+              <div class="palette-code-header"><strong>AI 제작 프롬프트 <span class="palette-tag-en">EN</span></strong><button type="button" id="copy-palette-prompt" class="palette-copy-btn"><i class="far fa-copy"></i> 복사</button></div>
               <p id="palette-prompt-output"></p>
             </div>
           </div>
@@ -435,6 +435,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="./modules/main.js?v=1.4"></script>
-  <script src="./modules/color-palette.js?v=1.6"></script>
+  <script src="./modules/color-palette.js?v=1.7"></script>
 </body>
 </html>

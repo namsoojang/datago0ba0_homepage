@@ -238,6 +238,7 @@
 .palette-code-card { min-width: 0; overflow: hidden; border-radius: 12px; background: #0f172a; color: #e2e8f0; }
 .palette-code-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,.1); }
 .palette-code-header strong { font-size: .8rem; }
+.palette-tag-en { margin-left: 5px; padding: 2px 6px; border-radius: 5px; background: rgba(255,255,255,.14); color: #bfdbfe; font-size: .62rem; font-weight: 800; letter-spacing: .04em; }
 .palette-copy-btn { padding: 6px 9px; border: 1px solid rgba(255,255,255,.2); border-radius: 7px; background: rgba(255,255,255,.08); color: #fff; cursor: pointer; font: 700 .72rem inherit; }
 .palette-code-card pre,.palette-prompt-card > p { min-height: 170px; margin: 0; padding: 16px; overflow: auto; white-space: pre-wrap; color: #dbeafe; font: .78rem/1.65 ui-monospace,SFMono-Regular,Menlo,monospace; }
 .palette-prompt-card { background: #172554; }

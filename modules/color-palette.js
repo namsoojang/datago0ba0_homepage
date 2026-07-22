@@ -30,7 +30,7 @@
     el.reselect.addEventListener('click', () => el.file.click());
     el.analyze.addEventListener('click', analyzeImage);
     el.copyCss.addEventListener('click', () => copyOutput(el.css.textContent, 'CSS 변수를 복사했습니다.', 'css'));
-    el.copyPrompt.addEventListener('click', () => copyOutput(el.prompt.textContent, 'AI 제작 프롬프트를 복사했습니다.', 'prompt'));
+    el.copyPrompt.addEventListener('click', () => copyOutput(el.prompt.textContent, '영문 AI 제작 프롬프트를 복사했습니다.', 'prompt'));
     el.pptDownload.addEventListener('click', downloadPptx);
     el.pptTabs.forEach(tab=>tab.addEventListener('click',()=>selectDeck(tab.dataset.deck)));
   }
@@ -146,9 +146,9 @@
   function buildVariants() {
     const primary=state.colors[state.primaryIndex].hex; const primaryHsl=hexToHsl(primary); const originalSecondary=findDistinctColor(primary,false); const originalAccent=findDistinctColor(primary,true);
     state.variants=[
-      makePalette('원본 중심','이미지의 색감을 가장 잘 유지',primary,originalSecondary,originalAccent),
-      makePalette('차분한 B2B','신뢰감 있는 뉴트럴 조합',primary,hslToHex([primaryHsl[0],Math.min(primaryHsl[1]*.42,.35),.72]),hslToHex([(primaryHsl[0]+38)%360,Math.min(.62,primaryHsl[1]+.12),.54])),
-      makePalette('선명한 강조','CTA가 눈에 띄는 보색 조합',primary,hslToHex([(primaryHsl[0]+24)%360,Math.min(.5,primaryHsl[1]*.72),.68]),hslToHex([(primaryHsl[0]+180)%360,Math.max(.62,primaryHsl[1]),.5]))
+      makePalette('원본 중심','Image-faithful','이미지의 색감을 가장 잘 유지',primary,originalSecondary,originalAccent),
+      makePalette('차분한 B2B','Calm B2B','신뢰감 있는 뉴트럴 조합',primary,hslToHex([primaryHsl[0],Math.min(primaryHsl[1]*.42,.35),.72]),hslToHex([(primaryHsl[0]+38)%360,Math.min(.62,primaryHsl[1]+.12),.54])),
+      makePalette('선명한 강조','Bold accent','CTA가 눈에 띄는 보색 조합',primary,hslToHex([(primaryHsl[0]+24)%360,Math.min(.5,primaryHsl[1]*.72),.68]),hslToHex([(primaryHsl[0]+180)%360,Math.max(.62,primaryHsl[1]),.5]))
     ];
   }
 
@@ -158,10 +158,10 @@
     return candidates[0]?.hex || primary;
   }
 
-  function makePalette(name,description,primary,secondary,accent) {
+  function makePalette(name,nameEn,description,primary,secondary,accent) {
     const primaryHsl=hexToHsl(primary); const background=primaryHsl[2]<.18?'#F8FAFC':hslToHex([primaryHsl[0],Math.min(.12,primaryHsl[1]*.12),.975]);
     const surface=hslToHex([primaryHsl[0],Math.min(.18,primaryHsl[1]*.22),.93]); const text=bestText(background,'body'); const muted=mixColors(text,background,.42); const onPrimary=bestText(primary,'button');
-    return { name,description,primary,secondary,accent,background,surface,text,muted,onPrimary,accentText:bestText(surface,'body') };
+    return { name,nameEn,description,primary,secondary,accent,background,surface,text,muted,onPrimary,accentText:bestText(surface,'body') };
   }
 
   function renderResults() {
@@ -221,7 +221,26 @@
 
   function renderExports(palette) {
     el.css.textContent=`:root {\n  --color-primary: ${palette.primary};\n  --color-secondary: ${palette.secondary};\n  --color-accent: ${palette.accent};\n  --color-background: ${palette.background};\n  --color-surface: ${palette.surface};\n  --color-text: ${palette.text};\n  --color-muted: ${palette.muted};\n  --color-on-primary: ${palette.onPrimary};\n}`;
-    el.prompt.textContent=`${palette.name} 컬러 시스템을 적용한다. 메인 컬러 ${palette.primary}은 주요 CTA와 핵심 제목에 사용하고, 보조 컬러 ${palette.secondary}는 카드와 보조 요소에 사용한다. 포인트 컬러 ${palette.accent}는 가장 중요한 행동과 강조에만 제한적으로 적용한다. 전체 배경은 ${palette.background}, 카드 표면은 ${palette.surface}, 본문은 ${palette.text}를 사용한다. 넓은 영역에는 배경과 표면 컬러를 중심으로 사용하고 본문과 버튼의 명도 대비를 유지한다.`;
+    // 영문 프롬프트: 해외 AI 도구에 그대로 붙여 넣어도 의도가 흐려지지 않도록 역할과 규칙을 함께 적습니다.
+    el.prompt.textContent=[
+      `Use this exact color system (“${palette.nameEn}”). Do not introduce any color outside this list.`,
+      '',
+      `Primary    ${palette.primary}  — primary buttons, key headings, active states`,
+      `Secondary  ${palette.secondary}  — cards, supporting elements, secondary buttons`,
+      `Accent     ${palette.accent}  — reserve for the single most important call to action`,
+      `Background ${palette.background}  — page background, the largest area`,
+      `Surface    ${palette.surface}  — cards and panels sitting on the background`,
+      `Text       ${palette.text}  — headings and body copy`,
+      `Muted      ${palette.muted}  — captions, labels, secondary text`,
+      `On primary ${palette.onPrimary}  — text and icons placed on the primary color`,
+      '',
+      'Rules:',
+      '1. Fill large areas with Background and Surface. Use Primary sparingly and Accent even more sparingly.',
+      '2. Place text only on Background, Surface, or Primary — never directly on Accent.',
+      '3. Keep body text at a contrast ratio of 4.5:1 or better against whatever sits behind it.',
+      '4. Use Accent at most once per screen, on the action you most want the user to take.',
+      '5. Convey state and hierarchy with weight, spacing, and size before reaching for another color.'
+    ].join('\n');
   }
 
   /* ----------------------------------------------------
