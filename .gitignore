@@ -9,3 +9,9 @@ Thumbs.db
 *.bak.*
 .idea/
 .vscode/
+
+# 에이전트 간 임시 토론/검토 문서
+.tmp/
+
+# 에이전트 도구별 로컬 설정 (사용자별 경로/권한 포함)
+.claude/settings.local.json
