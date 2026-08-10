@@ -99,13 +99,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://datagongbang.kr/guide/data-sources.html</loc>
+    <loc>https://datagongbang.kr/guide/data-sources</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://datagongbang.kr/guide/gemini-notebook.html</loc>
+    <loc>https://datagongbang.kr/guide/gemini-notebook</loc>
     <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
