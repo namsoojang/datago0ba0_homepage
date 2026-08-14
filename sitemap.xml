@@ -113,6 +113,12 @@
 
   <!-- BLOG:START - 이 구간은 modules/build_blog.py 가 posts.json 기준으로 자동 생성합니다. 직접 수정하지 마세요. -->
   <url>
+    <loc>https://datagongbang.kr/blog/ref-14</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://datagongbang.kr/blog/ref-13</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>

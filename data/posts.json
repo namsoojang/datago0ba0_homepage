@@ -1,5 +1,15 @@
 [
   {
+    "id": "ref-14",
+    "title": "신한 커리어업 12기 AI Survival 교육 후기 - 막연한 다짐을 구체적인 문장으로",
+    "date": "2026-08-05",
+    "category": "출강후기",
+    "tags": ["신한커리어업", "AI Survival", "Gemini Notebook", "생성형AI", "취업준비"],
+    "summary": "신한 커리어업 12기 발대식 직후 진행한 AI Survival 교육 현장을 소개합니다. AI를 확률 기계로 이해하고 검증하는 태도, Gemini Notebook 실습, 4.9점대 만족도 결과를 기록합니다.",
+    "thumbnail": "./assets/images/blog/careerup12-ai-survival.jpg",
+    "contentPath": "data/posts/ref-14.md"
+  },
+  {
     "id": "ref-13",
     "title": "비개발자도 따라 할 수 있는 홈페이지 배포 가이드를 만든 이유",
     "date": "2026-07-22",
