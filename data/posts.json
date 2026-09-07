@@ -1,5 +1,15 @@
 [
   {
+    "id": "ref-16",
+    "title": "AI로 분석하고, 숫자의 의미까지 설명하기",
+    "date": "2026-09-08",
+    "category": "출강후기",
+    "tags": ["패스트캠퍼스", "INNER CIRCLE", "AI활용", "데이터분석", "기업교육"],
+    "summary": "AI 설치와 프롬프트부터 데이터 속 이야기 찾기, 전략 도출과 발표까지. 패스트캠퍼스 INNER CIRCLE Business Analyst 13기 AI 활용 데이터 분석 강의와 수강생 피드백을 기록합니다.",
+    "thumbnail": "./assets/images/blog/fastcampus-icb13-course-20260908.jpg",
+    "contentPath": "data/posts/ref-16.md"
+  },
+  {
     "id": "ref-15",
     "title": "데이터 분석은 설득할 때 완성됩니다: 신한 커리어업 12기 발표 미니세션",
     "date": "2026-08-14",

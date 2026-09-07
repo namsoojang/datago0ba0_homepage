@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8H79VM0RM8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8H79VM0RM8');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KVV9V7QN');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI로 분석하고, 숫자의 의미까지 설명하기 | 데이터공방</title>
+
+  <meta name="description" content="AI 설치와 프롬프트부터 데이터 속 이야기 찾기, 전략 도출과 발표까지. 패스트캠퍼스 INNER CIRCLE Business Analyst 13기 AI 활용 데이터 분석 강의와 수강생 피드백을 기록합니다.">
+  <meta name="robots" content="index, follow">
+  <meta name="naver-site-verification" content="6b1811d6074cc78b96b89f616ba7cc1278f1666f" />
+  <meta name="google-site-verification" content="Oc6kBZ-qy21JGaAiEqgg8tZzyi-uIToJVG_DXRJmL0k" />
+
+  <link rel="canonical" href="https://datagongbang.kr/blog/ref-16">
+  <meta property="og:url" content="https://datagongbang.kr/blog/ref-16">
+  <meta property="og:title" content="AI로 분석하고, 숫자의 의미까지 설명하기">
+  <meta property="og:description" content="AI 설치와 프롬프트부터 데이터 속 이야기 찾기, 전략 도출과 발표까지. 패스트캠퍼스 INNER CIRCLE Business Analyst 13기 AI 활용 데이터 분석 강의와 수강생 피드백을 기록합니다.">
+  <meta property="og:image" content="https://datagongbang.kr/assets/images/blog/fastcampus-icb13-course-20260908.jpg">
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2026-09-08">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI로 분석하고, 숫자의 의미까지 설명하기","description":"AI 설치와 프롬프트부터 데이터 속 이야기 찾기, 전략 도출과 발표까지. 패스트캠퍼스 INNER CIRCLE Business Analyst 13기 AI 활용 데이터 분석 강의와 수강생 피드백을 기록합니다.","image":"https://datagongbang.kr/assets/images/blog/fastcampus-icb13-course-20260908.jpg","datePublished":"2026-09-08","dateModified":"2026-09-08","author":{"@type":"Person","name":"장남수","url":"https://datagongbang.kr/"},"publisher":{"@type":"Organization","name":"데이터공방","logo":{"@type":"ImageObject","url":"https://datagongbang.kr/assets/images/logos/sketch_var7_ultrasimple_gold.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://datagongbang.kr/blog/ref-16"},"keywords":"패스트캠퍼스, INNER CIRCLE, AI활용, 데이터분석, 기업교육"}</script>
+
+  <link rel="icon" type="image/png" href="/assets/images/logos/sketch_var7_ultrasimple_gold.png">
+  <link rel="stylesheet" href="/index.css?v=1.4">
+  <link rel="stylesheet" href="/modules/toast.css?v=1.2">
+  <link rel="stylesheet" href="/modules/blog.css?v=1.3">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+</head>
+<body class="rpa-light-theme">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVV9V7QN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div id="bg-canvas-container"></div>
+
+  <header id="header">
+    <div class="container nav-container">
+      <a href="/" class="logo" aria-label="데이터공방 홈">
+        <img class="logo-symbol brand-logo-img" id="header-logo-img" src="/assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <ul class="nav-links" id="primary-navigation">
+          <li><a href="/#curriculum" class="nav-link">교육·서비스</a></li>
+          <li><a href="/#references" class="nav-link">성과·사례</a></li>
+          <li><a href="/rpa" class="nav-link">업무도구</a></li>
+          <li><a href="/guide/" class="nav-link">실무가이드</a></li>
+          <li><a href="/blog" class="nav-link active" aria-current="page">블로그</a></li>
+          <li><a href="/#contact" class="nav-link nav-cta">교육·협업 문의</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="converter-section">
+    <div class="blog-detail-container">
+      <a href="/blog" class="blog-back-link">
+        <i class="fas fa-arrow-left"></i> 블로그 목록으로 돌아가기
+      </a>
+
+      <article class="blog-detail-card" id="blog-detail-content-area">
+        <header class="post-header">
+          <div class="post-meta-top">
+            <span class="post-detail-category">출강후기</span>
+            <span class="post-detail-date"><i class="far fa-calendar-alt"></i> 2026-09-08</span>
+          </div>
+          <h1 class="post-detail-title">AI로 분석하고, 숫자의 의미까지 설명하기</h1>
+          <div class="post-detail-tags"><span class="post-tag">#패스트캠퍼스</span> <span class="post-tag">#INNER CIRCLE</span> <span class="post-tag">#AI활용</span> <span class="post-tag">#데이터분석</span> <span class="post-tag">#기업교육</span></div>
+        </header>
+
+        <section class="post-body-contentmarkdown markdown-body">
+<h1>AI로 분석하고, 숫자의 의미까지 설명하기</h1>
+<p><img alt="직장인을 위한 AI 활용 실무 데이터 분석 코스 소개 배너" src="/assets/images/blog/fastcampus-icb13-course-20260908.jpg" /></p>
+<p><em>강의 시작 당시의 과정 소개 이미지. 이미지 속 수강료·지원 안내는 당시 모집 기준입니다.</em></p>
+<p>2026년 7월 29일부터 9월 5일까지 진행한 패스트캠퍼스 INNER CIRCLE Business Analyst 13기의 담당 강의를 마쳤습니다. 데이터도 AI도 익숙하지 않았던 수강생들과 AI 도구 설치부터 프롬프트 다루기, 데이터 속 이야기 찾기, 분석을 이어 전략을 도출하고 발표하는 과정까지 함께했습니다.</p>
+<p>수업을 준비하며 중요하게 생각한 것은 “이 숫자를 믿어도 되는가?”라는 질문이었습니다. AI가 표와 그래프를 만들어주더라도, 어떤 데이터를 썼는지와 어떤 기준으로 계산했는지는 사람이 설명할 수 있어야 하기 때문입니다.</p>
+<p><img alt="장남수·박조은 강사가 함께 소개된 전체 과정의 강사진 이미지" src="/assets/images/blog/fastcampus-icb13-instructors-20260908.jpg" /></p>
+<p><em>전체 과정 소개 페이지의 강사진 안내. 이 글은 그중 장남수 강사가 담당한 AI 활용 데이터 분석 강의의 후기입니다.</em></p>
+<h2>데이터 준비부터 해석까지, 한 단계씩</h2>
+<p>처음에는 AI 분석 환경을 설정하고 CSV 파일을 살펴보며 간단한 대시보드를 만들었습니다. 이후에는 여러 표를 연결하는 방법, 분석 대상을 고르는 기준, 업무 목적에 맞는 지표를 정의하는 과정을 다뤘습니다.</p>
+<p>같은 데이터에서도 표를 연결하거나 계산하는 기준이 달라지면 답이 달라질 수 있습니다. 결과 숫자만 확인하는 대신, 그 숫자가 어떤 과정을 거쳐 나왔는지 되짚어보는 데 시간을 썼습니다.</p>
+<ul>
+<li><strong>데이터 구조와 지표:</strong> 표를 연결하는 KEY, 데이터 결합, 계산 기준과 KPI 정의</li>
+<li><strong>통계와 시각화:</strong> 평균과 분포, 이상치, 표본 수를 고려한 비교, 질문에 맞는 그래프 선택</li>
+<li><strong>분석과 예측:</strong> 클러스터링, 분류, 추천·동시구매 분석, 기준 모델과 예측 결과 비교</li>
+<li><strong>결과 전달:</strong> 대시보드 구현과 점검, 분석 리포트와 최종 발표</li>
+</ul>
+<h2>익숙한 데이터에서 업무 질문을 찾았습니다</h2>
+<p>전자상거래 데이터로 시작해, 후반에는 서울시 따릉이와 부동산 실거래가처럼 생활 속에서 만나는 데이터도 활용했습니다. 따릉이 데이터에서는 건수와 비중을 구분해 보고 지도로 패턴을 확인했습니다. 부동산 데이터로는 분석 대상을 정리하고 지역별 가격을 비교한 뒤, 예측 결과를 기준 모델과 비교하는 흐름을 다뤘습니다.</p>
+<p>수강생 의견에는 한글 데이터와 익숙한 주제로 실습하니 더 재미있고 이해하기 편했다는 반응이 있었습니다. 어떤 데이터를 분석하느냐가 개념을 받아들이는 데에도 영향을 준다는 것을 확인한 대목입니다.</p>
+<h2>발표에서는 각자의 분석 질문을 보여줬습니다</h2>
+<p>최종 발표 자료에는 예산에 맞는 서울 주거지 추천, 음악 스트리밍 이용자의 행동 패턴, 한류와 관광객 특성 등 서로 다른 질문이 담겼습니다. 수업에서 다룬 데이터 정리와 비교, 시각화가 각 팀의 주제 안에서 어떻게 이어졌는지 살펴볼 수 있었습니다.</p>
+<p><img alt="예산 맞춤형 서울 주거지 추천 프로젝트의 온라인 최종 발표 현장" src="/assets/images/blog/fastcampus-icb13-presentation-20260908.png" /></p>
+<p><em>예산에 맞는 서울 주거지 추천을 주제로 진행한 최종 발표.</em></p>
+<p><img alt="K-컬처와 방한 관광객의 연령을 주제로 한 수강생 프로젝트 발표 화면" src="/assets/images/blog/fastcampus-icb13-tourism-20260908.png" /></p>
+<p><em>K-컬처와 방한 관광객의 연령을 주제로 구성한 수강생 프로젝트 발표 화면. 화면 속 수치는 수강생 발표 자료의 내용입니다.</em></p>
+<h2>강의 직후 설문 49건, 평균 만족도 4.88점</h2>
+<p>8월 10일부터 29일까지 8회 강의 직후에 수집한 <strong>49건의 응답에서 평균 만족도는 4.88점(5점 만점)</strong>이었습니다. 4점 이상 응답은 48건으로 <strong>98.0%</strong>였습니다.</p>
+<p>49건은 회차별 누적 응답 수입니다. 같은 수강생이 여러 회차에 응답할 수 있으므로, 수강생 49명의 평가나 전체 과정의 종강 설문으로 해석하지 않았습니다.</p>
+<p>별도로 진행된 8월 조사에서 장남수 강사를 평가한 21명의 응답은 다음과 같았습니다.</p>
+<table>
+<thead>
+<tr>
+<th>8월 강사 멘토링 평가 항목</th>
+<th style="text-align: right;">평균 / 5점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>전반적인 멘토링 만족도</td>
+<td style="text-align: right;">4.62</td>
+</tr>
+<tr>
+<td>프로젝트·커리어 활용도</td>
+<td style="text-align: right;">4.62</td>
+</tr>
+<tr>
+<td>강의 전달력</td>
+<td style="text-align: right;">4.48</td>
+</tr>
+<tr>
+<td>질의응답 충분성</td>
+<td style="text-align: right;">4.57</td>
+</tr>
+<tr>
+<td>수강생과의 상호작용</td>
+<td style="text-align: right;">4.71</td>
+</tr>
+<tr>
+<td>동료 추천 의향</td>
+<td style="text-align: right;">4.52</td>
+</tr>
+</tbody>
+</table>
+<p><em>두 조사는 응답 시점과 문항이 달라 각각 집계했습니다.</em></p>
+<h2>수강생이 남긴 말</h2>
+<p>만족도 숫자와 함께, 수강생들이 무엇을 배웠다고 느꼈는지도 살펴봤습니다. 데이터를 보는 관점, AI가 분석하는 과정에 대한 이해, 결과를 수정하는 방법에 관한 응답이 눈에 들어왔습니다.</p>
+<h3>데이터를 보는 관점이 생겼다는 이야기</h3>
+<blockquote>
+<p>데이터 보는 법에 대한 복습이 많이 되었습니다. 완전 초보자라 데이터를 보고 어떤 데이터가 필요한 데이터인지 분별하는 생각의 흐름 방향을 방법론적으로 따라가 볼 수 있어 좋았습니다. 데이터 자체를 어떻게 접근해야 하는지, 분석의 목적과 데이터를 활용하려는 관점을 먼저 정리하려고 하니 감이 좀 잡히는것 같습니다.</p>
+</blockquote>
+<p><em>INNER CIRCLE 13기 수강생 · 회차별 강의 설문</em></p>
+<h3>AI가 어떤 과정을 거치는지 이해했다는 이야기</h3>
+<blockquote>
+<p>클러스터링의 개념에 대해 알고 어떻게 진행하는 것인지 알게되어서 특히 좋았습니다. Ai가 알아서 해주지만 그래도 어떤 동작을 거쳐 결과가 나오는지 알고나니 개념을 더 빨리 받아들일 수 있었습니다.</p>
+</blockquote>
+<p><em>INNER CIRCLE 13기 수강생 · 회차별 강의 설문</em></p>
+<h3>결과를 직접 고칠 수 있게 됐다는 이야기</h3>
+<blockquote>
+<p>그래프가 잘못 나왔을 때 새로 만드는 방법이 아닌 수정하는 방법을 배워서 좋았습니다. 그래프에 표시를 하여 다시 명령을 내리면 된다는 것을 처음 알았는데 유용하게 잘 사용할 것 같습니다.</p>
+</blockquote>
+<p><em>INNER CIRCLE 13기 수강생 · 회차별 강의 설문</em></p>
+<h2>수강생의 경험이 새로운 영역으로 넓어지는 모습</h2>
+<p>돌아보면 가장 인상 깊었던 것은 수강생들이 각자의 경험을 분석에 가져오는 모습이었습니다. 데이터 분석과 AI는 낯설어도, 자신의 업무와 분야에서는 이미 쌓아온 지식과 노하우가 있었습니다. 수업 사이사이 다룬 개념과 이야기가 그 경험에 연결되고, 다른 영역의 문제를 살펴보는 데에도 쓰이기 시작했습니다.</p>
+<p>AI를 활용하면서 그 범위가 더 넓고 깊어지는 모습이 의미 있었습니다. 데이터를 살펴보다 질문을 찾고, 분석 결과를 다음 질문으로 이어가며, 마지막에는 자신들의 제안을 발표하는 과정이었습니다. 최종 결과물뿐 아니라 그 안에 각자의 생각이 담겨가는 모습이 오래 기억에 남을 것 같습니다.</p>
+<p>저에게도 뜻깊은 수업이었습니다. 저는 파이썬이나 엑셀로 하나하나 입력하고 실행하면서 원리를 몸에 익히는 과정을 즐깁니다. 이번에는 AI와 함께 그 과정을 밟으며, 무엇을 직접 이해해야 하고 무엇을 AI에 맡길 수 있는지 다시 생각하게 됐습니다.</p>
+<h2>제대로 알고 쓰되, 하나씩 재미있게</h2>
+<p>이번 수업을 마치며 다시 느꼈습니다. 자신이 하려는 일을 잘 이해하는 사람은 AI에도 더 명확하게 지시하고, 결과를 보고 필요한 피드백을 줄 수 있다는 것을요. AI 없이도 그 일을 해본 경험과 지식은 AI를 활용할 때도 힘이 됐습니다.</p>
+<p>어디로 가는지 모른 채 AI가 내놓는 답을 따라가다 보면, 그럴듯한 내용은 계속 늘어나도 정작 하려던 이야기는 흐려집니다. 이것저것 마구 섞여 어느 쪽으로도 설명하기 어려운, 키메라 같은 결과물이 나오기도 합니다. 그래서 무엇을 하려는지, 이 결과가 맞는지 판단할 기준을 놓치지 않는 일이 중요했습니다.</p>
+<p>그 기준을 익히는 과정이 처음부터 거창할 필요는 없다고 생각합니다. 수강생들도 낯선 분석 용어와 그래프 선택, 클러스터링을 자기 데이터에 적용하는 일이 어렵다고 했습니다. 다음 수업에서도 당장 필요한 개념 하나를 설명하고, 직접 실행해보고, 결과가 달라지는 이유를 함께 확인하는 과정을 더 잘 만들어가고 싶습니다.</p>
+<p><strong>제대로, 알고 씁시다.</strong></p>
+<p><strong>다만, 어렵게 공부하지는 맙시다.</strong></p>
+<p><strong>핵심으로 필요한 부분만, 하나하나 재미있게!</strong></p>
+<p><img alt="담당 강의가 끝난 뒤 수강생들이 남긴 감사 메시지" src="/assets/images/blog/fastcampus-icb13-closing-20260908.png" /></p>
+<p><em>담당 강의를 마친 뒤 남겨주신 감사 메시지. 작성자 이름과 프로필은 기존 익명화본을 사용했습니다.</em></p>
+<p>퇴근 후와 주말에 시간을 내어 수업과 발표를 함께해주신 수강생 여러분께 감사드립니다. 각자의 경험에 이번에 배운 방법을 더해, 업무에서도 새로운 질문과 답을 찾아가시길 바랍니다.</p>
+<p>▷ <a href="/#contact">데이터공방 교육·협업 문의하기</a></p>
+        </section>
+      </article>
+
+      <section class="blog-cta-panel">
+        <div class="cta-glow-effect"></div>
+        <div class="blog-cta-content">
+          <h3>🏢 우리 부서 맞춤형 자동화 워크숍이 필요하신가요?</h3>
+          <p>임직원들의 단순 수작업 엑셀 취합 업무, 파이썬 분석, RPA 구축을 직무 로데이터 맞춤 교육과 현장 디버깅 실습으로 해결해 드립니다. 지금 커리큘럼 설계 및 무료 견적 상담을 받아보세요.</p>
+          <a href="/#contact" class="btn btn-primary blog-cta-btn" data-consult-source="blog_ref-16">
+            <i class="far fa-envelope"></i> 사내 교육 및 출강 상담 신청하기
+          </a>
+        </div>
+      </section>
+
+      <div style="text-align: center; margin-top: 32px;">
+        <a href="/blog" class="blog-back-link" style="margin-bottom: 0;">
+          <i class="fas fa-list"></i> 전체 칼럼 목록 보기
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <img class="logo-symbol brand-logo-img" id="footer-logo-img" src="/assets/images/logos/sketch_var7_ultrasimple_gold.png" alt="데이터공방 로고" width="26" height="26">
+        <span>데이터<strong>공방</strong></span>
+      </div>
+      <p>&copy; 2026 DATAGOONGBANG. All rights reserved. | 대표 장남수 | 사업자등록번호: 407-11-62561 | <a href="/rpa" style="text-decoration:underline; opacity:0.8; margin-left:5px;">무료 RPA 도구</a> | <a href="/privacy" style="text-decoration:underline; opacity:0.8; margin-left:5px;">개인정보처리방침</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  <script src="/modules/main.js?v=1.4"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script>
+    document.querySelectorAll('[data-consult-source]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        if (typeof window.trackCRMEvent === 'function') {
+          window.trackCRMEvent('click_team_consultation', { source_guide: el.dataset.consultSource });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
